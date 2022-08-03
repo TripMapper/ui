@@ -1,0 +1,30 @@
+@import "../variables";
+
+.space {
+	display: flex;
+
+	&:not(.column) > * {
+		margin: 0 rem(16);
+	}
+
+	&.column {
+		flex-direction: column;
+
+		> * {
+			margin: rem(16) 0;
+			max-width: calc(100% - #{rem(32)});
+		}
+	}
+
+	&.wrap {
+		flex-wrap: wrap;
+	}
+
+	&.around {
+		margin: rem(16);
+
+		> * {
+			margin: rem(16);
+		}
+	}
+}

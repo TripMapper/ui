@@ -1,0 +1,43 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Tabs from './index';
+import FakeNextRouter from '../../.storybook/FakeNextRouter';
+import TabItem from './TabItem';
+import Button from '../Button';
+
+<Meta
+	title="Interface/Tabs"
+	component={Tabs}
+/>
+
+# Tabs
+
+```jsx
+import Tabs from 'ui/Tabs';
+<Tabs items={[
+	{ name: 'Trips', uri: '/trips', exact: true },
+	{ name: 'Current', uri: '/trips/current' },
+]}>
+	Right aligned child components
+</Tabs>
+```
+
+<Canvas>
+	<Story name="Tabs">
+		<FakeNextRouter defaultPath="/trips">
+			<Tabs items={[
+				{ name: 'Proposals', uri: '/trips', exact: true },
+				{ name: 'Upcoming', uri: '/trips/upcoming', exact: true },
+				{ name: 'On Trip', uri: '/trips/active', exact: true },
+				{ name: 'Archive', uri: '/trips/archive', exact: true },
+			]}>
+				<Button>New Trip</Button>
+			</Tabs>
+		</FakeNextRouter>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Tabs} />
+
+#### `TabItemProps`
+
+<ArgsTable of={TabItem} />

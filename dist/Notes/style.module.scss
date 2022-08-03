@@ -1,0 +1,27 @@
+@import "../variables";
+
+.notes {
+	width: 100%;
+	min-height: rem(80);
+	padding: rem(12) rem(13);
+	resize: none;
+
+	font-size: rem(14);
+	font-weight: bold;
+
+	background: #FEF6D7;
+	border: 1px solid #D7D1BD;
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+	border-radius: rem(8);
+
+	overflow: hidden;
+
+	&::placeholder {
+		color: change-color($COLOURS_text, $alpha: 0.4);
+		font-weight: bold;
+	}
+
+	&.increaseSpacing {
+		margin: rem(16) 0;
+	}
+}

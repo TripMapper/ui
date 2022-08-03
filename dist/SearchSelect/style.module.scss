@@ -1,0 +1,27 @@
+@import "../variables";
+
+.menu {
+	padding: 0 !important;
+	border: none !important;
+	background: none !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
+}
+
+.item {
+	display: block;
+	padding: rem(8);
+
+	border-radius: rem(4);
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+
+	&:hover,
+	&.focused {
+		background-color: change-color($COLOURS_border, $alpha: 0.5);
+	}
+
+	&.selected {
+		background-color: $COLOURS_border;
+	}
+}

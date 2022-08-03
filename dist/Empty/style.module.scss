@@ -1,0 +1,15 @@
+@import "../variables";
+
+.empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: rem(32);
+
+	color: change-color($COLOURS_text, $alpha: 0.4);
+	font-weight: bold;
+	text-align: center;
+
+	background: change-color($COLOURS_text, $alpha: 0.05);
+	border-radius: rem(8);
+}

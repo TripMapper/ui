@@ -1,0 +1,14 @@
+@import "../variables";
+
+.page {
+	margin: rem(80) auto rem(30);
+	width: rem($SIZE_container);
+	max-width: calc(100vw - #{rem(32 * 2)});
+}
+
+.heading {
+	h1 {
+		font-size: rem(32);
+		font-weight: bold;
+	}
+}

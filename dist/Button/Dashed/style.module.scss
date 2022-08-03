@@ -1,0 +1,31 @@
+@import "../../variables";
+
+.dashed {
+	color: change-color($COLOURS_text, $alpha: 0.5);
+
+	background: none;
+	border: 1px dashed $COLOURS_border;
+	box-shadow: none;
+	transition: opacity 0.15s ease, color 0.15s ease;
+
+	&:hover {
+		opacity: 0.5;
+	}
+}
+
+.busy {
+	color: change-color($COLOURS_text, $alpha: 0);
+
+	&:hover {
+		opacity: 1;
+	}
+
+	&::before {
+		content: unset;
+	}
+
+	&::after {
+		border-color: change-color($COLOURS_text, $alpha: 0.5);
+		border-top-color: transparent;
+	}
+}

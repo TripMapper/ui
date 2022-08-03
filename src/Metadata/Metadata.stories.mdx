@@ -1,0 +1,38 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Metadata from './index';
+
+<Meta
+	title="Interface/Metadata"
+	component={Metadata}
+/>
+
+# Metadata
+
+```jsx
+import Metadata, { METADATA_FRAGMENT } from 'ui/Metadata';
+
+gql`{ user { metadata { ...Metadata } } } ${METADATA_FRAGMENT}`;
+
+<Metadata meta={user.metadata} />
+```
+
+<Canvas>
+	<Story name="Metadata">
+		<Metadata meta={[
+			{ id: '1', primaryType: 'EMAIL', secondaryType: 'EMAIL_WORK', value: 'test@example.com' },
+			{ id: '2', primaryType: 'EMAIL', secondaryType: 'EMAIL_PERSONAL', value: 'test@me.com' },
+			{ id: '3', primaryType: 'PHONE', secondaryType: 'PHONE_PERSONAL', value: '01234 567890' },
+		]} />
+	</Story>
+</Canvas>
+
+<ArgsTable of={Metadata} />
+
+```ts
+export interface MetadataItem {
+	id: string;
+	primaryType: string;
+	secondaryType?: string | null;
+	value?: string | null;
+}
+```

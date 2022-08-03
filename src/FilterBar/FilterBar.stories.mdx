@@ -1,0 +1,47 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import FilterBar from './index';
+import Select from '../Select';
+import Button from '../Button'; import FakeNextRouter
+	from '../../.storybook/FakeNextRouter'; import Tabs from '../Tabs';
+
+<Meta
+	title="Layout/Filter Bar"
+	component={FilterBar}
+/>
+
+# Filter Bar
+
+```jsx
+import FilterBar from 'ui/FilterBar';
+
+<FilterBar>
+	...children...
+</FilterBar>
+```
+
+<Canvas>
+	<Story name="FilterBar">
+		<FakeNextRouter defaultPath="/trips">
+			<Tabs items={[
+				{ name: 'Proposals', uri: '/trips', exact: true },
+				{ name: 'Upcoming', uri: '/trips/upcoming', exact: true },
+				{ name: 'On Trip', uri: '/trips/active', exact: true },
+				{ name: 'Archive', uri: '/trips/archive', exact: true },
+			]} />
+		</FakeNextRouter>
+		<FilterBar>
+			<Select
+				defaultValue={{ label: 'Newest', value: 'newest' }}
+				options={[
+					{ label: 'Newest', value: 'newest' },
+					{ label: 'Oldest', value: 'oldest' },
+					{ label: 'Highest Price', value: 'expensive' },
+					{ label: 'Lowest Price', value: 'cheap' },
+				]}
+			/>
+			<Button>Click Me</Button>
+		</FilterBar>
+	</Story>
+</Canvas>
+
+<ArgsTable of={FilterBar} />

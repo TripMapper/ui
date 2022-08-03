@@ -1,0 +1,97 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Button
+	from './index';
+
+<Meta
+	title="Form/Button"
+	component={Button}
+/>
+
+# Button
+
+```jsx
+import Button from 'ui/Button';
+<Button>Click Me</Button>
+```
+
+<ArgsTable of={Button} />
+
+## Primary
+
+<Canvas>
+	<Story name="Primary">
+		<Button size="tiny">Click Me</Button>
+		<Button size="small">Click Me</Button>
+		<Button>Click Me</Button>
+		<Button size="large">Click Me</Button>
+		<br/><br/>
+		<Button wide>Click Me</Button>
+		<br/>
+		<Button disabled>Click me</Button>
+		<Button busy>Click me</Button>
+	</Story>
+</Canvas>
+
+## Secondary
+
+<Canvas>
+	<Story name="Secondary">
+		<Button secondary size="tiny">Click Me</Button>
+		<Button secondary size="small">Click Me</Button>
+		<Button secondary>Click Me</Button>
+		<Button secondary size="large">Click Me</Button>
+		<br/><br/>
+		<Button secondary wide>Click Me</Button>
+		<br/>
+		<Button secondary disabled>Click me</Button>
+		<Button secondary busy>Click me</Button>
+	</Story>
+</Canvas>
+
+## Tertiary
+
+<Canvas>
+	<Story name="Tertiary">
+		<Button tertiary size="tiny">Click Me</Button>
+		<Button tertiary size="small">Click Me</Button>
+		<Button tertiary>Click Me</Button>
+		<Button tertiary size="large">Click Me</Button>
+		<br/><br/>
+		<Button tertiary wide>Click Me</Button>
+		<br/>
+		<Button tertiary disabled>Click me</Button>
+		<Button tertiary busy>Click me</Button>
+	</Story>
+</Canvas>
+
+## Text
+
+<Canvas>
+	<Story name="Text">
+		<Button text size="tiny">Click Me</Button>
+		<Button text size="small">Click Me</Button>
+		<Button text>Click Me</Button>
+		<Button text size="large">Click Me</Button>
+		<br/><br/>
+		<Button text wide>Click Me</Button>
+		<br/>
+		<Button text disabled>Click me</Button>
+		<Button text busy>Click me</Button>
+	</Story>
+</Canvas>
+
+## Dashed
+
+<Canvas>
+	<Story name="Dashed">
+		<Button dashed size="tiny">Click Me</Button>
+		<Button dashed size="small">Click Me</Button>
+		<Button dashed>Click Me</Button>
+		<Button dashed size="large">Click Me</Button>
+		<br/><br/>
+		<Button dashed wide>Click Me</Button>
+		<br/>
+		<Button dashed disabled>Click me</Button>
+		<Button dashed busy>Click me</Button>
+	</Story>
+</Canvas>
+

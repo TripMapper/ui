@@ -1,0 +1,41 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Menu from './index';
+import MenuItem from './MenuItem';
+import FakeNextRouter from '../../.storybook/FakeNextRouter';
+
+<Meta
+	title="Interface/Menu"
+	component={Menu}
+/>
+
+# Menu
+
+```jsx
+import Menu from 'ui/Menu';
+<Menu items={[
+	{ name: 'Trips', uri: '/trips' },
+]} />
+```
+
+<Canvas>
+	<Story name="Menu">
+		<FakeNextRouter defaultPath="/trips">
+			<Menu
+				items={[
+					{ name: 'Trips', uri: '/trips' },
+					{ name: 'Templates', uri: '/templates' },
+					{ name: 'Clients', uri: '/clients' },
+					{ name: 'Suppliers', uri: '/suppliers' },
+				]}
+			/>
+		</FakeNextRouter>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Menu} />
+
+
+#### `MenuItem`
+
+<ArgsTable of={MenuItem} />
+

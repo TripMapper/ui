@@ -1,0 +1,51 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Select from './Select';
+
+<Meta
+	title="Form/Select"
+	component={Select}
+/>
+
+# Select
+
+```jsx
+import Select from 'ui/Select';
+
+<Select />
+```
+
+<Canvas>
+	<Story name="Select">
+		<Select
+			placeholder="Regular Select"
+			options={[
+				{ label: 'Newest', value: 'newest' },
+				{ label: 'Oldest', value: 'oldest' },
+				{ label: 'Highest Price', value: 'expensive' },
+				{ label: 'Lowest Price', value: 'cheap' },
+			]}
+		/>
+		<Select
+			placeholder="Mutli-select Clearable"
+			isMulti
+			isClearable
+			options={[
+				{ label: 'Newest', value: 'newest' },
+				{ label: 'Oldest', value: 'oldest' },
+				{ label: 'Highest Price', value: 'expensive' },
+				{ label: 'Lowest Price', value: 'cheap' },
+			]}
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Select} />
+
+#### SelectOption
+
+```typescript
+export interface SelectOption {
+	label: string;
+	value: string | number | boolean;
+}
+```

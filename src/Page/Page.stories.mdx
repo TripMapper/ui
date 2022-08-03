@@ -1,0 +1,37 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Page from './index';
+import FakeNextRouter from '../../.storybook/FakeNextRouter';
+import Tabs from '../Tabs';
+
+<Meta
+	title="Layout/Page"
+	component={Page}
+/>
+
+# Page
+
+```jsx
+import Page from 'ui/Page';
+
+<Page heading="Trips">
+	<Tabs />
+	my page content
+</Page>
+```
+
+<Canvas>
+	<Story name="Page">
+		<Page heading="My Page">
+			<FakeNextRouter defaultPath="/trips">
+				<Tabs items={[
+					{ name: 'Proposals', uri: '/trips', exact: true },
+					{ name: 'Upcoming', uri: '/trips/upcoming', exact: true },
+					{ name: 'On Trip', uri: '/trips/active', exact: true },
+					{ name: 'Archive', uri: '/trips/archive', exact: true },
+				]} />
+			</FakeNextRouter>
+		</Page>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Page} />

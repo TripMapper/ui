@@ -1,0 +1,121 @@
+@import "./variables";
+
+@font-face {
+	font-family: 'Aventa';
+	src: url('./fonts/Aventa-Bold.woff2') format('woff2'),
+		 url('./fonts/Aventa-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Aventa';
+	src: url('./fonts/Aventa-Medium.woff2') format('woff2'),
+		 url('./fonts/Aventa-Medium.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Gravitica';
+	src: url('./fonts/GraviticaMono-Regular.woff2') format('woff2'),
+		 url('./fonts/GraviticaMono-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+th, td {
+	text-align: left;
+	vertical-align: top;
+}
+
+img, iframe {
+	border: 0;
+}
+
+*:not(text) {
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	box-sizing: border-box;
+	font-family: $FONTSTACK_base;
+	accent-color: $COLOURS_accent;
+}
+
+html {
+	height: 100%;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+	//scroll-behavior: smooth;
+
+	@include responsiveSize($SIZES_mobileFontSizePx, $SIZES_baseFontSizePx);
+	font-family: $FONTSTACK_base;
+	font-weight: normal;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	position: relative;
+	min-height: 100%;
+
+	color: $COLOURS_text;
+	text-underline-offset: 0.1rem;
+
+	background-color: $COLOURS_background;
+	overflow-x: hidden;
+
+	&.no-scroll,
+	&.ReactModal__Body--open {
+		overflow: hidden;
+	}
+
+	&::-webkit-scrollbar {
+		width: rem(10);
+		height: rem(10);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: change-color($COLOURS_primary, $alpha: 0.3);
+		border-radius: rem(10);
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: change-color($COLOURS_primary, $alpha: 0.5);
+	}
+
+	&::-webkit-scrollbar-track {
+		background: change-color($COLOURS_primary, $alpha: 0.1);
+		border-radius: rem(10);
+	}
+}
+
+::selection {
+	color: $COLOURS_text;
+	background-color: change-color($COLOURS_primary, $alpha: 0.3);
+}
+
+#__next {
+	position: relative;
+	min-height: 100vh;
+	min-height: -webkit-fill-available;
+}
+
+picture img {
+	object-fit: cover;
+}

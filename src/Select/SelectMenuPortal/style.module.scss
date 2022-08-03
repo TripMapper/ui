@@ -1,0 +1,38 @@
+@import "../../variables";
+
+.menu {
+	z-index: $zINDEX_contextMenu !important;
+	animation: fadeIn 0.15s ease-in-out;
+
+	// TODO: workout how to fade the select menu out so it matches the context menu
+
+	@keyframes fadeIn {
+		0% { opacity: 0 }
+		100% { opacity: 1 }
+	}
+
+	[class*="rsl__menu"] {
+		width: auto !important;
+		min-width: 100%;
+		border-radius: rem($SIZES_buttonBorderRadius);
+	}
+
+	[class*="rsl__option"] {
+		white-space: nowrap;
+		transition: background-color 0.15s ease, color 0.15s ease;
+	}
+
+	[class*="rsl__option--is-focused"] {
+		color: $COLOURS_text;
+		background-color: change-color($COLOURS_primary, $alpha: 0.2);
+	}
+
+	[class*="rsl__option--is-selected"] {
+		background-color: $COLOURS_primary;
+	}
+
+	[class*="rsl__option--is-selected"][class*="rsl__option--is-focused"] {
+		color: #fff;
+		background-color: change-color($COLOURS_primary, $alpha: 0.75);
+	}
+}

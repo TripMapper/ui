@@ -1,0 +1,51 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Avatar from './index';
+
+<Meta
+	title="Display/Avatar"
+	component={Avatar}
+/>
+
+# Avatar
+
+```jsx
+import Avatar, { AVATAR_FRAGMENT } from 'ui/Avatar';
+
+gql`{ getAvatar { ...Avatar } } ${AVATAR_FRAGMENT}`;
+
+<Avatar />
+```
+
+<Canvas>
+	<Story name="Avatar">
+		<Avatar size="tiny" />
+		<Avatar size="small" />
+		<Avatar />
+		<Avatar size="large" />
+		<Avatar flat size="tiny" />
+		<Avatar flat size="small" />
+		<Avatar flat />
+		<Avatar flat size="large" />
+		<br/>
+		<Avatar squricle size="tiny" />
+		<Avatar squricle size="small" />
+		<Avatar squricle />
+		<Avatar squricle size="large" />
+		<Avatar squricle flat size="tiny" />
+		<Avatar squricle flat size="small" />
+		<Avatar squricle flat />
+		<Avatar squricle flat size="large" />
+		<br/>
+		<Avatar initials="TM" squricle size="tiny" />
+		<Avatar initials="TM" squricle size="small" />
+		<Avatar initials="TM" squricle />
+		<Avatar initials="TM" squricle size="large" />
+		<Avatar initials="TM" squricle flat size="tiny" />
+		<Avatar initials="TM" squricle flat size="small" />
+		<Avatar initials="TM" squricle flat />
+		<Avatar initials="TM" squricle flat size="large" />
+	</Story>
+</Canvas>
+
+<ArgsTable of={Avatar} />
+

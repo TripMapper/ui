@@ -1,0 +1,26 @@
+@import "../variables";
+
+.header {
+	position: sticky;
+	top: 0;
+
+	display: grid;
+	grid-template-columns: 0.25fr 1fr 0.25fr;
+	align-items: center;
+
+	//width: 100vw;
+	height: rem(64);
+	padding: 0 rem(8) 0 rem(16);
+
+	border-bottom: 1px solid $COLOURS_borderLight;
+	background-color: change-color($COLOURS_background, $alpha: 0.8);
+
+	> *:last-child {
+		justify-self: end;
+	}
+
+	@supports (backdrop-filter: blur(10px)) {
+		backdrop-filter: blur(10px);
+		background-color: transparent;
+	}
+}

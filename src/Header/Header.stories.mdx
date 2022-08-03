@@ -1,0 +1,54 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Header from './index';
+import FakeNextRouter from '../../.storybook/FakeNextRouter';
+import Menu from '../Menu';
+import ContextMenu, { ContextItemButton } from '../ContextMenu';
+import Avatar from '../Avatar';
+
+<Meta
+	title="Layout/Header"
+	component={Header}
+/>
+
+# Header
+
+```jsx
+import Header from 'ui/Header';
+import Menu from 'ui/Menu';
+import Avatar from 'ui/Avatar';
+
+<Header>
+	<div>[logo]</div>
+
+	<Menu items={[]}></Menu>
+
+	<Avatar />
+</Header>
+```
+
+<Canvas>
+	<Story name="Header">
+		<FakeNextRouter defaultPath="/trips">
+			<Header>
+				<div>[logo]</div>
+				<Menu
+					items={[
+						{ name: 'Trips', uri: '/trips' },
+						{ name: 'Templates', uri: '/templates' },
+						{ name: 'Clients', uri: '/clients' },
+						{ name: 'Suppliers', uri: '/suppliers' },
+					]}
+				/>
+				<ContextMenu menu={
+					<>
+						<ContextItemButton text="Hello" />
+					</>
+				}>
+					<Avatar El="button" />
+				</ContextMenu>
+			</Header>
+		</FakeNextRouter>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Header} />

@@ -1,0 +1,54 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Label from './index';
+import Input from '../Input';
+
+<Meta
+	title="Form/Label"
+	component={Label}
+/>
+
+# Label
+
+```jsx
+import Label from 'ui/Label';
+import Input from 'ui/Input';
+
+<Label label="My Field">
+	<Input />
+</Label>
+<Label group>
+	<Label label="Full Name">
+		<Input />
+	</Label>
+	<Label label="Email Address">
+		<Input />
+	</Label>
+</Label>
+```
+
+<Canvas>
+	<Story name="Label">
+		<Label label="Full Name">
+			<Input />
+		</Label>
+		<Label label="Email Address">
+			<Input />
+		</Label>
+		<Label group>
+			<Label label="Full Name">
+				<Input />
+			</Label>
+			<Label label="Email Address">
+				<Input />
+			</Label>
+			<Label label="Email Address">
+				<Input />
+			</Label>
+		</Label>
+		<Label label="Email Address">
+			<Input />
+		</Label>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Label} />

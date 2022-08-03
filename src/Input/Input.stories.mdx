@@ -1,0 +1,27 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Input from './index';
+
+<Meta
+	title="Form/Input"
+	component={Input}
+/>
+
+# Input
+
+```jsx
+import Input from 'ui/Input';
+<Input />
+```
+
+<Canvas>
+	<Story name="Input">
+		<Input placeholder="Lorem Ipsum" />
+		<Input
+			prefix="£"
+			suffix="%"
+		/>
+		<Input type="color" />
+	</Story>
+</Canvas>
+
+<ArgsTable of={Input} />

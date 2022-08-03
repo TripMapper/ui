@@ -1,0 +1,29 @@
+@import "../../variables";
+
+.color {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: rem(24 + 16);
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+
+	&:focus + span {
+		box-shadow: 0 0 0 rem(2) $COLOURS_accent;
+	}
+}
+
+.preview {
+	display: inline-block;
+	width: rem(24);
+	height: rem(24);
+	margin: 0 rem(-8);
+	border-radius: 100%;
+	border: 1px solid rgba(0,0,0,0.1);
+}
+
+.invalid {
+	box-shadow: 0 0 0 rem(2) $COLOURS_danger;
+}

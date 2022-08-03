@@ -1,0 +1,86 @@
+@import "../variables";
+
+.authLayout {
+	display: flex;
+	align-items: stretch;
+	width: 100vw;
+	height: 100vh;
+}
+
+.image {
+	position: relative;
+	width: 60%;
+	flex-shrink: 9999;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		vertical-align: middle;
+	}
+
+	figcaption {
+		position: absolute;
+		z-index: 3;
+		bottom: rem(8);
+		right: rem(8);
+	}
+
+	a {
+		display: inline-block;
+		padding: rem(5) rem(16);
+
+		color: #fff;
+		font-size: rem(11);
+		text-decoration: none;
+
+		background-color: rgba(0,0,0,0.64);
+		border-radius: rem(100);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	padding: 0 rem($SIZES_spacer);
+}
+
+.form,
+.callOut {
+	width: 100%;
+	max-width: rem(416);
+}
+
+.form {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+	margin: auto;
+	padding: rem($SIZES_spacer) 0;
+
+	> div {
+		width: 100%;
+
+		> header {
+			margin-bottom: rem($SIZES_spacer);
+		}
+	}
+}
+
+.logo {
+	margin-bottom: rem(16);
+}
+
+.callOut {
+	justify-self: flex-end;
+	margin: auto;
+	padding: rem($SIZES_spacer);
+
+	background-color: change-color($COLOURS_primary, $alpha: 0.08);
+	border-radius: rem(16) rem(16) 0 0;
+}

@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.select {
+	font-size: rem(16);
+	font-weight: bold;
+
+	[class*="rsl__control"] {
+		min-height: rem(40);
+
+		background: #fff;
+		border: 1px solid $COLOURS_border;
+		box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+		border-radius: rem($SIZES_buttonBorderRadius);
+		transition: none;
+
+		&:hover {
+			border-color: $COLOURS_border;
+		}
+	}
+
+	[class*="rsl__control--is-focused"] {
+		outline: rem(2) solid $COLOURS_accent !important;
+		z-index: 2;
+	}
+
+	[class*="rsl__placeholder"] {
+		color: change-color($COLOURS_text, $alpha: 0.25);
+	}
+
+	[class*="rsl__value-container"] {
+		padding: rem(3) rem(16);
+	}
+
+	[class*="rsl__value-container--is-multi rsl__value-container--has-value"] {
+		padding: rem(3) rem(6);
+	}
+}
+
+.inline {
+	display: inline-block;
+}

@@ -1,0 +1,70 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import AuthLayout from './index'; import Copy from '../Copy'; import Button
+	from '../Button'; import Input from '../Input'; import Label
+	from '../Label';
+
+<Meta
+	title="Layout/Auth Layout"
+	component={AuthLayout}
+/>
+
+# Auth Layout
+
+```jsx
+import AuthLayout from 'ui/AuthLayout';
+import Copy from 'ui/Copy';
+import Button from 'ui/Button';
+
+<AuthLayout
+	form={(
+		<Copy>
+			<h1>Log In</h1>
+			<p>Welcome back! please sign in below.</p>
+		</Copy>
+	)}
+	callout={(
+		<>
+			<h2>Interested in trying out TripMapper Agent?</h2>
+			<p>We’re currently in limited BETA and inviting new agents
+				daily. If you’d like to be included, join the waitlist
+				below.</p>
+			<Button>Join the waitlist</Button>
+		</>
+	)}
+/>
+```
+
+<Canvas>
+	<Story name="AuthLayout">
+		<AuthLayout
+			form={(
+				<>
+					<Copy El="header">
+						<h1>Log In</h1>
+						<p>Welcome back! please sign in below.</p>
+					</Copy>
+					<Label label="Email Address">
+						<Input type="email" placeholder="joe.bloggs@agent.com" required />
+					</Label>
+					<Label label="Password">
+						<Input type="password" required />
+					</Label>
+					<Button secondary wide size="large">Log in</Button>
+					<br/>
+					<Button text wide size="small">I've forgotten my password</Button>
+				</>
+			)}
+			callout={(
+				<>
+					<h2>Interested in trying out TripMapper Agent?</h2>
+					<p>We’re currently in limited BETA and inviting new agents
+						daily. If you’d like to be included, join the waitlist
+						below.</p>
+					<Button>Join the waitlist</Button>
+				</>
+			)}
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={AuthLayout} />

@@ -1,0 +1,26 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import DetailedHeader
+	from './index';
+
+<Meta
+	title="Interface/Detailed Header"
+	component={DetailedHeader}
+/>
+
+# Detailed Header
+
+```jsx
+import DetailedHeader from 'ui/DetailedHeader';
+
+<DetailedHeader heading="Hello" />
+```
+
+<Canvas>
+	<Story name="DetailedHeader">
+		<DetailedHeader
+			prefix="Mr"
+			heading="Text McName"
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={DetailedHeader} />

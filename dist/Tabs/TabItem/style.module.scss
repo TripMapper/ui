@@ -1,0 +1,50 @@
+@import "../../variables";
+
+.li {
+	position: relative;
+
+	&:first-child {
+		margin-left: rem(-8);
+	}
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: rem(55);
+	padding: 0 rem(8);
+
+	color: change-color($COLOURS_text, $alpha: 0.5);
+	font-size: rem(20);
+	font-weight: bold;
+	text-decoration: none;
+
+	appearance: none;
+	background: none;
+	border: none;
+	border-radius: 0;
+	cursor: pointer;
+	transition: color 0.15s ease;
+
+	&:hover {
+		color: $COLOURS_text;
+	}
+}
+
+.itemActive {
+	color: $COLOURS_text;
+}
+
+.active {
+	position: absolute;
+	z-index: -1;
+	left: rem(8);
+	bottom: rem(-1);
+
+	display: block;
+	width: calc(100% - #{rem(16)});
+	height: rem(2);
+
+	background-color: $COLOURS_text;
+}

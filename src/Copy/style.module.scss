@@ -1,0 +1,37 @@
+@import "../variables";
+
+.copy {
+	h1 {
+		margin-bottom: rem(8);
+
+		font-size: rem(32);
+		font-weight: bold;
+		line-height: 1.3em;
+
+		&:not(:first-child) {
+			margin-top: rem($SIZES_spacer);
+		}
+	}
+
+	h2 {
+		margin-bottom: rem(16);
+
+		font-size: rem(24);
+		font-weight: bold;
+		line-height: 1.3em;
+
+		&:not(:first-child) {
+			margin-top: rem($SIZES_spacer);
+		}
+	}
+
+	p {
+		font-size: rem(16);
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		line-height: 1.5em;
+
+		&:not(:last-child) {
+			margin-bottom: rem($SIZES_spacer * 0.5);
+		}
+	}
+}

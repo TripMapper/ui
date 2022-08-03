@@ -1,0 +1,129 @@
+@import "../../variables";
+
+.btn {
+	position: relative;
+
+	display: inline-flex;
+	height: rem(40);
+	padding: rem(1) rem(16) 0;
+
+	color: #fff;
+	font-size: rem(16);
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+
+	align-items: center;
+	justify-content: center;
+	appearance: none;
+	border: none;
+	border-radius: rem($SIZES_buttonBorderRadius);
+	box-shadow:
+			inset 0 0 0 1px rgba(0,0,0,0.2),
+			0 1px 4px 0 rgba(0,0,0,0.08);
+	cursor: pointer;
+
+	transition: opacity 0.15s ease;
+	overflow: hidden;
+
+	&:hover {
+		opacity: 0.75;
+	}
+
+	&:active {
+		opacity: 0.6;
+	}
+
+	&:disabled {
+		pointer-events: none;
+		opacity: 0.25;
+	}
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: 2;
+
+		transition: opacity 0.15s ease;
+		opacity: 0;
+	}
+
+	&::before {
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2);
+		border-radius: rem($SIZES_buttonBorderRadius);
+	}
+
+	&::after {
+		top: 50%;
+		left: 50%;
+
+		display: block;
+		width: rem(16);
+		height: rem(16);
+
+		border: rem(2) solid currentColor;
+		border-top-color: transparent;
+		border-radius: 100%;
+
+		animation: infinite linear 1s btnBusySpin;
+		@keyframes btnBusySpin {
+			from { transform: translate3d(-50%, -50%, 0) rotate(0deg) }
+			to { transform: translate3d(-50%, -50%, 0) rotate(360deg) }
+		}
+	}
+
+	&.noPadding {
+		padding: 0 !important;
+		height: unset !important;
+	}
+}
+
+.wide {
+	display: flex;
+	width: 100%;
+}
+
+.busy {
+	cursor: wait;
+
+	&:hover,
+	&:active {
+		opacity: 1;
+	}
+
+	&::before,
+	&::after {
+		opacity: 1;
+	}
+}
+
+.tiny {
+	height: rem(24);
+	padding: rem(1) rem(10) 0;
+	font-size: rem(12);
+	border-radius: rem($SIZES_buttonBorderRadiusTiny);
+
+	&::before {
+		border-radius: rem($SIZES_buttonBorderRadiusTiny);
+	}
+
+	&::after {
+		width: rem(8);
+		height: rem(8);
+	}
+}
+
+.small {
+	height: rem(32);
+}
+
+.large {
+	height: rem(48);
+	padding: rem(1) rem(24) 0;
+}

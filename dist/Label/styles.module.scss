@@ -1,0 +1,32 @@
+@import "../variables";
+
+.group {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: rem(16);
+
+	> label,
+	> div {
+		margin-bottom: 0 !important;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: rem(16);
+	}
+}
+
+.label {
+	display: block;
+
+	> span {
+		display: block;
+		margin-bottom: rem(5);
+
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(12);
+	}
+
+	&:not(:last-child) {
+		margin-bottom: rem(16);
+	}
+}

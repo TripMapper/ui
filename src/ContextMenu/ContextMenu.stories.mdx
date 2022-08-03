@@ -1,0 +1,47 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import ContextMenu, { ContextItemButton } from './index';
+import Button from '../Button';
+
+<Meta
+	title="Interface/Context Menu"
+	component={ContextMenu}
+/>
+
+# Context Menu
+
+```jsx
+import ContextMenu, { ContextItemButton } from 'ui/ContextMenu';
+
+<ContextMenu
+	menu={
+		<>
+			<ContextItemButton text="Add User" onClick={console.log} />
+			<hr/>
+		</>
+	}
+>
+	<button>click me</button>
+</ContextMenu>
+```
+
+<Canvas>
+	<Story name="Context Menu">
+		<ContextMenu
+			menu={
+				<>
+					<ContextItemButton text="Add User" onClick={console.log} />
+					<hr/>
+					<ContextItemButton type="danger" text="Delete User" onClick={console.log} />
+				</>
+			}
+		>
+			<Button>Click me!</Button>
+		</ContextMenu>
+	</Story>
+</Canvas>
+
+<ArgsTable of={ContextMenu} />
+
+### `ContextItemButton`
+
+<ArgsTable of={ContextItemButton} />

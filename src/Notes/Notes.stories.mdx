@@ -1,0 +1,28 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Notes from './index'; import Label from '../Label';
+
+<Meta
+	title="Form/Notes"
+	component={Notes}
+/>
+
+# Notes
+
+```jsx
+import Notes from 'ui/Notes';
+
+<Notes />
+```
+
+<Canvas>
+	<Story name="Notes">
+		<Label label="Input">
+			<Notes placeholder="Notes" />
+		</Label>
+		<Label label="Readonly">
+			<Notes placeholder="Notes" readOnly defaultValue="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolore ea laudantium modi nobis officia, perspiciatis quia quidem similique suscipit! Animi ea impedit maxime, necessitatibus nostrum obcaecati possimus repellendus vero?" />
+		</Label>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Notes} />

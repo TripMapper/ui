@@ -1,0 +1,126 @@
+@use "sass:math";
+
+// Consts
+// =========================================================================
+
+// Fonts
+// -------------------------------------------------------------------------
+
+$FONT_system: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+$FONT_base: 'Aventa';
+$FONT_mono: 'Gravitica';
+
+$FONTSTACK_base: $FONT_base, $FONT_system;
+$FONTSTACK_mono: $FONT_mono, $FONTSTACK_base;
+
+// Colours
+// -------------------------------------------------------------------------
+
+$COLOURS_primary: #A28366;
+$COLOURS_yellow: #FFD34F;
+$COLOURS_red: #FF4F4F;
+$COLOURS_purple: #A84FFF;
+
+$COLOURS_danger: $COLOURS_red;
+$COLOURS_accent: $COLOURS_primary;
+
+$COLOURS_text: #2C2825;
+
+$COLOURS_background: #F4F2EF;
+$COLOURS_border: #E7E1D9;
+$COLOURS_borderLight: #E0DFDD;
+
+$COLOURS_accommodation: var(--c-accommodation, #{$COLOURS_yellow});
+
+// Sizes
+// -------------------------------------------------------------------------
+
+$SIZE_container: 1400;
+
+$SIZES_baseFontSizePx: 16;
+$SIZES_mobileFontSizePx: 14;
+
+$SIZES_buttonBorderRadius: 8;
+$SIZES_buttonBorderRadiusTiny: 3;
+
+$SIZES_spacer: 32;
+
+// Z-Index
+// -------------------------------------------------------------------------
+
+$zINDEX_contextMenu: 100;
+$zINDEX_slideover: 21;
+
+// Functions
+// =========================================================================
+
+/**
+ * Round the given number to a set number of decimals
+ * @see https://stackoverflow.com/a/29901280/550109
+ */
+@function decimal-round ($number, $digits: 0, $mode: round) {
+	$n: 1;
+
+	// $number must be a number
+	@if type-of($number) != number {
+		@warn '#{ $number } is not a number.';
+		@return $number;
+	}
+
+	// $digits must be a unitless number
+	@if type-of($digits) != number {
+		@warn '#{ $digits } is not a number.';
+		@return $number;
+	} @else if not unitless($digits) {
+		@warn '#{ $digits } has a unit.';
+		@return $number;
+	}
+
+	@for $i from 1 through $digits {
+		$n: $n * 10;
+	}
+
+	@if $mode == round {
+		@return math.div(round($number * $n), $n);
+	} @else if $mode == ceil {
+		@return math.div(ceil($number * $n), $n);
+	} @else if $mode == floor {
+		@return math.div(floor($number * $n), $n);
+	} @else {
+		@warn '#{ $mode } is undefined keyword.';
+		@return $number;
+	}
+}
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
+		@return math.div($number, $number * 0 + 1);
+	}
+
+	@return $number;
+}
+
+/**
+ * Convert the given PX size to REMs
+ */
+@function rem ($targetSize, $baseSize: 16) {
+	@return #{decimal-round(math.div(strip-unit($targetSize), $baseSize), 3)}rem;
+}
+
+@mixin responsiveSize($minFontSize, $maxFontSize, $minScreenWidth: 400, $maxScreenWidth: 1260) {
+	$fontDiff: $maxFontSize - $minFontSize;
+	$screenDiff: $maxScreenWidth - $minScreenWidth;
+	font-size: #{$maxFontSize}px;
+	font-size: calc(#{$minFontSize}px + (#{$fontDiff}) * (100vw - #{$minScreenWidth}px) / (#{$screenDiff}));
+
+	@media (min-width: #{$maxScreenWidth}px) {
+		font-size: #{$maxFontSize}px;
+	}
+
+	@media (max-width: #{$minScreenWidth}px) {
+		font-size: #{$minFontSize}px;
+	}
+}

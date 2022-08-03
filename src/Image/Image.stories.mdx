@@ -1,0 +1,19 @@
+import { ArgsTable, Meta } from '@storybook/addon-docs';
+import Image from './index';
+
+<Meta
+	title="Display/Image"
+	component={Image}
+/>
+
+# Image
+
+```jsx
+import Image, { IMAGE_FRAGMENT } from 'ui/Image';
+
+gql`{ getImage { ...Image } } ${IMAGE_FRAGMENT}`;
+
+<Image />
+```
+
+<ArgsTable of={Image} />

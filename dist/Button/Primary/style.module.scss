@@ -1,0 +1,9 @@
+@import "../../variables";
+
+.primary {
+	background: $COLOURS_primary;
+
+	&::before {
+		background: $COLOURS_primary;
+	}
+}

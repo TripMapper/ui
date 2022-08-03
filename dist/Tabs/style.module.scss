@@ -1,0 +1,17 @@
+@import "../variables";
+
+.ul {
+	position: relative;
+	z-index: 2;
+
+	display: flex;
+	align-items: stretch;
+
+	list-style: none;
+	border-bottom: 1px solid $COLOURS_borderLight;
+}
+
+.kids {
+	flex-grow: 1;
+	text-align: right;
+}

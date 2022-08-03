@@ -1,0 +1,34 @@
+@import "../variables";
+
+.metadata {
+	width: 100%;
+
+	dt {
+		font-size: 0;
+
+		&:not(:first-child) {
+			margin-top: rem(32);
+		}
+	}
+
+	dd {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: rem(5);
+	}
+
+	span {
+		display: inline-block;
+		flex-grow: 1;
+		margin: 0 rem(13);
+	}
+
+	small {
+		align-self: flex-end;
+
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(12);
+		font-weight: bold;
+	}
+}

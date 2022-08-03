@@ -1,0 +1,86 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Table from './index';
+import { formatCurrency, formatDate } from '../util';
+
+<Meta
+	title="Layout/Table"
+	component={Table}
+/>
+
+# Table
+
+```jsx
+import Table from 'ui/Table';
+
+<Table columns={[]} data={[]} />
+```
+
+<Canvas>
+	<Story name="Table">
+		<Table
+			columns={[
+				{
+					label: 'Client',
+					handle: 'client.name',
+					renderer: (name, row) => <a href={`/clients/${row.client.id}`}>{name}</a>,
+				},
+				{ label: 'Trip', handle: 'trip.name' },
+				{
+					label: 'Start',
+					handle: 'trip.startDate',
+					renderer: d => formatDate(d),
+				},
+				{
+					label: 'Duration',
+					handle: 'trip.days',
+					renderer: d => `${d} day${d === 1 ? '' : 's'}`
+				},
+				{ label: 'Trav', handle: 'travelling' },
+				{
+					label: 'Cost',
+					handle: 'cost',
+					renderer: cost => formatCurrency(cost, 'USD', true),
+				},
+				{
+					label: 'Created',
+					handle: 'createdAt',
+					renderer: d => formatDate(d),
+				},
+				{ label: 'Status', handle: 'status' },
+				{ label: 'Agent', handle: 'owner.friendlyName' },
+			]}
+			data={Array.from({ length: 5 }, (_, i) => ({
+				id: i,
+				client: {
+					id: '0000-00000-0000-000',
+					name: `Example School ${i}`,
+				},
+				trip: {
+					name: `My Trip ${i}`,
+					startDate: i % 3 ? null : new Date(),
+					days: 7,
+				},
+				travelling: 40,
+				cost: 18_000,
+				createdAt: new Date(),
+				status: 'PENDING',
+				owner: { friendlyName: 'Istami Mario' },
+			}))}
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Table} />
+
+```typescript
+export interface TableData {
+	id: string;
+	[key: string]: any;
+}
+
+export interface TableColumn {
+	label: string;
+	handle: string;
+	renderer?: (any, TableData) => ReactNode;
+}
+```

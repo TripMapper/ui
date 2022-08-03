@@ -1,0 +1,63 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Repeater from './index';
+import Input from '../Input'; import Select from '../Select';
+
+<Meta
+	title="Form/Repeater"
+	component={Repeater}
+/>
+
+# Repeater
+
+```jsx
+import Repeater from 'ui/Repeater';
+import Input from './index';
+
+<Repeater
+	emptyValue={{ name: '' }}
+	name="myRelation"
+	fields={[
+		(row, name) => <Input name={`${name}.name`} defaultValue={row?.name ?? ''} />,
+		(row, name) => <Input name={`${name}.email`} defaultValue={row?.email ?? ''} />,
+	]}
+/>
+```
+
+<Canvas>
+	<Story name="Repeater">
+		<Repeater
+			emptyValue={{ email: '', emailType: 'PERSONAL' }}
+			fields={[
+				(row, i) => <Input name={`email[${i}]`} type="email" defaultValue={row?.email ?? ''} placeholder="travelman@goexplore.com" />,
+				(row, i) => <Select
+					name={`emailType[${i}]`}
+					defaultValue={row?.emailType ? { label: row.emailType.toLowerCase(), value: row.emailType.toUpperCase() } : null}
+					options={[
+						{ label: 'Personal', value: 'PERSONAL' },
+						{ label: 'Work', value: 'WORK' },
+						{ label: 'Booking', value: 'BOOKING' },
+						{ label: 'Admin', value: 'ADMIN' },
+						{ label: 'Accounts', value: 'ACCOUNTS' },
+						{ label: 'Other', value: 'OTHER' },
+					]}
+				/>,
+			]}
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Repeater} />
+
+```ts
+import { ReactNode } from 'react';
+
+export type RepeaterField = (
+	index : number,
+	defaultRowValue ?: any
+) => ReactNode;
+
+export interface RepeaterValue {
+	id: string;
+	[key: string]: any;
+}
+```

@@ -1,0 +1,41 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Copy from './index';
+
+<Meta
+	title="Display/Copy"
+	component={Copy}
+/>
+
+# Copy
+
+```jsx
+import Copy from 'ui/Copy';
+
+<Copy>
+	<h2>Lorem ipsum dolor sit amet.</h2>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis deleniti, fugiat nihil non quae voluptas?</p>
+</Copy>
+```
+
+<Canvas>
+	<Story name="Copy">
+		<Copy>
+			<h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Cupiditate delectus deleniti doloribus est et fugiat harum illum
+				labore maxime odio officiis pariatur perspiciatis quam quisquam,
+				quod reprehenderit similique voluptatem. Rerum?</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+				accusamus amet aspernatur dolorem nemo, nulla quas rerum
+				voluptate. Aliquam autem blanditiis esse ipsa odio, quos
+				recusandae repellat rerum sit ut!</p>
+			<h2>Lorem ipsum dolor sit.</h2>
+			<p>Adipisci
+			alias aliquam assumenda atque consequuntur corporis cumque deleniti
+			distinctio doloremque earum excepturi exercitationem id impedit
+			mollitia nemo nisi odit omnis pariatur quas quo recusandae, tempore
+			unde velit vitae voluptate?</p>
+		</Copy>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Copy} />

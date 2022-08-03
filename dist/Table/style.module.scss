@@ -1,0 +1,37 @@
+@import "../variables";
+
+.table {
+	width: 100%;
+
+	tr {
+		border-bottom: 1px solid $COLOURS_borderLight;
+	}
+
+	th {
+		padding: rem(8) rem(7.5);
+
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(12);
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: rem(0.86);
+	}
+
+	td {
+		padding: rem(8) rem(7.5);
+		vertical-align: middle;
+
+		font-size: rem(16);
+		font-weight: 100;
+	}
+
+	a {
+		color: $COLOURS_text;
+		font-weight: bold;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

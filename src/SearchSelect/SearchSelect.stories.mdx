@@ -1,0 +1,57 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import SearchSelect from './index'; import { createClient, gql, Provider } from 'urql';
+
+<Meta
+	title="Form/Search Select"
+	component={SearchSelect}
+/>
+
+# Search Select
+
+```jsx
+import SearchSelect from 'ui/SearchSelect';
+
+<SearchSelect
+	query={gql`
+		query Search ($query: String) {
+			mySearch (
+				first: 10
+				filter: { query: $query }
+			) {
+				label: title
+				value: id
+				# ... other data
+			}
+		}
+	`}
+/>
+```
+
+<Canvas>
+	<Story name="SearchSelect">
+		<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+			<SearchSelect
+				pathToNodes="tripsList"
+				query={gql`
+					query Search ($query: String) {
+						tripsList (
+							first: 10
+							filter: { name: { includesInsensitive: $query } }
+						) {
+							value: id
+							label: name
+							days
+							notes
+						}
+					}
+				`}
+				onSelect={console.log}
+				itemRenderer={data => (
+					<>{data.label} ({data.days} days)</>
+				)}
+			/>
+		</Provider>
+	</Story>
+</Canvas>
+
+<ArgsTable of={SearchSelect} />

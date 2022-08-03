@@ -1,0 +1,37 @@
+@import "../variables";
+
+
+.detailedHeader {
+	display: flex;
+	align-items: center;
+
+	h1 {
+		font-size: rem(24);
+		font-weight: bold;
+	}
+}
+
+.img {
+	width: rem(48);
+	height: rem(48);
+	margin-right: rem(16);
+
+	border-radius: rem(12);
+	background: change-color($COLOURS_borderLight);
+	overflow: hidden;
+
+	picture,
+	img {
+		width: 100%;
+		height: 100%;
+		vertical-align: middle;
+		object-fit: cover;
+	}
+}
+
+.prefix {
+	margin-bottom: rem(3);
+
+	color: change-color($COLOURS_text, $alpha: 0.5);
+	font-weight: bold;
+}

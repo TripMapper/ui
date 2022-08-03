@@ -1,0 +1,30 @@
+import ClientPersonCard from './index'; import {
+	ArgsTable,
+	Canvas,
+	Meta, Story
+} from '@storybook/addon-docs';
+
+<Meta
+	title="Card/Client Person"
+	component={ClientPersonCard}
+/>
+
+# Client Person Card
+
+```jsx
+import ClientPersonCard from 'ui/ClientPersonCard';
+
+<ClientPersonCard />
+```
+
+<Canvas>
+	<Story name="Client Person">
+		<ClientPersonCard
+			givenName="Example"
+			familyName="Person"
+			address={[{ value: 'London, UK' }]}
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={ClientPersonCard} />

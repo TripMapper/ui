@@ -1,0 +1,30 @@
+@import "../../variables";
+
+.btn {
+	color: $COLOURS_text;
+	background: none;
+	border: none;
+	box-shadow: none;
+	transition: opacity 0.15s ease, color 0.15s ease;
+
+	&:hover {
+		opacity: 0.5;
+	}
+}
+
+.busy {
+	color: change-color($COLOURS_text, $alpha: 0);
+
+	&:hover {
+		opacity: 1;
+	}
+
+	&::before {
+		content: unset;
+	}
+
+	&::after {
+		border-color: $COLOURS_text;
+		border-top-color: transparent;
+	}
+}
