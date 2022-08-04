@@ -4,7 +4,7 @@ import Button from '../Button';
 import uuid from '../util/uuid';
 import RedX from '../svg/red-x.svg';
 import { nanoid } from 'nanoid';
-export default function Repeater({ name, addLabel = '+ Add', emptyValue, defaultValues = [], fields, max = null, onBeforeAddClick, deleteByNodeId = false, includeUpdateById = true, }) {
+export default function Repeater({ name, addLabel = '+ Add', emptyValue, defaultValues = [], fields, max = null, onBeforeAddClick, byNodeId = false, includeUpdateById = true, }) {
     const [values, setValues] = useState(defaultValues ?? []), [deletedIds, setDeletedIds] = useState([]);
     const onAddClick = async () => {
         let nextV = { id: 'new_' + uuid(), ...emptyValue };
@@ -32,21 +32,21 @@ export default function Repeater({ name, addLabel = '+ Add', emptyValue, default
         });
     };
     return (<>
-			{deletedIds.map(id => (<input type="hidden" name={deleteByNodeId ? `${name}.deleteByNodeId[rid_${nanoid(5)}].nodeId` : `${name}.deleteById[rid_${id}].id`} value={id} key={id}/>))}
+			{deletedIds.map(id => (<input type="hidden" name={byNodeId ? `${name}.deleteByNodeId[rid_${nanoid(5)}].nodeId` : `${name}.deleteById[rid_${id}].id`} value={id} key={id}/>))}
 			<table className={css.repeater}>
 				<tbody>
 				{values.map((value, index) => {
             const uid = 'rid_' + nanoid(5);
             const isNew = value.id.startsWith('new_');
-            const createName = `${name}.create[${uid}]`, updateName = `${name}.updateById[${uid}].patch`;
+            const createName = `${name}.create[${uid}]`, updateName = `${name}.updateBy${byNodeId ? 'Node' : ''}Id[${uid}].patch`;
             return (<tr key={`row_${value.id}`}>
 							{fields.map((field, i) => (<td key={`field_${value.id}_${i}`}>
-									{i === 0 && !isNew && includeUpdateById && (<input type="hidden" name={updateName.replace('.patch', '.id')} value={value.id}/>)}
+									{i === 0 && !isNew && includeUpdateById && (<input type="hidden" name={updateName.replace('.patch', byNodeId ? '.nodeId' : '.id')} value={value[byNodeId ? 'nodeId' : 'id']}/>)}
 
 									{field(value, isNew ? createName : updateName)}
 
 									{i === fields.length - 1 && (<div className={css.controls}>
-											<button type="button" title="Delete" onClick={onDeleteClick(index, deleteByNodeId ? value.nodeId : value.id)}>
+											<button type="button" title="Delete" onClick={onDeleteClick(index, byNodeId ? value.nodeId : value.id)}>
 												<RedX />
 											</button>
 										</div>)}

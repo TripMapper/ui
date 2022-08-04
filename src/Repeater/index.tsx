@@ -26,7 +26,7 @@ export interface RepeaterProps {
 	max?: number;
 	fields: readonly RepeaterField[];
 	onBeforeAddClick?: (value: RepeaterValue) => Promise<RepeaterValue>;
-	deleteByNodeId?: boolean;
+	byNodeId?: boolean;
 	includeUpdateById?: boolean;
 }
 
@@ -38,7 +38,7 @@ export default function Repeater ({
 	fields,
 	max = null,
 	onBeforeAddClick,
-	deleteByNodeId = false,
+	byNodeId = false,
 	includeUpdateById = true,
 } : RepeaterProps) {
 	const [values, setValues] = useState(defaultValues ?? [])
@@ -76,7 +76,7 @@ export default function Repeater ({
 			{deletedIds.map(id => (
 				<input
 					type="hidden"
-					name={deleteByNodeId ? `${name}.deleteByNodeId[rid_${nanoid(5)}].nodeId` : `${name}.deleteById[rid_${id}].id`}
+					name={byNodeId ? `${name}.deleteByNodeId[rid_${nanoid(5)}].nodeId` : `${name}.deleteById[rid_${id}].id`}
 					value={id}
 					key={id}
 				/>
@@ -88,7 +88,7 @@ export default function Repeater ({
 					const isNew = value.id.startsWith('new_');
 
 					const createName = `${name}.create[${uid}]`
-						, updateName = `${name}.updateById[${uid}].patch`;
+						, updateName = `${name}.updateBy${byNodeId ? 'Node' : ''}Id[${uid}].patch`;
 
 					return (
 						<tr key={`row_${value.id}`}>
@@ -97,8 +97,8 @@ export default function Repeater ({
 									{i === 0 && !isNew && includeUpdateById && (
 										<input
 											type="hidden"
-											name={updateName.replace('.patch', '.id')}
-											value={value.id}
+											name={updateName.replace('.patch', byNodeId ? '.nodeId' : '.id')}
+											value={value[byNodeId ? 'nodeId' : 'id']}
 										/>
 									)}
 
@@ -106,7 +106,7 @@ export default function Repeater ({
 
 									{i === fields.length - 1 && (
 										<div className={css.controls}>
-											<button type="button" title="Delete" onClick={onDeleteClick(index, deleteByNodeId ? value.nodeId : value.id)}>
+											<button type="button" title="Delete" onClick={onDeleteClick(index, byNodeId ? value.nodeId : value.id)}>
 												<RedX/>
 											</button>
 										</div>

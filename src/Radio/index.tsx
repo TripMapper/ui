@@ -16,7 +16,7 @@ export default function Radio ({
 	suffix = '',
 	value = '1',
 	defaultChecked = false,
-	onChange = () => {},
+	onChange,
 } : RadioProps) {
 	return (
 		<label className={css.radio}>
