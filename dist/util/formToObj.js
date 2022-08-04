@@ -23,12 +23,22 @@ export default function formToObj(formData) {
         if (typeof value === 'string') {
             if (value === '' || value === null || value === void 0)
                 value = null;
-            if (value.startsWith('(bool)'))
+            else if (value.startsWith('(bool)'))
                 value = parseBool(value.slice(6));
             else if (value.startsWith('(number)'))
                 value = +(value.slice(8));
         }
-        set(object, key, value);
+        if (key.endsWith('[]')) {
+            const k = key.slice(0, -2);
+            const arr = get(object, k);
+            if (arr)
+                arr.push(value);
+            else
+                set(object, k, [value]);
+        }
+        else {
+            set(object, key, value);
+        }
     });
     keysToArrayify.forEach(key => {
         set(object, key, Object.values(get(object, key)));

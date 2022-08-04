@@ -28,11 +28,18 @@ export default function formToObj (formData : FormData): { [key: string]: string
 
 		if (typeof value === 'string') {
 			if (value === '' || value === null || value === void 0) value = null;
-			if ((value as string).startsWith('(bool)')) value = parseBool((value as string).slice(6)) as any;
+			else if ((value as string).startsWith('(bool)')) value = parseBool((value as string).slice(6)) as any;
 			else if ((value as string).startsWith('(number)')) value = +((value as string).slice(8)) as any;
 		}
 
-		set(object, key, value);
+		if (key.endsWith('[]')) {
+			const k = key.slice(0, -2);
+			const arr = get(object, k);
+			if (arr) arr.push(value);
+			else set(object, k, [value]);
+		} else {
+			set(object, key, value);
+		}
 	});
 
 	keysToArrayify.forEach(key => {
