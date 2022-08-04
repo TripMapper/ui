@@ -25,10 +25,13 @@ export interface SelectProps {
 	options?: ReadonlyArray<SelectOption>;
 	defaultValue?: SelectOption;
 	placeholder?: ReactNode;
+	/** @default false */
+	disabled?: boolean;
 	onChange?: (option: ReadonlyArray<SelectOption> | SelectOption | null, actionMeta: ActionMeta<SelectOption>) => void;
 	/** @default false */
 	inline?: boolean;
 	query?: TypedDocumentNode;
+	queryVariables?: { [key: string]: any };
 	/** @default false */
 	preloadOptions?: boolean;
 	pathToNodes?: string;
@@ -44,9 +47,11 @@ export default function Select ({
 	options,
 	defaultValue,
 	placeholder,
+	disabled = false,
 	onChange,
 	inline = false,
 	query,
+	queryVariables = {},
 	preloadOptions = false,
 	pathToNodes,
 	queryWhenEmpty = false,
@@ -57,6 +62,7 @@ export default function Select ({
 		name,
 		isMulti,
 		isClearable,
+		isDisabled: disabled,
 		options,
 		defaultValue,
 		menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
@@ -77,7 +83,7 @@ export default function Select ({
 		delete initialProps.options;
 
 		if (preloadOptions) initialProps.defaultOptions = true;
-		initialProps.hideSelectedOptions = true;
+		initialProps.hideSelectedOptions = isMulti;
 		initialProps.cacheOptions = true;
 		initialProps.loadOptions = async search => {
 			if (search.trim() === '' && !queryWhenEmpty)
@@ -85,7 +91,7 @@ export default function Select ({
 
 			const { data } = await client.query(
 				query,
-				{ query: search },
+				{ ...queryVariables, query: search },
 				{ requestPolicy: 'cache-and-network' },
 			).toPromise();
 
@@ -104,8 +110,6 @@ export default function Select ({
 	const props = creatableProps ?? stateManagerProps ?? initialProps;
 
 	return (
-		<ReactSelect
-			{...props}
-		/>
+		<ReactSelect {...props} />
 	);
 }

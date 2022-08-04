@@ -7,12 +7,13 @@ import Spinner from '../../svg/spinner.svg';
 import { useAsync } from 'react-select/async';
 import { useCreatable } from 'react-select/creatable';
 import get from 'lodash.get';
-export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, onChange, inline = false, query, preloadOptions = false, pathToNodes, queryWhenEmpty = false, }) {
+export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, }) {
     const client = useClient();
     const initialProps = {
         name,
         isMulti,
         isClearable,
+        isDisabled: disabled,
         options,
         defaultValue,
         menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
@@ -31,12 +32,12 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         delete initialProps.options;
         if (preloadOptions)
             initialProps.defaultOptions = true;
-        initialProps.hideSelectedOptions = true;
+        initialProps.hideSelectedOptions = isMulti;
         initialProps.cacheOptions = true;
         initialProps.loadOptions = async (search) => {
             if (search.trim() === '' && !queryWhenEmpty)
                 return [];
-            const { data } = await client.query(query, { query: search }, { requestPolicy: 'cache-and-network' }).toPromise();
+            const { data } = await client.query(query, { ...queryVariables, query: search }, { requestPolicy: 'cache-and-network' }).toPromise();
             return get(data, pathToNodes, []);
         };
         asyncProps = useAsync(initialProps);

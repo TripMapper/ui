@@ -4,6 +4,11 @@
 	font-size: rem(16);
 	font-weight: bold;
 
+	&[class*="rsl--is-disabled"] {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
 	[class*="rsl__control"] {
 		min-height: rem(40);
 
@@ -13,7 +18,8 @@
 		border-radius: rem($SIZES_buttonBorderRadius);
 		transition: none;
 
-		&:hover {
+		&:hover,
+		&[class*="selected"] {
 			border-color: $COLOURS_border;
 		}
 	}

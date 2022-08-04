@@ -16,14 +16,19 @@ export interface SelectProps {
     options?: ReadonlyArray<SelectOption>;
     defaultValue?: SelectOption;
     placeholder?: ReactNode;
+    /** @default false */
+    disabled?: boolean;
     onChange?: (option: ReadonlyArray<SelectOption> | SelectOption | null, actionMeta: ActionMeta<SelectOption>) => void;
     /** @default false */
     inline?: boolean;
     query?: TypedDocumentNode;
+    queryVariables?: {
+        [key: string]: any;
+    };
     /** @default false */
     preloadOptions?: boolean;
     pathToNodes?: string;
     /** @default false */
     queryWhenEmpty?: boolean;
 }
-export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, onChange, inline, query, preloadOptions, pathToNodes, queryWhenEmpty, }: SelectProps): JSX.Element;
+export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, disabled, onChange, inline, query, queryVariables, preloadOptions, pathToNodes, queryWhenEmpty, }: SelectProps): JSX.Element;
