@@ -1,8 +1,10 @@
-/// <reference types="react" />
-export default function Radio({ name, prefix, suffix, value, defaultChecked, }: {
-    name: any;
+import { ChangeEventHandler } from 'react';
+export interface RadioProps {
+    name: string;
     prefix?: string;
     suffix?: string;
     value?: string;
     defaultChecked?: boolean;
-}): JSX.Element;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
+}
+export default function Radio({ name, prefix, suffix, value, defaultChecked, onChange, }: RadioProps): JSX.Element;
