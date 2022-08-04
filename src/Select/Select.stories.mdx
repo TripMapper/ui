@@ -1,9 +1,16 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import Select from './Select';
+import Select from './Select'; import { createClient, gql, Provider } from 'urql';
 
 <Meta
 	title="Form/Select"
 	component={Select}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<Story />
+			</Provider>
+		),
+	]}
 />
 
 # Select
@@ -17,6 +24,7 @@ import Select from 'ui/Select';
 <Canvas>
 	<Story name="Select">
 		<Select
+			name=""
 			placeholder="Regular Select"
 			options={[
 				{ label: 'Newest', value: 'newest' },
@@ -25,7 +33,9 @@ import Select from 'ui/Select';
 				{ label: 'Lowest Price', value: 'cheap' },
 			]}
 		/>
+		<br/>
 		<Select
+			name=""
 			placeholder="Mutli-select Clearable"
 			isMulti
 			isClearable
@@ -35,6 +45,52 @@ import Select from 'ui/Select';
 				{ label: 'Highest Price', value: 'expensive' },
 				{ label: 'Lowest Price', value: 'cheap' },
 			]}
+		/>
+		<br/>
+		<Select
+			name=""
+			placeholder="Creatable Select"
+			isCreatable
+			options={[
+				{ label: 'Newest', value: 'newest' },
+				{ label: 'Oldest', value: 'oldest' },
+				{ label: 'Highest Price', value: 'expensive' },
+				{ label: 'Lowest Price', value: 'cheap' },
+			]}
+		/>
+		<br/>
+		<Select
+			name="test"
+			placeholder="Creatable Multi-select Select"
+			isMulti
+			isCreatable
+			options={[
+				{ label: 'Newest', value: 'newest' },
+				{ label: 'Oldest', value: 'oldest' },
+				{ label: 'Highest Price', value: 'expensive' },
+				{ label: 'Lowest Price', value: 'cheap' },
+			]}
+		/>
+		<br/>
+		<Select
+			name=""
+			placeholder="Async Select with all the things"
+			query={gql`query Search ($query: String) {
+				tripsList (
+					first: 10
+					filter: { name: { includesInsensitive: $query } }
+				) {
+					id
+					label: name
+					value: id
+				}
+            }`}
+			pathToNodes="tripsList"
+			preloadOptions
+			queryWhenEmpty
+			isMulti
+			isCreatable
+			isClearable
 		/>
 	</Story>
 </Canvas>

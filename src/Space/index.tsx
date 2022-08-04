@@ -6,6 +6,7 @@ export default function Space ({
 	column = false,
 	wrap = false,
 	around = false,
+	noMargin = false,
 }) {
 	return (
 		<div className={cx(
@@ -13,6 +14,7 @@ export default function Space ({
 			column && css.column,
 			wrap && css.wrap,
 			around && css.around,
+			noMargin && css.noMargin,
 		)}>
 			{children}
 		</div>
