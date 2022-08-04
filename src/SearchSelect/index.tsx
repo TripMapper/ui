@@ -20,6 +20,7 @@ export interface SearchSelectProps {
 	pathToNodes: string;
 	onSelect: (option: SelectOptionWithData) => void;
 	itemRenderer?: (data: SelectOptionWithData, children: ReactNode) => ReactNode;
+	excludeIds: readonly string[];
 }
 
 const Menu = props => <components.Menu {...props} className={cx(cssPortal.menu, css.menu)} />;
@@ -45,6 +46,7 @@ export default function SearchSelect ({
 	onSelect,
 	query,
 	itemRenderer,
+	excludeIds = [],
 } : SearchSelectProps) {
 	const client = useClient();
 	const [inputValue, setInputValue] = useState('')
@@ -58,7 +60,7 @@ export default function SearchSelect ({
 
 		const { data } = await client.query(
 			query,
-			{ query: search },
+			{ query: search, excludeIds },
 			{ requestPolicy: 'cache-and-network' }
 		).toPromise();
 		const opts = get(data, pathToNodes, []);

@@ -10,6 +10,7 @@ export interface SearchSelectProps {
     pathToNodes: string;
     onSelect: (option: SelectOptionWithData) => void;
     itemRenderer?: (data: SelectOptionWithData, children: ReactNode) => ReactNode;
+    excludeIds: readonly string[];
 }
-export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, }: SearchSelectProps): JSX.Element;
+export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds, }: SearchSelectProps): JSX.Element;
 export {};

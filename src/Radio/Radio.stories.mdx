@@ -1,0 +1,26 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Radio from './index';
+
+<Meta
+	title="Form/Radio"
+	component={Radio}
+/>
+
+# Radio
+
+```jsx
+import Radio from 'ui/Radio';
+
+<Radio name="myRadio" value="true" defaultChecked />
+```
+
+<Canvas>
+	<Story name="Radio">
+		<Radio name="exampleRadio" value="1" defaultChecked prefix="Primary" />
+		<Radio name="exampleRadio" value="2" defaultChecked prefix="Primary" />
+		<Radio name="exampleRadio" value="3" defaultChecked prefix="Primary" />
+		<Radio name="exampleRadio" value="4" defaultChecked prefix="Primary" />
+		<Radio name="exampleRadio" value="5" defaultChecked prefix="Primary" />
+	</Story>
+</Canvas>
+
+<ArgsTable of={Radio} />

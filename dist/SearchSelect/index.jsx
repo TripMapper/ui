@@ -13,7 +13,7 @@ const Option = (childRenderer = (d, c) => c) => ({ innerProps, children, isFocus
 		{childRenderer(data, children)}
 	</div>);
 // TODO: pass IDs to exclude
-export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, }) {
+export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds = [], }) {
     const client = useClient();
     const [inputValue, setInputValue] = useState(''), [cachedOpts, setCachedOpts] = useState([]);
     const search = async (search) => {
@@ -21,7 +21,7 @@ export default function SearchSelect({ placeholder, pathToNodes, onSelect, query
             setCachedOpts([]);
             return [];
         }
-        const { data } = await client.query(query, { query: search }, { requestPolicy: 'cache-and-network' }).toPromise();
+        const { data } = await client.query(query, { query: search, excludeIds }, { requestPolicy: 'cache-and-network' }).toPromise();
         const opts = get(data, pathToNodes, []);
         setCachedOpts(opts);
         return opts;
