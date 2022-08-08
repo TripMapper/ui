@@ -13,6 +13,7 @@ export interface BaseButtonProps {
 	href?: string;
 	target?: '_blank' | undefined;
 	type?: 'button' | 'submit' | 'reset';
+	El?: ReactNode;
 }
 
 export interface BaseButtonPropsWithClassName extends BaseButtonProps{
@@ -33,8 +34,10 @@ const Base = forwardRef<HTMLButtonElement|HTMLAnchorElement, BaseButtonPropsWith
 	href,
 	target,
 	type = 'submit',
+
+	El = 'button',
 } : BaseButtonPropsWithClassName, ref) => {
-	const El = href ? A : 'button';
+	const InEl = href ? A : El;
 
 	const props = href ? {
 		href,
@@ -46,7 +49,8 @@ const Base = forwardRef<HTMLButtonElement|HTMLAnchorElement, BaseButtonPropsWith
 	};
 
 	return (
-		<El
+		/*@ts-ignore*/
+		<InEl
 			className={className}
 			disabled={disabled}
 			/*@ts-ignore*/
@@ -56,7 +60,7 @@ const Base = forwardRef<HTMLButtonElement|HTMLAnchorElement, BaseButtonPropsWith
 			{prefix}
 			{children}
 			{suffix}
-		</El>
+		</InEl>
 	);
 });
 

@@ -9,7 +9,7 @@ const Star = ({ name, value, checked, onChange }) => {
 			<input
 				type="radio"
 				name={name}
-				value={value}
+				value={`(number)${value}`}
 				defaultChecked={checked}
 				onChange={onChange}
 			/>
@@ -32,7 +32,7 @@ export default function Rating ({
 	const [checked, setChecked] = useState(defaultValue);
 	const _onChange = e => {
 		onChange && onChange(e);
-		setChecked(+e.target.value);
+		setChecked(+e.target.value.replace('(number)', ''));
 	};
 
 	return (
@@ -41,6 +41,7 @@ export default function Rating ({
 				{ length: 5 },
 				(_, i) => (
 					<Star
+						key={i}
 						name={name}
 						value={5 - i}
 						checked={5 - i === checked}

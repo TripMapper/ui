@@ -1,0 +1,34 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Upload from './index'; import Form
+	from '../Form'; import Button from '../Button';
+
+<Meta
+	title="Form/Upload"
+	component={Upload}
+/>
+
+# Upload
+
+```jsx
+import Upload from 'ui/Upload';
+
+<Upload />
+```
+
+<Canvas>
+	<Story name="Upload">
+		<Form onSubmit={console.log}>
+			<Upload name="logo" />
+			<Button>Submit</Button>
+		</Form>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Upload} />
+
+```ts
+export interface DefaultUploadValueProp {
+	id: string;
+	src: string;
+	[key: string]: any;
+}
+```

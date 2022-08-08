@@ -1,0 +1,97 @@
+@import "../variables";
+
+.wrap {
+	display: block;
+	position: relative;
+
+	input[type=file] {
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+
+		width: 100%;
+		height: 100%;
+
+		opacity: 0;
+	}
+}
+
+.upload {
+	position: relative;
+	display: block;
+
+	&::after {
+		content: 'Drop file to upload';
+		position: absolute;
+		z-index: 3;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		color: change-color($COLOURS_text, $alpha: 0.8);
+		font-size: rem(11);
+		font-weight: bold;
+
+		background-color: rgba(255,255,255,0.8);
+		backdrop-filter: blur(10px);
+		border-radius: rem(8);
+
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.2s ease;
+	}
+
+	&.dragging::after {
+		opacity: 1;
+	}
+}
+
+.btn {
+	width: 100%;
+	font-size: rem(12);
+}
+
+.preview {
+	display: flex;
+	align-items: center;
+	height: rem(40);
+
+	background-color: #F9F8F7;
+	border-radius: rem(8);
+
+	img {
+		width: rem(40);
+		height: rem(40);
+		border-radius: rem(8);
+		border: none;
+		object-fit: cover;
+		overflow: hidden;
+	}
+
+	button {
+		display: flex;
+		align-items: center;
+		height: rem(40);
+		padding: 0 rem(16);
+
+		color: $COLOURS_danger;
+
+		appearance: none;
+		background: none;
+		border: none;
+		border-radius: 0;
+		cursor: pointer;
+
+		transition: opacity 0.15s ease;
+
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+}

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import A from '../A';
-const Base = forwardRef(({ className, children, prefix, suffix, disabled = false, onClick, href, target, type = 'submit', }, ref) => {
-    const El = href ? A : 'button';
+const Base = forwardRef(({ className, children, prefix, suffix, disabled = false, onClick, href, target, type = 'submit', El = 'button', }, ref) => {
+    const InEl = href ? A : El;
     const props = href ? {
         href,
         target,
@@ -10,12 +10,14 @@ const Base = forwardRef(({ className, children, prefix, suffix, disabled = false
         onClick,
         type,
     };
-    return (<El className={className} disabled={disabled} 
+    return (
+    /*@ts-ignore*/
+    <InEl className={className} disabled={disabled} 
     /*@ts-ignore*/
     ref={ref} {...props}>
 			{prefix}
 			{children}
 			{suffix}
-		</El>);
+		</InEl>);
 });
 export default Base;
