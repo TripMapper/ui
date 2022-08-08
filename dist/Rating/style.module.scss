@@ -1,0 +1,51 @@
+@import "../variables";
+
+.rating {
+	display: inline-flex;
+	flex-direction: row-reverse;
+
+	label {
+		position: relative;
+		cursor: pointer;
+		padding-right: rem(3);
+
+		transition: transform 0.15s ease;
+
+		&:hover:not(.checked) {
+			& svg,
+			& ~ label svg {
+				opacity: 0.5;
+			}
+		}
+
+		&:hover {
+			transform: scale(1.1);
+		}
+
+		&.checked {
+			& svg,
+			& ~ label svg {
+				opacity: 1 !important;
+			}
+		}
+	}
+
+	input {
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		cursor: pointer;
+	}
+
+	svg {
+		position: relative;
+		z-index: 1;
+		vertical-align: middle;
+		opacity: 0.2;
+		transition: opacity 0.15s ease;
+	}
+}

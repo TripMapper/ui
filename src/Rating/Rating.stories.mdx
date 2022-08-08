@@ -1,0 +1,22 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Rating from './index';
+
+<Meta
+	title="Form/Rating"
+	component={Rating}
+/>
+
+# Rating
+
+```jsx
+import Rating from 'ui/Rating';
+
+<Rating name="rating" defaultValue={3} />
+```
+
+<Canvas>
+	<Story name="Rating">
+		<Rating name="rating" />
+	</Story>
+</Canvas>
+
+<ArgsTable of={Rating} />
