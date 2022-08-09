@@ -2,7 +2,7 @@ import css from './style.module.scss';
 import ReactSelect, { ActionMeta, useStateManager } from 'react-select';
 import { TypedDocumentNode, useClient } from 'urql';
 import SelectMenuPortal from '../SelectMenuPortal';
-import { ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
 import { cx } from '../../util';
 import Spinner from '../../svg/spinner.svg';
 import { useAsync } from 'react-select/async';
@@ -127,11 +127,9 @@ export default function Select ({
 
 	let asyncProps, stateManagerProps, creatableProps;
 
-	if (query) {
-		delete initialProps.options;
-
-		const searchQuery = debounce(
-			(search, callback) => {
+	const searchQuery = useCallback(
+		debounce(
+			(query, queryVariables, search, callback) => {
 				client.query(
 					query,
 					{ ...queryVariables, query: search },
@@ -140,8 +138,13 @@ export default function Select ({
 					callback(get(data, pathToNodes, []));
 				});
 			},
-			250
-		);
+			350
+		),
+		[]
+	);
+
+	if (query) {
+		delete initialProps.options;
 
 		if (preloadOptions) initialProps.defaultOptions = true;
 		initialProps.hideSelectedOptions = isMulti;
@@ -150,7 +153,7 @@ export default function Select ({
 			if (search.trim() === '' && !queryWhenEmpty)
 				return callback([]);
 
-			searchQuery(search, callback);
+			searchQuery(query, queryVariables, search, callback);
 		};
 
 		asyncProps = useAsync(initialProps);

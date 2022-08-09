@@ -4,7 +4,7 @@ import cssPortal from '../Select/SelectMenuPortal/style.module.scss';
 import ReactSelect from 'react-select/async';
 import { cx } from '../util';
 import { components } from 'react-select';
-import { ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
 import { SelectOption } from '../Select/Select';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { useClient } from 'urql';
@@ -53,17 +53,20 @@ export default function SearchSelect ({
 	const [inputValue, setInputValue] = useState('')
 		, [cachedOpts, setCachedOpts] = useState([]);
 
-	const searchQuery = debounce(
-		(search, callback) => client.query(
-			query,
-			{ query: search, excludeIds },
-			{ requestPolicy: 'cache-and-network' }
-		).toPromise().then(({ data }) => {
-			const opts = get(data, pathToNodes, []);
-			setCachedOpts(opts);
-			callback(opts);
-		}),
-		250
+	const searchQuery = useCallback(
+		debounce(
+			(query, excludeIds, search, callback) => client.query(
+				query,
+				{ query: search, excludeIds },
+				{ requestPolicy: 'cache-and-network' }
+			).toPromise().then(({ data }) => {
+				const opts = get(data, pathToNodes, []);
+				setCachedOpts(opts);
+				callback(opts);
+			}),
+			350
+		),
+		[]
 	);
 
 	const search = (search, callback) => {
@@ -72,7 +75,7 @@ export default function SearchSelect ({
 			return callback([]);
 		}
 
-		searchQuery(search, callback);
+		searchQuery(query, excludeIds, search, callback);
 	};
 
 	const onInputChange = (inputValue, { action }) => {

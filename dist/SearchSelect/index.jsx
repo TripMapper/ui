@@ -4,9 +4,10 @@ import cssPortal from '../Select/SelectMenuPortal/style.module.scss';
 import ReactSelect from 'react-select/async';
 import { cx } from '../util';
 import { components } from 'react-select';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useClient } from 'urql';
 import get from 'lodash.get';
+import debounce from 'lodash.debounce';
 const Menu = props => <components.Menu {...props} className={cx(cssPortal.menu, css.menu)}/>;
 const Input = props => <components.Input {...props} isHidden={false}/>;
 const Option = (childRenderer = (d, c) => c) => ({ innerProps, children, isFocused, isSelected, data }) => (<div {...innerProps} className={cx(css.item, isFocused && css.focused, isSelected && css.selected)}>
@@ -16,15 +17,17 @@ const Option = (childRenderer = (d, c) => c) => ({ innerProps, children, isFocus
 export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds = [], }) {
     const client = useClient();
     const [inputValue, setInputValue] = useState(''), [cachedOpts, setCachedOpts] = useState([]);
-    const search = async (search) => {
-        if (search.trim() === '') {
-            setCachedOpts([]);
-            return [];
-        }
-        const { data } = await client.query(query, { query: search, excludeIds }, { requestPolicy: 'cache-and-network' }).toPromise();
+    const searchQuery = useCallback(debounce((query, excludeIds, search, callback) => client.query(query, { query: search, excludeIds }, { requestPolicy: 'cache-and-network' }).toPromise().then(({ data }) => {
         const opts = get(data, pathToNodes, []);
         setCachedOpts(opts);
-        return opts;
+        callback(opts);
+    }), 350), []);
+    const search = (search, callback) => {
+        if (search.trim() === '') {
+            setCachedOpts([]);
+            return callback([]);
+        }
+        searchQuery(query, excludeIds, search, callback);
     };
     const onInputChange = (inputValue, { action }) => {
         if (action === 'input-change')

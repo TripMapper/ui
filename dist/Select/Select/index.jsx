@@ -2,12 +2,13 @@ import css from './style.module.scss';
 import ReactSelect, { useStateManager } from 'react-select';
 import { useClient } from 'urql';
 import SelectMenuPortal from '../SelectMenuPortal';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { cx } from '../../util';
 import Spinner from '../../svg/spinner.svg';
 import { useAsync } from 'react-select/async';
 import { useCreatable } from 'react-select/creatable';
 import get from 'lodash.get';
+import debounce from 'lodash.debounce';
 const add = value => v => {
     const n = [...v];
     n.push(value);
@@ -63,17 +64,21 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         },
     };
     let asyncProps, stateManagerProps, creatableProps;
+    const searchQuery = useCallback(debounce((query, queryVariables, search, callback) => {
+        client.query(query, { ...queryVariables, query: search }, { requestPolicy: 'cache-and-network' }).toPromise().then(({ data }) => {
+            callback(get(data, pathToNodes, []));
+        });
+    }, 350), []);
     if (query) {
         delete initialProps.options;
         if (preloadOptions)
             initialProps.defaultOptions = true;
         initialProps.hideSelectedOptions = isMulti;
         initialProps.cacheOptions = true;
-        initialProps.loadOptions = async (search) => {
+        initialProps.loadOptions = (search, callback) => {
             if (search.trim() === '' && !queryWhenEmpty)
-                return [];
-            const { data } = await client.query(query, { ...queryVariables, query: search }, { requestPolicy: 'cache-and-network' }).toPromise();
-            return get(data, pathToNodes, []);
+                return callback([]);
+            searchQuery(query, queryVariables, search, callback);
         };
         asyncProps = useAsync(initialProps);
         stateManagerProps = useStateManager(asyncProps);
