@@ -1,6 +1,6 @@
 import css from './style.module.scss';
 import Button from '../Button';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cx } from '../util';
 
 export interface DefaultUploadValueProp {
@@ -13,18 +13,27 @@ export interface UploadProps {
 	name: string;
 	placeholder?: string;
 	defaultValue?: DefaultUploadValueProp;
+	previewType?: 'cover' | 'contain';
 }
 
 export default function Upload ({
 	name,
 	placeholder,
 	defaultValue,
+	previewType = 'cover',
 } : UploadProps) {
 	const input = useRef();
 	const [file, _setFile] = useState(defaultValue)
 		, [isDragging, setIsDragging] = useState(false)
 		, [preview, setPreview] = useState(defaultValue?.src ?? '')
 		, [deletedId, setDeletedId] = useState(null);
+
+	useEffect(() => {
+		if (!input.current || file?.hasOwnProperty('id')) return;
+		const dt = new DataTransfer();
+		dt.items.add(file as unknown as File);
+		(input.current as HTMLInputElement).files = dt.files;
+	}, [input, file]);
 
 	const setFile = file => {
 		if (file) {
@@ -52,7 +61,6 @@ export default function Upload ({
 
 	const onDrop = e => {
 		prevDefault(e);
-		(input.current as HTMLInputElement).files = e.dataTransfer.files;
 		setFile(e.dataTransfer.files[0]);
 		setIsDragging(false);
 	};
@@ -65,17 +73,16 @@ export default function Upload ({
 		if (defaultValue) setDeletedId(defaultValue.id);
 	};
 
-	const El = preview ? 'div' : 'label';
-
 	return (
-		<El className={css.wrap}>
-			<input
-				ref={input}
-				type="file"
-				name={`${name}.create.file`}
-				onChange={onChange}
-				accept="image/*"
-			/>
+		<>
+			{file && (
+				<input
+					className={css.file}
+					ref={input}
+					type="file"
+					name={`${name}.create.file`}
+				/>
+			)}
 			{deletedId && (
 				<input
 					type="hidden"
@@ -85,21 +92,30 @@ export default function Upload ({
 			)}
 			{file ? (
 				<div className={css.preview}>
-					<img src={preview} alt=""/>
+					<img
+						src={preview}
+						alt=""
+						style={{objectFit:previewType}}
+					/>
 
 					<button type="button" onClick={onRemoveClick}>Remove</button>
 				</div>
 			) : (
-				<div
+				<label
 					className={cx(css.upload, isDragging && css.dragging)}
 					onDragEnter={onDragEnter}
 					onDragOver={prevDefault}
 					onDragLeave={onDragLeave}
 					onDrop={onDrop}
 				>
+					<input
+						type="file"
+						onChange={onChange}
+						accept="image/*"
+					/>
 					<Button dashed className={css.btn} El="div">{placeholder ?? 'Select Image'}</Button>
-				</div>
+				</label>
 			)}
-		</El>
+		</>
 	);
 }
