@@ -12,8 +12,8 @@ export const IMAGE_FRAGMENT = gql `
         placeholder
     }
 `;
-export default function Image({ width, height, src, srcset, srcsetWebp, placeholder, alt = '', className = '', style = {}, ...props }) {
-    return (<picture key={src} className={cx(css.image, className)} style={{
+export default function Image({ width, height, src, srcset, srcsetWebp, placeholder, alt = '', className = '', style = {}, circle = false, ...props }) {
+    return (<picture key={src} className={cx(css.image, className, circle && css.circle)} style={{
             ...style,
             '--image-padding-top': `${height / width * 100}%`,
             backgroundImage: placeholder ? `url("${placeholder}")` : '',

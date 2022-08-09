@@ -9,5 +9,6 @@ export interface ImageProps extends Omit<JSX.IntrinsicElements['picture'], 'styl
     placeholder?: string;
     alt?: string;
     readonly style: React.CSSProperties;
+    circle?: boolean;
 }
-export default function Image({ width, height, src, srcset, srcsetWebp, placeholder, alt, className, style, ...props }: ImageProps): JSX.Element;
+export default function Image({ width, height, src, srcset, srcsetWebp, placeholder, alt, className, style, circle, ...props }: ImageProps): JSX.Element;

@@ -23,6 +23,7 @@ export interface ImageProps extends Omit<JSX.IntrinsicElements['picture'], 'styl
 	placeholder?: string;
 	alt?: string;
 	readonly style: React.CSSProperties;
+	circle?: boolean;
 }
 
 export default function Image ({
@@ -35,12 +36,17 @@ export default function Image ({
 	alt = '',
 	className = '',
 	style = {},
+	circle = false,
 	...props
 } : ImageProps) {
 	return (
 		<picture
 			key={src}
-			className={cx(css.image, className)}
+			className={cx(
+				css.image,
+				className,
+				circle && css.circle,
+			)}
 			style={{
 				...style,
 				'--image-padding-top': `${height / width * 100}%`,
