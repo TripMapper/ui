@@ -98,13 +98,13 @@ export default function Upload ({
 					className={css.file}
 					ref={input}
 					type="file"
-					name={`${name}.create.file`}
+					name={`${name}.upload`}
 				/>
 			)}
 			{deletedId && (
 				<input
 					type="hidden"
-					name={`${name}.deleteById.id`}
+					name={`${name}.delete`}
 					value={deletedId}
 				/>
 			)}

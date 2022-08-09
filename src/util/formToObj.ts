@@ -2,7 +2,9 @@ import get from 'lodash.get';
 import set from 'lodash.set';
 import parseBool from './parseBool';
 
-const RID_RX = /rid_\w{5}/;
+const RID_RX = /rid_[A-Za-z0-9_-]{5}/;
+
+export type FormValue = string|boolean|number|File;
 
 /**
  * Converts the given FormData to an object
@@ -14,7 +16,7 @@ const RID_RX = /rid_\w{5}/;
  * @param {FormData} formData
  * @returns {string}
  */
-export default function formToObj (formData : FormData): { [key: string]: string|boolean|number } {
+export default function formToObj (formData : FormData): { [key: string]: FormValue } {
 	const object = {}
 		, keysToArrayify = [];
 

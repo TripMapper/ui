@@ -1,3 +1,4 @@
+export declare type FormValue = string | boolean | number | File;
 /**
  * Converts the given FormData to an object
  *
@@ -9,5 +10,5 @@
  * @returns {string}
  */
 export default function formToObj(formData: FormData): {
-    [key: string]: string | boolean | number;
+    [key: string]: FormValue;
 };

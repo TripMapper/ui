@@ -1,7 +1,7 @@
 import get from 'lodash.get';
 import set from 'lodash.set';
 import parseBool from './parseBool';
-const RID_RX = /rid_\w{5}/;
+const RID_RX = /rid_[A-Za-z0-9_-]{5}/;
 /**
  * Converts the given FormData to an object
  *

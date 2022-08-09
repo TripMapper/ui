@@ -1,6 +1,7 @@
 import { FormEvent } from 'react';
+import { FormValue } from '../util/formToObj';
 export declare type FormSubmit = (values: {
-    [key: string]: string | boolean | number;
+    [key: string]: FormValue;
 }, event: FormEvent) => void;
 export interface FormProps extends Omit<HTMLFormElement, 'onSubmit'> {
     onSubmit?: FormSubmit;

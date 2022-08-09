@@ -1,8 +1,8 @@
 import { FormEvent } from 'react';
-import formToObj from '../util/formToObj';
+import formToObj, { FormValue } from '../util/formToObj';
 
 export type FormSubmit = (
-	values: { [key: string]: string|boolean|number },
+	values: { [key: string]: FormValue },
 	event: FormEvent,
 ) => void;
 

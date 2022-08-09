@@ -61,8 +61,8 @@ export default function Upload({ name, placeholder, defaultValue, previewType = 
             setDeletedId(defaultValue.id);
     };
     return (<>
-			{file && (<input className={css.file} ref={input} type="file" name={`${name}.create.file`}/>)}
-			{deletedId && (<input type="hidden" name={`${name}.deleteById.id`} value={deletedId}/>)}
+			{file && (<input className={css.file} ref={input} type="file" name={`${name}.upload`}/>)}
+			{deletedId && (<input type="hidden" name={`${name}.delete`} value={deletedId}/>)}
 			{file ? (<div className={css.preview}>
 					<img src={preview} alt="" style={{ objectFit: previewType }}/>
 
