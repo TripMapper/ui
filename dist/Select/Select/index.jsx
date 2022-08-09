@@ -54,6 +54,8 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
                     setCreated(add(action.option));
                     break;
                 case 'remove-value':
+                    if (created.indexOf(action.removedValue) > -1)
+                        setCreated(remove(action.removedValue));
                     if (originalValue.indexOf(action.removedValue) > -1)
                         setRemoved(add(action.removedValue));
                     break;

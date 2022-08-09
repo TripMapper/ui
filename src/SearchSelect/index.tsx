@@ -9,6 +9,7 @@ import { SelectOption } from '../Select/Select';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { useClient } from 'urql';
 import get from 'lodash.get';
+import debounce from 'lodash.debounce';
 
 interface SelectOptionWithData extends SelectOption {
 	[key: string]: any;
@@ -52,21 +53,26 @@ export default function SearchSelect ({
 	const [inputValue, setInputValue] = useState('')
 		, [cachedOpts, setCachedOpts] = useState([]);
 
-	const search = async search => {
-		if (search.trim() === '') {
-			setCachedOpts([]);
-			return [];
-		}
-
-		const { data } = await client.query(
+	const searchQuery = debounce(
+		(search, callback) => client.query(
 			query,
 			{ query: search, excludeIds },
 			{ requestPolicy: 'cache-and-network' }
-		).toPromise();
-		const opts = get(data, pathToNodes, []);
-		setCachedOpts(opts);
+		).toPromise().then(({ data }) => {
+			const opts = get(data, pathToNodes, []);
+			setCachedOpts(opts);
+			callback(opts);
+		}),
+		250
+	);
 
-		return opts;
+	const search = (search, callback) => {
+		if (search.trim() === '') {
+			setCachedOpts([]);
+			return callback([]);
+		}
+
+		searchQuery(search, callback);
 	};
 
 	const onInputChange = (inputValue, { action }) => {

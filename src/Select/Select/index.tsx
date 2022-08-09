@@ -8,6 +8,7 @@ import Spinner from '../../svg/spinner.svg';
 import { useAsync } from 'react-select/async';
 import { useCreatable } from 'react-select/creatable';
 import get from 'lodash.get';
+import debounce from 'lodash.debounce';
 
 export interface SelectOption {
 	label: string;
@@ -113,8 +114,12 @@ export default function Select ({
 					setCreated(add(action.option));
 					break;
 				case 'remove-value':
+					if (created.indexOf(action.removedValue) > -1)
+						setCreated(remove(action.removedValue));
+
 					if (originalValue.indexOf(action.removedValue) > -1)
 						setRemoved(add(action.removedValue));
+
 					break;
 			}
 		},
@@ -125,20 +130,27 @@ export default function Select ({
 	if (query) {
 		delete initialProps.options;
 
+		const searchQuery = debounce(
+			(search, callback) => {
+				client.query(
+					query,
+					{ ...queryVariables, query: search },
+					{ requestPolicy: 'cache-and-network' },
+				).toPromise().then(({ data }) => {
+					callback(get(data, pathToNodes, []));
+				});
+			},
+			250
+		);
+
 		if (preloadOptions) initialProps.defaultOptions = true;
 		initialProps.hideSelectedOptions = isMulti;
 		initialProps.cacheOptions = true;
-		initialProps.loadOptions = async search => {
+		initialProps.loadOptions = (search, callback) => {
 			if (search.trim() === '' && !queryWhenEmpty)
-				return [];
+				return callback([]);
 
-			const { data } = await client.query(
-				query,
-				{ ...queryVariables, query: search },
-				{ requestPolicy: 'cache-and-network' },
-			).toPromise();
-
-			return get(data, pathToNodes, []);
+			searchQuery(search, callback);
 		};
 
 		asyncProps = useAsync(initialProps);

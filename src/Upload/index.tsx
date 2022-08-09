@@ -93,7 +93,7 @@ export default function Upload ({
 
 	return (
 		<>
-			{file && (
+			{file && !file.hasOwnProperty('id') && (
 				<input
 					className={css.file}
 					ref={input}
