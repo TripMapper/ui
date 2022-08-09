@@ -13,7 +13,20 @@ module.exports = {
 		disableTelemetry: true,
 	},
 	babel: async (options) => {
-		options.plugins.push('babel-plugin-inline-react-svg');
+		options.plugins.push(['babel-plugin-inline-react-svg', {
+			svgo: {
+				plugins: [
+					{
+						name: 'preset-default',
+						params: {
+							overrides: {
+								removeViewBox: false,
+							},
+						},
+					},
+				],
+			},
+		}]);
 		return options;
 	},
 	webpackFinal: async config => {

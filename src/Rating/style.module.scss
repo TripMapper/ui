@@ -3,9 +3,12 @@
 .rating {
 	display: inline-flex;
 	flex-direction: row-reverse;
+	vertical-align: middle;
 
 	label {
 		position: relative;
+		display: inline-block;
+		vertical-align: middle;
 		cursor: pointer;
 		padding-right: rem(3);
 
@@ -47,5 +50,20 @@
 		vertical-align: middle;
 		opacity: 0.2;
 		transition: opacity 0.15s ease;
+		vertical-align: middle;
+	}
+
+	> svg {
+		margin-right: rem(3);
+
+		&.checked,
+		&.checked ~ svg {
+			opacity: 1;
+		}
+	}
+
+	&.small svg {
+		width: rem(12);
+		height: rem(12);
 	}
 }
