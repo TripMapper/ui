@@ -1,8 +1,17 @@
 @import "../variables";
 
-.wrap {
-	display: block;
+.file {
+	position: absolute;
+	width: 0;
+	height: 0;
+	opacity: 0;
+	pointer-events: none;
+	visibility: hidden;
+}
+
+.upload {
 	position: relative;
+	display: block;
 
 	input[type=file] {
 		position: absolute;
@@ -15,11 +24,6 @@
 
 		opacity: 0;
 	}
-}
-
-.upload {
-	position: relative;
-	display: block;
 
 	&::after {
 		content: 'Drop file to upload';
@@ -70,7 +74,6 @@
 		height: rem(40);
 		border-radius: rem(8);
 		border: none;
-		object-fit: cover;
 		overflow: hidden;
 	}
 

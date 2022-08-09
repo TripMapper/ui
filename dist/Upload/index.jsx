@@ -1,10 +1,33 @@
 import css from './style.module.scss';
 import Button from '../Button';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cx } from '../util';
-export default function Upload({ name, placeholder, defaultValue, }) {
+import { gql } from 'urql';
+export const UPLOAD_COVER_FRAGMENT = gql `
+	fragment UploadCover on Asset {
+		id
+		src (
+			width: 80
+			height: 80
+		)
+	}
+`;
+export const UPLOAD_CONTAIN_FRAGMENT = gql `
+	fragment UploadContain on Asset {
+		id
+		src (width: 80)
+	}
+`;
+export default function Upload({ name, placeholder, defaultValue, previewType = 'cover', }) {
     const input = useRef();
     const [file, _setFile] = useState(defaultValue), [isDragging, setIsDragging] = useState(false), [preview, setPreview] = useState(defaultValue?.src ?? ''), [deletedId, setDeletedId] = useState(null);
+    useEffect(() => {
+        if (!input.current || file?.hasOwnProperty('id'))
+            return;
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        input.current.files = dt.files;
+    }, [input, file]);
     const setFile = file => {
         if (file) {
             const fr = new FileReader();
@@ -27,7 +50,6 @@ export default function Upload({ name, placeholder, defaultValue, }) {
     };
     const onDrop = e => {
         prevDefault(e);
-        input.current.files = e.dataTransfer.files;
         setFile(e.dataTransfer.files[0]);
         setIsDragging(false);
     };
@@ -38,16 +60,16 @@ export default function Upload({ name, placeholder, defaultValue, }) {
         if (defaultValue)
             setDeletedId(defaultValue.id);
     };
-    const El = preview ? 'div' : 'label';
-    return (<El className={css.wrap}>
-			<input ref={input} type="file" name={`${name}.create.file`} onChange={onChange} accept="image/*"/>
+    return (<>
+			{file && (<input className={css.file} ref={input} type="file" name={`${name}.create.file`}/>)}
 			{deletedId && (<input type="hidden" name={`${name}.deleteById.id`} value={deletedId}/>)}
 			{file ? (<div className={css.preview}>
-					<img src={preview} alt=""/>
+					<img src={preview} alt="" style={{ objectFit: previewType }}/>
 
 					<button type="button" onClick={onRemoveClick}>Remove</button>
-				</div>) : (<div className={cx(css.upload, isDragging && css.dragging)} onDragEnter={onDragEnter} onDragOver={prevDefault} onDragLeave={onDragLeave} onDrop={onDrop}>
+				</div>) : (<label className={cx(css.upload, isDragging && css.dragging)} onDragEnter={onDragEnter} onDragOver={prevDefault} onDragLeave={onDragLeave} onDrop={onDrop}>
+					<input type="file" onChange={onChange} accept="image/*"/>
 					<Button dashed className={css.btn} El="div">{placeholder ?? 'Select Image'}</Button>
-				</div>)}
-		</El>);
+				</label>)}
+		</>);
 }

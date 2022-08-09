@@ -2,6 +2,7 @@ import css from './style.module.scss';
 import Button from '../Button';
 import { useEffect, useRef, useState } from 'react';
 import { cx } from '../util';
+import { gql } from 'urql';
 
 export interface DefaultUploadValueProp {
 	id: string;
@@ -15,6 +16,23 @@ export interface UploadProps {
 	defaultValue?: DefaultUploadValueProp;
 	previewType?: 'cover' | 'contain';
 }
+
+export const UPLOAD_COVER_FRAGMENT = gql`
+	fragment UploadCover on Asset {
+		id
+		src (
+			width: 80
+			height: 80
+		)
+	}
+`;
+
+export const UPLOAD_CONTAIN_FRAGMENT = gql`
+	fragment UploadContain on Asset {
+		id
+		src (width: 80)
+	}
+`;
 
 export default function Upload ({
 	name,
