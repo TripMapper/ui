@@ -1,0 +1,30 @@
+@import "../variables";
+
+.tag {
+	display: inline-block;
+	padding: rem(4) rem(8) rem(3);
+
+	color: $COLOURS_text;
+	font-size: rem(14);
+	font-weight: bold;
+
+	background: change-color($COLOURS_text, $alpha: 0.16);
+	border-radius: rem(4);
+
+	vertical-align: middle;
+}
+
+.margin {
+	margin: 0 rem(4) rem(4) 0;
+}
+
+.small {
+	padding: rem(2) rem(4) rem(1);
+	font-size: rem(12);
+}
+
+.accommodation { background: varAlpha($COLOURS_accommodation, 16%) }
+.activity { background: varAlpha($COLOURS_activity, 16%) }
+.travel { background: varAlpha($COLOURS_travel, 16%) }
+.food { background: varAlpha($COLOURS_food, 16%) }
+.other { background: varAlpha($COLOURS_other, 16%) }

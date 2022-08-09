@@ -1,0 +1,41 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Tag from './index';
+
+<Meta
+	title="Interface/Tag"
+	component={Tag}
+/>
+
+# Tag
+
+```jsx
+import Tag from 'ui/Tag';
+
+<Tag>5 Star</Tag>
+```
+
+<Canvas>
+	<Story name="Tag">
+		<Tag>Regular Tag</Tag>
+		<Tag look="accommodation">Accommodation</Tag>
+		<Tag look="activity">Activity</Tag>
+		<Tag look="travel">Travel</Tag>
+		<Tag look="food">Food</Tag>
+		<Tag look="other">Other</Tag>
+		<br/>
+		<Tag small>Small Regular Tag</Tag>
+		<Tag small look="accommodation">Small Accommodation</Tag>
+		<Tag small look="activity">Small Activity</Tag>
+		<Tag small look="travel">Small Travel</Tag>
+		<Tag small look="food">Small Food</Tag>
+		<Tag small look="other">Small Other</Tag>
+		<br/>
+		<Tag margin={false}>Regular Tag No Margin</Tag>
+		<Tag margin={false} small look="accommodation">Small Accommodation No Margin</Tag>
+		<Tag margin={false} small look="activity">Small Activity No Margin</Tag>
+		<Tag margin={false} look="travel">Travel No Margin</Tag>
+		<Tag margin={false} look="food">Food No Margin</Tag>
+		<Tag margin={false} small look="other">Small Other No Margin</Tag>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Tag} />

@@ -21,6 +21,8 @@ $COLOURS_yellow: #FFD34F;
 $COLOURS_red: #FF4F4F;
 $COLOURS_purple: #A84FFF;
 $COLOURS_purpleDark: #832DD7;
+$COLOURS_blue: #4FDAFF;
+$COLOURS_green: #4FFB7D;
 
 $COLOURS_danger: $COLOURS_red;
 $COLOURS_accent: $COLOURS_primary;
@@ -32,6 +34,10 @@ $COLOURS_border: #E7E1D9;
 $COLOURS_borderLight: #E0DFDD;
 
 $COLOURS_accommodation: var(--c-accommodation, #{$COLOURS_yellow});
+$COLOURS_activity: var(--c-activity, #{$COLOURS_blue});
+$COLOURS_travel: var(--c-travel, #{$COLOURS_primary});
+$COLOURS_food: var(--c-food, #{$COLOURS_green});
+$COLOURS_other: var(--c-food, #{$COLOURS_purple});
 
 // Sizes
 // -------------------------------------------------------------------------
@@ -124,4 +130,36 @@ $zINDEX_slideover: 21;
 	@media (max-width: #{$minScreenWidth}px) {
 		font-size: #{$minFontSize}px;
 	}
+}
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Kitty Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+/// @see https://stackoverflow.com/a/33960236/550109
+@function decToHex($dec) {
+	$hex: "0123456789ABCDEF";
+	$first: (($dec - $dec % 16)/16)+1;
+	$second: ($dec % 16)+1;
+	@return str-slice($hex, $first, $first) + str-slice($hex, $second, $second);
+}
+
+@function percentToHex ($percent) {
+	@return decToHex(math.round(strip-unit($percent) * 255 / 100));
+}
+
+@function varAlpha ($var, $alpha) {
+	@return str-replace($var, ')', percentToHex($alpha) + ')');
 }

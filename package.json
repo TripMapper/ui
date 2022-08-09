@@ -37,6 +37,7 @@
     "./Space": "./dist/Space/index.jsx",
     "./Table": "./dist/Table/index.jsx",
     "./Tabs": "./dist/Tabs/index.jsx",
+    "./Tag": "./dist/Tag/index.jsx",
     "./Title": "./dist/Title/index.jsx",
     "./UIContext": "./dist/UIContext/index.jsx",
     "./Upload": "./dist/Upload/index.jsx"
