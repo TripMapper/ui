@@ -1,0 +1,24 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Flag from './index';
+
+<Meta
+	title="Flag"
+	component={Flag}
+/>
+
+# Flag
+
+```jsx
+import Flag from 'ui/Flag';
+
+<Flag iso="UK" />
+```
+
+<Canvas>
+	<Story name="Flag">
+		<Flag iso="GB" small />
+		<Flag iso="GB" medium />
+		<Flag iso="GB" large />
+	</Story>
+</Canvas>
+
+<ArgsTable of={Flag} />

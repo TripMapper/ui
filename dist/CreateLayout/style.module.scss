@@ -1,0 +1,79 @@
+@import "../variables";
+
+.container {
+	position: relative;
+}
+
+.wrap {
+	width: calc(100vw - #{rem($SIZES_spacer * 2)});
+	max-width: rem(920);
+	margin: auto;
+	padding-top: rem(230);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: rem(40);
+}
+
+.header {
+	h1 {
+		margin-bottom: rem(16);
+		font-size: rem(48);
+	}
+
+	p {
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(20);
+		line-height: 1.5em;
+
+		&:not(:last-child) {
+			margin-bottom: rem(16);
+		}
+	}
+}
+
+.form {
+	position: relative;
+	margin-top: rem(82);
+}
+
+.formContent {
+	position: relative;
+	overflow: hidden;
+
+	padding: rem(40);
+	background: #fff;
+	box-shadow: 0 2px 16px 0 rgba(0,0,0,0.10);
+	border-radius: rem($SIZES_buttonBorderRadius);
+
+	> div:not(:last-child) {
+		position: absolute;
+		top: rem(40);
+		width: calc(100% - #{rem(80)});
+	}
+}
+
+.pips {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: rem(32);
+
+	> span {
+		position: relative;
+
+		display: block;
+		width: rem(8);
+		height: rem(8);
+		margin: 0 rem(10);
+
+		background: change-color($COLOURS_text, $alpha: 0.2);
+		border-radius: 50%;
+		transition: background-color 0.15s ease;
+
+		&.current {
+			background-color: $COLOURS_text;
+		}
+	}
+}
+
+.current {}

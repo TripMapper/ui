@@ -1,0 +1,43 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import CreateLayout
+	from './index'; import { useState } from 'react';
+
+<Meta
+	title="Layout/Create"
+	component={CreateLayout}
+/>
+
+# Create Layout
+
+```jsx
+import CreateLayout from 'ui/CreateLayout';
+
+<CreateLayout />
+```
+
+<Canvas>
+	<Story name="Create">
+		{() => {
+			const [step, setStep] = useState(0);
+			return (
+				<CreateLayout
+					title="School Geography Trip to Japan"
+					content={(
+						<>
+							<p>Now for the dates. If the client has given dates, or there are specific travel dates for this trip, you can enter them here.</p>
+							<p>Alternatively, you can simply specify the number of days the trip spans</p>
+						</>
+					)}
+					currentStep={step}
+					totalSteps={5}
+				>
+					Hello world! Step: {step}
+					{Array.from({ length: step + 1 }, (_, i) => <div key={i}>hi {i}</div>)}
+					<button type="button" onClick={() => setStep(step-1)}>Prev</button>
+					<button type="button" onClick={() => setStep(step+1)}>Next</button>
+				</CreateLayout>
+			);
+		}}
+	</Story>
+</Canvas>
+
+<ArgsTable of={CreateLayout} />
