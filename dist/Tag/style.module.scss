@@ -28,3 +28,7 @@
 .travel { background: varAlpha($COLOURS_travel, 16%) }
 .food { background: varAlpha($COLOURS_food, 16%) }
 .other { background: varAlpha($COLOURS_other, 16%) }
+
+.tagGroup {
+	margin-bottom: rem(-4);
+}

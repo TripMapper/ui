@@ -1,4 +1,6 @@
-import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Tag from './index';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Tag, {
+	TagGroup
+} from './index';
 
 <Meta
 	title="Interface/Tag"
@@ -8,9 +10,15 @@ import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import T
 # Tag
 
 ```jsx
-import Tag from 'ui/Tag';
+import Tag, { TagGroup } from 'ui/Tag';
 
 <Tag>5 Star</Tag>
+
+<TagGroup limit={2} tags={[
+	{ key: 1, name: 'My Tag', look: 'accommodation' },
+	{ key: 2, name: 'Another', look: 'travel' },
+	{ key: 3, name: 'Some more' },
+]} />
 ```
 
 <Canvas>
@@ -35,7 +43,18 @@ import Tag from 'ui/Tag';
 		<Tag margin={false} look="travel">Travel No Margin</Tag>
 		<Tag margin={false} look="food">Food No Margin</Tag>
 		<Tag margin={false} small look="other">Small Other No Margin</Tag>
+		<br/>
+		<br/>
+		<TagGroup limit={2} tags={[
+			{ id: 1, name: 'My Tag', look: 'accommodation' },
+			{ id: 2, name: 'Another', look: 'travel' },
+			{ id: 3, name: 'Some more' },
+		]} />
 	</Story>
 </Canvas>
 
+### Tag
 <ArgsTable of={Tag} />
+
+### TagGroup
+<ArgsTable of={TagGroup} />
