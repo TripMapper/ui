@@ -43,6 +43,17 @@ import Input from './index';
 				/>,
 			]}
 		/>
+		<Repeater
+			groupFields
+			fields={[
+				(row, i) => (
+					<>
+						<div>Row Group</div>
+						<div>I'm special</div>
+					</>
+				),
+			]}
+		/>
 	</Story>
 </Canvas>
 

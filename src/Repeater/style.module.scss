@@ -2,6 +2,7 @@
 
 .repeater {
 	width: 100%;
+	border-collapse: collapse;
 
 	tbody td {
 		position: relative;
@@ -38,5 +39,41 @@
 
 	svg {
 		vertical-align: middle;
+	}
+}
+
+.groupFields {
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+	border-radius: rem(8);
+
+	& + tfoot td {
+		padding-top: 0;
+	}
+
+	td {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: rem(11) rem(16) rem(10) !important;
+
+		background-color: #fff;
+		border: 1px solid $COLOURS_border;
+		border-bottom: none;
+	}
+
+	tr:first-child td:first-child { border-radius: rem(8) 0 0 0 }
+	tr:first-child td:last-child { border-radius: 0 rem(8) 0 0 }
+	tr:first-child td:first-child:last-child { border-radius: rem(8) rem(8) 0 0 }
+
+	tr:last-child td:first-child { border-radius: 0 0 0 rem(8) }
+	tr:last-child td:last-child { border-radius: 0 0 rem(8) 0 }
+	tr:last-child td:first-child:last-child { border-radius: 0 0 rem(8) rem(8) }
+
+	tr:first-child:last-child td:first-child { border-radius: rem(8) 0 0 rem(8) }
+	tr:first-child:last-child td:last-child { border-radius: 0 rem(8) rem(8) 0 }
+	tr:first-child:last-child td:first-child:last-child { border-radius: rem(8) }
+
+	tr:last-child td {
+		border-bottom: 1px solid $COLOURS_border;
 	}
 }

@@ -39,8 +39,6 @@ const Option = (childRenderer = (d, c) => c) => ({ innerProps, children, isFocus
 	</div>
 );
 
-// TODO: pass IDs to exclude
-
 export default function SearchSelect ({
 	placeholder,
 	pathToNodes,

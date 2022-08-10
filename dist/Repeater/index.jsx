@@ -1,24 +1,30 @@
 import css from './style.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../Button';
 import uuid from '../util/uuid';
 import RedX from '../svg/red-x.svg';
 import { nanoid } from 'nanoid';
-export default function Repeater({ name, addLabel = '+ Add', emptyValue, defaultValues = [], fields, max = null, onBeforeAddClick, byNodeId = false, includeUpdateById = true, }) {
-    const [values, setValues] = useState(defaultValues ?? []), [deletedIds, setDeletedIds] = useState([]);
+import { cx } from '../util';
+export default function Repeater({ name, addLabel = '+ Add', emptyValue, defaultValues = [], fields, max = null, onBeforeAddClick, byNodeId = false, includeUpdateById = true, groupFields = false, setValues, }) {
+    const [values, _setValues] = useState(defaultValues ?? []), [deletedIds, setDeletedIds] = useState([]);
+    useEffect(() => {
+        if (!setValues)
+            return;
+        setValues(values);
+    }, [setValues, values]);
     const onAddClick = async () => {
         let nextV = { id: 'new_' + uuid(), ...emptyValue };
         if (onBeforeAddClick)
             nextV = await onBeforeAddClick(nextV);
         if (!nextV)
             return;
-        setValues(v => ([
+        _setValues(v => ([
             ...v,
             nextV,
         ]));
     };
     const onDeleteClick = (index, id) => () => {
-        setValues(v => {
+        _setValues(v => {
             const n = [...v];
             n.splice(index, 1);
             return n;
@@ -34,8 +40,8 @@ export default function Repeater({ name, addLabel = '+ Add', emptyValue, default
     return (<>
 			{deletedIds.map(id => (<input type="hidden" name={byNodeId ? `${name}.deleteByNodeId[rid_${nanoid(5)}].nodeId` : `${name}.deleteById[rid_${id}].id`} value={id} key={id}/>))}
 			<table className={css.repeater}>
-				<tbody>
-				{values.map((value, index) => {
+				<tbody className={cx(groupFields && css.groupFields)}>
+				{values.filter(Boolean).map((value, index) => {
             const uid = 'rid_' + nanoid(5);
             const isNew = value.id.startsWith('new_');
             const createName = `${name}.create[${uid}]`, updateName = `${name}.updateBy${byNodeId ? 'Node' : ''}Id[${uid}].patch`;

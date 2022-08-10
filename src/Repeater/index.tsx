@@ -1,9 +1,16 @@
 import css from './style.module.scss';
-import { ReactNode, useState } from 'react';
+import {
+	Dispatch,
+	ReactNode,
+	SetStateAction,
+	useEffect,
+	useState
+} from 'react';
 import Button from '../Button';
 import uuid from '../util/uuid';
 import RedX from '../svg/red-x.svg';
 import { nanoid } from 'nanoid';
+import { cx } from '../util';
 
 export type RepeaterField = (
 	defaultRowValue : any,
@@ -28,6 +35,9 @@ export interface RepeaterProps {
 	onBeforeAddClick?: (value: RepeaterValue) => Promise<RepeaterValue>;
 	byNodeId?: boolean;
 	includeUpdateById?: boolean;
+	/** @default false */
+	groupFields?: boolean;
+	setValues?: (values: readonly RepeaterValue[]) => void;
 }
 
 export default function Repeater ({
@@ -40,9 +50,16 @@ export default function Repeater ({
 	onBeforeAddClick,
 	byNodeId = false,
 	includeUpdateById = true,
+	groupFields = false,
+	setValues,
 } : RepeaterProps) {
-	const [values, setValues] = useState(defaultValues ?? [])
+	const [values, _setValues] = useState(defaultValues ?? [])
 		, [deletedIds, setDeletedIds] = useState([]);
+
+	useEffect(() => {
+		if (!setValues) return;
+		setValues(values);
+	}, [setValues, values]);
 
 	const onAddClick = async () => {
 		let nextV = { id: 'new_' + uuid(), ...emptyValue };
@@ -50,14 +67,14 @@ export default function Repeater ({
 
 		if (!nextV) return;
 
-		setValues(v => ([
+		_setValues(v => ([
 			...v,
 			nextV,
 		]));
 	};
 
 	const onDeleteClick = (index, id) => () => {
-		setValues(v => {
+		_setValues(v => {
 			const n = [...v];
 			n.splice(index, 1);
 			return n;
@@ -82,8 +99,8 @@ export default function Repeater ({
 				/>
 			))}
 			<table className={css.repeater}>
-				<tbody>
-				{values.map((value, index) => {
+				<tbody className={cx(groupFields && css.groupFields)}>
+				{values.filter(Boolean).map((value, index) => {
 					const uid = 'rid_' + nanoid(5);
 					const isNew = value.id.startsWith('new_');
 

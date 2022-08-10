@@ -13,7 +13,6 @@ const Input = props => <components.Input {...props} isHidden={false}/>;
 const Option = (childRenderer = (d, c) => c) => ({ innerProps, children, isFocused, isSelected, data }) => (<div {...innerProps} className={cx(css.item, isFocused && css.focused, isSelected && css.selected)}>
 		{childRenderer(data, children)}
 	</div>);
-// TODO: pass IDs to exclude
 export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds = [], }) {
     const client = useClient();
     const [inputValue, setInputValue] = useState(''), [cachedOpts, setCachedOpts] = useState([]);
