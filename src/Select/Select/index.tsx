@@ -1,5 +1,10 @@
 import css from './style.module.scss';
-import ReactSelect, { ActionMeta, useStateManager } from 'react-select';
+import ReactSelect, {
+	ActionMeta,
+	InputProps,
+	useStateManager,
+	components,
+} from 'react-select';
 import { TypedDocumentNode, useClient } from 'urql';
 import SelectMenuPortal from '../SelectMenuPortal';
 import { ReactNode, useCallback, useMemo, useState } from 'react';
@@ -40,6 +45,7 @@ export interface SelectProps {
 	/** @default false */
 	queryWhenEmpty?: boolean;
 	filterOption?: ((option: FilterOptionOption<SelectOption>, inputValue: string) => boolean) | null;
+	required?: boolean;
 }
 
 const add = value => v => {
@@ -53,6 +59,13 @@ const remove = value => v => {
 	const i = n.indexOf(value);
 	if (i > -1) n.splice(n.indexOf(value), 1);
 	return n;
+};
+
+const InputComponent = required => (props : InputProps<SelectOption, true>) => {
+	if (props.hidden)
+		return <components.Input {...props} />;
+
+	return <components.Input {...props} required={required} />;
 };
 
 export default function Select ({
@@ -72,6 +85,7 @@ export default function Select ({
 	pathToNodes,
 	queryWhenEmpty = false,
 	filterOption,
+	required = false,
 } : SelectProps) {
 	const client = useClient();
 
@@ -97,6 +111,10 @@ export default function Select ({
 			MenuPortal: SelectMenuPortal,
 			IndicatorSeparator: null,
 			DropdownIndicator: () => <Spinner style={{width:20}} />,
+			Input: InputComponent(
+				required
+				&& (Array.isArray(value) ? value.length === 0 : !value)
+			),
 		},
 		className: cx(css.select, inline && css.inline),
 		classNamePrefix: 'rsl',

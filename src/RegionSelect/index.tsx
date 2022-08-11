@@ -83,7 +83,7 @@ export default function RegionSelect ({ countryIds = [], defaultValue, name, ...
 		return <Select name={name} disabled placeholder="Loading..." />;
 
 	if (opts.length === 0)
-		return <Select name={name} disabled placeholder="No regions available" />;
+		return <Select key="empty" name={name} disabled placeholder="No regions available" />;
 
 	return (
 		<Select
