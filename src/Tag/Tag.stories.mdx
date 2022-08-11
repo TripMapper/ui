@@ -1,6 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Tag, {
 	TagGroup
-} from './index';
+} from './index'; import Flag from '../Flag';
 
 <Meta
 	title="Interface/Tag"
@@ -50,6 +50,10 @@ import Tag, { TagGroup } from 'ui/Tag';
 			{ id: 2, name: 'Another', look: 'travel' },
 			{ id: 3, name: 'Some more' },
 		]} />
+		<br/>
+		<br/>
+		<Tag><Flag iso="GB" small /> Flag Tag!</Tag>
+		<Tag small><Flag iso="GB" small /> Flag Tag!</Tag>
 	</Story>
 </Canvas>
 

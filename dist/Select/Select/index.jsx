@@ -1,5 +1,5 @@
 import css from './style.module.scss';
-import ReactSelect, { useStateManager } from 'react-select';
+import ReactSelect, { useStateManager, components, } from 'react-select';
 import { useClient } from 'urql';
 import SelectMenuPortal from '../SelectMenuPortal';
 import { useCallback, useMemo, useState } from 'react';
@@ -21,7 +21,12 @@ const remove = value => v => {
         n.splice(n.indexOf(value), 1);
     return n;
 };
-export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, filterOption, }) {
+const InputComponent = required => (props) => {
+    if (props.hidden)
+        return <components.Input {...props}/>;
+    return <components.Input {...props} required={required}/>;
+};
+export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, filterOption, required = false, }) {
     const client = useClient();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
     const [value, setValue] = useState(defaultValue), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
@@ -37,6 +42,8 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
             MenuPortal: SelectMenuPortal,
             IndicatorSeparator: null,
             DropdownIndicator: () => <Spinner style={{ width: 20 }}/>,
+            Input: InputComponent(required
+                && (Array.isArray(value) ? value.length === 0 : !value)),
         },
         className: cx(css.select, inline && css.inline),
         classNamePrefix: 'rsl',
