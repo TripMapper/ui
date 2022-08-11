@@ -35,4 +35,10 @@
 		color: #fff;
 		background-color: change-color($COLOURS_primary, $alpha: 0.75);
 	}
+
+	[class*="rsl__group-heading"] {
+		svg {
+			vertical-align: text-top;
+		}
+	}
 }
