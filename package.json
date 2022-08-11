@@ -33,6 +33,7 @@
     "./Page": "./dist/Page/index.jsx",
     "./Radio": "./dist/Radio/index.jsx",
     "./Rating": "./dist/Rating/index.jsx",
+    "./RegionSelect": "./dist/RegionSelect/index.jsx",
     "./Repeater": "./dist/Repeater/index.jsx",
     "./SearchSelect": "./dist/SearchSelect/index.jsx",
     "./Select": "./dist/Select/index.jsx",

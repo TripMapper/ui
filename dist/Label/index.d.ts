@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 export interface LabelInputProps {
-    group: false;
+    group?: false;
     label: string;
     children: ReactNode;
     El?: "label" | "div";

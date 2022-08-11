@@ -2,7 +2,7 @@ import css from './styles.module.scss';
 import { ReactNode } from 'react';
 
 export interface LabelInputProps {
-	group: false;
+	group?: false;
 	label: string;
 	children: ReactNode;
 	El?: "label" | "div";

@@ -1,0 +1,38 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import RegionSelect
+	from './index'; import { createClient, Provider } from 'urql'; import CountrySelect
+	from '../CountrySelect'; import { useState } from 'react'; import Label
+	from '../Label';
+
+<Meta
+	title="Form/Region Select"
+	component={RegionSelect}
+/>
+
+# Region Select
+
+```jsx
+import RegionSelect from 'ui/RegionSelect';
+
+<RegionSelect />
+```
+
+<Canvas>
+	<Story name="RegionSelect">
+		{() => {
+			const [countryIds, setCountryIds] = useState([]);
+			const onSelectChange = opts => setCountryIds(opts.map(o => o.value));
+			return (
+				<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+					<Label label="Countries">
+						<CountrySelect name="test" isMulti isClearable onChange={onSelectChange} />
+					</Label>
+					<Label label="Regions">
+						<RegionSelect name="hi" countryIds={countryIds} isMulti isClearable />
+					</Label>
+				</Provider>
+			);
+		}}
+	</Story>
+</Canvas>
+
+<ArgsTable of={RegionSelect} />

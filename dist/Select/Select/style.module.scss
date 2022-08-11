@@ -41,6 +41,10 @@
 		padding: rem(3) rem(6);
 	}
 
+	[class*="rsl__multi-value"] {
+		background-color: change-color($COLOURS_text, $alpha: 0.08);
+	}
+
 	[class*="rsl__multi-value__label"] {
 		display: flex;
 		align-items: center;
