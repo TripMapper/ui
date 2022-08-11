@@ -40,6 +40,16 @@
 	[class*="rsl__value-container--is-multi rsl__value-container--has-value"] {
 		padding: rem(3) rem(6);
 	}
+
+	[class*="rsl__multi-value__label"] {
+		display: flex;
+		align-items: center;
+
+		svg:first-child {
+			margin-top: rem(-2);
+			margin-right: rem(4);
+		}
+	}
 }
 
 .inline {

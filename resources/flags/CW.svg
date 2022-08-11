@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="24px" viewBox="0 0 32 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>CW</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="32" height="24" rx="2"></rect>
+        <rect id="path-3" x="0" y="0" width="32" height="24"></rect>
+        <rect id="path-5" x="0" y="0" width="32" height="24"></rect>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-7">
+            <stop stop-color="#000000" stop-opacity="0.3" offset="2.42052023%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-8" x="0" y="0" width="32" height="24" rx="2"></rect>
+    </defs>
+    <g id="Flagpack" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Flagpack---L-(32×24)" transform="translate(-40.000000, -280.000000)">
+            <g id="CW" transform="translate(40.000000, 280.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="drop-shadow"></g>
+                <g id="Group" mask="url(#mask-2)">
+                    <g id="flag">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="mask"></g>
+                        <g id="contents" mask="url(#mask-4)">
+                            <mask id="mask-6" fill="white">
+                                <use xlink:href="#path-5"></use>
+                            </mask>
+                            <use id="background" fill="#2E42A5" xlink:href="#path-5"></use>
+                            <polygon id="Star-5" fill="#F7FCFF" mask="url(#mask-6)" points="4.25442311 6.14922595 2.26557672 7.19891334 3.2258406 5.33052663 2 3.96314576 3.52334095 3.90692646 4.25442311 2 4.81233256 3.90692646 6.5949688 3.96314576 5.31147283 5.33052663 6.12571843 7.19891334"></polygon>
+                            <polygon id="Star-5" fill="#F7FCFF" mask="url(#mask-6)" points="11.3522675 11.0765426 8.89764231 12.1047789 9.86061576 9.52815192 7.72644616 7.79927556 10.2837432 7.79927556 11.3522675 5.0121781 12.1676886 7.79927556 14.7289334 7.79927556 12.9089034 9.52815192 13.8126324 12.1047789"></polygon>
+                            <rect id="bottom" fill="#F9E813" mask="url(#mask-6)" x="0" y="14" width="32" height="4"></rect>
+                        </g>
+                    </g>
+                </g>
+                <g id="overlay" mask="url(#mask-2)">
+                    <use fill="url(#linearGradient-7)" fill-rule="evenodd" style="mix-blend-mode: overlay;" xlink:href="#path-8"></use>
+                    <rect stroke-opacity="0.1" stroke="#000000" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.5" width="31" height="23" rx="2"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

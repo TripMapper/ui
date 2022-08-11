@@ -1,0 +1,8 @@
+@import "../variables";
+
+.label {
+	flex-shrink: 9999;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

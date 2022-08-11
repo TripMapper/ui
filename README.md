@@ -1,12 +1,5 @@
 # TripMapper UI
 
-### Usage
-In your `_app.js` file:
-```js
-import 'ui/dist/ui.cssSelect';
-```
-
-Elsewhere:
-```js
-import { Button } from 'ui';
-```
+### IMPORTANT
+When adding svg inline support, ensure you exclude UI SVG's suffixed with `_ui`.  
+`test: /(?<!_ui)\.svg$/,`

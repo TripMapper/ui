@@ -6,6 +6,9 @@
 	position: relative;
 	box-sizing: border-box;
 
+	background-image: url(../svg/flags_ui.svg);
+	background-size: 0 0;
+
 	[style*=overlay],
 	[stroke-opacity] {
 		display: none;

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="24px" viewBox="0 0 32 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>KE</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="32" height="24" rx="2.3857143"></rect>
+        <path d="M3.80952381,16 C5.33333333,16 7.61904762,12.8601058 7.61904762,8 C7.61904762,3.1398942 5.33333333,3.91886993e-16 3.80952381,0 C2.28571429,-3.91886976e-16 0,3.1398942 0,8 C0,12.8601058 2.28571429,16 3.80952381,16 Z" id="path-3"></path>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F0F0F0" offset="100%"></stop>
+        </linearGradient>
+        <path d="M3.80952381,10.4 C4.23031219,10.4 4.57142857,11.8326888 4.57142857,13.6 C4.57142857,15.3673112 4.23031219,16.8 3.80952381,16.8 C3.38873543,16.8 3.04761905,15.3673112 3.04761905,13.6 C3.04761905,11.8326888 3.38873543,10.4 3.80952381,10.4 Z M3.80952381,5.6 C4.23031219,5.6 4.57142857,6.6745166 4.57142857,8 C4.57142857,9.3254834 4.23031219,10.4 3.80952381,10.4 C3.38873543,10.4 3.04761905,9.3254834 3.04761905,8 C3.04761905,6.6745166 3.38873543,5.6 3.80952381,5.6 Z M3.80952381,5.6 C4.23031219,5.6 4.57142857,4.1673112 4.57142857,2.4 C4.57142857,0.632688801 4.23031219,-0.8 3.80952381,-0.8 C3.38873543,-0.8 3.04761905,0.632688801 3.04761905,2.4 C3.04761905,4.1673112 3.38873543,5.6 3.80952381,5.6 Z" id="path-6"></path>
+        <filter x="-32.8%" y="-2.8%" width="165.6%" height="111.4%" filterUnits="objectBoundingBox" id="filter-7">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.06 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="KE">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#FFFFFF" xlink:href="#path-1"></use>
+            <rect id="Rectangle-2" fill="#262626" mask="url(#mask-2)" x="0" y="0" width="32" height="6.4"></rect>
+            <rect id="Rectangle-2" fill="#018301" mask="url(#mask-2)" x="0" y="17.6" width="32" height="6.4"></rect>
+            <rect id="Rectangle-2" fill="#FFFFFF" mask="url(#mask-2)" x="0" y="6.4" width="32" height="11.2"></rect>
+            <rect id="Rectangle-2-Copy-4" fill="#DC0808" mask="url(#mask-2)" x="0" y="8" width="32" height="8"></rect>
+            <g id="Oval-225" mask="url(#mask-2)">
+                <g transform="translate(12.190476, 4.000000)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <use id="Mask" stroke="none" fill="#BC0000" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    <ellipse id="Mask-Copy" stroke="none" fill="#262626" fill-rule="evenodd" mask="url(#mask-4)" cx="-2.28571429" cy="8" rx="3.80952381" ry="8.8"></ellipse>
+                    <ellipse id="Mask-Copy-2" stroke="none" fill="#262626" fill-rule="evenodd" mask="url(#mask-4)" cx="9.9047619" cy="8" rx="3.80952381" ry="8.8"></ellipse>
+                    <g id="Oval-228" stroke="none" fill="none" mask="url(#mask-4)">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-7)" xlink:href="#path-6"></use>
+                        <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-6"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

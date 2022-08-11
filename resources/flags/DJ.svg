@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="24px" viewBox="0 0 32 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>DJ</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="32" height="24" rx="2"></rect>
+        <rect id="path-3" x="0" y="0" width="32" height="24"></rect>
+        <rect id="path-5" x="0" y="0" width="32" height="24"></rect>
+        <polygon id="path-7" points="0 0 0 24 18 12"></polygon>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-9">
+            <stop stop-color="#000000" stop-opacity="0.3" offset="2.42052023%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-10" x="0" y="0" width="32" height="24" rx="2"></rect>
+    </defs>
+    <g id="Flagpack" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Flagpack---L-(32×24)" transform="translate(-320.000000, -280.000000)">
+            <g id="DJ" transform="translate(320.000000, 280.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="drop-shadow"></g>
+                <g id="Group" mask="url(#mask-2)">
+                    <g id="flag">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="mask"></g>
+                        <g id="contents" mask="url(#mask-4)">
+                            <mask id="mask-6" fill="white">
+                                <use xlink:href="#path-5"></use>
+                            </mask>
+                            <use id="background" fill="#73BE4A" xlink:href="#path-5"></use>
+                            <rect id="top" fill="#6699FF" mask="url(#mask-6)" x="0" y="-2" width="32" height="14"></rect>
+                            <mask id="mask-8" fill="white">
+                                <use xlink:href="#path-7"></use>
+                            </mask>
+                            <use id="triangle" fill="#FFFFFF" xlink:href="#path-7"></use>
+                            <polygon id="Star-5" fill="#E31D1C" mask="url(#mask-8)" points="7.0017944 14.0706906 5.13112302 15.2000122 5.55781133 12.9962539 4 11.3469575 6.10936378 11.2577788 7.0017944 9.20001221 7.89422502 11.2577788 10 11.2577788 8.44577747 12.9962539 8.91369055 15.2000122"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="overlay" mask="url(#mask-2)">
+                    <use fill="url(#linearGradient-9)" fill-rule="evenodd" style="mix-blend-mode: overlay;" xlink:href="#path-10"></use>
+                    <rect stroke-opacity="0.1" stroke="#000000" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.5" width="31" height="23" rx="2"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

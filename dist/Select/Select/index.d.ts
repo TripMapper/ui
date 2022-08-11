@@ -1,8 +1,9 @@
 import { ActionMeta } from 'react-select';
 import { TypedDocumentNode } from 'urql';
 import { ReactNode } from 'react';
+import { FilterOptionOption } from 'react-select/dist/declarations/src/filters';
 export interface SelectOption {
-    label: string;
+    label: string | ReactNode;
     value: string | number | boolean;
 }
 export interface SelectProps {
@@ -30,5 +31,6 @@ export interface SelectProps {
     pathToNodes?: string;
     /** @default false */
     queryWhenEmpty?: boolean;
+    filterOption?: ((option: FilterOptionOption<SelectOption>, inputValue: string) => boolean) | null;
 }
-export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, disabled, onChange, inline, query, queryVariables, preloadOptions, pathToNodes, queryWhenEmpty, }: SelectProps): JSX.Element;
+export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, disabled, onChange, inline, query, queryVariables, preloadOptions, pathToNodes, queryWhenEmpty, filterOption, }: SelectProps): JSX.Element;

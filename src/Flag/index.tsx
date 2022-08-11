@@ -1,6 +1,8 @@
 import css from './style.module.scss';
 import { cx } from '../util';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
+
+const URL_RX = /url\(["']?([a-z0-9._~()'!*:@,;+?\/-]*)['"]?\)/i;
 
 export interface FlagProps {
 	iso: string;
@@ -14,15 +16,12 @@ export default function Flag ({
 	small = false,
 	medium = false,
 	large = false,
-} : FlagProps) : ReactNode {
-	const [svgPath, setSvgPath] = useState('');
-	useEffect(() => {
-		(async () => {
-			const path = (await import('../svg/flags.svg')).default;
-			console.log(path);
-			setSvgPath(path);
-		})();
-	}, []);
+} : FlagProps) {
+	const [self, setSelf] = useState(null);
+	const svgPath = useMemo(() => {
+		if (!self) return '';
+		return new URL(window.getComputedStyle(self).backgroundImage.match(URL_RX)[1]).pathname;
+	}, [self]);
 
 	iso = iso.toUpperCase();
 
@@ -34,5 +33,5 @@ export default function Flag ({
 		(iso === 'NP') && css.uniqueShape,
 	);
 
-	return <svg viewBox="0 0 32 24" className={className}><use xlinkHref={`${svgPath}#${iso}`}/></svg>;
+	return <svg ref={setSelf} viewBox="0 0 32 24" className={className}><use xlinkHref={`${svgPath}#${iso}`}/></svg>;
 }

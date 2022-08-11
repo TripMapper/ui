@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="24px" viewBox="0 0 32 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>GQ</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="32" height="24" rx="2.4"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="GQ">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <rect stroke="#F5F5F5" stroke-width="0.6" x="0.3" y="0.3" width="31.4" height="23.4" rx="2.4"></rect>
+            <rect id="Rectangle-2" fill="#EC3938" mask="url(#mask-2)" x="0" y="16" width="32" height="8"></rect>
+            <rect id="Rectangle-2" fill="#51B422" mask="url(#mask-2)" x="0" y="0" width="32" height="8"></rect>
+            <path d="M15.3380274,14.2906982 C15.484813,14.13015 15.6048063,13.8162842 15.60599,13.5988283 L15.6168639,11.6011717 C15.6180699,11.3796107 15.4404762,11.2 15.2193317,11.2 L14.8759064,11.2 C14.6551494,11.2 14.5957613,11.0744507 14.7556806,10.9065353 L15.7205098,9.89346466 C15.874868,9.7313886 16.1195708,9.72554932 16.2794902,9.89346466 L17.2443194,10.9065353 C17.3986775,11.0686114 17.3452381,11.2 17.1240936,11.2 L16.7806683,11.2 C16.5599113,11.2 16.3809524,11.3837158 16.3809524,11.6011717 L16.3809524,13.5988283 C16.3809524,13.8203893 16.5014881,14.1265625 16.6578078,14.2906982 L16.4850493,14.1093018 C16.6379523,14.26985 16.5750558,14.4 16.3615417,14.4 L15.6384583,14.4 C15.4173439,14.4 15.3538085,14.2734375 15.5038741,14.1093018 L15.3380274,14.2906982 Z" id="Rectangle-721" fill="#159940" mask="url(#mask-2)"></path>
+            <polygon id="Rectangle-83" fill="#258DE7" mask="url(#mask-2)" points="0 0 10.6666667 12 0 24"></polygon>
+        </g>
+    </g>
+</svg>

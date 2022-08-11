@@ -9,9 +9,10 @@ import { useAsync } from 'react-select/async';
 import { useCreatable } from 'react-select/creatable';
 import get from 'lodash.get';
 import debounce from 'lodash.debounce';
+import { FilterOptionOption } from 'react-select/dist/declarations/src/filters';
 
 export interface SelectOption {
-	label: string;
+	label: string | ReactNode;
 	value: string | number | boolean;
 }
 
@@ -38,6 +39,7 @@ export interface SelectProps {
 	pathToNodes?: string;
 	/** @default false */
 	queryWhenEmpty?: boolean;
+	filterOption?: ((option: FilterOptionOption<SelectOption>, inputValue: string) => boolean) | null;
 }
 
 const add = value => v => {
@@ -69,6 +71,7 @@ export default function Select ({
 	preloadOptions = false,
 	pathToNodes,
 	queryWhenEmpty = false,
+	filterOption,
 } : SelectProps) {
 	const client = useClient();
 
@@ -98,6 +101,7 @@ export default function Select ({
 		className: cx(css.select, inline && css.inline),
 		classNamePrefix: 'rsl',
 		placeholder,
+		filterOption,
 		onChange: (val, action) => {
 			onChange && onChange(val, action);
 			setValue(val);

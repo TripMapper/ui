@@ -1,0 +1,26 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import CountrySelect
+	from './index'; import { createClient, Provider } from 'urql';
+
+<Meta
+	title="Form/Country Select"
+	component={CountrySelect}
+/>
+
+# Country Select
+
+```jsx
+import CountrySelect from 'ui/CountrySelect';
+
+<CountrySelect />
+```
+
+<Canvas>
+	<Story name="CountrySelect">
+		<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+			<CountrySelect name="test" />
+			<CountrySelect name="test" isMulti isClearable />
+		</Provider>
+	</Story>
+</Canvas>
+
+<ArgsTable of={CountrySelect} />

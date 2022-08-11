@@ -21,7 +21,7 @@ const remove = value => v => {
         n.splice(n.indexOf(value), 1);
     return n;
 };
-export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, }) {
+export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, filterOption, }) {
     const client = useClient();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
     const [value, setValue] = useState(defaultValue), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
@@ -41,6 +41,7 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         className: cx(css.select, inline && css.inline),
         classNamePrefix: 'rsl',
         placeholder,
+        filterOption,
         onChange: (val, action) => {
             onChange && onChange(val, action);
             setValue(val);
