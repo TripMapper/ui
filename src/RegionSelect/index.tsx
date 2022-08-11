@@ -39,7 +39,7 @@ export default function RegionSelect ({ countryIds = [], defaultValue, name, ...
 	});
 
 	const { opts, defaultVal } = useMemo(() => {
-		if (!data || !data.regions) return { opts: [], defaults: null };
+		if (!data || !data.regions || countryIds.length === 0) return { opts: [], defaults: null };
 
 		const byCountryId = {}
 			, regionById = {};
@@ -77,7 +77,7 @@ export default function RegionSelect ({ countryIds = [], defaultValue, name, ...
 					: regionById[defaultValue.value as string]
 				: null,
 		};
-	}, [data]);
+	}, [data, countryIds]);
 
 	if (fetching)
 		return <Select name={name} disabled placeholder="Loading..." />;
