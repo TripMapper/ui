@@ -7,6 +7,7 @@ export interface TableColumn {
     label: string;
     handle: string;
     renderer?: (any: any, TableData: any) => ReactNode;
+    align: 'left' | 'center' | 'right';
 }
 export interface TableProps {
     columns: readonly TableColumn[];

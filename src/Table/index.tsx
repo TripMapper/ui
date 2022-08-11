@@ -1,7 +1,7 @@
 import css from './style.module.scss';
 import { ReactNode } from 'react';
 import get from 'lodash.get';
-import { empty } from '../util';
+import { cx, empty } from '../util';
 
 export interface TableData {
 	id: string;
@@ -12,6 +12,7 @@ export interface TableColumn {
 	label: string;
 	handle: string;
 	renderer?: (any, TableData) => ReactNode;
+	align: 'left' | 'center' | 'right';
 }
 
 export interface TableProps {
@@ -38,7 +39,9 @@ export default function Table ({ columns, data } : TableProps) {
 						const value = get(row, col.handle);
 
 						return (
-							<td key={col.handle}>
+							<td key={col.handle} className={cx(
+								css[col.align]
+							)}>
 								{col.renderer
 									? col.renderer(value, row)
 									: empty(value)
