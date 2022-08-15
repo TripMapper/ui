@@ -3,7 +3,7 @@
 .countdown {
 	display: inline-grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: rem(10);
+	grid-column-gap: rem(20);
 
 	align-items: center;
 	justify-content: center;
@@ -12,11 +12,7 @@
 	figure {
 		text-align: center;
 
-		&:nth-child(2) {
-			margin: 0 rem(10);
-
-			strong { opacity: 0.6 }
-		}
+		&:nth-child(2) strong { opacity: 0.6 }
 		&:nth-child(3) strong { opacity: 0.3 }
 	}
 
