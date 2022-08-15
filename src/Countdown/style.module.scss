@@ -1,0 +1,33 @@
+@import "../variables";
+
+.countdown {
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: rem(10);
+
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+
+	figure {
+		text-align: center;
+
+		&:nth-child(2) strong { opacity: 0.6 }
+		&:nth-child(3) strong { opacity: 0.3 }
+	}
+
+	strong {
+		display: block;
+		margin-top: rem(-12);
+
+		font-size: rem(72);
+		font-family: $FONT_mono;
+		font-weight: normal;
+	}
+
+	figcaption {
+		font-size: rem(16);
+		letter-spacing: rem(0.5);
+		text-transform: uppercase;
+	}
+}

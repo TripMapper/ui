@@ -1,0 +1,44 @@
+import Countdown from './index'; import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import {
+	useState
+} from 'react';
+
+<Meta
+	title="Interface/Countdown"
+	component={Countdown}
+/>
+
+# Countdown
+
+```jsx
+import Countdown from 'ui/Countdown';
+
+<Countdown target={new Date('in future')} />
+```
+
+<Canvas>
+	<Story name="Countdown">
+		{() => {
+			const [target, setTarget] = useState(() => {
+				const d = new Date()
+				d.setDate(d.getDate() + 10);
+				d.setHours(11);
+				d.setMinutes(45);
+				d.setSeconds(0);
+				d.setMilliseconds(0);
+				return d;
+			})
+			return (
+				<>
+					<input
+						type="datetime-local"
+						defaultValue={target.toISOString().replace('Z', '')}
+						onChange={e => setTarget(new Date(e.target.value))}
+					/>
+					<Countdown target={target} />
+				</>
+			);
+		}}
+	</Story>
+</Canvas>
+
+<ArgsTable of={Countdown} />
