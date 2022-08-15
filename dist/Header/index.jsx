@@ -1,6 +1,7 @@
 import css from './style.module.scss';
-export default function Header({ children }) {
-    return (<header className={css.header}>
+import { cx } from '../util';
+export default function Header({ pullUp, children }) {
+    return (<header className={cx(css.header, pullUp && css.pullUp)}>
 			{children}
 		</header>);
 }

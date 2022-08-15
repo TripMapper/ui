@@ -30,6 +30,7 @@
     "./Menu": "./dist/Menu/index.jsx",
     "./Metadata": "./dist/Metadata/index.jsx",
     "./Notes": "./dist/Notes/index.jsx",
+    "./OverviewLayout": "./dist/OverviewLayout/index.jsx",
     "./Page": "./dist/Page/index.jsx",
     "./Radio": "./dist/Radio/index.jsx",
     "./Rating": "./dist/Rating/index.jsx",

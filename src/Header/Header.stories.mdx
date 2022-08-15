@@ -3,7 +3,7 @@ import Header from './index';
 import FakeNextRouter from '../../.storybook/FakeNextRouter';
 import Menu from '../Menu';
 import ContextMenu, { ContextItemButton } from '../ContextMenu';
-import Avatar from '../Avatar';
+import Avatar from '../Avatar'; import Image from '../Image';
 
 <Meta
 	title="Layout/Header"
@@ -47,6 +47,25 @@ import Avatar from 'ui/Avatar';
 					<Avatar El="button" />
 				</ContextMenu>
 			</Header>
+			<Header pullUp>
+				<div>[logo]</div>
+				<Menu
+					items={[
+						{ name: 'Trips', uri: '/trips' },
+						{ name: 'Templates', uri: '/templates' },
+						{ name: 'Clients', uri: '/clients' },
+						{ name: 'Suppliers', uri: '/suppliers' },
+					]}
+				/>
+				<ContextMenu menu={
+					<>
+						<ContextItemButton text="Hello" />
+					</>
+				}>
+					<Avatar El="button" />
+				</ContextMenu>
+			</Header>
+			<Image src="https://source.unsplash.com/700x300?nature" width={700} height={300} />
 		</FakeNextRouter>
 	</Story>
 </Canvas>

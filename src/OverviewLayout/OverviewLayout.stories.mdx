@@ -1,0 +1,61 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import OverviewLayout
+	, { overviewWide } from './index'; import Image from '../Image';
+
+<Meta
+	title="Layout/Overview"
+	component={OverviewLayout}
+/>
+
+# Overview Layout
+
+```jsx
+import OverviewLayout from 'ui/OverviewLayout';
+
+<OverviewLayout
+	content={(<div />)}
+	info={(<div />)}
+/>
+```
+
+<Canvas>
+	<Story name="Overview">
+		<Image src="https://source.unsplash.com/1700x410?landscape" width={1700} height={410} />
+		<OverviewLayout
+			flagIso={['JP', 'CH', 'FR']}
+			name="School Geography Trip to Japan"
+			info={(
+				<>
+					<div>
+						<dt>
+							<h3>Trip Summary</h3>
+							<p>Not long to go now!</p>
+						</dt>
+						<dd>
+							[COUNT DOWN]
+						</dd>
+					</div>
+					<div>
+						<dt>
+							<h3>Trip Costs</h3>
+							<p>Based on 16 travellers at £2,199pp</p>
+						</dt>
+						<dd>
+							[TRIP COSTS]
+						</dd>
+					</div>
+					<div>
+						<dt>
+							<h3>Helpful Information</h3>
+							<p>Here’s some useful information about Japan.</p>
+						</dt>
+						<dd className={overviewWide}>
+							hello
+						</dd>
+					</div>
+				</>
+			)}
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={OverviewLayout} />

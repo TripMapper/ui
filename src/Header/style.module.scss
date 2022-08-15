@@ -2,6 +2,7 @@
 
 .header {
 	position: sticky;
+	z-index: $zINDEX_header;
 	top: 0;
 
 	display: grid;
@@ -15,12 +16,38 @@
 	border-bottom: 1px solid $COLOURS_borderLight;
 	background-color: change-color($COLOURS_background, $alpha: 0.8);
 
+	> a:first-child * {
+		color: $COLOURS_text;
+		text-decoration: none;
+		vertical-align: middle;
+	}
+
 	> *:last-child {
 		justify-self: end;
 	}
+}
 
+.pullUp {
 	@supports (backdrop-filter: blur(10px)) {
-		backdrop-filter: blur(10px);
+		margin-bottom: rem(-64);
+		border-bottom: none;
 		background-color: transparent;
+
+		&::before {
+			content: '';
+			position: absolute;
+			z-index: -1;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: rem(-32);
+
+			backdrop-filter: blur(10px);
+			mask-image: linear-gradient(
+				to bottom,
+				rgba(0,0,0,1) 25%,
+				rgba(0,0,0,0)
+			);
+		}
 	}
 }

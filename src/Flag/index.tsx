@@ -1,8 +1,9 @@
 import css from './style.module.scss';
 import { cx } from '../util';
-import { ReactNode, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const URL_RX = /url\(["']?([a-z0-9._~()'!*:@,;+?\/-]*)['"]?\)/i;
+const countryNames = new Intl.DisplayNames(void 0, { type: 'region' });
 
 export interface FlagProps {
 	iso: string;
@@ -33,5 +34,10 @@ export default function Flag ({
 		(iso === 'NP') && css.uniqueShape,
 	);
 
-	return <svg ref={setSelf} viewBox="0 0 32 24" className={className}><use xlinkHref={`${svgPath}#${iso}`}/></svg>;
+	return (
+		<svg ref={setSelf} viewBox="0 0 32 24" className={className}>
+			<title>{countryNames.of(iso)}</title>
+			<use xlinkHref={`${svgPath}#${iso}`}/>
+		</svg>
+	);
 }
