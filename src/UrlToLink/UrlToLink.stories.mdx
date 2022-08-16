@@ -1,0 +1,23 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import UrlToLink from './index';
+
+<Meta
+	title="Atoms/URL to Link"
+	component={UrlToLink}
+/>
+
+# URL To Link
+
+```jsx
+import UrlToLink from 'ui/UrlToLink';
+
+<UrlToLink url="https://mysite.com/me" />
+```
+
+<Canvas>
+	<Story name="URL to Link">
+		<UrlToLink url="tripmapper.co" />
+		<UrlToLink url="https://www.graphile.org/postgraphile/function-restrictions/" />
+	</Story>
+</Canvas>
+
+<ArgsTable of={UrlToLink} />
