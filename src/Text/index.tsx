@@ -11,6 +11,9 @@ const substituteUrls = text => text.split(URL_RX).filter(Boolean).map((s, i) => 
 	// This is a bit trash, but it's the only full-proof way of checking
 	// if it's a valid URL :(
 	try {
+		if (URL_RX.test(s) && s.indexOf(/https?:\/\//) === -1)
+			s = 'https://' + s;
+
 		new URL(s);
 		return <UrlToLink key={key} url={s}/>;
 	} catch (e) {}
@@ -23,6 +26,7 @@ export interface TextProps {
 	onChange?: (value: string) => void;
 	className?: string;
 	onWhite?: boolean;
+	placeholder?: string;
 }
 
 export default function Text ({
@@ -30,6 +34,7 @@ export default function Text ({
 	onChange = () => {},
 	className,
 	onWhite = false,
+	placeholder = 'Jot something down',
 } : TextProps) {
 	const textArea = useRef(null);
 
@@ -77,7 +82,7 @@ export default function Text ({
 						defaultValue={value}
 						onBlur={onBlur}
 						onInput={onInput}
-						placeholder="Jot something down"
+						placeholder={placeholder}
 					/>
 				</>
 			) : (

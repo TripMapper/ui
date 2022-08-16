@@ -45,9 +45,11 @@
     "./Table": "./dist/Table/index.jsx",
     "./Tabs": "./dist/Tabs/index.jsx",
     "./Tag": "./dist/Tag/index.jsx",
+    "./Text": "./dist/Text/index.jsx",
     "./Title": "./dist/Title/index.jsx",
     "./UIContext": "./dist/UIContext/index.jsx",
-    "./Upload": "./dist/Upload/index.jsx"
+    "./Upload": "./dist/Upload/index.jsx",
+    "./UrlToLink": "./dist/UrlToLink/index.jsx"
   },
   "scripts": {
     "build": "tsc --build",
