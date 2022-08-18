@@ -24,7 +24,7 @@ const spriter = new SvgSpriter({
 	},
 });
 
-const globals = 'src/Globals.d.ts';
+const typesFile = 'src/Types.d.ts';
 
 const targetDir = 'resources/' + process.argv[2]
 	, outputDir = 'src/svg'
@@ -76,7 +76,7 @@ spriter.compile((error, result) => {
 	);
 
 	// Update types
-	let globalsText = fs.readFileSync(globals).toString();
+	let globalsText = fs.readFileSync(typesFile).toString();
 	const typeName = `export type ${capitalize(process.argv[2])}`;
 	const exportType = `${typeName} = '${types.join("' | '")}';`;
 
@@ -87,7 +87,7 @@ spriter.compile((error, result) => {
 		globalsText = globalsText.replace(rx, exportType);
 	}
 
-	fs.writeFileSync(globals, globalsText);
+	fs.writeFileSync(typesFile, globalsText);
 
 	// Update icon docs
 	if (process.argv[2] === 'icons') {
