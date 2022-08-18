@@ -1,12 +1,13 @@
 import css from './style.module.scss';
 import { cx } from '../util';
 import { useMemo, useState } from 'react';
+import { Flags } from '../Globals';
 
 const URL_RX = /url\(["']?([a-z0-9._~()'!*:@,;+?\/-]*)['"]?\)/i;
 const countryNames = new Intl.DisplayNames(void 0, { type: 'region' });
 
 export interface FlagProps {
-	iso: string;
+	iso: Flags;
 	small?: boolean;
 	medium?: boolean;
 	large?: boolean;
@@ -24,7 +25,7 @@ export default function Flag ({
 		return new URL(window.getComputedStyle(self).backgroundImage.match(URL_RX)[1]).pathname;
 	}, [self]);
 
-	iso = iso.toUpperCase();
+	iso = iso.toUpperCase() as Flags;
 
 	const className = cx(
 		css.flag,

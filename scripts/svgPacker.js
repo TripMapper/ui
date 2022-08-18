@@ -4,7 +4,7 @@
  * Usage:
  * $ node scripts/svgPacker.js [name_of_resources_dir]
  *
- * Example: resources/flags/*.svg -> src/svg/flags.svg
+ * Example: resources/flags/*.svg -> src/svg/flags_ui.svg
  * $ node scripts/svgPacker.js flags
  */
 
@@ -24,6 +24,8 @@ const spriter = new SvgSpriter({
 	},
 });
 
+const globals = 'src/Globals.d.ts';
+
 const targetDir = 'resources/' + process.argv[2]
 	, outputDir = 'src/svg'
 	, outputName = process.argv[2] + '_ui.svg';
@@ -42,6 +44,8 @@ if (!fs.existsSync(outputDir))
 
 try { fs.rmSync(path.join(outputDir, outputName)); } catch {}
 
+const types = [];
+
 const files = fs.readdirSync(targetDir);
 for (let file of files) {
 	if (path.extname(file) !== '.svg') continue;
@@ -52,14 +56,36 @@ for (let file of files) {
 		.replace(/<g id="overlay"(.*?)<\/g>/gms, '')
 		.replace(/ fill-rule="nonzero"/gms, '');
 
+	types.push(path.basename(file, path.extname(file)));
+
 	spriter.add(p, null, svg);
+}
+
+function capitalize (str, forceLower = false) {
+	if (!str) return str;
+	return str.charAt(0).toUpperCase() + (forceLower ? str.slice(1).toLowerCase() : str.slice(1));
 }
 
 spriter.compile((error, result) => {
 	if (error) throw new Error(error);
 
+	// Output compiled SVG
 	fs.writeFileSync(
 		path.join(outputDir, outputName),
 		result.defs.sprite.contents
 	);
+
+	// Update types
+	let globalsText = fs.readFileSync(globals).toString();
+	const typeName = `export type ${capitalize(process.argv[2])}`;
+	const exportType = `${typeName} = '${types.join("' | '")}';`;
+
+	if (globalsText.indexOf(typeName) === -1) {
+		globalsText += '\n' + exportType + '\n';
+	} else {
+		const rx = new RegExp(`^${typeName}(.*)$`, 'mg');
+		globalsText = globalsText.replace(rx, exportType);
+	}
+
+	fs.writeFileSync(globals, globalsText);
 });

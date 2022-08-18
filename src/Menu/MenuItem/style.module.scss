@@ -20,6 +20,10 @@
 	opacity: 0.4;
 	transition: opacity 0.15s ease;
 
+	svg {
+		margin-right: rem(10);
+	}
+
 	&:hover {
 		opacity: 1;
 	}
