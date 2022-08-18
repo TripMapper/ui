@@ -25,6 +25,7 @@
     "./Flag": "./dist/Flag/index.jsx",
     "./Form": "./dist/Form/index.jsx",
     "./Header": "./dist/Header/index.jsx",
+    "./Icon": "./dist/Icon/index.jsx",
     "./Image": "./dist/Image/index.jsx",
     "./Input": "./dist/Input/index.jsx",
     "./Label": "./dist/Label/index.jsx",

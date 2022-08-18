@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import cx from '../../util/cx';
-import { Icons } from '../../Globals';
+import { Icons } from '../../Types';
 import Icon from '../../Icon';
 
 export interface MenuItem {

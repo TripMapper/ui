@@ -1,6 +1,7 @@
 /// <reference types="react" />
+import { Flags } from '../Types';
 export interface FlagProps {
-    iso: string;
+    iso: Flags;
     small?: boolean;
     medium?: boolean;
     large?: boolean;

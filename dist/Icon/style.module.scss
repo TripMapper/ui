@@ -1,0 +1,45 @@
+@import "../variables";
+
+.icon {
+	display: inline-block;
+	width: rem(16);
+	height: rem(16);
+	box-sizing: border-box;
+	vertical-align: middle;
+
+	background-image: url(../svg/icons_ui.svg);
+	background-size: 0 0;
+	overflow: hidden;
+}
+
+.xs,
+.s {
+	use {
+		stroke-width: 1.5;
+	}
+}
+
+.xs {
+	width: rem(12);
+	height: rem(12);
+}
+
+.s {
+	width: rem(14);
+	height: rem(14);
+}
+
+.m {
+	width: rem(16);
+	height: rem(16);
+}
+
+.l {
+	width: rem(20);
+	height: rem(20);
+}
+
+.xl {
+	width: rem(24);
+	height: rem(24);
+}

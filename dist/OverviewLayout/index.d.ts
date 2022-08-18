@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
+import { Flags } from '../Types';
 export interface OverviewLayoutProps {
-    flagIso?: readonly string[];
+    flagIso?: readonly Flags[];
     name?: string;
     content?: ReactNode;
     info?: ReactNode;

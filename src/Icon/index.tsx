@@ -1,7 +1,7 @@
 import css from './style.module.scss';
 import { useMemo, useState } from 'react';
 import { cx } from '../util';
-import { Icons } from '../Globals';
+import { Icons } from '../Types';
 
 const URL_RX = /url\(["']?([a-z0-9._~()'!*:@,;+?\/-]*)['"]?\)/i;
 
