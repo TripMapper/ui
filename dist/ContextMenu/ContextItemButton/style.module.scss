@@ -17,6 +17,10 @@
 
 	transition: background-color 0.15s ease;
 
+	svg {
+		margin-right: rem(10);
+	}
+
 	&:hover {
 		background-color: rgba(0,0,0,0.02);
 	}

@@ -13,6 +13,8 @@ import {
 
 # Icon
 
+The icon colour is inherited from the `currentColor`
+
 ```jsx
 import Icon from 'ui/Icon';
 
@@ -33,12 +35,13 @@ import Icon from 'ui/Icon';
 		<Icon of="add-after" l />
 		<Icon of="add-after" xl />
 		<br/>
-		<Icon of="brush" xs />
-		<Icon of="brush" s />
-		<Icon of="brush" m />
-		<Icon of="brush" l />
-		<Icon of="brush" xl />
-		<br/>
+		<div style={{color:'red'}}>
+			<Icon of="brush" xs />
+			<Icon of="brush" s />
+			<Icon of="brush" m />
+			<Icon of="brush" l />
+			<Icon of="brush" xl />
+		</div>
 		<Icon of="share" xs />
 		<Icon of="share" s />
 		<Icon of="share" m />

@@ -51,10 +51,15 @@ for (let file of files) {
 	if (path.extname(file) !== '.svg') continue;
 
 	const p = path.join(targetDir, file);
-	const svg = fs.readFileSync(p, 'utf-8')
+	let svg = fs.readFileSync(p, 'utf-8')
 		.toString()
 		.replace(/<g id="overlay"(.*?)<\/g>/gms, '')
 		.replace(/ fill-rule="nonzero"/gms, '');
+
+	if (process.argv[2] === 'icons')
+		svg = svg
+			.replace(/stroke="#(?!f{3,6}).*?"/gi, 'stroke="currentColor"')
+			.replace(/fill="#(?!f{3,6}).*?"/gi, 'fill="currentColor"');
 
 	types.push(path.basename(file, path.extname(file)));
 
