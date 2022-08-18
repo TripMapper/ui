@@ -88,4 +88,15 @@ spriter.compile((error, result) => {
 	}
 
 	fs.writeFileSync(globals, globalsText);
+
+	// Update icon docs
+	if (process.argv[2] === 'icons') {
+		const singular = capitalize(process.argv[2].replace(/s$/, ''));
+		const storyPath = `src/${singular}/${singular}.stories.mdx`;
+		const storyText = fs.readFileSync(storyPath).toString();
+		fs.writeFileSync(storyPath, storyText.replace(
+			/<IconGallery>.*<\/IconGallery>/s,
+			`<IconGallery>\n${types.map(type => `	<IconItem name="${type}"><Icon of="${type}" xl /></IconItem>`).join('\n')}\n</IconGallery>`
+		));
+	}
 });
