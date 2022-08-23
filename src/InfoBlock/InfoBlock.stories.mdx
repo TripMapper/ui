@@ -1,0 +1,49 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import InfoBlock from './index'; import {
+	UIContextProvider
+} from '../UIContext';
+
+<Meta
+	title="Interface/Info Block"
+	component={InfoBlock}
+	decorators={[
+		(Story) => (
+			<UIContextProvider defaultContext={{}}>
+				<Story />
+			</UIContextProvider>
+		),
+	]}
+/>
+
+# Info Block
+
+```jsx
+import InfoBlock from 'ui/InfoBlock';
+
+<InfoBlock
+	icon="language"
+	primary="Japanese"
+	secondary="English"
+	count="+2"
+	label="Language"
+>
+	Expanded content...
+</InfoBlock>
+```
+
+<Canvas>
+	<Story name="Info Block">
+		<div style={{padding:24,background:'#fff'}}>
+			<InfoBlock
+				icon="earth"
+				primary="Japanese"
+				secondary="English"
+				count="+2"
+				label="Language"
+			>
+				Expanded content goes here
+			</InfoBlock>
+		</div>
+	</Story>
+</Canvas>
+
+<ArgsTable of={InfoBlock} />

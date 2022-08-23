@@ -1,0 +1,88 @@
+@import "../variables";
+
+.infoBlock {
+	width: rem(140);
+	appearance: none;
+	background: none;
+	border: none;
+	cursor: pointer;
+
+	div {
+		position: relative;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: rem(18) rem(16);
+
+		background: $COLOURS_background;
+		border: none;
+		border-radius: rem(8);
+		box-shadow: inset 0 0 0 rem(2) $COLOURS_background;
+		transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	span,
+	small {
+		font-family: $FONTSTACK_mono;
+	}
+
+	svg {
+		color: $COLOURS_primary;
+	}
+
+	&:hover div {
+		background: #fff;
+		box-shadow:
+			inset 0 0 0 rem(2) $COLOURS_background,
+			0 .125rem 1rem 0 rgba(0,0,0,.05);
+	}
+}
+
+.count {
+	position: absolute;
+	z-index: 2;
+	top: rem(4);
+	right: rem(4);
+	padding: rem(2.5) rem(5.5);
+
+	color: #fff;
+	font-size: rem(14);
+	font-weight: bold;
+
+	background: #8E8C89;
+	border-radius: rem(5);
+}
+
+.primary {
+	display: block;
+	width: 100%;
+	margin: rem(12) 0 rem(7);
+
+	font-size: rem(20);
+	text-transform: uppercase;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.secondary {
+	width: 100%;
+
+	color: change-color($COLOURS_text, $alpha: 0.5);
+	font-size: rem(14);
+	text-transform: uppercase;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.label {
+	display: block;
+	margin-top: rem(8);
+
+	color: $COLOURS_primary;
+	font-size: rem(14);
+	text-transform: uppercase;
+}

@@ -1,0 +1,119 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import InfoBlockGroup
+	from './index'; import InfoBlock from '../InfoBlock'; import Flag
+	from '../Flag'; import { UIContextProvider } from '../UIContext';
+
+<Meta
+	title="Interface/Info Block Group"
+	component={InfoBlockGroup}
+	decorators={[
+		(Story) => (
+			<UIContextProvider defaultContext={{}}>
+				<Story />
+			</UIContextProvider>
+		),
+	]}
+/>
+
+# Info Block Group
+```jsx
+import InfoBlockGroup from 'ui/InfoBlockGroup';
+import InfoBlock from 'ui/InfoBlock';
+
+<InfoBlockGroup
+	heading="Some helpful information"
+>
+	<InfoBlock {/* ... */} />
+	<InfoBlock {/* ... */} />
+	<InfoBlock {/* ... */} />
+	<InfoBlock {/* ... */} />
+</InfoBlockGroup>
+```
+
+<Canvas>
+	<Story name="Info Block Group">
+		<div style={{padding:24,background:'#fff'}}>
+			<InfoBlockGroup
+				heading={<><Flag iso="JP" medium /> Japan</>}
+			>
+				<InfoBlock
+					icon="earth"
+					primary="Japanese"
+					secondary="English"
+					count="+2"
+					label="Language"
+				>
+					Expanded content goes here
+				</InfoBlock>
+				<InfoBlock
+					icon="brush"
+					primary="Japanese"
+					secondary="English"
+					count="+2"
+					label="Language"
+				>
+					Expanded content goes here
+				</InfoBlock>
+				<InfoBlock
+					icon="cog"
+					primary="Japanese"
+					secondary="English"
+					count="+2"
+					label="Language"
+				>
+					Expanded content goes here
+				</InfoBlock>
+				<InfoBlock
+					icon="chat"
+					primary="Japanese"
+					secondary="English"
+					count="+2"
+					label="Language"
+				>
+					Expanded content goes here
+				</InfoBlock>
+			</InfoBlockGroup>
+			<InfoBlockGroup
+				heading={<><Flag iso="CX" medium /> Not Japan</>}
+			>
+				<InfoBlock
+					icon="earth"
+					primary="Japanese"
+					secondary="English"
+					count="+2"
+					label="Language"
+				>
+					Expanded content goes here
+				</InfoBlock>
+				<InfoBlock
+					icon="brush"
+					primary="Japanese"
+					secondary="English"
+					count="+2"
+					label="Language"
+				>
+					Expanded content goes here
+				</InfoBlock>
+				<InfoBlock
+					icon="cog"
+					primary="Japanese"
+					secondary="English"
+					count="+2"
+					label="Language"
+				>
+					Expanded content goes here
+				</InfoBlock>
+				<InfoBlock
+					icon="chat"
+					primary="Japanese"
+					secondary="English"
+					count="+2"
+					label="Language"
+				>
+					Expanded content goes here
+				</InfoBlock>
+			</InfoBlockGroup>
+		</div>
+	</Story>
+</Canvas>
+
+<ArgsTable of={InfoBlockGroup} />

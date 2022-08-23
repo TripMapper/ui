@@ -27,6 +27,8 @@
     "./Header": "./dist/Header/index.jsx",
     "./Icon": "./dist/Icon/index.jsx",
     "./Image": "./dist/Image/index.jsx",
+    "./InfoBlock": "./dist/InfoBlock/index.jsx",
+    "./InfoBlockGroup": "./dist/InfoBlockGroup/index.jsx",
     "./Input": "./dist/Input/index.jsx",
     "./Label": "./dist/Label/index.jsx",
     "./Menu": "./dist/Menu/index.jsx",

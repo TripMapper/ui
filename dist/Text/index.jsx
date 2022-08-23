@@ -3,18 +3,20 @@ import { Fragment, useRef, useState } from 'react';
 import UrlToLink from '../UrlToLink';
 import { cx } from '../util';
 import Prose from '../Prose';
-const URL_RX = /((?:http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+(?:[\-.][a-z0-9]+)*\.[a-z]{2,63}(?::[0-9]{1,5})?(?:\/[^\s]*)?)/g;
+const URL_RX = /((?:http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+(?:[\-.][a-z0-9]+)*\.[a-z]{2,63}(?::[0-9]{1,5})?(?:\/\S*)?)/g;
 const substituteUrls = text => text.split(URL_RX).filter(Boolean).map((s, i) => {
     const key = `${s}_${i}`;
     // This is a bit trash, but it's the only full-proof way of checking
     // if it's a valid URL :(
-    try {
-        if (URL_RX.test(s) && s.indexOf(/https?:\/\//) === -1)
-            s = 'https://' + s;
-        new URL(s);
-        return <UrlToLink key={key} url={s}/>;
+    if (URL_RX.test(s)) {
+        try {
+            if (s.indexOf(/https?:\/\//) === -1)
+                s = 'https://' + s;
+            new URL(s);
+            return <UrlToLink key={key} url={s}/>;
+        }
+        catch (e) { }
     }
-    catch (e) { }
     return <Fragment key={key}>{s}</Fragment>;
 });
 export default function Text({ defaultValue, onChange = () => { }, className, onWhite = false, placeholder = 'Jot something down', }) {
