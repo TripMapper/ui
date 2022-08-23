@@ -1,6 +1,6 @@
 import css from './style.module.scss';
 import TabItem, { TabItemProps } from './TabItem';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { cx } from '../util';
 
 export interface TabItems {
@@ -11,8 +11,16 @@ export interface TabItems {
 }
 
 export default function Tabs ({ className, items, children, tabsLayoutId = 'tabsLayoutId' } : TabItems) {
+	const hasIcons = useMemo(() => {
+		for (const item of items)
+			if (item.icon !== null)
+				return true;
+
+		return false;
+	}, [items]);
+
 	return (
-		<ul className={cx(css.ul, className)}>
+		<ul className={cx(css.ul, className, hasIcons && css.hasIcons)}>
 			{items.map(item => (
 				<TabItem tabLayoutId={tabsLayoutId} key={item.uri ?? item.name} {...item} />
 			))}

@@ -2,7 +2,7 @@ import css from './style.module.scss';
 import ReactSelect, { useStateManager, components, } from 'react-select';
 import { useClient } from 'urql';
 import SelectMenuPortal from '../SelectMenuPortal';
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { cx } from '../../util';
 import Spinner from '../../svg/spinner.svg';
 import { useAsync } from 'react-select/async';
@@ -30,6 +30,13 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
     const client = useClient();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
     const [value, setValue] = useState(defaultValue), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
+    const components = useMemo(() => ({
+        MenuPortal: SelectMenuPortal,
+        IndicatorSeparator: null,
+        DropdownIndicator: () => <Spinner style={{ width: 20 }}/>,
+        Input: InputComponent(required
+            && (Array.isArray(value) ? value.length === 0 : !value)),
+    }), [required, value]);
     const initialProps = {
         name: isMulti ? void 0 : name,
         isMulti,
@@ -38,13 +45,7 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         options,
         value,
         menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
-        components: {
-            MenuPortal: SelectMenuPortal,
-            IndicatorSeparator: null,
-            DropdownIndicator: () => <Spinner style={{ width: 20 }}/>,
-            Input: InputComponent(required
-                && (Array.isArray(value) ? value.length === 0 : !value)),
-        },
+        components,
         className: cx(css.select, inline && css.inline),
         classNamePrefix: 'rsl',
         placeholder,
@@ -72,7 +73,7 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         },
     };
     let asyncProps, stateManagerProps, creatableProps;
-    const searchQuery = useCallback(debounce((query, queryVariables, search, callback) => {
+    const searchQuery = useMemo(() => debounce((query, queryVariables, search, callback) => {
         client.query(query, { ...queryVariables, query: search }, { requestPolicy: 'cache-and-network' }).toPromise().then(({ data }) => {
             callback(get(data, pathToNodes, []));
         });

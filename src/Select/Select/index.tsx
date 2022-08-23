@@ -99,6 +99,16 @@ export default function Select ({
 		, [created, setCreated] = useState([])
 		, [removed, setRemoved] = useState([]);
 
+	const components = useMemo(() => ({
+		MenuPortal: SelectMenuPortal,
+		IndicatorSeparator: null,
+		DropdownIndicator: () => <Spinner style={{width:20}} />,
+		Input: InputComponent(
+			required
+			&& (Array.isArray(value) ? value.length === 0 : !value)
+		),
+	}), [required, value]);
+
 	const initialProps : any = {
 		name: isMulti ? void 0 : name,
 		isMulti,
@@ -107,15 +117,7 @@ export default function Select ({
 		options,
 		value,
 		menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
-		components: {
-			MenuPortal: SelectMenuPortal,
-			IndicatorSeparator: null,
-			DropdownIndicator: () => <Spinner style={{width:20}} />,
-			Input: InputComponent(
-				required
-				&& (Array.isArray(value) ? value.length === 0 : !value)
-			),
-		},
+		components,
 		className: cx(css.select, inline && css.inline),
 		classNamePrefix: 'rsl',
 		placeholder,
@@ -149,8 +151,8 @@ export default function Select ({
 
 	let asyncProps, stateManagerProps, creatableProps;
 
-	const searchQuery = useCallback(
-		debounce(
+	const searchQuery = useMemo(
+		() => debounce(
 			(query, queryVariables, search, callback) => {
 				client.query(
 					query,

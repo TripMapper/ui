@@ -11,7 +11,7 @@ import Tabs from '../Tabs';
 const setAppElement = Modal.setAppElement;
 const Panel = ({ name, handle, icon = null, children, defaultActive = false }) => children;
 export { setAppElement, Panel };
-export default function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, }) {
+export default function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, wide = false, }) {
     const tabsLayoutId = useId();
     const [wasOpen, setWasOpen] = useState(isOpen), [depth, setDepth] = useState(0), { openSlideover, closeSlideover, slideoverDepth } = useUIContext();
     const [activeTab, _setActiveTab] = useState(''), [flip, setFlip] = useState(1);
@@ -84,7 +84,7 @@ export default function Slideover({ isOpen, onRequestClose, heading, onEditClick
                 '--offset': offset > 0 ? `calc(-${40 * (1 - (((offset * 5) / 100)))}px * ${offset})` : '0px',
             },
         }} className={{
-            base: cx(css.slideover, offset === 0 && css.top),
+            base: cx(css.slideover, offset === 0 && css.top, wide && css.wide),
             afterOpen: css.afterOpen,
             beforeClose: css.beforeClose,
         }} overlayClassName={css.overlay}>

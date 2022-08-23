@@ -9,6 +9,7 @@
 }
 
 .item {
+	position: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -26,6 +27,16 @@
 	border-radius: 0;
 	cursor: pointer;
 	transition: color 0.15s ease;
+
+	&.hasIcon {
+		padding: 0 rem(16);
+	}
+
+	> svg {
+		position: absolute;
+		bottom: rem(50);
+		pointer-events: none;
+	}
 
 	&:hover {
 		color: $COLOURS_text;

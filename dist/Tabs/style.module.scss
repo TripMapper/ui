@@ -9,6 +9,10 @@
 
 	list-style: none;
 	border-bottom: 1px solid $COLOURS_borderLight;
+
+	&.hasIcons {
+		padding-top: rem(30);
+	}
 }
 
 .kids {

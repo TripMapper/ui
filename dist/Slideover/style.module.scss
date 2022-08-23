@@ -19,6 +19,10 @@
 	transition: transform 0.3s ease;
 	overflow: hidden;
 
+	&.wide {
+		max-width: rem(680);
+	}
+
 	&.afterOpen {
 		transform: translateX(var(--offset, 0px));
 	}

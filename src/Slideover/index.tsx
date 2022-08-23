@@ -25,6 +25,7 @@ export interface SlideoverProps {
 	onDeleteClick?: () => void;
 	children: ReactNode | SlideoverChild | any;
 	heading?: string | SlideoverHeading | null;
+	wide?: boolean;
 }
 
 export interface SlideoverPanelProps {
@@ -44,7 +45,7 @@ export { setAppElement, Panel };
 export default function Slideover ({
 	isOpen, onRequestClose,
 	heading, onEditClick, onDeleteClick,
-	children,
+	children, wide = false,
 } : SlideoverProps) {
 	const tabsLayoutId = useId();
 
@@ -146,7 +147,11 @@ export default function Slideover ({
 				},
 			}}
 			className={{
-				base: cx(css.slideover, offset === 0 && css.top),
+				base: cx(
+					css.slideover,
+					offset === 0 && css.top,
+					wide && css.wide,
+				),
 				afterOpen: css.afterOpen,
 				beforeClose: css.beforeClose,
 			}}
