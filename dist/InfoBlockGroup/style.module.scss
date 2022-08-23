@@ -11,7 +11,8 @@
 
 .blocks {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, rem(140));
+	grid-template-columns: repeat(auto-fill, rem(130));
 	grid-gap: rem(8);
 	grid-row-gap: rem(16);
+	align-items: start;
 }

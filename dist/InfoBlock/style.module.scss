@@ -1,7 +1,7 @@
 @import "../variables";
 
 .infoBlock {
-	width: rem(140);
+	width: rem(130);
 	appearance: none;
 	background: none;
 	border: none;
@@ -14,7 +14,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		padding: rem(18) rem(16);
+		padding: rem(16);
 
 		background: $COLOURS_background;
 		border: none;
@@ -60,7 +60,7 @@
 	width: 100%;
 	margin: rem(12) 0 rem(7);
 
-	font-size: rem(20);
+	font-size: rem(18);
 	text-transform: uppercase;
 	white-space: nowrap;
 	text-overflow: ellipsis;
