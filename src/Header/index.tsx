@@ -1,20 +1,50 @@
 import css from './style.module.scss';
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { cx } from '../util';
+import Button from '../Button';
+
+export interface HeaderActionProps {
+	text: string;
+	href?: string;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
+}
 
 export interface HeaderProps {
 	/** @default false */
 	pullUp?: boolean;
-	children?: ReactNode;
+	logo?: ReactNode;
+	menu?: ReactNode;
+	contextMenu?: ReactNode;
+	logoAction?: HeaderActionProps;
+	contextAction?: HeaderActionProps;
 }
 
-export default function Header ({ pullUp, children } : HeaderProps) {
+export default function Header ({
+	pullUp,
+	logo,
+	menu,
+	contextMenu,
+	logoAction,
+	contextAction,
+} : HeaderProps) {
 	return (
 		<header className={cx(
 			css.header,
 			pullUp && css.pullUp,
 		)}>
-			{children}
+			<div>
+				{logo}
+				{logoAction && (
+					<Button size="tiny" flat onClick={logoAction.onClick} href={logoAction.href}>{logoAction.text}</Button>
+				)}
+			</div>
+			{menu}
+			<div>
+				{contextAction && (
+					<Button size="tiny" flat onClick={contextAction.onClick} href={contextAction.href}>{contextAction.text}</Button>
+				)}
+				{contextMenu}
+			</div>
 		</header>
 	);
 }

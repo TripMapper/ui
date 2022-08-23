@@ -5,6 +5,7 @@ import { GenericButtonProps } from './Generic';
 import Text from './Text';
 import { forwardRef } from 'react';
 import Dashed from './Dashed';
+import Flat from './Flat';
 
 export interface ButtonProps extends GenericButtonProps {
 	/** @default false */
@@ -15,6 +16,8 @@ export interface ButtonProps extends GenericButtonProps {
 	text?: boolean;
 	/** @default false */
 	dashed?: boolean;
+	/** @default false */
+	flat?: boolean;
 
 	className?: string;
 }
@@ -24,6 +27,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
 	tertiary = false,
 	text = false,
 	dashed = false,
+	flat = false,
 	className,
 	...props
 } : ButtonProps, ref) => {
@@ -34,6 +38,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
 	if (tertiary) return <Tertiary {...props} ref={ref} />;
 	if (text) return <Text {...props} ref={ref} />;
 	if (dashed) return <Dashed {...props} ref={ref} />;
+	if (flat) return <Flat {...props} ref={ref} />;
 	return <Primary {...props} ref={ref} />;
 });
 

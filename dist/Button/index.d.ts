@@ -9,6 +9,8 @@ export interface ButtonProps extends GenericButtonProps {
     text?: boolean;
     /** @default false */
     dashed?: boolean;
+    /** @default false */
+    flat?: boolean;
     className?: string;
 }
 declare const Button: import("react").ForwardRefExoticComponent<ButtonProps & import("react").RefAttributes<HTMLButtonElement>>;

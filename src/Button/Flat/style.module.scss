@@ -1,0 +1,13 @@
+@import "../../variables";
+
+.flat {
+	color: change-color($COLOURS_text, $alpha: 0.7);
+	background: $COLOURS_border;
+	border: none;
+	border-radius: rem(100);
+	box-shadow: none;
+
+	&::before {
+		background: $COLOURS_border;
+	}
+}
