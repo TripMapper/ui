@@ -10,6 +10,7 @@ glob('src/[A-Z]*/*\.ts?(x)', (err, files) => {
 		'./globals.scss': './dist/globals.scss',
 		'./variables.scss': './dist/variables.scss',
 		'./util': './dist/util/index.js',
+		'./hooks': './dist/hooks/index.js',
 	};
 
 	files.forEach(file => {

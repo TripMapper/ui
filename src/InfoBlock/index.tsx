@@ -13,6 +13,8 @@ export interface InfoBlockProps {
 	children?: ReactNode;
 }
 
+const WHITESPACE = <>&nbsp;</>;
+
 export default function InfoBlock ({
 	icon,
 	primary,
@@ -31,8 +33,8 @@ export default function InfoBlock ({
 				<div>
 					{count && <span className={css.count}>{count}</span>}
 					<Icon of={icon} xl />
-					<span className={css.primary} title={primary}>{primary}</span>
-					<small className={css.secondary} title={secondary}>{secondary}</small>
+					<span className={css.primary} title={primary}>{primary || WHITESPACE}</span>
+					<small className={css.secondary} title={secondary}>{secondary || WHITESPACE}</small>
 				</div>
 				<small className={css.label}>{label}</small>
 			</button>

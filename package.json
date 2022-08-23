@@ -9,6 +9,7 @@
     "./globals.scss": "./dist/globals.scss",
     "./variables.scss": "./dist/variables.scss",
     "./util": "./dist/util/index.js",
+    "./hooks": "./dist/hooks/index.js",
     "./A": "./dist/A/index.jsx",
     "./AuthLayout": "./dist/AuthLayout/index.jsx",
     "./Avatar": "./dist/Avatar/index.jsx",
