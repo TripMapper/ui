@@ -1,0 +1,40 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Notice from './index';
+
+<Meta
+	title="Interface/Notice"
+	component={Notice}
+/>
+
+# Notice
+
+```jsx
+import Notice from 'ui/Notice';
+
+<Notice error>
+	<strong>Uh oh!</strong>
+	My message
+</Notice>
+```
+
+<Canvas>
+	<Story name="Notice">
+		<Notice>
+			<strong>Notice</strong>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, quisquam.
+		</Notice>
+		<Notice success>
+			<strong>Success</strong>
+			We've done the thing!
+		</Notice>
+		<Notice warning>
+			<strong>Heads up!</strong>
+			That chain does not suit you
+		</Notice>
+		<Notice error>
+			<strong>Uh oh!</strong>
+			I'm pretty sure that <em>shouldn't</em> be on fire, but I'm no expert.
+		</Notice>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Notice} />

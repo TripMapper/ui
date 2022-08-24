@@ -1,0 +1,38 @@
+@import "../variables";
+
+@mixin notice ($color, $darken: 0) {
+	background-color: change-color($color, $alpha: 0.1);
+
+	strong {
+		display: block;
+		margin-bottom: 3px;
+		color: darken($color, $darken);
+	}
+}
+
+.notice {
+	display: block;
+	margin-bottom: rem(15);
+	padding: rem(15) rem(18);
+
+	background-color: #f4f4f4;
+	border-radius: rem(5);
+
+	strong {
+		display: block;
+	}
+
+	@include notice($COLOURS_info, 20%);
+}
+
+.error {
+	@include notice($COLOURS_danger);
+}
+
+.warning {
+	@include notice($COLOURS_warning, 20%);
+}
+
+.success {
+	@include notice($COLOURS_success, 30%);
+}

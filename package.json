@@ -35,6 +35,7 @@
     "./Menu": "./dist/Menu/index.jsx",
     "./Metadata": "./dist/Metadata/index.jsx",
     "./Notes": "./dist/Notes/index.jsx",
+    "./Notice": "./dist/Notice/index.jsx",
     "./OverviewLayout": "./dist/OverviewLayout/index.jsx",
     "./Page": "./dist/Page/index.jsx",
     "./Prose": "./dist/Prose/index.jsx",
