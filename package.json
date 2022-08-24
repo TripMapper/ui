@@ -21,6 +21,7 @@
     "./Countdown": "./dist/Countdown/index.jsx",
     "./CountrySelect": "./dist/CountrySelect/index.jsx",
     "./CreateLayout": "./dist/CreateLayout/index.jsx",
+    "./CurrencyConverter": "./dist/CurrencyConverter/index.jsx",
     "./DetailedHeader": "./dist/DetailedHeader/index.jsx",
     "./Empty": "./dist/Empty/index.jsx",
     "./FilterBar": "./dist/FilterBar/index.jsx",

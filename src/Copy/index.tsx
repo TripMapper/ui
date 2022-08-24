@@ -6,11 +6,12 @@ export interface CopyProps {
 	El?: React.ElementType | string;
 	className?: string;
 	children: ReactNode;
+	dark?: boolean;
 }
 
-export default function Copy ({ El = 'div', children, className } : CopyProps) {
+export default function Copy ({ El = 'div', children, className, dark = false } : CopyProps) {
 	return (
-		<El className={cx(css.copy, className)}>
+		<El className={cx(css.copy, className, dark && css.dark)}>
 			{children}
 		</El>
 	);

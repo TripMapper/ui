@@ -1,0 +1,25 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import CurrencyConverter
+	from './index'; import { createClient, Provider } from 'urql';
+
+<Meta
+	title="Interactive/Currency Converter"
+	component={CurrencyConverter}
+/>
+
+# Currency Converter
+
+```jsx
+import CurrencyConverter from 'ui/CurrencyConverter';
+
+<CurrencyConverter defaultFrom="EUR" to="AUD" />
+```
+
+<Canvas>
+	<Story name="Currency Converter">
+		<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql' })}>
+			<CurrencyConverter defaultFrom="EUR" to="AUD" />
+		</Provider>
+	</Story>
+</Canvas>
+
+<ArgsTable of={CurrencyConverter} />

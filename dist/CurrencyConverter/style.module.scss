@@ -1,0 +1,52 @@
+@import "../variables";
+
+.caption {
+	margin-top: rem(10);
+
+	color: change-color($COLOURS_text, $alpha: 0.5);
+	font-size: rem(12);
+}
+
+.from {
+	padding: rem(15) rem(16) rem(10);
+
+	background: $COLOURS_border;
+	border-radius: rem($SIZES_buttonBorderRadius);
+
+	label {
+		display: flex;
+		margin-top: rem(10);
+		font-size: rem(40);
+		font-weight: bold;
+		opacity: 0.5;
+	}
+
+	input {
+		width: 100%;
+		flex-shrink: 9999;
+
+		font-size: rem(40);
+		font-weight: bold;
+
+		appearance: none;
+		background: none;
+		border: none;
+		border-radius: 0;
+		outline: none;
+	}
+}
+
+.to {
+	margin-top: rem(10);
+	padding: rem(18) rem(24) rem(14);
+
+	background: #fff;
+	box-shadow: 0 rem(2) rem(5) 0 rgba(0,0,0,0.10);
+	border-radius: rem($SIZES_buttonBorderRadius);
+
+	strong {
+		display: block;
+		margin-top: rem(5);
+		font-size: rem(40);
+	}
+}
