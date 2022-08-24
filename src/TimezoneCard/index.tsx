@@ -22,10 +22,13 @@ export default function TimezoneCard ({
 	return (
 		<InfoCard
 			highlight={highlight}
-			className={cx(!zone && css.current)}
+			className={cx(
+				css.timezone,
+				!zone && css.current,
+			)}
 		>
 			<header className={css.header}>
-				<strong>{zone ?? 'Current Time'}</strong>
+				<strong>{zone?.replace(/_/g, ' ') ?? 'Current Time'}</strong>
 				UTC {offset}
 			</header>
 			<div className={css.time}>

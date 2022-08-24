@@ -9,9 +9,9 @@ export default function TimezoneCard({ zone, highlight = false, }) {
     const tz = DateTime.local().setZone(zone);
     const offset = (tz.offset > 0 ? '+' : '') + (tz.offset / 60);
     const day = tz.hour > 6 && tz.hour < 18;
-    return (<InfoCard highlight={highlight} className={cx(!zone && css.current)}>
+    return (<InfoCard highlight={highlight} className={cx(css.timezone, !zone && css.current)}>
 			<header className={css.header}>
-				<strong>{zone ?? 'Current Time'}</strong>
+				<strong>{zone?.replace(/_/g, ' ') ?? 'Current Time'}</strong>
 				UTC {offset}
 			</header>
 			<div className={css.time}>

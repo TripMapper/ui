@@ -1,12 +1,16 @@
 @import "../variables";
 
+.timezone {
+	padding: rem(20);
+}
+
 .current > * {
 	opacity: 0.5;
 }
 
 .header {
 	display: flex;
-	margin-bottom: rem(10);
+	margin-bottom: rem(15);
 	white-space: nowrap;
 
 	&,
