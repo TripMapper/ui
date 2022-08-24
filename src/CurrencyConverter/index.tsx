@@ -36,24 +36,12 @@ export default function CurrencyConverter ({ defaultFrom = 'EUR', to }) {
 		`,
 	});
 
-	const { opts, rates } = useMemo(() => {
-		const opts = []
-			, rates = {};
-
-		data?.currenciesList?.forEach(currency => {
-			opts.push({
-				label: appendSym(currency.iso),
-				value: currency.iso,
-			});
-
-			const iso = currency.iso.toLowerCase();
-
-			rates[iso] = convert(1, 'eur', iso, data?.currenciesList);
-		});
-
-		console.log(rates);
-
-		return { opts, rates };
+	const opts = useMemo(() => {
+		return data?.currenciesList?.map(currency => ({
+			label: appendSym(currency.iso),
+			value: currency.iso,
+			disabled: currency.iso.toLowerCase() === to.toLowerCase(),
+		})) ?? [];
 	}, [data]);
 
 	const onInput = e => setValue(parseNumberLocale(e.target.value));
@@ -82,7 +70,7 @@ export default function CurrencyConverter ({ defaultFrom = 'EUR', to }) {
 
 			<div className={css.to}>
 				<span>{to.toUpperCase()}</span>
-				<strong>{formatCurrency(value * (rates[to.toLowerCase()] ?? 1), to, true) as string}</strong>
+				<strong>{(formatCurrency(convert((isNaN(value) ? 0 : value), from.value.toString(), to, data?.currenciesList ?? []) ?? 1, to) as string).replace(/\.0+$/, '')}</strong>
 			</div>
 
 			<figcaption className={css.caption}>

@@ -104,6 +104,6 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
 					{selected.map(v => (<input type="hidden" name={`${name}.selected[]`} value={v.value} key={v.value}/>))}
 					{removed.map(v => (<input type="hidden" name={`${name}.removed[]`} value={v.value} key={v.value}/>))}
 				</>)}
-			<ReactSelect {...props}/>
+			<ReactSelect {...props} isOptionDisabled={option => option.disabled}/>
 		</>);
 }

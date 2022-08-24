@@ -5,6 +5,7 @@ import { FilterOptionOption } from 'react-select/dist/declarations/src/filters';
 export interface SelectOption {
     label: string | ReactNode;
     value: string | number | boolean;
+    disabled?: boolean;
 }
 export interface SelectProps {
     name: string;
