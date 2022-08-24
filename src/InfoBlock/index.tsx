@@ -3,6 +3,7 @@ import Icon from '../Icon';
 import { Icons } from '../Types';
 import { ReactNode, useState } from 'react';
 import Slideover from '../Slideover';
+import { cx } from '../util';
 
 export interface InfoBlockProps {
 	icon: Icons;
@@ -29,7 +30,11 @@ export default function InfoBlock ({
 
 	return (
 		<>
-			<button type="button" className={css.infoBlock} onClick={onClick}>
+			<button
+				type="button"
+				className={cx(css.infoBlock, open && css.focus)}
+				onClick={onClick}
+			>
 				<div>
 					{count && <span className={css.count}>{count}</span>}
 					<Icon of={icon} xl />
