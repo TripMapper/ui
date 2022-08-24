@@ -1,0 +1,29 @@
+@import "../variables";
+
+.infoCard {
+	display: block;
+	margin-top: rem(8);
+	padding: rem(14);
+
+	font-size: rem(18);
+	font-family: $FONTSTACK_mono;
+	text-transform: uppercase;
+	text-align: center;
+
+	background-color: $COLOURS_border;
+	border-radius: rem(8);
+
+	p + & {
+		margin-top: rem(16);
+	}
+
+	& + p {
+		margin-top: rem(24);
+	}
+}
+
+.highlight {
+	background: #fff;
+	box-shadow: 0 rem(2) rem(5) 0 rgba(0,0,0,0.10);
+	border-radius: rem(8);
+}

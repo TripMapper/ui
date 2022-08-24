@@ -30,7 +30,7 @@ export default function Slideover({ isOpen, onRequestClose, heading, onEditClick
         if (count > 1) {
             let hasPanel = false, hasNonPanel = false;
             Children.forEach(children, child => {
-                if (child.type.name === Panel.name)
+                if (child !== null && child.type.name === Panel.name)
                     hasPanel = true;
                 else
                     hasNonPanel = true;

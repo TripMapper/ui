@@ -30,6 +30,7 @@
     "./Image": "./dist/Image/index.jsx",
     "./InfoBlock": "./dist/InfoBlock/index.jsx",
     "./InfoBlockGroup": "./dist/InfoBlockGroup/index.jsx",
+    "./InfoCard": "./dist/InfoCard/index.jsx",
     "./Input": "./dist/Input/index.jsx",
     "./Label": "./dist/Label/index.jsx",
     "./Menu": "./dist/Menu/index.jsx",

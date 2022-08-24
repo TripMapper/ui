@@ -76,7 +76,7 @@ export default function Slideover ({
 		if (count > 1) {
 			let hasPanel = false, hasNonPanel = false;
 			Children.forEach(children as ReactNode, child => {
-				if ((child as any).type.name === Panel.name) hasPanel = true;
+				if (child !== null && (child as any).type.name === Panel.name) hasPanel = true;
 				else hasNonPanel = true;
 			});
 

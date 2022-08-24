@@ -1,0 +1,25 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import InfoCard from './index';
+
+<Meta
+	title="Card/Info"
+	component={InfoCard}
+/>
+
+# Info Card
+
+``` jsx
+import InfoCard from 'ui/InfoCard';
+
+<InfoCard>Hello</InfoCard>
+```
+
+<Canvas>
+	<Story name="Info">
+		<InfoCard highlight>Language A</InfoCard>
+		<InfoCard>Language B</InfoCard>
+		<InfoCard>Language C</InfoCard>
+		<InfoCard>Language D</InfoCard>
+	</Story>
+</Canvas>
+
+<ArgsTable of={InfoCard} />
