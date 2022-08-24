@@ -11,9 +11,10 @@
 	width: calc(100% - #{rem(16 * 2)});
 	max-width: rem(480);
 
-	background: #fff;
+	background: rgba(255,255,255,0.8);
 	box-shadow: 0 rem(2) rem(16) 0 rgba(0,0,0,0.10);
 	border-radius: rem(16);
+	backdrop-filter: blur(10px);
 
 	transform: translateX(calc(100% + #{rem(16)}));
 	transition: transform 0.3s ease;
@@ -71,6 +72,7 @@
 	z-index: 2;
 	padding: rem(40) 0;
 	border-bottom: 1px solid $COLOURS_borderLight;
+	background: #fff;
 
 	&.hasTabs {
 		padding: rem(40) 0 0 0;
