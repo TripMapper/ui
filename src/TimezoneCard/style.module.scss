@@ -1,0 +1,44 @@
+@import "../variables";
+
+.current > * {
+	opacity: 0.5;
+}
+
+.header {
+	display: flex;
+	margin-bottom: rem(10);
+	white-space: nowrap;
+
+	&,
+	strong {
+		font-size: rem(14);
+		font-family: $FONTSTACK_mono;
+		text-transform: uppercase;
+	}
+
+	strong {
+		margin-right: rem(10);
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+.time {
+	text-align: left;
+	line-height: 1em;
+
+	> svg {
+		margin-right: rem(12);
+	}
+
+	> span {
+		display: inline-block;
+		margin-right: rem(15);
+		font-size: rem(40);
+	}
+
+	> small {
+		display: inline-block;
+		margin-top: rem(-1);
+	}
+}

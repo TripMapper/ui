@@ -1,0 +1,39 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Clock from './Clock';
+
+<Meta
+	title="Display/Clock"
+	component={Clock}
+/>
+
+# Clock
+
+```jsx
+import Clock from 'ui/Clock';
+
+<Clock />
+```
+
+<Canvas>
+	<Story name="Clock">
+		<Clock />
+	</Story>
+</Canvas>
+
+<ArgsTable of={Clock} />
+
+```ts
+export interface ClockProps {
+	zone?: string;
+	/** @default false */
+	includeFuture?: boolean;
+	/** @default false */
+	asObject?: boolean;
+}
+
+export type ClockReturn = string | {
+	time: string;
+	period: string;
+	future: string;
+};
+```

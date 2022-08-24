@@ -15,6 +15,7 @@
     "./Avatar": "./dist/Avatar/index.jsx",
     "./Button": "./dist/Button/index.jsx",
     "./ClientPersonCard": "./dist/ClientPersonCard/index.jsx",
+    "./Clock": "./dist/Clock/index.jsx",
     "./ContextMenu": "./dist/ContextMenu/index.jsx",
     "./Copy": "./dist/Copy/index.jsx",
     "./Countdown": "./dist/Countdown/index.jsx",
@@ -52,13 +53,14 @@
     "./Tabs": "./dist/Tabs/index.jsx",
     "./Tag": "./dist/Tag/index.jsx",
     "./Text": "./dist/Text/index.jsx",
+    "./TimezoneCard": "./dist/TimezoneCard/index.jsx",
     "./Title": "./dist/Title/index.jsx",
     "./UIContext": "./dist/UIContext/index.jsx",
     "./Upload": "./dist/Upload/index.jsx",
     "./UrlToLink": "./dist/UrlToLink/index.jsx"
   },
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build && pnpm postbuild",
     "postbuild": "copyfiles -u 1 './src/*.scss' './src/**/**/*.{module.scss,svg}' './src/fonts/*' ./dist-build && node scripts/exports.js && mv dist dist-old && mv dist-build dist && rm -rf dist-old",
     "storybook": "start-storybook -p 6006",
     "storybook:export": "build-storybook",
@@ -88,6 +90,7 @@
     "react-select": "^5.4.0"
   },
   "devDependencies": {
+    "@graphql-typed-document-node/core": "^3.1.1",
     "@storybook/addon-controls": "^6.5.9",
     "@storybook/addon-docs": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",

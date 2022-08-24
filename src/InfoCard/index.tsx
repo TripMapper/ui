@@ -4,15 +4,17 @@ import { ReactNode } from 'react';
 
 export interface InfoCardProps {
 	highlight?: boolean;
+	className?: string;
 	children: ReactNode;
 }
 
 export default function InfoCard ({
 	highlight = false,
+	className,
 	children,
 } : InfoCardProps) {
 	return (
-		<div className={cx(css.infoCard, highlight && css.highlight)}>
+		<div className={cx(css.infoCard, highlight && css.highlight, className)}>
 			{children}
 		</div>
 	);

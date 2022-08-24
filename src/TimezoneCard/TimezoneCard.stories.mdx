@@ -1,0 +1,25 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import TimezoneCard
+	from './index';
+
+<Meta
+	title="Card/Timezone"
+	component={TimezoneCard}
+/>
+
+# Timezone
+
+```jsx
+import TimezoneCard from 'ui/TimezoneCard';
+
+<TimezoneCard zone="Australia/Eucla" />
+```
+
+<Canvas>
+	<Story name="Timezone">
+		<TimezoneCard />
+		<TimezoneCard highlight zone="Australia/Eucla" />
+		<TimezoneCard zone="Asia/Bangkok" />
+	</Story>
+</Canvas>
+
+<ArgsTable of={TimezoneCard} />
