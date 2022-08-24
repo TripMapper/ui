@@ -32,6 +32,7 @@
 		color: $COLOURS_primary;
 	}
 
+	&.focus div,
 	&:hover div {
 		background: #fff;
 		box-shadow:
