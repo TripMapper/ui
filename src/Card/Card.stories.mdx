@@ -1,0 +1,68 @@
+import Card, { CARD_FRAGMENT } from './index'; import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import {
+	createClient, gql,
+	Provider, useQuery
+} from 'urql';
+
+<Meta
+	title="Card/Card"
+	component={Card}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<div style={{width:350}}>
+					<Story />
+				</div>
+			</Provider>
+		),
+	]}
+/>
+
+# Card
+
+```jsx
+import Card from 'ui/Card';
+
+<Card {/*...*/} />
+```
+
+<Canvas>
+	<Story name="Card">
+		{() => {
+			const [{ data }] = useQuery({
+				query: gql`{
+					a: card(id: "069f0478-cfd4-11ec-a793-0f4d4ee04b88") { ...Card }
+					b: card(id: "069f677e-cfd4-11ec-a793-f79b01f9c029") { ...Card }
+					c: card(id: "f623f534-d043-11ec-9b8b-13315608b955") { ...Card }
+				} ${CARD_FRAGMENT}`
+			});
+			const DEBUG_PROPS = {
+				id: 'butts',
+				name: 'My Card',
+				status: 'TO_BOOK',
+				image: data?.a?.image,
+				attachments: { totalCount: 1 },
+				notes: 'nhi',
+				location: { address: '123 Fake Street, Longnamedroadplace, Kent' },
+			};
+			return data ? (
+				<>
+					<div style={{display:'grid',gridTemplateColumns:'repeat(5,300px)',gridGap:10}}>
+						<Card {...DEBUG_PROPS} type="ACTIVITY" startTime="11:30" endTime="16:43" />
+						<Card {...DEBUG_PROPS} type="ACCOMMODATION" startTime="13:00" />
+						<Card {...DEBUG_PROPS} type="ACCOMMODATION" endTime="12:00" parentId="test" />
+						<Card {...DEBUG_PROPS} type="TRAVEL" startTime="05:00" />
+						<Card {...DEBUG_PROPS} type="TRAVEL" endTime="09:00" parentId="test" />
+						<Card {...DEBUG_PROPS} type="FOOD" budget={13} tripBudget={18.56} />
+						<Card {...DEBUG_PROPS} type="OTHER" onClick={console.log} />
+					</div>
+					<br/><br/>
+					<Card {...data.a} />
+					<Card {...data.b} />
+					<Card {...data.c} />
+				</>
+			) : 'loading...';
+		}}
+	</Story>
+</Canvas>
+
+<ArgsTable of={Card} />

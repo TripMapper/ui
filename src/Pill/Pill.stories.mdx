@@ -1,0 +1,36 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Pill from './index';
+
+<Meta
+	title="Display/Pill"
+	component={Pill}
+/>
+
+# Pill
+
+```jsx
+import Pill from 'ui/Pill';
+
+<Pill>To Book</Pill>
+```
+
+<Canvas>
+	<Story name="Pill">
+		<Pill>Default</Pill>
+		<Pill travel>Travel</Pill>
+		<Pill activity>Activity</Pill>
+		<Pill accommodation>Accommodation</Pill>
+		<Pill food>Food</Pill>
+		<Pill other>Other</Pill>
+		<Pill plus>Plus</Pill>
+		<br/>
+		<Pill muted>Muted Default</Pill>
+		<Pill travel muted>Muted Travel</Pill>
+		<Pill activity muted>Muted Activity</Pill>
+		<Pill accommodation muted>Muted Accommodation</Pill>
+		<Pill food muted>Muted Food</Pill>
+		<Pill other muted>Muted Other</Pill>
+		<Pill plus muted>Muted Plus</Pill>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Pill} />

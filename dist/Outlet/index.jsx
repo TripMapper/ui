@@ -1,9 +1,10 @@
 import css from './style.module.scss';
+import Placeholder from '../svg/socket/placeholder.svg';
 import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
 export default function Outlet({ name, notes, }) {
     const Graphic = useMemo(() => dynamic(() => import(`../svg/socket/${name.toLowerCase()}.svg`), {
-        loading: () => null,
+        loading: () => <Placeholder />,
     }), [name]);
     return (<figure className={css.outlet}>
 			<Graphic />

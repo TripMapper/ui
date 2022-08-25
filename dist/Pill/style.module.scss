@@ -1,0 +1,70 @@
+@import "../variables";
+
+.pill {
+	display: inline-block;
+	margin-left: rem(5);
+	padding: rem(3) rem(5);
+
+	color: #fff;
+	font-size: rem(11);
+	font-family: $FONTSTACK_mono;
+	text-transform: uppercase;
+	line-height: 1em;
+
+	background-color: $COLOURS_danger;
+	border-radius: rem(4);
+}
+
+.travel {
+	background-color: $COLOURS_travel;
+}
+
+.activity {
+	color: $COLOURS_text;
+	background-color: $COLOURS_activity;
+}
+
+.accommodation {
+	color: $COLOURS_text;
+	background-color: $COLOURS_accommodation;
+}
+
+.food {
+	color: $COLOURS_text;
+	background-color: $COLOURS_food;
+}
+
+.other {
+	background-color: $COLOURS_other;
+}
+
+.plus {
+	color: $COLOURS_primary;
+	font-weight: 100;
+	background-color: change-color($COLOURS_primary, $alpha: 0.2);
+}
+
+.muted:not(.plus) {
+	color: $COLOURS_text;
+	background-color: change-color($COLOURS_danger, $alpha:0.5);
+
+	&.travel {
+		background-color: varAlpha($COLOURS_travel, 50%);
+	}
+
+	&.activity {
+		background-color: varAlpha($COLOURS_activity, 50%);
+	}
+
+	&.accommodation {
+		background-color: varAlpha($COLOURS_accommodation, 50%);
+	}
+
+	&.food {
+		background-color: varAlpha($COLOURS_food, 50%);
+	}
+
+	&.other {
+		background-color: varAlpha($COLOURS_other, 50%);
+	}
+}

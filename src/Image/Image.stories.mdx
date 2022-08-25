@@ -1,9 +1,16 @@
-import { ArgsTable, Meta } from '@storybook/addon-docs';
-import Image from './index';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Image, { IMAGE_FRAGMENT } from './index'; import { createClient, gql, Provider, useQuery } from 'urql';
 
 <Meta
 	title="Display/Image"
 	component={Image}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<Story />
+			</Provider>
+		),
+	]}
 />
 
 # Image
@@ -15,5 +22,16 @@ gql`{ getImage { ...Image } } ${IMAGE_FRAGMENT}`;
 
 <Image />
 ```
+
+<Canvas>
+	<Story name="Image">
+		{() => {
+			const [{ data }] = useQuery({
+				query: gql`{ asset (id: "6f0066f4-3071-11ec-b95d-93246b94e5e8") { id srcset (width: 250, height: 400) { ...Image } } }${IMAGE_FRAGMENT}`,
+			});
+			return data ? <Image {...data.asset.srcset} /> : 'loading...';
+		}}
+	</Story>
+</Canvas>
 
 <ArgsTable of={Image} />
