@@ -140,12 +140,12 @@ export default function Card ({
 
 				{hasMeta && (
 					<div className={css.meta}>
-						{location && (
+						{location ? (
 							<span>
 								<Icon xs of="cog" />
 								<span>{location.address}</span>
 							</span>
-						)}
+						) : <span className={css.empty} />}
 						{(attachments?.totalCount ?? 0) > 0 && <span><Icon xs of="attachment" /></span>}
 						{notes && <span><Icon xs of="image" /></span>}
 					</div>

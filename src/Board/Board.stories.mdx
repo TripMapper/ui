@@ -1,0 +1,33 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Board from './index'; import {
+	createClient,
+	Provider
+} from 'urql';
+
+<Meta
+	title="Board"
+	component={Board}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<Story />
+			</Provider>
+		),
+	]}
+	parameters={{ layout: 'fullscreen' }}
+/>
+
+# Board
+
+```jsx
+import Board from 'ui/Board';
+
+<Board />
+```
+
+<Canvas>
+	<Story name="Board">
+		<Board tripId="c1de586c-f5e4-11eb-a34b-036a6e52c95f" />
+	</Story>
+</Canvas>
+
+<ArgsTable of={Board} />

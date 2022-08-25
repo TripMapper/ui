@@ -78,7 +78,7 @@ body {
 	text-underline-offset: 0.1rem;
 
 	background-color: $COLOURS_background;
-	overflow-x: hidden;
+	//overflow-x: hidden;
 
 	&.no-scroll,
 	&.ReactModal__Body--open {
