@@ -39,6 +39,7 @@
     "./Metadata": "./dist/Metadata/index.jsx",
     "./Notes": "./dist/Notes/index.jsx",
     "./Notice": "./dist/Notice/index.jsx",
+    "./Outlet": "./dist/Outlet/index.jsx",
     "./OverviewLayout": "./dist/OverviewLayout/index.jsx",
     "./Page": "./dist/Page/index.jsx",
     "./Prose": "./dist/Prose/index.jsx",

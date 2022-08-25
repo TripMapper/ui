@@ -1,0 +1,28 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Outlet from './index'; import {
+	createClient, gql,
+	Provider, useQuery
+} from 'urql';
+
+<Meta
+	title="Display/Outlet"
+	component={Outlet}
+/>
+
+# Outlet
+
+```jsx
+import Outlet from 'ui/Outlet';
+
+<Outlet
+	name="A"
+	notes="..."
+/>
+```
+
+<Canvas>
+	<Story name="Outlet">
+		<div>this works on next, just not on storybook</div>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Outlet} />

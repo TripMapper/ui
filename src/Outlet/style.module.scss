@@ -1,0 +1,30 @@
+@import "../variables";
+
+.outlet {
+	text-align: center;
+
+	&:not(:first-child) {
+		padding-top: rem($SIZES_spacer);
+	}
+
+	svg,
+	img {
+		vertical-align: middle;
+	}
+
+	h5 {
+		margin-bottom: rem(17);
+		font-size: rem(24);
+	}
+
+	p {
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(14);
+		line-height: 1.5em;
+	}
+
+	& + & {
+		margin-top: rem($SIZES_spacer);
+		border-top: 1px dashed $COLOURS_borderLight;
+	}
+}
