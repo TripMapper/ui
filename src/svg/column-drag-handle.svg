@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9">
+    <g fill="#A28366" fill-rule="evenodd" transform="translate(0 .5)">
+        <circle cx="11.5" cy="1.5" r="1.5" transform="rotate(90 11.5 1.5)"/>
+        <circle cx="6.5" cy="1.5" r="1.5" transform="rotate(90 6.5 1.5)"/>
+        <circle cx="1.5" cy="1.5" r="1.5" transform="rotate(90 1.5 1.5)"/>
+        <circle cx="11.5" cy="6.5" r="1.5" transform="rotate(90 11.5 6.5)"/>
+        <circle cx="6.5" cy="6.5" r="1.5" transform="rotate(90 6.5 6.5)"/>
+        <circle cx="1.5" cy="6.5" r="1.5" transform="rotate(90 1.5 6.5)"/>
+    </g>
+</svg>

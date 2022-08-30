@@ -2,7 +2,7 @@ import css from './style.module.scss';
 import {
 	Children,
 	cloneElement,
-	ReactElement, ReactFragment, Ref,
+	ReactElement, ReactFragment, ReactNode, Ref,
 	useEffect,
 	useRef,
 	useState
@@ -15,7 +15,7 @@ import cx from '../util/cx';
 
 export interface ContextMenuProps {
 	children: ReactElement;
-	menu: ReactFragment;
+	menu: ReactFragment | ReactElement | ReactNode;
 }
 
 export default function ContextMenu ({ children, menu } : ContextMenuProps) {
