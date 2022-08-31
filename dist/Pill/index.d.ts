@@ -9,5 +9,6 @@ export interface PillProps {
     food?: boolean;
     other?: boolean;
     plus?: boolean;
+    type?: 'travel' | 'activity' | 'accommodation' | 'food' | 'other';
 }
-export default function Pill({ children, className, muted, travel, activity, accommodation, food, other, plus, }: PillProps): JSX.Element;
+export default function Pill({ children, className, muted, travel, activity, accommodation, food, other, plus, type, }: PillProps): JSX.Element;

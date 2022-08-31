@@ -1,0 +1,45 @@
+@import "../../variables";
+
+.header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 rem($SIZES_spacer * 0.25);
+
+	&.hasDate {
+		padding-top: rem(15);
+	}
+
+	small {
+		position: absolute;
+		top: 0;
+		opacity: 0.5;
+	}
+
+	strong {
+		font-size: rem(20);
+	}
+
+	button {
+		display: flex;
+		align-items: center;
+		justify-items: center;
+		padding: rem(12) rem(14);
+
+		appearance: none;
+		background: none;
+		border: none;
+		border-radius: rem($SIZES_buttonBorderRadius);
+		transition: background-color 0.15s ease;
+
+		svg {
+			vertical-align: middle;
+		}
+
+		&:hover,
+		&[aria-expanded="true"] {
+			background-color: change-color($COLOURS_primary, $alpha: 0.1);
+		}
+	}
+}

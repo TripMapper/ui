@@ -79,10 +79,10 @@ export default function Card({ id, onClick, name, type, image, status, notes, at
 					</div>)}
 
 				{hasMeta && (<div className={css.meta}>
-						{location && (<span>
+						{location ? (<span>
 								<Icon xs of="cog"/>
 								<span>{location.address}</span>
-							</span>)}
+							</span>) : <span className={css.empty}/>}
 						{(attachments?.totalCount ?? 0) > 0 && <span><Icon xs of="attachment"/></span>}
 						{notes && <span><Icon xs of="image"/></span>}
 					</div>)}

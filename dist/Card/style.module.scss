@@ -6,6 +6,7 @@ $pad: 5;
 	position: relative;
 	padding-bottom: rem(10);
 	max-width: rem(300);
+	user-select: none;
 }
 
 .card {
@@ -163,6 +164,10 @@ $pad: 5;
 
 		background: lighten($COLOURS_primary, 43%);
 		border-radius: rem(3);
+
+		&.empty {
+			background-color: transparent;
+		}
 
 		&:first-child {
 			flex-shrink: 9999;

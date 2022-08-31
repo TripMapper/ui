@@ -1,6 +1,6 @@
-import { ReactElement, ReactFragment } from 'react';
+import { ReactElement, ReactFragment, ReactNode } from 'react';
 export interface ContextMenuProps {
     children: ReactElement;
-    menu: ReactFragment;
+    menu: ReactFragment | ReactElement | ReactNode;
 }
 export default function ContextMenu({ children, menu }: ContextMenuProps): JSX.Element;

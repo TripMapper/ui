@@ -13,6 +13,8 @@ export interface PillProps {
 	food?: boolean;
 	other?: boolean;
 	plus?: boolean;
+
+	type?: 'travel' | 'activity' | 'accommodation' | 'food' | 'other';
 }
 
 export default function Pill ({
@@ -26,6 +28,8 @@ export default function Pill ({
 	food,
 	other,
 	plus,
+
+	type,
 } : PillProps) {
 	return (
 		<span className={cx(
@@ -33,11 +37,11 @@ export default function Pill ({
 			className,
 			muted && css.muted,
 
-			travel && css.travel,
-			activity && css.activity,
-			accommodation && css.accommodation,
-			food && css.food,
-			other && css.other,
+			(travel || type === 'travel') && css.travel,
+			(activity || type === 'activity') && css.activity,
+			(accommodation || type === 'accommodation') && css.accommodation,
+			(food || type === 'food') && css.food,
+			(other || type === 'other') && css.other,
 			plus && css.plus,
 		)}>
 			{children}

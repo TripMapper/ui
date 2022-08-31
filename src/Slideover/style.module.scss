@@ -15,10 +15,12 @@
 	box-shadow: 0 rem(2) rem(16) 0 rgba(0,0,0,0.10);
 	border-radius: rem(16);
 	backdrop-filter: blur(10px);
+	outline: none;
 
 	transform: translateX(calc(100% + #{rem(16)}));
 	transition: transform 0.3s ease;
 	overflow: hidden;
+
 
 	&.wide {
 		max-width: rem(680);

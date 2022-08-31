@@ -24,6 +24,15 @@
 
 		color: change-color($COLOURS_text, $alpha: 0.5);
 		font-size: rem(12);
+		font-weight: bold;
+	}
+
+	> small {
+		display: block;
+		margin-top: rem(5);
+
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(11);
 	}
 
 	&:not(:last-child) {

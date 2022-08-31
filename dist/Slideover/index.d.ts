@@ -7,7 +7,7 @@ export interface SlideoverProps {
     onEditClick?: () => void;
     onDeleteClick?: () => void;
     children: ReactNode | SlideoverChild | any;
-    heading?: string | SlideoverHeading | null;
+    heading?: ReactNode | string | SlideoverHeading | null;
     wide?: boolean;
 }
 export interface SlideoverPanelProps {

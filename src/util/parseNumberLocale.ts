@@ -1,4 +1,4 @@
-export default function parseNumberLocale (val : string|number): number {
+export default function parseNumberLocale (val : string|number, nanFallback = NaN): number {
 	if (typeof val === 'number')
 		return val;
 
@@ -14,5 +14,5 @@ export default function parseNumberLocale (val : string|number): number {
 		.replace(group, "")
 		.replace(decimal, ".")
 		// @ts-ignore
-		.replace(numeral, get)) ? +val : NaN;
+		.replace(numeral, get)) && !isNaN(+val) ? +val : nanFallback;
 }

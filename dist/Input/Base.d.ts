@@ -1,7 +1,7 @@
 import { ChangeEventHandler, FocusEventHandler } from 'react';
 export interface BaseInputProps {
     /** @default text */
-    type: 'color' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url' | 'week';
+    type: 'color' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url' | 'week' | 'numeric';
     autoComplete?: string | undefined;
     autoFocus?: boolean | undefined;
     disabled?: boolean | undefined;
@@ -27,4 +27,5 @@ export interface BaseInputProps {
 export interface BaseInputPropsWithClassName extends BaseInputProps {
     className?: string;
 }
-export default function Base({ type, className, ...props }: BaseInputPropsWithClassName): JSX.Element;
+declare function Base({ type, className, ...props }: BaseInputPropsWithClassName): JSX.Element;
+export default Base;

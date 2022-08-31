@@ -60,7 +60,7 @@ Slideover.setAppElement('#__next');
 							>
 								<p>inner</p>
 								<Button onClick={doOpen}>go deeper</Button>
-								<Slideover isOpen={open > 2} onRequestClose={doClose} heading="Even innerer slideover"  onDeleteClick={() => {}}>
+								<Slideover isOpen={open > 2} onRequestClose={doClose} heading={(<>Element as heading content</>)}  onDeleteClick={() => {}}>
 									<p>ahh too deep!</p>
 									<Button onClick={doOpen}>DEEPER</Button>
 									<Slideover isOpen={open > 3} onRequestClose={doClose} heading="They dug too deep"  onDeleteClick={() => {}}>

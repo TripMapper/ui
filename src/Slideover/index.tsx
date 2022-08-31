@@ -1,6 +1,6 @@
 import css from './style.module.scss';
 import Modal from 'react-modal';
-import {
+import React, {
 	Children, LegacyRef,
 	ReactNode,
 	useEffect, useId,
@@ -24,7 +24,7 @@ export interface SlideoverProps {
 	onEditClick?: () => void;
 	onDeleteClick?: () => void;
 	children: ReactNode | SlideoverChild | any;
-	heading?: string | SlideoverHeading | null;
+	heading?: ReactNode | string | SlideoverHeading | null;
 	wide?: boolean;
 }
 
@@ -162,9 +162,9 @@ export default function Slideover ({
 				{onEditClick && <button title="Edit" onClick={onEditClick}><SlideoverEdit /></button>}
 				<button title="Close" onClick={onRequestClose}><SlideoverClose /></button>
 			</div>
-			{!heading || typeof heading === 'string' ? (
+			{!heading || typeof heading === 'string' || React.isValidElement(heading) ? (
 				<header className={cx(css.header, handles.length > 0 && css.hasTabs)}>
-					{heading && <h1>{heading as string}</h1>}
+					{heading && <h1>{heading as any}</h1>}
 					{tabs.length > 0 && (
 						<Tabs
 							tabsLayoutId={tabsLayoutId}
@@ -173,7 +173,7 @@ export default function Slideover ({
 						/>
 					)}
 				</header>
-			) : heading(
+			) : (heading as any)(
 				tabs.length > 0 && (
 					<Tabs
 						tabsLayoutId={tabsLayoutId}

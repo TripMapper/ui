@@ -1,4 +1,4 @@
-export default function parseNumberLocale(val) {
+export default function parseNumberLocale(val, nanFallback = NaN) {
     if (typeof val === 'number')
         return val;
     const parts = new Intl.NumberFormat(void 0).formatToParts(12345.6);
@@ -12,5 +12,5 @@ export default function parseNumberLocale(val) {
         .replace(group, "")
         .replace(decimal, ".")
         // @ts-ignore
-        .replace(numeral, get)) ? +val : NaN;
+        .replace(numeral, get)) && !isNaN(+val) ? +val : nanFallback;
 }

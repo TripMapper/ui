@@ -1,7 +1,5 @@
-import {
-	ChangeEventHandler,
-	FocusEventHandler
-} from 'react';
+import { ChangeEventHandler, FocusEventHandler } from 'react';
+import parseNumberLocale from '../util/parseNumberLocale';
 
 export interface BaseInputProps {
 	/** @default text */
@@ -14,7 +12,8 @@ export interface BaseInputProps {
 		| 'tel'
 		| 'text'
 		| 'url'
-		| 'week';
+		| 'week'
+		| 'numeric';
 	autoComplete?: string | undefined;
 	autoFocus?: boolean | undefined;
 	disabled?: boolean | undefined;
@@ -44,11 +43,26 @@ export interface BaseInputPropsWithClassName extends BaseInputProps {
 	className?: string;
 }
 
-export default function Base ({
+function Base ({
 	type = 'text',
 	className,
 	...props
 } : BaseInputPropsWithClassName) {
+	const isNumeric = type === 'numeric';
+
+	if (isNumeric) {
+		type = 'text';
+		props.inputMode = 'numeric';
+		props.pattern = '[,.\\d]*';
+
+		const oldOnChange = props.onChange
+		props.onChange = e => {
+			e.persist();
+			(e as any).numericValue = () => parseNumberLocale(e.target.value, e.target.value as any);
+			oldOnChange?.(e);
+		};
+	}
+
 	return (
 		<input
 			type={type}
@@ -57,3 +71,5 @@ export default function Base ({
 		/>
 	);
 }
+
+export default Base;

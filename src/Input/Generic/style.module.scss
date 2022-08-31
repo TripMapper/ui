@@ -18,6 +18,10 @@
 	background: none;
 	border-radius: 0;
 
+	&:disabled {
+		color: change-color($COLOURS_text, $alpha: 0.5);
+	}
+
 	&:focus {
 		z-index: 2;
 	}
