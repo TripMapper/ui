@@ -44,6 +44,7 @@ Slideover.setAppElement('#__next');
 					<Slideover isOpen={open > 0} onRequestClose={doClose} heading="Main Slideover" onDeleteClick={() => {}} confirmOnClose={c => c}>
 						<Panel name="Tab 1" handle="one">
 							<p>hello world</p>
+							<hr/>
 							<Button onClick={doOpen}>open another</Button>
 							<form>
 								<input type="text" placeholder="this is a form" name="aname"/>
@@ -459,6 +460,7 @@ Slideover.setAppElement('#__next');
 						</Panel>
 						<Panel name="Tab 2" handle="two">
 							<p>another tab here</p>
+							<hr/>
 						</Panel>
 					</Slideover>
 				</>

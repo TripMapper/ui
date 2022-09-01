@@ -18,9 +18,12 @@
 	outline: none;
 
 	transform: translateX(calc(100% + #{rem(16)}));
-	transition: transform 0.3s ease;
+	transition: transform 0.3s ease, backdrop-filter 0.3s ease;
 	overflow: hidden;
 
+	> * {
+		transition: opacity 0.3s ease;
+	}
 
 	&.wide {
 		max-width: rem(680);
@@ -51,6 +54,11 @@
 
 	&.afterOpen:not(.beforeClose):not(.top) {
 		transform: translateX(var(--offset, 0px)) scale(calc(1 - var(--f-offset, 0)));
+		backdrop-filter: unset;
+
+		> * {
+			opacity: 0.2;
+		}
 
 		&::after {
 			opacity: 1;
@@ -124,6 +132,14 @@
 		padding: 0;
 		height: 100%;
 		overflow: hidden;
+	}
+
+	hr {
+		margin: rem($SIZES_spacer) rem(-32);
+		width: calc(100% + #{rem(64)});
+
+		border: none;
+		border-bottom: 1px solid $COLOURS_border;
 	}
 }
 
