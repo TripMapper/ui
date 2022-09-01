@@ -39,3 +39,14 @@
 		margin-bottom: rem(16);
 	}
 }
+
+.inline {
+	display: inline-block;
+}
+
+.merged > div {
+	display: flex;
+
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+	border-radius: rem($SIZES_buttonBorderRadius);
+}

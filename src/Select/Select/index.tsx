@@ -7,14 +7,14 @@ import ReactSelect, {
 } from 'react-select';
 import { TypedDocumentNode, useClient } from 'urql';
 import SelectMenuPortal from '../SelectMenuPortal';
-import { ReactNode, useCallback, useMemo, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 import { cx } from '../../util';
 import Spinner from '../../svg/spinner.svg';
 import { useAsync } from 'react-select/async';
 import { useCreatable } from 'react-select/creatable';
 import get from 'lodash.get';
-import debounce from 'lodash.debounce';
 import { FilterOptionOption } from 'react-select/dist/declarations/src/filters';
+import { useDebounce } from '../../hooks';
 
 export interface SelectOption {
 	label: string | ReactNode;
@@ -47,6 +47,7 @@ export interface SelectProps {
 	queryWhenEmpty?: boolean;
 	filterOption?: ((option: FilterOptionOption<SelectOption>, inputValue: string) => boolean) | null;
 	required?: boolean;
+	merged?: boolean;
 }
 
 const add = value => v => {
@@ -87,6 +88,7 @@ export default function Select ({
 	queryWhenEmpty = false,
 	filterOption,
 	required = false,
+	merged = false,
 } : SelectProps) {
 	const client = useClient();
 
@@ -119,7 +121,11 @@ export default function Select ({
 		value,
 		menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
 		components,
-		className: cx(css.select, inline && css.inline),
+		className: cx(
+			css.select,
+			inline && css.inline,
+			merged && css.merged,
+		),
 		classNamePrefix: 'rsl',
 		placeholder,
 		filterOption,
@@ -152,21 +158,15 @@ export default function Select ({
 
 	let asyncProps, stateManagerProps, creatableProps;
 
-	const searchQuery = useMemo(
-		() => debounce(
-			(query, queryVariables, search, callback) => {
-				client.query(
-					query,
-					{ ...queryVariables, query: search },
-					{ requestPolicy: 'cache-and-network' },
-				).toPromise().then(({ data }) => {
-					callback(get(data, pathToNodes, []));
-				});
-			},
-			350
-		),
-		[]
-	);
+	const searchQuery = useDebounce((query, queryVariables, search, callback) => {
+		client.query(
+			query,
+			{ ...queryVariables, query: search },
+			{ requestPolicy: 'cache-and-network' },
+		).toPromise().then(({ data }) => {
+			callback(get(data, pathToNodes, []));
+		});
+	}, 350);
 
 	if (query) {
 		delete initialProps.options;

@@ -1,6 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import Label from './index';
-import Input from '../Input';
+import Input from '../Input'; import Select from '../Select';
 
 <Meta
 	title="Form/Label"
@@ -17,7 +17,7 @@ import Input from 'ui/Input';
 	<Input />
 </Label>
 <Label group>
-	<Label label="Full Name">
+	<Label label="Full Name" instructions="What's your name, dumb-ass">
 		<Input />
 	</Label>
 	<Label label="Email Address">
@@ -28,7 +28,7 @@ import Input from 'ui/Input';
 
 <Canvas>
 	<Story name="Label">
-		<Label label="Full Name">
+		<Label label="Full Name" instructions="What's your name, dumb-ass">
 			<Input />
 		</Label>
 		<Label label="Email Address">
@@ -47,6 +47,19 @@ import Input from 'ui/Input';
 		</Label>
 		<Label label="Email Address">
 			<Input />
+		</Label>
+		<Label label="Merged Inputs">
+			<Input
+				type="numeric"
+				prefix="£"
+				suffix="%"
+			/>
+			<Input type="color" />
+			<Select />
+		</Label>
+		<Label label="Merged Inline" inline>
+			<Input type="color" />
+			<Select />
 		</Label>
 	</Story>
 </Canvas>

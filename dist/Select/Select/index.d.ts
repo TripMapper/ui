@@ -34,5 +34,6 @@ export interface SelectProps {
     queryWhenEmpty?: boolean;
     filterOption?: ((option: FilterOptionOption<SelectOption>, inputValue: string) => boolean) | null;
     required?: boolean;
+    merged?: boolean;
 }
-export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, disabled, onChange, inline, query, queryVariables, preloadOptions, pathToNodes, queryWhenEmpty, filterOption, required, }: SelectProps): JSX.Element;
+export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, disabled, onChange, inline, query, queryVariables, preloadOptions, pathToNodes, queryWhenEmpty, filterOption, required, merged, }: SelectProps): JSX.Element;

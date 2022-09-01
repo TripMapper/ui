@@ -1,10 +1,22 @@
 import css from './styles.module.scss';
-export default function Label({ label, children, El = 'label', group = false, instructions }) {
+import { Children, cloneElement, isValidElement } from 'react';
+import { cx } from '../util';
+export default function Label({ label, children, El = 'label', group = false, instructions, inline = false }) {
     if (group)
         return <div className={css.group}>{children}</div>;
-    return (<El className={css.label}>
+    const merged = Children.count(children) > 1;
+    if (merged) {
+        if (El === 'label')
+            El = 'div';
+        children = Children.map(children, child => {
+            if (!isValidElement(child))
+                return child;
+            return cloneElement(child, { merged: true });
+        });
+    }
+    return (<El className={cx(css.label, merged && css.merged, inline && css.inline)}>
 			<span>{label}</span>
-			{children}
+			{merged ? <div>{children}</div> : children}
 			{instructions && <small>{instructions}</small>}
 		</El>);
 }

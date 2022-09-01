@@ -54,6 +54,7 @@
     "./Select": "./dist/Select/index.jsx",
     "./Slideover": "./dist/Slideover/index.jsx",
     "./Space": "./dist/Space/index.jsx",
+    "./SubHeading": "./dist/SubHeading/index.jsx",
     "./Table": "./dist/Table/index.jsx",
     "./Tabs": "./dist/Tabs/index.jsx",
     "./Tag": "./dist/Tag/index.jsx",
@@ -73,6 +74,7 @@
     "schema": "cp ../../../api/src/schema.admin.graphql schema.graphql"
   },
   "peerDependencies": {
+    "framer-motion": "^7",
     "graphql": "^16.5.0",
     "next": "^12.2.2",
     "react": ">=16.8.0",

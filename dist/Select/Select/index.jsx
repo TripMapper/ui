@@ -8,7 +8,7 @@ import Spinner from '../../svg/spinner.svg';
 import { useAsync } from 'react-select/async';
 import { useCreatable } from 'react-select/creatable';
 import get from 'lodash.get';
-import debounce from 'lodash.debounce';
+import { useDebounce } from '../../hooks';
 const add = value => v => {
     const n = [...v];
     n.push(value);
@@ -26,7 +26,7 @@ const InputComponent = required => (props) => {
         return <components.Input {...props}/>;
     return <components.Input {...props} required={required}/>;
 };
-export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, filterOption, required = false, }) {
+export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, filterOption, required = false, merged = false, }) {
     const client = useClient();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
     const [value, setValue] = useState(defaultValue), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
@@ -46,7 +46,7 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         value,
         menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
         components,
-        className: cx(css.select, inline && css.inline),
+        className: cx(css.select, inline && css.inline, merged && css.merged),
         classNamePrefix: 'rsl',
         placeholder,
         filterOption,
@@ -73,11 +73,11 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         },
     };
     let asyncProps, stateManagerProps, creatableProps;
-    const searchQuery = useMemo(() => debounce((query, queryVariables, search, callback) => {
+    const searchQuery = useDebounce((query, queryVariables, search, callback) => {
         client.query(query, { ...queryVariables, query: search }, { requestPolicy: 'cache-and-network' }).toPromise().then(({ data }) => {
             callback(get(data, pathToNodes, []));
         });
-    }, 350), []);
+    }, 350);
     if (query) {
         delete initialProps.options;
         if (preloadOptions)

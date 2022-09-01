@@ -20,6 +20,7 @@
 
 	&:disabled {
 		color: change-color($COLOURS_text, $alpha: 0.5);
+		cursor: not-allowed;
 	}
 
 	&:focus {
@@ -50,6 +51,30 @@
 	border: 1px solid $COLOURS_border;
 	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
 	border-radius: rem($SIZES_buttonBorderRadius);
+
+	&.merged {
+		box-shadow: unset;
+
+		&:not(:first-child):not(:last-child) {
+			border-radius: 0;
+		}
+
+		&:not(:first-child) {
+			border-left: none;
+		}
+
+		&:not(:last-child) {
+			border-right: none;
+		}
+
+		&:first-child {
+			border-radius: rem($SIZES_buttonBorderRadius) 0 0 rem($SIZES_buttonBorderRadius);
+		}
+
+		&:last-child {
+			border-radius: 0 rem($SIZES_buttonBorderRadius) rem($SIZES_buttonBorderRadius) 0;
+		}
+	}
 }
 
 .focus {

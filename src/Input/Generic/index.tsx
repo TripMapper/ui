@@ -7,15 +7,16 @@ import cx from '../../util/cx';
 export interface GenericInputProps extends BaseInputProps {
 	prefix?: any;
 	suffix?: any;
+	merged?: boolean;
 }
 
-export default function Generic ({ prefix, suffix, onFocus, onBlur, ...props } : GenericInputProps) {
+export default function Generic ({ prefix, suffix, onFocus, onBlur, merged = false, ...props } : GenericInputProps) {
 	const [hasFocus, setHasFocus] = useState(false);
 
 	if (empty(prefix) && empty(suffix))
 		return (
 			<Base
-				className={cx(css.input, css.style)}
+				className={cx(css.input, css.style, merged && css.merged)}
 				onFocus={onFocus}
 				onBlur={onBlur}
 				{...props}
@@ -41,6 +42,7 @@ export default function Generic ({ prefix, suffix, onFocus, onBlur, ...props } :
 			hasFocus && css.focus,
 			!empty(prefix) && css.prefix,
 			!empty(suffix) && css.suffix,
+			merged && css.merged,
 		)}>
 			{prefix}
 			<Base

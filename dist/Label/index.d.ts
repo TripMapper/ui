@@ -5,6 +5,7 @@ export interface LabelInputProps {
     children: ReactNode;
     El?: "label" | "div";
     instructions?: string;
+    inline?: boolean;
 }
 export interface LabelGroupProps {
     group: true;
@@ -12,6 +13,7 @@ export interface LabelGroupProps {
     El: never;
     children: ReactNode;
     instructions: never;
+    inline: never;
 }
 export declare type LabelProps = LabelInputProps | LabelGroupProps;
-export default function Label({ label, children, El, group, instructions }: LabelProps): JSX.Element;
+export default function Label({ label, children, El, group, instructions, inline }: LabelProps): JSX.Element;

@@ -1,5 +1,6 @@
 import css from './styles.module.scss';
-import { ReactNode } from 'react';
+import { Children, cloneElement, isValidElement, ReactNode } from 'react';
+import { cx } from '../util';
 
 export interface LabelInputProps {
 	group?: false;
@@ -7,6 +8,7 @@ export interface LabelInputProps {
 	children: ReactNode;
 	El?: "label" | "div";
 	instructions?: string;
+	inline?: boolean;
 }
 
 export interface LabelGroupProps {
@@ -15,18 +17,32 @@ export interface LabelGroupProps {
 	El: never;
 	children: ReactNode;
 	instructions: never;
+	inline: never;
 }
 
 export type LabelProps = LabelInputProps | LabelGroupProps;
 
-export default function Label ({ label, children, El = 'label', group = false, instructions } : LabelProps) {
+export default function Label ({ label, children, El = 'label', group = false, instructions, inline = false } : LabelProps) {
 	if (group)
 		return <div className={css.group}>{children}</div>;
 
+	const merged = Children.count(children) > 1;
+	if (merged) {
+		if (El === 'label') El = 'div';
+		children = Children.map(children, child => {
+			if (!isValidElement(child)) return child;
+			return cloneElement(child, { merged: true });
+		}) as ReactNode;
+	}
+
 	return (
-		<El className={css.label}>
+		<El className={cx(
+			css.label,
+			merged && css.merged,
+			inline && css.inline,
+		)}>
 			<span>{label}</span>
-			{children}
+			{merged ? <div>{children}</div> : children}
 			{instructions && <small>{instructions}</small>}
 		</El>
 	);

@@ -3,7 +3,7 @@ import parseNumberLocale from '../util/parseNumberLocale';
 
 export interface BaseInputProps {
 	/** @default text */
-	type:
+	type?:
 		| 'color'
 		| 'email'
 		| 'number'

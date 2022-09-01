@@ -1,0 +1,17 @@
+@import "../variables";
+
+.subHeading {
+	margin-bottom: rem(16);
+
+	h4 {
+		margin-bottom: rem(5);
+
+		font-size: rem(16);
+		font-weight: bold;
+	}
+
+	p {
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(14);
+	}
+}

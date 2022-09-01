@@ -1,0 +1,28 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import SubHeading from './index';
+
+<Meta
+	title="Interface/Sub-heading"
+	component={SubHeading}
+/>
+
+# Sub-heading
+
+```jsx
+import SubHeading from 'ui/SubHeading';
+
+<SubHeading
+	heading="Lorem ipsum"
+	text="Dolor sit amet, consectetur adipisicing elit. Commodi, quaerat?"
+/>
+```
+
+<Canvas>
+	<Story name="Sub-heading">
+		<SubHeading
+			heading="Lorem ipsum"
+			text="Dolor sit amet, consectetur adipisicing elit. Commodi, quaerat?"
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={SubHeading} />
