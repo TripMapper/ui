@@ -6,6 +6,7 @@ module.exports = {
 		'@storybook/addon-controls',
 		'@storybook/addon-docs',
 		'@storybook/preset-scss',
+		'@storybook/addon-essentials',
 	],
 	framework: '@storybook/react',
 	core: {

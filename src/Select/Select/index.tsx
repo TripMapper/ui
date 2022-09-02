@@ -7,7 +7,7 @@ import ReactSelect, {
 } from 'react-select';
 import { TypedDocumentNode, useClient } from 'urql';
 import SelectMenuPortal from '../SelectMenuPortal';
-import { ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { cx } from '../../util';
 import Spinner from '../../svg/spinner.svg';
 import { useAsync } from 'react-select/async';
@@ -90,7 +90,8 @@ export default function Select ({
 	required = false,
 	merged = false,
 } : SelectProps) {
-	const client = useClient();
+	const client = useClient()
+		, self = useRef();
 
 	const originalValue = useMemo(
 		() => Array.isArray(defaultValue) ? defaultValue : [defaultValue],
@@ -112,6 +113,31 @@ export default function Select ({
 		),
 	}), [required, value]);
 
+	// Fix outline always active after option select
+	// TODO: Work out why this is an issue and actually fix it
+	useEffect(() => {
+		if (!self.current) return;
+		const el = self.current as any;
+
+		const onClick = e => {
+			if (
+				// Ensure we're not clicking on the select its children
+				el.controlRef !== e.target
+				&& !el.controlRef.contains(e.target)
+				&& !e.target.contains(el.controlRef)
+
+				// Ensure the select or its children aren't focused
+				&& document.activeElement !== e.target
+				&& !document.activeElement.contains(e.target)
+				&& !el.controlRef.contains(document.activeElement)
+			) el.controlRef.classList.remove('rsl__control--is-focused');
+		};
+
+		document.addEventListener('click', onClick);
+
+		return () => { document.removeEventListener('click', onClick) };
+	}, [self]);
+
 	const initialProps : any = {
 		name: isMulti ? void 0 : name,
 		isMulti,
@@ -125,6 +151,7 @@ export default function Select ({
 			css.select,
 			inline && css.inline,
 			merged && css.merged,
+			name   && css.named,
 		),
 		classNamePrefix: 'rsl',
 		placeholder,
@@ -209,6 +236,7 @@ export default function Select ({
 			)}
 			<ReactSelect
 				{...props}
+				ref={self}
 				isOptionDisabled={option => (option as SelectOption).disabled}
 			/>
 		</>

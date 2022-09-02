@@ -7,8 +7,9 @@ export declare type FormValue = string | boolean | number | File;
  * Strings prefixed with a number cast ('(number)10.5') are converted to a number
  *
  * @param {FormData} formData
+ * @param {HTMLFormElement=} form
  * @returns {string}
  */
-export default function formToObj(formData: FormData): {
+export default function formToObj(formData: FormData, form?: HTMLFormElement): {
     [key: string]: FormValue;
 };

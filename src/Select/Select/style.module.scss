@@ -91,3 +91,8 @@
 		}
 	}
 }
+
+.merged.named:not(:first-child) [class*="rsl__control"]:nth-last-child(2) {
+	border-right: 1px solid $COLOURS_border !important;
+	border-radius: 0 rem($SIZES_buttonBorderRadius) rem($SIZES_buttonBorderRadius) 0 !important;
+}

@@ -14,7 +14,7 @@ export default function Form ({ onSubmit, children, ...props } : FormProps) {
 	const _onSubmit = async e => {
 		e.preventDefault();
 		e.persist();
-		onSubmit && onSubmit(formToObj(new FormData(e.target)), e);
+		onSubmit && onSubmit(formToObj(new FormData(e.target), e.target), e);
 	};
 
 	return (

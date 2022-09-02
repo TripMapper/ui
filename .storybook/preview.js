@@ -1,4 +1,5 @@
 import '../src/globals.scss';
+import '@storybook/addon-console';
 
 export const parameters = {
 	viewMode: 'docs',

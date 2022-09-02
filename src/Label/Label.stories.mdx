@@ -59,8 +59,27 @@ import Input from 'ui/Input';
 		</Label>
 		<Label label="Merged Inline" inline>
 			<Input type="color" />
-			<Select />
+			<Select name="test" options={[
+				{ label: 'A', value: 1 },
+				{ label: 'B', value: 2 },
+				{ label: 'C', value: 3 },
+				{ label: 'D', value: 4 },
+			]} />
 		</Label>
+		<Label label="Stand-alone Select" inline>
+			<Select name="test" options={[
+				{ label: 'A', value: 1 },
+				{ label: 'B', value: 2 },
+				{ label: 'C', value: 3 },
+				{ label: 'D', value: 4 },
+			]} />
+		</Label>
+		<Select name="test" options={[
+			{ label: 'A', value: 1 },
+			{ label: 'B', value: 2 },
+			{ label: 'C', value: 3 },
+			{ label: 'D', value: 4 },
+		]} />
 	</Story>
 </Canvas>
 

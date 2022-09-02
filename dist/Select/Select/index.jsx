@@ -2,7 +2,7 @@ import css from './style.module.scss';
 import ReactSelect, { useStateManager, components, } from 'react-select';
 import { useClient } from 'urql';
 import SelectMenuPortal from '../SelectMenuPortal';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { cx } from '../../util';
 import Spinner from '../../svg/spinner.svg';
 import { useAsync } from 'react-select/async';
@@ -27,7 +27,7 @@ const InputComponent = required => (props) => {
     return <components.Input {...props} required={required}/>;
 };
 export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, filterOption, required = false, merged = false, }) {
-    const client = useClient();
+    const client = useClient(), self = useRef();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
     const [value, setValue] = useState(defaultValue), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
     const components = useMemo(() => ({
@@ -37,6 +37,27 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         Input: InputComponent(required
             && (Array.isArray(value) ? value.length === 0 : !value)),
     }), [required, value]);
+    // Fix outline always active after option select
+    // TODO: Work out why this is an issue and actually fix it
+    useEffect(() => {
+        if (!self.current)
+            return;
+        const el = self.current;
+        const onClick = e => {
+            if (
+            // Ensure we're not clicking on the select its children
+            el.controlRef !== e.target
+                && !el.controlRef.contains(e.target)
+                && !e.target.contains(el.controlRef)
+                // Ensure the select or its children aren't focused
+                && document.activeElement !== e.target
+                && !document.activeElement.contains(e.target)
+                && !el.controlRef.contains(document.activeElement))
+                el.controlRef.classList.remove('rsl__control--is-focused');
+        };
+        document.addEventListener('click', onClick);
+        return () => { document.removeEventListener('click', onClick); };
+    }, [self]);
     const initialProps = {
         name: isMulti ? void 0 : name,
         isMulti,
@@ -46,7 +67,7 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         value,
         menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
         components,
-        className: cx(css.select, inline && css.inline, merged && css.merged),
+        className: cx(css.select, inline && css.inline, merged && css.merged, name && css.named),
         classNamePrefix: 'rsl',
         placeholder,
         filterOption,
@@ -104,6 +125,6 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
 					{selected.map(v => (<input type="hidden" name={`${name}.selected[]`} value={v.value} key={v.value}/>))}
 					{removed.map(v => (<input type="hidden" name={`${name}.removed[]`} value={v.value} key={v.value}/>))}
 				</>)}
-			<ReactSelect {...props} isOptionDisabled={option => option.disabled}/>
+			<ReactSelect {...props} ref={self} isOptionDisabled={option => option.disabled}/>
 		</>);
 }
