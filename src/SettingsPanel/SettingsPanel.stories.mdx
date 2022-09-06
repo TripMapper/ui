@@ -1,0 +1,50 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import SettingsPanel
+	from './index'; import Input from '../Input'; import Label from '../Label'; import Button
+	from '../Button';
+
+<Meta
+	title="Interface/Settings Panel"
+	component={SettingsPanel}
+/>
+
+# Settings Panel
+
+```jsx
+import SettingsPanel from 'ui/SettingsPanel';
+
+<SettingsPanel
+	heading="Company Information"
+	text="Manage your company information, including branding settings here."
+>
+	{/* ... */}
+</SettingsPanel>
+```
+
+<Canvas>
+	<Story name="Settings Panel">
+		<SettingsPanel
+			heading="Company Information"
+			text="Manage your company information, including branding settings here."
+		>
+			<Label label="Organisation Name">
+				<Input />
+			</Label>
+			<footer>
+				<Button secondary>Save Changes</Button>
+			</footer>
+		</SettingsPanel>
+		<SettingsPanel
+			heading="Company Information"
+			text="Manage your company information, including branding settings here."
+		>
+			<Label label="Organisation Name">
+				<Input />
+			</Label>
+			<footer>
+				<Button secondary>Save Changes</Button>
+			</footer>
+		</SettingsPanel>
+	</Story>
+</Canvas>
+
+<ArgsTable of={SettingsPanel} />

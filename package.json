@@ -52,6 +52,7 @@
     "./Repeater": "./dist/Repeater/index.jsx",
     "./SearchSelect": "./dist/SearchSelect/index.jsx",
     "./Select": "./dist/Select/index.jsx",
+    "./SettingsPanel": "./dist/SettingsPanel/index.jsx",
     "./Slideover": "./dist/Slideover/index.jsx",
     "./Space": "./dist/Space/index.jsx",
     "./SubHeading": "./dist/SubHeading/index.jsx",

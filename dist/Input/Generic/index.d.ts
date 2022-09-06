@@ -5,4 +5,5 @@ export interface GenericInputProps extends BaseInputProps {
     suffix?: any;
     merged?: boolean;
 }
-export default function Generic({ prefix, suffix, onFocus, onBlur, merged, ...props }: GenericInputProps): JSX.Element;
+declare const Generic: import("react").ForwardRefExoticComponent<GenericInputProps & import("react").RefAttributes<HTMLInputElement>>;
+export default Generic;

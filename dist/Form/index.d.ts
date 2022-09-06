@@ -5,5 +5,6 @@ export declare type FormSubmit = (values: {
 }, event: FormEvent) => void;
 export interface FormProps extends Omit<HTMLFormElement, 'onSubmit'> {
     onSubmit?: FormSubmit;
+    className?: string;
 }
-export default function Form({ onSubmit, children, ...props }: FormProps): JSX.Element;
+export default function Form({ onSubmit, children, className, ...props }: FormProps): JSX.Element;

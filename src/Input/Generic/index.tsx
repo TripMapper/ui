@@ -1,7 +1,7 @@
 import css from './style.module.scss';
 import Base, { BaseInputProps } from '../Base';
 import empty from '../../util/empty';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import cx from '../../util/cx';
 
 export interface GenericInputProps extends BaseInputProps {
@@ -10,7 +10,7 @@ export interface GenericInputProps extends BaseInputProps {
 	merged?: boolean;
 }
 
-export default function Generic ({ prefix, suffix, onFocus, onBlur, merged = false, ...props } : GenericInputProps) {
+const Generic = forwardRef<HTMLInputElement, GenericInputProps>(({ prefix, suffix, onFocus, onBlur, merged = false, ...props } : GenericInputProps, ref) => {
 	const [hasFocus, setHasFocus] = useState(false);
 
 	if (empty(prefix) && empty(suffix))
@@ -20,6 +20,7 @@ export default function Generic ({ prefix, suffix, onFocus, onBlur, merged = fal
 				onFocus={onFocus}
 				onBlur={onBlur}
 				{...props}
+				ref={ref}
 			/>
 		);
 
@@ -50,8 +51,11 @@ export default function Generic ({ prefix, suffix, onFocus, onBlur, merged = fal
 				onFocus={_onFocus}
 				onBlur={_onBlur}
 				{...props}
+				ref={ref}
 			/>
 			{suffix}
 		</label>
 	);
-}
+});
+
+export default Generic;

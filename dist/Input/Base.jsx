@@ -1,5 +1,6 @@
+import { forwardRef } from 'react';
 import parseNumberLocale from '../util/parseNumberLocale';
-function Base({ type = 'text', className, ...props }) {
+const Base = forwardRef(({ type = 'text', className, ...props }, ref) => {
     const isNumeric = type === 'numeric';
     if (isNumeric) {
         type = 'text';
@@ -12,6 +13,6 @@ function Base({ type = 'text', className, ...props }) {
             oldOnChange?.(e);
         };
     }
-    return (<input type={type} className={className} {...props}/>);
-}
+    return (<input type={type} className={className} {...props} ref={ref}/>);
+});
 export default Base;

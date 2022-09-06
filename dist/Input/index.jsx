@@ -1,7 +1,9 @@
 import Generic from './Generic';
 import Color from './Color';
-export default function Input({ type, ...props }) {
+import { forwardRef } from 'react';
+const Input = forwardRef(({ type, ...props }, ref) => {
     if (type?.toLowerCase() === 'color')
-        return <Color {...props}/>;
-    return <Generic type={type} {...props}/>;
-}
+        return <Color {...props} ref={ref}/>;
+    return <Generic type={type} {...props} ref={ref}/>;
+});
+export default Input;

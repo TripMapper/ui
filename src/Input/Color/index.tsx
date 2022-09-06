@@ -1,13 +1,13 @@
 import css from './style.module.scss';
 import Generic, { GenericInputProps } from '../Generic';
-import { useRef, useState } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import cx from '../../util/cx';
 
 const VALID_COLOUR_RX = /^#([0-9A-F]{3}){1,2}$/i;
 
 export interface ColorInputProps extends Omit<GenericInputProps, "prefix" | "type"> {}
 
-export default function Color ({ onChange, defaultValue, name, ...props } : ColorInputProps) {
+const Color = forwardRef<HTMLInputElement, ColorInputProps>(({ onChange, defaultValue, name, ...props } : ColorInputProps, ref) => {
 	const self = useRef();
 
 	const [v, setV] = useState(defaultValue as string ?? '')
@@ -65,6 +65,9 @@ export default function Color ({ onChange, defaultValue, name, ...props } : Colo
 			value={v}
 			onChange={_onInputChange}
 			{...props}
+			ref={ref}
 		/>
 	);
-}
+});
+
+export default Color;

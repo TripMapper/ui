@@ -1,9 +1,12 @@
 import Generic, { GenericInputProps } from './Generic';
-import Color from './Color';
+import Color, { ColorInputProps } from './Color';
+import { forwardRef } from 'react';
 
-export default function Input ({ type, ...props } : GenericInputProps) {
+const Input = forwardRef<HTMLInputElement, GenericInputProps>(({ type, ...props } : GenericInputProps, ref) => {
 	if (type?.toLowerCase() === 'color')
-		return <Color {...props} />
+		return <Color {...props} ref={ref} />
 
-	return <Generic type={type} {...props} />;
-}
+	return <Generic type={type} {...props} ref={ref} />;
+});
+
+export default Input;

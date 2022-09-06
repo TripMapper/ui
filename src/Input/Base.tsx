@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FocusEventHandler } from 'react';
+import { ChangeEventHandler, FocusEventHandler, forwardRef, Ref } from 'react';
 import parseNumberLocale from '../util/parseNumberLocale';
 
 export interface BaseInputProps {
@@ -41,13 +41,14 @@ export interface BaseInputProps {
 
 export interface BaseInputPropsWithClassName extends BaseInputProps {
 	className?: string;
+	ref?: Ref<HTMLInputElement>;
 }
 
-function Base ({
+const Base = forwardRef<HTMLInputElement, BaseInputPropsWithClassName>(({
 	type = 'text',
 	className,
 	...props
-} : BaseInputPropsWithClassName) {
+} : BaseInputPropsWithClassName, ref) => {
 	const isNumeric = type === 'numeric';
 
 	if (isNumeric) {
@@ -68,8 +69,9 @@ function Base ({
 			type={type}
 			className={className}
 			{...props}
+			ref={ref}
 		/>
 	);
-}
+});
 
 export default Base;

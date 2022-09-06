@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FocusEventHandler } from 'react';
+import { ChangeEventHandler, FocusEventHandler, Ref } from 'react';
 export interface BaseInputProps {
     /** @default text */
     type?: 'color' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url' | 'week' | 'numeric';
@@ -26,6 +26,7 @@ export interface BaseInputProps {
 }
 export interface BaseInputPropsWithClassName extends BaseInputProps {
     className?: string;
+    ref?: Ref<HTMLInputElement>;
 }
-declare function Base({ type, className, ...props }: BaseInputPropsWithClassName): JSX.Element;
+declare const Base: import("react").ForwardRefExoticComponent<Pick<BaseInputPropsWithClassName, "type" | "readOnly" | "size" | "disabled" | "pattern" | "autoComplete" | "autoFocus" | "max" | "maxLength" | "min" | "minLength" | "name" | "defaultValue" | "className" | "placeholder" | "inputMode" | "required" | "step" | "value" | "onFocus" | "onBlur" | "onChange" | "onInput"> & import("react").RefAttributes<HTMLInputElement>>;
 export default Base;

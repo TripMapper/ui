@@ -1,5 +1,7 @@
+import css from './style.module.scss';
 import { FormEvent } from 'react';
 import formToObj, { FormValue } from '../util/formToObj';
+import { cx } from '../util';
 
 export type FormSubmit = (
 	values: { [key: string]: FormValue },
@@ -8,9 +10,10 @@ export type FormSubmit = (
 
 export interface FormProps extends Omit<HTMLFormElement, 'onSubmit'> {
 	onSubmit?: FormSubmit;
+	className?: string;
 }
 
-export default function Form ({ onSubmit, children, ...props } : FormProps) {
+export default function Form ({ onSubmit, children, className, ...props } : FormProps) {
 	const _onSubmit = async e => {
 		e.preventDefault();
 		e.persist();
@@ -18,7 +21,7 @@ export default function Form ({ onSubmit, children, ...props } : FormProps) {
 	};
 
 	return (
-		<form {...props} onSubmit={_onSubmit}>
+		<form {...props} onSubmit={_onSubmit} className={cx(css.form, className)}>
 			{children}
 		</form>
 	);

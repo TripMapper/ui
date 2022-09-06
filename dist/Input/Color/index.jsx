@@ -1,9 +1,9 @@
 import css from './style.module.scss';
 import Generic from '../Generic';
-import { useRef, useState } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import cx from '../../util/cx';
 const VALID_COLOUR_RX = /^#([0-9A-F]{3}){1,2}$/i;
-export default function Color({ onChange, defaultValue, name, ...props }) {
+const Color = forwardRef(({ onChange, defaultValue, name, ...props }, ref) => {
     const self = useRef();
     const [v, setV] = useState(defaultValue ?? ''), [valid, _setValid] = useState(true);
     const setValid = v => {
@@ -30,5 +30,6 @@ export default function Color({ onChange, defaultValue, name, ...props }) {
     return (<Generic prefix={(<>
 					<input className={css.color} type="color" onChange={_onColourChange} defaultValue={defaultValue} name={name} ref={self}/>
 					<span className={cx(css.preview, !valid && css.invalid)} style={{ backgroundColor: v }}/>
-				</>)} type="text" defaultValue={defaultValue} value={v} onChange={_onInputChange} {...props}/>);
-}
+				</>)} type="text" defaultValue={defaultValue} value={v} onChange={_onInputChange} {...props} ref={ref}/>);
+});
+export default Color;
