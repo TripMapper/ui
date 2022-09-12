@@ -56,6 +56,7 @@
     "./Slideover": "./dist/Slideover/index.jsx",
     "./Space": "./dist/Space/index.jsx",
     "./SubHeading": "./dist/SubHeading/index.jsx",
+    "./Switch": "./dist/Switch/index.jsx",
     "./Table": "./dist/Table/index.jsx",
     "./Tabs": "./dist/Tabs/index.jsx",
     "./Tag": "./dist/Tag/index.jsx",

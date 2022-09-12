@@ -1,0 +1,25 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Switch from './index'; import Label
+	from '../Label';
+
+<Meta
+	title="Form/Switch"
+	component={Switch}
+/>
+
+# Switch
+
+```jsx
+import Switch from 'ui/Switch';
+
+<Switch />
+```
+
+<Canvas>
+	<Story name="Switch">
+		<Label label="My Switch">
+			<Switch label="More info about the switch goes here" />
+		</Label>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Switch} />

@@ -1,0 +1,87 @@
+@import "../variables";
+
+.switch {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+}
+
+.input {
+	position: absolute;
+	z-index: 2;
+
+	width: rem(40);
+	height: rem(24);
+
+	appearance: none;
+	background: none;
+	border: none;
+	border-radius: rem(40);
+	cursor: pointer;
+
+	&:checked + .toggle {
+		&::before {
+			transform: translateX(0);
+		}
+
+		&::after {
+			transform: translate3d(#{rem(16)}, -50%, 0);
+		}
+	}
+}
+
+.toggle {
+	position: relative;
+
+	display: inline-block;
+	width: rem(42);
+	height: rem(26);
+	margin-right: rem(16);
+
+	border: 1px solid $COLOURS_primaryDark;
+	border-radius: rem(40);
+	background-color: $COLOURS_border;
+
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+
+		display: block;
+		width: 100%;
+		height: 100%;
+
+		background-color: $COLOURS_primary;
+		border-radius: rem(40);
+
+		transform: translateX(-100%);
+		transition: transform 0.2s ease;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: rem(1);
+
+		display: block;
+		width: rem(20);
+		height: rem(20);
+
+		background: #fff;
+		border: 1px solid $COLOURS_primaryDark;
+		border-radius: 50%;
+
+		transform: translateY(-50%);
+		transition: transform 0.2s ease;
+	}
+}
+
+.label {
+	display: inline-block;
+	margin-top: rem(5);
+
+	font-size: rem(12);
+	font-weight: bold;
+}
