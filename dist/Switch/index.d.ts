@@ -7,6 +7,8 @@ export interface SwitchProps {
     defaultChecked?: boolean;
     /** @default (bool)1 */
     value?: string | number;
+    /** @default (bool)0 */
+    valueDefault?: string | number;
     onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
 }
 declare const Switch: import("react").ForwardRefExoticComponent<SwitchProps & import("react").RefAttributes<HTMLLabelElement>>;

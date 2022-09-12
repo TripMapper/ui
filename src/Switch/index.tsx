@@ -11,6 +11,8 @@ export interface SwitchProps {
 	defaultChecked?: boolean;
 	/** @default (bool)1 */
 	value?: string | number;
+	/** @default (bool)0 */
+	valueDefault?: string | number;
 
 	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
 }
@@ -22,8 +24,10 @@ const Switch = forwardRef<HTMLLabelElement, SwitchProps>(({
 	defaultChecked = false,
 	onChange,
 	value = '(bool)1',
+	valueDefault = '(bool)0',
 }, ref) => (
 	<label ref={ref} className={cx(className, css.switch)}>
+		<input type="hidden" name={name} value={valueDefault} />
 		<input
 			type="checkbox"
 			value={value}
