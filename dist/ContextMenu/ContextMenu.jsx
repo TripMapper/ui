@@ -23,7 +23,7 @@ export default function ContextMenu({ children, menu, isOpen }) {
     const [open, _setOpen] = useState(false);
     const setOpen = v => {
         _setOpen(v);
-        isOpen(v);
+        isOpen?.(v);
     };
     const c = Children.only(children);
     const child = cloneElement(c, {

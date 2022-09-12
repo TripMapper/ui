@@ -39,7 +39,7 @@ export default function ContextMenu ({ children, menu, isOpen } : ContextMenuPro
 	const [open, _setOpen] = useState(false);
 	const setOpen = v => {
 		_setOpen(v);
-		isOpen(v);
+		isOpen?.(v);
 	};
 
 	const c = Children.only(children);
