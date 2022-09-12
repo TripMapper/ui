@@ -46,5 +46,5 @@ export default function CountrySelect({ name, defaultValue, defaultValueIso, ...
     if (fetching)
         return <Select name={name} disabled placeholder="Loading..."/>;
     const onFilter = (opt, val) => fuzzy(val, opt.data.s);
-    return (<Select {...props} name={name} defaultValue={defaultVal} options={opts} filterOption={onFilter}/>);
+    return (<Select key={defaultVal?.value} {...props} name={name} defaultValue={defaultVal} options={opts} filterOption={onFilter}/>);
 }

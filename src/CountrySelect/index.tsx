@@ -67,6 +67,7 @@ export default function CountrySelect ({ name, defaultValue, defaultValueIso, ..
 
 	return (
 		<Select
+			key={defaultVal?.value}
 			{...props}
 			name={name}
 			defaultValue={defaultVal}
