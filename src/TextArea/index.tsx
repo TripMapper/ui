@@ -3,9 +3,9 @@ import {
 	ChangeEventHandler,
 	FocusEventHandler,
 	forwardRef,
-	useCallback
+	useCallback, useEffect, useRef
 } from 'react';
-import { cx } from '../util';
+import { cx, mergeRefs } from '../util';
 
 export interface TextAreaProps {
 	className?: string;
@@ -32,6 +32,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
 	rows = 4,
 	...props
 } : TextAreaProps, ref) => {
+	const self = useRef<HTMLTextAreaElement>();
 	const _onInput = useCallback(e => {
 		e.persist();
 		let { borderTopWidth, borderBottomWidth } = window.getComputedStyle(e.target) as any;
@@ -42,13 +43,18 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
 		onInput?.(e);
 	}, [onInput]);
 
+	useEffect(() => {
+		if (!self.current) return;
+		self.current.dispatchEvent(new Event('input', {bubbles:true}));
+	}, [self]);
+
 	return (
 		<textarea
 			{...props}
 			onInput={_onInput}
 			className={cx(css.textArea, className)}
 			rows={rows}
-			ref={ref}
+			ref={mergeRefs([ref, self])}
 		/>
 	);
 });
