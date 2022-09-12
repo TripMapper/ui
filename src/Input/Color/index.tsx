@@ -15,7 +15,7 @@ const Color = forwardRef<HTMLInputElement, ColorInputProps>(({ onChange, default
 
 	const setValid = v => {
 		_setValid(v);
-		(self.current as HTMLInputElement).setCustomValidity(v ? 'Invalid colour' : '');
+		(self.current as HTMLInputElement).setCustomValidity(v ? '' : 'Invalid colour');
 	};
 
 	const _onColourChange = e => {
@@ -61,7 +61,6 @@ const Color = forwardRef<HTMLInputElement, ColorInputProps>(({ onChange, default
 				</>
 			)}
 			type="text"
-			defaultValue={defaultValue}
 			value={v}
 			onChange={_onInputChange}
 			{...props}

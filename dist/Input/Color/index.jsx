@@ -8,7 +8,7 @@ const Color = forwardRef(({ onChange, defaultValue, name, ...props }, ref) => {
     const [v, setV] = useState(defaultValue ?? ''), [valid, _setValid] = useState(true);
     const setValid = v => {
         _setValid(v);
-        self.current.setCustomValidity(v ? 'Invalid colour' : '');
+        self.current.setCustomValidity(v ? '' : 'Invalid colour');
     };
     const _onColourChange = e => {
         e.persist();
@@ -30,6 +30,6 @@ const Color = forwardRef(({ onChange, defaultValue, name, ...props }, ref) => {
     return (<Generic prefix={(<>
 					<input className={css.color} type="color" onChange={_onColourChange} defaultValue={defaultValue} name={name} ref={self}/>
 					<span className={cx(css.preview, !valid && css.invalid)} style={{ backgroundColor: v }}/>
-				</>)} type="text" defaultValue={defaultValue} value={v} onChange={_onInputChange} {...props} ref={ref}/>);
+				</>)} type="text" value={v} onChange={_onInputChange} {...props} ref={ref}/>);
 });
 export default Color;

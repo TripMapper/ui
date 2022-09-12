@@ -1,5 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import Input from './index';
+import Input from './index'; import Form from '../Form'; import Button
+	from '../Button';
 
 <Meta
 	title="Form/Input"
@@ -15,14 +16,17 @@ import Input from 'ui/Input';
 
 <Canvas>
 	<Story name="Input">
-		<Input placeholder="Lorem Ipsum" />
-		<Input
-			type="numeric"
-			prefix="£"
-			suffix="%"
-		/>
-		<Input type="color" />
-		<Input disabled />
+		<Form onSubmit={console.log}>
+			<Input placeholder="Lorem Ipsum" />
+			<Input
+				type="numeric"
+				prefix="£"
+				suffix="%"
+			/>
+			<Input type="color" />
+			<Input disabled />
+			<Button>Submit</Button>
+		</Form>
 	</Story>
 </Canvas>
 
