@@ -9,6 +9,8 @@ export interface SwitchProps {
 	label?: string;
 	/** @default false */
 	defaultChecked?: boolean;
+	/** @default (bool)1 */
+	value?: string | number;
 
 	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
 }
@@ -19,11 +21,12 @@ const Switch = forwardRef<HTMLLabelElement, SwitchProps>(({
 	label,
 	defaultChecked = false,
 	onChange,
+	value = '(bool)1',
 }, ref) => (
 	<label ref={ref} className={cx(className, css.switch)}>
 		<input
 			type="checkbox"
-			value={1}
+			value={value}
 			name={name}
 			defaultChecked={defaultChecked}
 			onChange={onChange}
