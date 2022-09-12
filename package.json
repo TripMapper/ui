@@ -60,6 +60,7 @@
     "./Tabs": "./dist/Tabs/index.jsx",
     "./Tag": "./dist/Tag/index.jsx",
     "./Text": "./dist/Text/index.jsx",
+    "./TextArea": "./dist/TextArea/index.jsx",
     "./TimezoneCard": "./dist/TimezoneCard/index.jsx",
     "./Title": "./dist/Title/index.jsx",
     "./UIContext": "./dist/UIContext/index.jsx",
