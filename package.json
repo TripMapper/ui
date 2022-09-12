@@ -66,7 +66,8 @@
     "./Title": "./dist/Title/index.jsx",
     "./UIContext": "./dist/UIContext/index.jsx",
     "./Upload": "./dist/Upload/index.jsx",
-    "./UrlToLink": "./dist/UrlToLink/index.jsx"
+    "./UrlToLink": "./dist/UrlToLink/index.jsx",
+    "./UserCard": "./dist/UserCard/index.jsx"
   },
   "scripts": {
     "build": "tsc --build && pnpm postbuild",

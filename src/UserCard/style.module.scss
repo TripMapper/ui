@@ -1,0 +1,55 @@
+@import "../variables";
+
+.userCard {
+	display: flex;
+	align-items: center;
+
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: rem(30);
+		height: rem(30);
+
+		appearance: none;
+		background: none;
+		border: none;
+		border-radius: rem($SIZES_buttonBorderRadius);
+		cursor: pointer;
+
+		transition: background-color 0.3s ease;
+
+		&:hover {
+			background-color: change-color($COLOURS_primary, $alpha: 0.1);
+		}
+
+		svg {
+			vertical-align: middle;
+			pointer-events: none;
+		}
+	}
+}
+
+.details {
+	flex-grow: 1;
+	margin-left: rem(16);
+
+	strong,
+	small {
+		display: block;
+	}
+
+	strong {
+		font-size: rem(16);
+
+		span {
+			color: change-color($COLOURS_text, $alpha: 0.6);
+		}
+	}
+
+	small {
+		color: change-color($COLOURS_text, $alpha: 0.6);
+		font-size: rem(14);
+	}
+}

@@ -1,0 +1,33 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import UserCard from './index'; import {
+	ContextItemButton
+} from '../ContextMenu';
+
+<Meta
+	title="Card/User"
+	component={UserCard}
+/>
+
+# User Card
+
+```jsx
+import UserCard from 'ui/UserCard';
+
+<UserCard />
+```
+
+<Canvas>
+	<Story name="User">
+		<UserCard
+			name="Example Person"
+			role="Editor"
+			email="example.person@website.com"
+			menu={(
+				<>
+					<ContextItemButton icon="bin" text="Remove user" type="danger" />
+				</>
+			)}
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={UserCard} />
