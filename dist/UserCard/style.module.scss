@@ -3,6 +3,15 @@
 .userCard {
 	display: flex;
 	align-items: center;
+	padding: rem(8);
+
+	border-radius: rem($SIZES_buttonBorderRadius);
+	transition: background-color 0.3s ease;
+
+	&:hover,
+	&.open {
+		background-color: #F8F8F8;
+	}
 
 	button {
 		display: flex;
@@ -20,14 +29,15 @@
 
 		transition: background-color 0.3s ease;
 
-		&:hover {
-			background-color: change-color($COLOURS_primary, $alpha: 0.1);
-		}
-
 		svg {
 			vertical-align: middle;
 			pointer-events: none;
 		}
+	}
+
+	button:hover,
+	&.open button {
+		background-color: change-color($COLOURS_primary, $alpha: 0.1);
 	}
 }
 

@@ -1,9 +1,10 @@
 import css from './style.module.scss';
 import Avatar, { AvatarUser } from '../Avatar';
 import getInitials from '../util/getInitials';
-import { ReactElement, ReactFragment, ReactNode } from 'react';
+import { ReactElement, ReactFragment, ReactNode, useState } from 'react';
 import ContextMenu from '../ContextMenu';
 import Meatballs from '../svg/meatballs.svg';
+import { cx } from '../util';
 
 export interface UserCardProps {
 	avatar?: AvatarUser;
@@ -20,15 +21,17 @@ export default function UserCard ({
 	email,
 	menu,
 } : UserCardProps) {
+	const [menuOpen, setMenuOpen] = useState(false);
+
 	return (
-		<div className={css.userCard}>
+		<div className={cx(css.userCard, menuOpen && css.open)}>
 			<Avatar flat user={avatar} initials={name ? getInitials(name) : void 0} />
 			<div className={css.details}>
 				<strong>{name} {role && <span>&mdash; {role}</span>}</strong>
 				<small>{email}</small>
 			</div>
 			{menu && (
-				<ContextMenu menu={menu}>
+				<ContextMenu menu={menu} isOpen={setMenuOpen}>
 					<button><Meatballs /></button>
 				</ContextMenu>
 			)}

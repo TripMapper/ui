@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePopper } from 'react-popper';
 import cx from '../util/cx';
-export default function ContextMenu({ children, menu }) {
+export default function ContextMenu({ children, menu, isOpen }) {
     const isSSR = typeof window === 'undefined' || typeof window.document === 'undefined';
     const { current: uid } = useRef('cxm_' + nanoid(5));
     const [trigger, setTrigger] = useState(), [cxm, setCxm] = useState();
@@ -20,7 +20,11 @@ export default function ContextMenu({ children, menu }) {
             },
         ],
     });
-    const [open, setOpen] = useState(false);
+    const [open, _setOpen] = useState(false);
+    const setOpen = v => {
+        _setOpen(v);
+        isOpen(v);
+    };
     const c = Children.only(children);
     const child = cloneElement(c, {
         ...c.props,

@@ -16,9 +16,10 @@ import cx from '../util/cx';
 export interface ContextMenuProps {
 	children: ReactElement;
 	menu: ReactFragment | ReactElement | ReactNode;
+	isOpen?: (boolean) => void;
 }
 
-export default function ContextMenu ({ children, menu } : ContextMenuProps) {
+export default function ContextMenu ({ children, menu, isOpen } : ContextMenuProps) {
 	const isSSR = typeof window === 'undefined' || typeof window.document === 'undefined';
 	const { current: uid } = useRef('cxm_' + nanoid(5));
 	const [trigger, setTrigger] = useState()
@@ -35,7 +36,11 @@ export default function ContextMenu ({ children, menu } : ContextMenuProps) {
 			},
 		],
 	});
-	const [open, setOpen] = useState(false);
+	const [open, _setOpen] = useState(false);
+	const setOpen = v => {
+		_setOpen(v);
+		isOpen(v);
+	};
 
 	const c = Children.only(children);
 	const child = cloneElement(c, {
