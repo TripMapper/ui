@@ -10,6 +10,7 @@ export const AVATAR_FRAGMENT = gql`
         id
         friendlyName
         avatar {
+	        id
             srcset (
                 width: 96
                 height: 96

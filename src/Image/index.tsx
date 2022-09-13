@@ -5,6 +5,7 @@ import React from 'react';
 
 export const IMAGE_FRAGMENT = gql`
     fragment Image on Srcset {
+	    id
         width
         height
         src

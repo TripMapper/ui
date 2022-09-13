@@ -48,6 +48,7 @@ export interface SelectProps {
 	filterOption?: ((option: FilterOptionOption<SelectOption>, inputValue: string) => boolean) | null;
 	required?: boolean;
 	merged?: boolean;
+	resultsParse?: (data: Object, query: string) => ReadonlyArray<SelectOption>;
 }
 
 const add = value => v => {
@@ -89,6 +90,7 @@ export default function Select ({
 	filterOption,
 	required = false,
 	merged = false,
+	resultsParse,
 } : SelectProps) {
 	const client = useClient()
 		, self = useRef();
@@ -191,7 +193,11 @@ export default function Select ({
 			{ ...queryVariables, query: search },
 			{ requestPolicy: 'cache-and-network' },
 		).toPromise().then(({ data }) => {
-			callback(get(data, pathToNodes, []));
+			callback(
+				resultsParse
+					? resultsParse(data, query)
+					: get(data, pathToNodes, [])
+			);
 		});
 	}, 350);
 

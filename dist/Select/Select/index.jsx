@@ -26,7 +26,7 @@ const InputComponent = required => (props) => {
         return <components.Input {...props}/>;
     return <components.Input {...props} required={required}/>;
 };
-export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, filterOption, required = false, merged = false, }) {
+export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, filterOption, required = false, merged = false, resultsParse, }) {
     const client = useClient(), self = useRef();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
     const [value, setValue] = useState(defaultValue), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
@@ -96,7 +96,9 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
     let asyncProps, stateManagerProps, creatableProps;
     const searchQuery = useDebounce((query, queryVariables, search, callback) => {
         client.query(query, { ...queryVariables, query: search }, { requestPolicy: 'cache-and-network' }).toPromise().then(({ data }) => {
-            callback(get(data, pathToNodes, []));
+            callback(resultsParse
+                ? resultsParse(data, query)
+                : get(data, pathToNodes, []));
         });
     }, 350);
     if (query) {

@@ -35,5 +35,6 @@ export interface SelectProps {
     filterOption?: ((option: FilterOptionOption<SelectOption>, inputValue: string) => boolean) | null;
     required?: boolean;
     merged?: boolean;
+    resultsParse?: (data: Object, query: string) => ReadonlyArray<SelectOption>;
 }
-export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, disabled, onChange, inline, query, queryVariables, preloadOptions, pathToNodes, queryWhenEmpty, filterOption, required, merged, }: SelectProps): JSX.Element;
+export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, disabled, onChange, inline, query, queryVariables, preloadOptions, pathToNodes, queryWhenEmpty, filterOption, required, merged, resultsParse, }: SelectProps): JSX.Element;

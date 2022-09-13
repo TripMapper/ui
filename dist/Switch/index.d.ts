@@ -3,6 +3,7 @@ export interface SwitchProps {
     className?: string;
     name?: string;
     label?: string;
+    preLabel?: string;
     /** @default false */
     defaultChecked?: boolean;
     /** @default (bool)1 */
