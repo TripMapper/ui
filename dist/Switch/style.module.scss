@@ -4,6 +4,10 @@
 	position: relative;
 	display: flex;
 	align-items: flex-start;
+
+	&.center {
+		justify-content: center;
+	}
 }
 
 .wrap {
@@ -50,6 +54,7 @@
 	background-color: $COLOURS_border;
 
 	overflow: hidden;
+	vertical-align: middle;
 
 	&::before {
 		content: '';

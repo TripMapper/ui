@@ -13,6 +13,11 @@
 	&.hasIcons {
 		padding-top: rem(30);
 	}
+
+	&.sidePadding {
+		padding-left: rem($SIZES_spacer);
+		padding-right: rem($SIZES_spacer);
+	}
 }
 
 .kids {

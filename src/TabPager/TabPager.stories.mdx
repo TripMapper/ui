@@ -1,0 +1,111 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'; import TabPager, { Page } from './index'; import Tabs
+	from '../Tabs'; import { useState } from 'react'; import Button
+	from '../Button'; import Slideover, { Panel } from '../Slideover'; import {
+	UIContextProvider
+} from '../UIContext';
+
+<Meta
+	title="Interface/Tab Pager"
+	component={TabPager}
+	decorators={[
+		(Story) => (
+			<UIContextProvider defaultContext={{}}>
+				<Story />
+			</UIContextProvider>
+		),
+	]}
+/>
+
+# Tab Pager
+
+```jsx
+import { useState } from 'react';
+import Tabs from 'ui/Tabs';
+import TabPager, { Page } from 'ui/TabPager';
+
+const [active, setActive] = useState('create');
+const onTabClick = tab => () => setActive(tab);
+
+<Tabs
+	items={[
+		{ name: 'Create', onClick: onTabClick('create') },
+		{ name: 'Select', onClick: onTabClick('select') },
+	]}
+/>
+
+<TabPager active={active}>
+	<Page handle="create">
+		Page contents
+	</Page>
+	<Page handle="select">
+		Page contents
+	</Page>
+</TabPager>
+```
+
+<Canvas>
+	<Story name="Tab Pager">
+		{() => {
+			const [active, setActive] = useState('create');
+			const onTabClick = tab => () => setActive(tab);
+			return (
+				<>
+					<Tabs
+						items={[
+							{ name: 'Create', onClick: onTabClick('create'), isActive: active === 'create' },
+							{ name: 'Select', onClick: onTabClick('select'), isActive: active === 'select' },
+						]}
+					/>
+					<TabPager active={active}>
+						<Page handle="create">
+							Page contents
+						</Page>
+						<Page handle="select">
+							Page contents
+						</Page>
+					</TabPager>
+				</>
+			);
+		}}
+	</Story>
+</Canvas>
+
+<Canvas>
+	<Story name="In Slideover">
+		{() => {
+			const [open, setOpen] = useState(false)
+				, [activeTab, setActiveTab] = useState('create');
+			const onOpenClick = () => setOpen(true)
+				, onRequestClose = () => setOpen(false)
+				, onTabClick = tab => () => setActiveTab(tab);
+			return (
+				<>
+					<Button onClick={onOpenClick}>Open</Button>
+					<Slideover isOpen={open} onRequestClose={onRequestClose} heading="Slideover with nested tabs">
+						<Panel name="With Nested Tabs" handle="wtabs" hasTabs>
+							<Tabs
+								sidePadding
+								tabsLayoutId="inSlideout"
+								items={[
+									{ name: 'Create', onClick: onTabClick('create'), isActive: activeTab === 'create', tabLayoutId: 'inSlideout' },
+									{ name: 'Select', onClick: onTabClick('select'), isActive: activeTab === 'select', tabLayoutId: 'inSlideout' },
+								]}
+							/>
+							<TabPager active={activeTab} withPadding>
+								<Page handle="create">
+									Page contents
+								</Page>
+								<Page handle="select">
+									Page contents
+								</Page>
+							</TabPager>
+						</Panel>
+						<Panel name="Without" handle="wout">
+							Without
+						</Panel>
+					</Slideover>
+				</>
+			);
+		}}
+	</Story>
+</Canvas>

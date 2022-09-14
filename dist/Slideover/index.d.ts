@@ -17,9 +17,11 @@ export interface SlideoverPanelProps {
     children: ReactNode | SlideoverChild | any;
     /** @default false */
     defaultActive?: boolean;
+    /** @default false */
+    hasTabs?: boolean;
 }
 declare const setAppElement: any;
-declare const Panel: ({ name, handle, icon, children, defaultActive }: SlideoverPanelProps) => any;
+declare const Panel: ({ name, handle, icon, children, defaultActive, hasTabs }: SlideoverPanelProps) => any;
 export { setAppElement, Panel };
 declare function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, wide, }: SlideoverProps): JSX.Element;
 declare namespace Slideover {

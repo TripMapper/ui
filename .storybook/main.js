@@ -44,6 +44,7 @@ module.exports = {
 				item.options.modules = {
 					mode: 'pure',
 					auto: filename => filename.endsWith('.module.scss'),
+					localIdentName: "[path][name]__[local]--[hash:base64:5]",
 				};
 			}
 

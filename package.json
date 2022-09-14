@@ -58,6 +58,7 @@
     "./SubHeading": "./dist/SubHeading/index.jsx",
     "./Switch": "./dist/Switch/index.jsx",
     "./Table": "./dist/Table/index.jsx",
+    "./TabPager": "./dist/TabPager/index.jsx",
     "./Tabs": "./dist/Tabs/index.jsx",
     "./Tag": "./dist/Tag/index.jsx",
     "./Text": "./dist/Text/index.jsx",

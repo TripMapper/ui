@@ -5,5 +5,6 @@ export interface TabItems {
     className?: string;
     items: ReadonlyArray<TabItemProps>;
     children?: ReactNode;
+    sidePadding?: boolean;
 }
-export default function Tabs({ className, items, children, tabsLayoutId }: TabItems): JSX.Element;
+export default function Tabs({ className, items, children, tabsLayoutId, sidePadding, }: TabItems): JSX.Element;

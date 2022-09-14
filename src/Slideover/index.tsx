@@ -1,10 +1,10 @@
 import css from './style.module.scss';
 import Modal from 'react-modal';
 import React, {
-	Children, LegacyRef,
+	Children,
 	ReactNode,
 	useEffect, useId,
-	useMemo, useRef,
+	useMemo,
 	useState
 } from 'react';
 import { useUIContext } from '../UIContext';
@@ -12,8 +12,8 @@ import { cx } from '../util';
 import SlideoverEdit from '../svg/slideover-edit.svg';
 import SlideoverDelete from '../svg/slideover-delete.svg';
 import SlideoverClose from '../svg/slideover-close.svg';
-import { AnimatePresence, motion } from 'framer-motion';
 import Tabs from '../Tabs';
+import TabPager, { Page } from '../TabPager';
 
 type SlideoverChild = (depth: number, isTop: boolean) => ReactNode;
 type SlideoverHeading = (tabs: ReactNode) => ReactNode;
@@ -35,10 +35,12 @@ export interface SlideoverPanelProps {
 	children: ReactNode | SlideoverChild | any;
 	/** @default false */
 	defaultActive?: boolean;
+	/** @default false */
+	hasTabs?: boolean;
 }
 
 const setAppElement = (Modal as any).setAppElement;
-const Panel = ({ name, handle, icon = null, children, defaultActive = false } : SlideoverPanelProps) => children;
+const Panel = ({ name, handle, icon = null, children, defaultActive = false, hasTabs = false } : SlideoverPanelProps) => children;
 
 export { setAppElement, Panel };
 
@@ -53,12 +55,11 @@ export default function Slideover ({
 		, [depth, setDepth] = useState(0)
 		, { openSlideover, closeSlideover, slideoverDepth } = useUIContext();
 
-	const [activeTab, _setActiveTab] = useState('')
-		, [flip, setFlip] = useState(1);
+	const [activeTab, setActiveTab] = useState('');
 
 	const offset = slideoverDepth - depth - 1;
 
-	const { tabs, handles, contents, filteredChildren } = useMemo(() => {
+	const { tabs, handles, contents, filteredChildren, panelHasTabs } = useMemo(() => {
 		if (!children)
 			return { tabs: [], handles: [], contents: {} };
 
@@ -94,27 +95,33 @@ export default function Slideover ({
 
 		let active = '';
 
-		const { tabs, handles, contents, filteredChildren } = Children.toArray(children as ReactNode).reduce((set, child) => {
-			const { name, icon, handle, children, defaultActive } = (child as any).props as SlideoverPanelProps;
+		const { tabs, handles, contents, filteredChildren, panelHasTabs } = Children.toArray(children as ReactNode).reduce((set, child) => {
+			const { name, icon, handle, children, defaultActive, hasTabs } = (child as any).props as SlideoverPanelProps;
 
 			if (activeTab === '' && defaultActive)
 				active = handle;
 
 			set.tabs.push({ name, icon, onClick: () => setActiveTab(handle), isActive: handle === activeTab });
 			set.handles.push(handle);
-			set.contents[handle] = typeof children === 'function' ? children(depth, offset === 0) : children;
+			set.contents.push(
+				<Page key={handle} handle={handle}>
+					{typeof children === 'function' ? children(depth, offset === 0) : children}
+				</Page>
+			);
+			set.panelHasTabs[handle] = hasTabs;
 
 			return set;
-		}, { tabs: [], handles: [], contents: {}, filteredChildren: null });
+		}, { tabs: [], handles: [], contents: [], filteredChildren: null, panelHasTabs: {} });
 
 		if (activeTab === '')
-			_setActiveTab(active || handles[0]);
+			setActiveTab(active || handles[0]);
 
 		return {
 			tabs,
 			handles,
 			contents,
 			filteredChildren,
+			panelHasTabs,
 		};
 	}, [children, depth, offset, activeTab]);
 
@@ -122,15 +129,6 @@ export default function Slideover ({
 		if (wasOpen && !isOpen) closeSlideover();
 		setWasOpen(isOpen);
 	}, [isOpen]);
-
-	const setActiveTab = tab => {
-		const a = handles.indexOf(activeTab)
-			, b = handles.indexOf(tab);
-
-		setFlip(a > b ? -1 : 1);
-
-		requestAnimationFrame(() => _setActiveTab(tab));
-	};
 
 	return (
 		<Modal
@@ -184,18 +182,12 @@ export default function Slideover ({
 			)}
 			<div className={cx(css.content, handles.length > 0 && css.hasTabs)}>
 				{handles.length > 0 && (
-					<AnimatePresence initial={false}>
-						<motion.div
-							key={activeTab}
-							className={css.tab}
-							initial={{ x: `${100 * flip}%` }}
-							animate={{ x: 0 }}
-							exit={{ x: `${-100 * flip}%` }}
-							transition={{ type: 'tween', ease: [0.250, 0.100, 0.250, 1.000], duration: 0.5 }}
-						>
-							{contents[activeTab] || null}
-						</motion.div>
-					</AnimatePresence>
+					<TabPager
+						active={activeTab}
+						children={contents}
+						className={css.pager}
+						pageClassName={handle => cx(css.tab, panelHasTabs[handle] && css.hasTabs)}
+					/>
 				)}
 				{filteredChildren}
 			</div>

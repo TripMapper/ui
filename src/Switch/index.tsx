@@ -14,6 +14,7 @@ export interface SwitchProps {
 	value?: string | number;
 	/** @default (bool)0 */
 	valueDefault?: string | number;
+	center?: boolean;
 
 	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
 }
@@ -27,8 +28,9 @@ const Switch = forwardRef<HTMLLabelElement, SwitchProps>(({
 	onChange,
 	value = '(bool)1',
 	valueDefault = '(bool)0',
+	center = false,
 }, ref) => (
-	<label ref={ref} className={cx(className, css.switch)}>
+	<label ref={ref} className={cx(className, css.switch, center && css.center)}>
 		{preLabel && <span className={css.label}>{preLabel}</span>}
 
 		<span className={css.wrap}>
