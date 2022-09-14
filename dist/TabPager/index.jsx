@@ -21,7 +21,7 @@ export default function TabPager({ active, children, className, pageClassName, w
     useEffect(() => {
         const a = handles.indexOf(_active), b = handles.indexOf(active);
         setFlip(a > b ? -1 : 1);
-        setTimeout(() => setActive(active), 0);
+        setTimeout(() => setActive(active), 15);
     }, [active, handles]);
     return (<div className={cx(css.content, className)}>
 			<AnimatePresence initial={false}>

@@ -51,7 +51,7 @@ export default function TabPager ({
 			, b = handles.indexOf(active);
 
 		setFlip(a > b ? -1 : 1);
-		setTimeout(() => setActive(active), 0);
+		setTimeout(() => setActive(active), 15);
 	}, [active, handles]);
 
 	return (

@@ -26,7 +26,7 @@ const InputComponent = required => (props) => {
         return <components.Input {...props}/>;
     return <components.Input {...props} required={required}/>;
 };
-export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, pathToNodes, queryWhenEmpty = false, filterOption, required = false, merged = false, resultsParse, }) {
+export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, queryWhenEmpty = false, pathToNodes, filterOption, required = false, merged = false, resultsParse, }) {
     const client = useClient(), self = useRef();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
     const [value, setValue] = useState(defaultValue), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);

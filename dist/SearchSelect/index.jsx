@@ -13,7 +13,7 @@ const Input = props => <components.Input {...props} isHidden={false}/>;
 const Option = (childRenderer = (d, c) => c) => ({ innerProps, children, isFocused, isSelected, data }) => (<div {...innerProps} className={cx(css.item, isFocused && css.focused, isSelected && css.selected)}>
 		{childRenderer(data, children)}
 	</div>);
-export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds = [], }) {
+export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds = [], preloadOptions = false, queryWhenEmpty = false, }) {
     const client = useClient();
     const [inputValue, setInputValue] = useState(''), [cachedOpts, setCachedOpts] = useState([]);
     const searchQuery = useCallback(debounce((query, excludeIds, search, callback) => client.query(query, { query: search, excludeIds }, { requestPolicy: 'cache-and-network' }).toPromise().then(({ data }) => {
@@ -22,7 +22,7 @@ export default function SearchSelect({ placeholder, pathToNodes, onSelect, query
         callback(opts);
     }), 350), []);
     const search = (search, callback) => {
-        if (search.trim() === '') {
+        if (search.trim() === '' && !queryWhenEmpty) {
             setCachedOpts([]);
             return callback([]);
         }
@@ -36,7 +36,7 @@ export default function SearchSelect({ placeholder, pathToNodes, onSelect, query
         onSelect(value);
     };
     const OptEl = useMemo(() => Option(itemRenderer), [itemRenderer]);
-    return (<ReactSelect defaultOptions={cachedOpts} placeholder={placeholder ?? 'Search...'} cacheOptions loadOptions={search} menuIsOpen escapeClearsValue={false} backspaceRemovesValue={false} controlShouldRenderValue={false} hideSelectedOptions={false} closeMenuOnSelect={false} closeMenuOnScroll={false} blurInputOnSelect={false} maxMenuHeight={null} isClearable={false} onInputChange={onInputChange} inputValue={inputValue} components={{
+    return (<ReactSelect defaultOptions={preloadOptions ? true : cachedOpts} placeholder={placeholder ?? 'Search...'} cacheOptions loadOptions={search} menuIsOpen escapeClearsValue={false} backspaceRemovesValue={false} controlShouldRenderValue={false} hideSelectedOptions={false} closeMenuOnSelect={false} closeMenuOnScroll={false} blurInputOnSelect={false} maxMenuHeight={null} isClearable={false} onInputChange={onInputChange} inputValue={inputValue} components={{
             Menu,
             Input,
             Option: OptEl,

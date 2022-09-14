@@ -74,6 +74,11 @@ export default function Repeater ({
 	};
 
 	const onDeleteClick = (index, id) => () => {
+		if (!id) {
+			console.warn('Tried deleting repeater value without ID!');
+			return;
+		}
+
 		_setValues(v => {
 			const n = [...v];
 			n.splice(index, 1);
@@ -123,7 +128,7 @@ export default function Repeater ({
 
 									{i === fields.length - 1 && (
 										<div className={css.controls}>
-											<button type="button" title="Delete" onClick={onDeleteClick(index, byNodeId ? value.nodeId : value.id)}>
+											<button type="button" title="Delete" onClick={onDeleteClick(index, byNodeId ? value.nodeId ?? value.id : value.id)}>
 												<RedX/>
 											</button>
 										</div>

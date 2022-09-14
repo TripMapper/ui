@@ -11,6 +11,8 @@ export interface SearchSelectProps {
     onSelect: (option: SelectOptionWithData) => void;
     itemRenderer?: (data: SelectOptionWithData, children: ReactNode) => ReactNode;
     excludeIds: readonly string[];
+    preloadOptions?: boolean;
+    queryWhenEmpty?: boolean;
 }
-export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds, }: SearchSelectProps): JSX.Element;
+export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds, preloadOptions, queryWhenEmpty, }: SearchSelectProps): JSX.Element;
 export {};
