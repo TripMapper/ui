@@ -24,6 +24,7 @@ export interface SearchSelectProps {
 	excludeIds: readonly string[];
 	preloadOptions?: boolean;
 	queryWhenEmpty?: boolean;
+	parseOption?: (data: any) => SelectOption;
 }
 
 const Menu = props => <components.Menu {...props} className={cx(cssPortal.menu, css.menu)} />;
@@ -50,6 +51,7 @@ export default function SearchSelect ({
 	excludeIds = [],
 	preloadOptions = false,
 	queryWhenEmpty = false,
+	parseOption = o => o,
 } : SearchSelectProps) {
 	const client = useClient();
 	const [inputValue, setInputValue] = useState('')
@@ -62,7 +64,7 @@ export default function SearchSelect ({
 				{ query: search, excludeIds },
 				{ requestPolicy: 'cache-and-network' }
 			).toPromise().then(({ data }) => {
-				const opts = get(data, pathToNodes, []);
+				const opts = get(data, pathToNodes, []).map(parseOption);
 				setCachedOpts(opts);
 				callback(opts);
 			}),

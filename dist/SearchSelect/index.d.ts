@@ -13,6 +13,7 @@ export interface SearchSelectProps {
     excludeIds: readonly string[];
     preloadOptions?: boolean;
     queryWhenEmpty?: boolean;
+    parseOption?: (data: any) => SelectOption;
 }
-export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds, preloadOptions, queryWhenEmpty, }: SearchSelectProps): JSX.Element;
+export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds, preloadOptions, queryWhenEmpty, parseOption, }: SearchSelectProps): JSX.Element;
 export {};

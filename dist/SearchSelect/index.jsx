@@ -13,11 +13,11 @@ const Input = props => <components.Input {...props} isHidden={false}/>;
 const Option = (childRenderer = (d, c) => c) => ({ innerProps, children, isFocused, isSelected, data }) => (<div {...innerProps} className={cx(css.item, isFocused && css.focused, isSelected && css.selected)}>
 		{childRenderer(data, children)}
 	</div>);
-export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds = [], preloadOptions = false, queryWhenEmpty = false, }) {
+export default function SearchSelect({ placeholder, pathToNodes, onSelect, query, itemRenderer, excludeIds = [], preloadOptions = false, queryWhenEmpty = false, parseOption = o => o, }) {
     const client = useClient();
     const [inputValue, setInputValue] = useState(''), [cachedOpts, setCachedOpts] = useState([]);
     const searchQuery = useCallback(debounce((query, excludeIds, search, callback) => client.query(query, { query: search, excludeIds }, { requestPolicy: 'cache-and-network' }).toPromise().then(({ data }) => {
-        const opts = get(data, pathToNodes, []);
+        const opts = get(data, pathToNodes, []).map(parseOption);
         setCachedOpts(opts);
         callback(opts);
     }), 350), []);
