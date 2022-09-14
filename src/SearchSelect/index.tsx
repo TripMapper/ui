@@ -22,6 +22,8 @@ export interface SearchSelectProps {
 	onSelect: (option: SelectOptionWithData) => void;
 	itemRenderer?: (data: SelectOptionWithData, children: ReactNode) => ReactNode;
 	excludeIds: readonly string[];
+	preloadOptions?: boolean;
+	queryWhenEmpty?: boolean;
 }
 
 const Menu = props => <components.Menu {...props} className={cx(cssPortal.menu, css.menu)} />;
@@ -46,6 +48,8 @@ export default function SearchSelect ({
 	query,
 	itemRenderer,
 	excludeIds = [],
+	preloadOptions = false,
+	queryWhenEmpty = false,
 } : SearchSelectProps) {
 	const client = useClient();
 	const [inputValue, setInputValue] = useState('')
@@ -68,7 +72,7 @@ export default function SearchSelect ({
 	);
 
 	const search = (search, callback) => {
-		if (search.trim() === '') {
+		if (search.trim() === '' && !queryWhenEmpty) {
 			setCachedOpts([]);
 			return callback([]);
 		}
@@ -88,7 +92,7 @@ export default function SearchSelect ({
 
 	return (
 		<ReactSelect
-			defaultOptions={cachedOpts}
+			defaultOptions={preloadOptions ? true : cachedOpts}
 			placeholder={placeholder ?? 'Search...'}
 			cacheOptions
 			loadOptions={search}

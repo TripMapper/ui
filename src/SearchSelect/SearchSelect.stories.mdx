@@ -31,6 +31,8 @@ import SearchSelect from 'ui/SearchSelect';
 	<Story name="SearchSelect">
 		<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
 			<SearchSelect
+				preloadOptions
+				queryWhenEmpty
 				pathToNodes="tripsList"
 				query={gql`
 					query Search ($query: String) {
