@@ -67,6 +67,7 @@
     "./TextArea": "./dist/TextArea/index.jsx",
     "./TimezoneCard": "./dist/TimezoneCard/index.jsx",
     "./Title": "./dist/Title/index.jsx",
+    "./TokenTextarea": "./dist/TokenTextarea/index.jsx",
     "./UIContext": "./dist/UIContext/index.jsx",
     "./Upload": "./dist/Upload/index.jsx",
     "./UrlToLink": "./dist/UrlToLink/index.jsx",

@@ -1,0 +1,53 @@
+@import "../variables";
+
+.wrap {
+	position: relative;
+	display: block;
+}
+
+.input {
+	color: transparent;
+	caret-color: $COLOURS_text;
+
+	&::selection {
+		color: transparent;
+	}
+}
+
+.preview {
+	position: absolute;
+	z-index: 2;
+	top: rem(1);
+	right: rem(1);
+	bottom: rem(1);
+	left: rem(1);
+
+	padding: rem(16);
+
+	color: $COLOURS_text;
+	font-size: rem(16);
+	font-weight: bold;
+	line-height: 1.5em;
+	pointer-events: none;
+	white-space: pre-wrap;
+
+	> span {
+		color: $COLOURS_primary;
+
+		&::before,
+		&::after {
+			color: change-color($COLOURS_text, $alpha: 0.25);
+		}
+
+		&::before { content: '[' }
+		&::after  { content: ']' }
+
+		del {
+			color: $COLOURS_danger;
+		}
+
+		span[data-join] {
+			color: $COLOURS_purple;
+		}
+	}
+}

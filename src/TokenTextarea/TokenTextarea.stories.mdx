@@ -1,0 +1,35 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import TokenTextarea
+	from './index'; import Form from '../Form'; import Button from '../Button';
+
+<Meta
+	title="Form/Token Textarea"
+	component={TokenTextarea}
+/>
+
+# Token Textarea
+
+```jsx
+import TokenTextarea from 'ui/TokenTextarea';
+
+<TokenTextarea />
+```
+
+<Canvas>
+	<Story name="Token Textarea">
+		<Form onSubmit={console.log}>
+			<TokenTextarea
+				validTags={['clientFirstName']}
+				defaultValue={`Hello [clientFirstName],\n
+It was great to speak to your earlier about your travel requirements.\n
+I’ve put together the following itinerary based on our discussion, plus a few little extra surprised I think you will love!\n
+If you have any questions, feel free to reply to this email or call us on [agentPhone or orgPhone], and we’ll get back to you asap.\n
+Please note that these prices are only guaranteed for the next 24 hours, so if you need to take some time to think it over, prices may increase. This is mainly due to the cost fluctuation with flights.\n
+Many thanks,
+[tripAgentFirstName] @ [orgName]`}
+			/>
+			<Button>Submit</Button>
+		</Form>
+	</Story>
+</Canvas>
+
+<ArgsTable of={TokenTextarea} />
