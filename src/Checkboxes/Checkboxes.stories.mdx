@@ -1,4 +1,5 @@
-import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Checkboxes from './index';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Checkboxes from './index'; import Form
+	from '../Form'; import Button from '../Button';
 
 <Meta
 	title="Form/Checkboxes"
@@ -18,14 +19,19 @@ import Checkboxes from 'ui/Checkboxes';
 
 <Canvas>
 	<Story name="Checkboxes">
-		<Checkboxes
-			name="boxes[]"
-			options={[
-				{ value: 1, label: 'Option 1' },
-				{ value: 2, label: 'Option 2' },
-				{ value: 3, label: 'Option 3' },
-			]}
-		/>
+		<Form onSubmit={console.log}>
+			<Checkboxes
+				name="boxes[]"
+				options={[
+					{ value: 1, label: 'Option 1' },
+					{ value: 2, label: 'Option 2' },
+					{ value: 3, label: 'Option 3' },
+				]}
+				required={2}
+			/>
+			<br/>
+			<Button>Submit</Button>
+		</Form>
 	</Story>
 </Canvas>
 

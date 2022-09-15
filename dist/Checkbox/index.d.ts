@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Ref } from 'react';
 export interface CheckboxProps {
     name: string;
     /** @default "(bool)1" */
@@ -12,5 +12,6 @@ export interface CheckboxProps {
     /** @default false */
     defaultChecked?: boolean;
     label?: string | ReactNode;
+    inputRef?: Ref<HTMLInputElement> | undefined;
 }
-export default function Checkbox({ name, value, includeFalsyValue, falsyValue, required, defaultChecked, label, }: CheckboxProps): JSX.Element;
+export default function Checkbox({ name, value, includeFalsyValue, falsyValue, required, defaultChecked, label, inputRef, }: CheckboxProps): JSX.Element;

@@ -43,8 +43,8 @@
 }
 
 .label {
-	padding-top: rem(1.5);
 	font-size: rem(14);
+	transform: translateY(#{rem(1.5)});
 
 	small {
 		color: change-color($COLOURS_text, $alpha: 0.5);

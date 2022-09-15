@@ -1,5 +1,5 @@
 import css from './style.module.scss';
-import { ReactNode } from 'react';
+import { ReactNode, Ref } from 'react';
 
 export interface CheckboxProps {
 	name: string;
@@ -14,6 +14,7 @@ export interface CheckboxProps {
 	/** @default false */
 	defaultChecked?: boolean;
 	label?: string | ReactNode;
+	inputRef?: Ref<HTMLInputElement> | undefined;
 }
 
 export default function Checkbox ({
@@ -24,6 +25,7 @@ export default function Checkbox ({
 	required = false,
 	defaultChecked = false,
 	label,
+	inputRef = null,
 } : CheckboxProps) {
 	return (
 		<label className={css.label}>
@@ -35,6 +37,7 @@ export default function Checkbox ({
 				/>
 			)}
 			<input
+				ref={inputRef}
 				type="checkbox"
 				name={name}
 				value={value}
