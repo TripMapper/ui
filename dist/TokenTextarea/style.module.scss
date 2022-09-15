@@ -6,11 +6,11 @@
 }
 
 .input {
-	color: transparent;
+	color: transparent !important;
 	caret-color: $COLOURS_text;
 
 	&::selection {
-		color: transparent;
+		color: transparent !important;
 	}
 }
 

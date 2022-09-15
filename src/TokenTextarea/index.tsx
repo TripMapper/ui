@@ -1,10 +1,9 @@
 import css from './style.module.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import TextArea from '../TextArea';
 
 function parseTags (tags : string, validTags : string[], hasInvalid) : string {
 	validTags = validTags.map(t => t.toLowerCase());
-	hasInvalid.current = false;
 
 	return tags.split(' ').map(tag => {
 		if (tag.toLowerCase() === 'or')
@@ -24,13 +23,13 @@ export default function TokenTextarea ({
 	defaultValue,
 	validTags,
 }) {
-	const hasInvalid = useRef()
+	const hasInvalid = useRef(false)
 		, self = useRef();
 	const [value, setValue] = useState(defaultValue);
 
 	const onInput = e => setValue(e.target.value);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		(self.current as HTMLTextAreaElement)?.setCustomValidity(
 			hasInvalid.current ? 'Please fix any invalid tokens.' : ''
 		);
@@ -48,10 +47,14 @@ export default function TokenTextarea ({
 			<div
 				className={css.preview}
 				dangerouslySetInnerHTML={{
-					__html: (value ?? '').replace(
-						/\[(.*?)]/ig,
-						(_,m) => `<span>${parseTags(m, validTags, hasInvalid)}</span>`
-					),
+					__html: (() => {
+						hasInvalid.current = false;
+
+						return (value ?? '').replace(
+							/\[(.*?)]/ig,
+							(_,m) => `<span>${parseTags(m, validTags, hasInvalid)}</span>`
+						);
+					})(),
 				}}
 			/>
 		</label>
