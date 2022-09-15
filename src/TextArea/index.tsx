@@ -46,7 +46,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
 	useEffect(() => {
 		if (!self.current) return;
 		self.current.dispatchEvent(new Event('input', {bubbles:true}));
-	}, [self]);
+	}, [self, props?.defaultValue]);
 
 	return (
 		<textarea

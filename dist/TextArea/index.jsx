@@ -16,7 +16,7 @@ const TextArea = forwardRef(({ className, onInput, rows = 4, ...props }, ref) =>
         if (!self.current)
             return;
         self.current.dispatchEvent(new Event('input', { bubbles: true }));
-    }, [self]);
+    }, [self, props?.defaultValue]);
     return (<textarea {...props} onInput={_onInput} className={cx(css.textArea, className)} rows={rows} ref={mergeRefs([ref, self])}/>);
 });
 export default TextArea;
