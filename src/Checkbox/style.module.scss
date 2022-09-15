@@ -1,0 +1,52 @@
+@import "../variables";
+
+.label {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+
+	input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: rem(18);
+		height: rem(18);
+		cursor: pointer;
+
+		appearance: none;
+		background: none;
+		border: none;
+		border-radius: rem($SIZES_buttonBorderRadiusSmall);
+	}
+}
+
+.checkbox {
+	display: block;
+	width: rem(18);
+	height: rem(18);
+
+	background: #fff url(../svg/check.svg) center no-repeat;
+	border: 1px solid $COLOURS_border;
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+	border-radius: rem($SIZES_buttonBorderRadiusSmall);
+
+	transition: background-color 0.1s ease, border-color 0.1s ease;
+
+	&:not(:last-child) {
+		margin-right: rem(12);
+	}
+
+	input:checked + & {
+		background-color: $COLOURS_text;
+		border-color: #000;
+	}
+}
+
+.label {
+	font-size: rem(14);
+
+	small {
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(14);
+	}
+}

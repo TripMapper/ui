@@ -1,0 +1,9 @@
+@import "../variables";
+
+.checkboxes {
+	list-style: none;
+
+	li:not(:last-child) {
+		margin-bottom: rem(7);
+	}
+}

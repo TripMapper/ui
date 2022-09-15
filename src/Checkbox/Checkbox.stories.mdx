@@ -1,0 +1,25 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import Checkbox from './index';
+
+<Meta
+	title="Form/Checkbox"
+	component={Checkbox}
+/>
+
+# Checkbox
+
+```jsx
+import Checkbox from 'ui/Checkbox';
+
+<Checkbox />
+```
+
+<Canvas>
+	<Story name="Checkbox">
+		<Checkbox
+			name="example"
+			label={<>An example checkbox&nbsp;<small>(without falsy value)</small></>}
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={Checkbox} />
