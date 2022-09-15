@@ -25,7 +25,7 @@
 	width: rem(18);
 	height: rem(18);
 
-	background: #fff url(../svg/check.svg) center no-repeat;
+	background: #fff url(../svg/check_ui.svg) center no-repeat;
 	border: 1px solid $COLOURS_border;
 	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
 	border-radius: rem($SIZES_buttonBorderRadiusSmall);
@@ -43,6 +43,7 @@
 }
 
 .label {
+	padding-top: rem(1.5);
 	font-size: rem(14);
 
 	small {
