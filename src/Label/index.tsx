@@ -7,7 +7,7 @@ export interface LabelInputProps {
 	label: string;
 	children: ReactNode;
 	El?: "label" | "div";
-	instructions?: string;
+	instructions?: string | ReactNode;
 	inline?: boolean;
 }
 
