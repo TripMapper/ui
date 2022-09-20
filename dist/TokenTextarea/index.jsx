@@ -3,9 +3,14 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import TextArea from '../TextArea';
 function parseTags(tags, validTags, hasInvalid) {
     validTags = validTags.map(t => t.toLowerCase());
-    return tags.split(' ').map(tag => {
+    return tags.replace(/(["'])(?:(?=(\\?))\2.)*?\1/, a => {
+        return a.replace(/\s/g, '§');
+    }).split(' ').map(tag => {
+        tag = tag.replace(/§/g, ' ');
         if (tag.toLowerCase() === 'or')
             return '<span data-join>or</span>';
+        if (/"([^"\\]|\\.)*"/gus.test(tag))
+            return `<span data-string>${tag}</span>`;
         if (validTags.indexOf(tag.toLowerCase()) === -1) {
             hasInvalid.current = true;
             return `<del>${tag}</del>`;
