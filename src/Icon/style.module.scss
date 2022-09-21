@@ -43,3 +43,13 @@
 	width: rem(24);
 	height: rem(24);
 }
+
+
+.xxl {
+	width: rem(40);
+	height: rem(40);
+
+	use {
+		stroke-width: 3;
+	}
+}

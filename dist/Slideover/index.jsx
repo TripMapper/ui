@@ -11,7 +11,7 @@ import TabPager, { Page } from '../TabPager';
 const setAppElement = Modal.setAppElement;
 const Panel = ({ name, handle, icon = null, children, defaultActive = false, hasTabs = false }) => children;
 export { setAppElement, Panel };
-export default function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, contentClassName, wide = false, medium = false, allowClickThrough = false, stacks = true, }) {
+export default function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, overlayClassName, contentClassName, wide = false, medium = false, allowClickThrough = false, stacks = true, }) {
     const tabsLayoutId = useId();
     const [wasOpen, setWasOpen] = useState(isOpen), [depth, setDepth] = useState(0), { openSlideover, closeSlideover, slideoverDepth } = useUIContext();
     const [activeTab, setActiveTab] = useState('');
@@ -86,7 +86,11 @@ export default function Slideover({ isOpen, onRequestClose, heading, onEditClick
             base: cx(css.slideover, offset === 0 && css.top, wide && css.wide, medium && css.medium),
             afterOpen: css.afterOpen,
             beforeClose: css.beforeClose,
-        }} overlayClassName={cx(css.overlay, allowClickThrough && css.allowClickThrough)}>
+        }} overlayClassName={{
+            base: cx(css.overlay, allowClickThrough && css.allowClickThrough, overlayClassName),
+            afterOpen: overlayClassName ? css.afterOpen : '',
+            beforeClose: overlayClassName ? css.beforeClose : '',
+        }}>
 			<div className={css.controls}>
 				{onDeleteClick && <button title="Delete" onClick={onDeleteClick}><SlideoverDelete /></button>}
 				{onEditClick && <button title="Edit" onClick={onEditClick}><SlideoverEdit /></button>}

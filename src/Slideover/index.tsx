@@ -31,6 +31,7 @@ export interface SlideoverProps {
 	allowClickThrough?: boolean;
 	/** @default true */
 	stacks?: boolean;
+	overlayClassName?: string;
 	contentClassName?: string;
 }
 
@@ -53,7 +54,7 @@ export { setAppElement, Panel };
 export default function Slideover ({
 	isOpen, onRequestClose,
 	heading, onEditClick, onDeleteClick,
-	children, contentClassName,
+	children, overlayClassName, contentClassName,
 	wide = false, medium = false,
 	allowClickThrough = false, stacks = true,
 } : SlideoverProps) {
@@ -162,7 +163,11 @@ export default function Slideover ({
 				afterOpen: css.afterOpen,
 				beforeClose: css.beforeClose,
 			}}
-			overlayClassName={cx(css.overlay, allowClickThrough && css.allowClickThrough)}
+			overlayClassName={{
+				base: cx(css.overlay, allowClickThrough && css.allowClickThrough, overlayClassName),
+				afterOpen: overlayClassName ? css.afterOpen : '',
+				beforeClose: overlayClassName ? css.beforeClose : '',
+			}}
 		>
 			<div className={css.controls}>
 				{onDeleteClick && <button title="Delete" onClick={onDeleteClick}><SlideoverDelete /></button>}

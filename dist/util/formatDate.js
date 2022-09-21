@@ -8,7 +8,7 @@ export default function formatDate(date, format = 'short') {
         return '!!Error: Invalid Date!!';
     switch (format) {
         case 'long':
-            return date.toLocaleDateString(locale, { dateStyle: 'short' });
+            return date.toLocaleDateString(locale, { dateStyle: 'long' });
         case 'short':
         default:
             return date.toLocaleDateString(locale, { dateStyle: 'short' });

@@ -17,6 +17,7 @@ export interface IconProps {
 	m?: boolean;
 	l?: boolean;
 	xl?: boolean;
+	xxl?: boolean;
 }
 
 export default function Icon ({
@@ -26,6 +27,7 @@ export default function Icon ({
 	m,
 	l = false,
 	xl = false,
+	xxl = false,
 } : IconProps) {
 	const [self, setSelf] = useState(null);
 	const svgPath = useMemo(() => {
@@ -40,6 +42,7 @@ export default function Icon ({
 		m && css.m,
 		l && css.l,
 		xl && css.xl,
+		xxl && css.xxl,
 	);
 
 	return (

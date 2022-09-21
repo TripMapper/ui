@@ -87,6 +87,14 @@
 	width: 100vw;
 	height: 100vh;
 	background-color: transparent;
+
+	&.afterOpen::before {
+		opacity: 1;
+	}
+
+	&.beforeClose::before {
+		opacity: 0;
+	}
 }
 
 .header {

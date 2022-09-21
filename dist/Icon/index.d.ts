@@ -11,5 +11,6 @@ export interface IconProps {
     m?: boolean;
     l?: boolean;
     xl?: boolean;
+    xxl?: boolean;
 }
-export default function Icon({ of, xs, s, m, l, xl, }: IconProps): JSX.Element;
+export default function Icon({ of, xs, s, m, l, xl, xxl, }: IconProps): JSX.Element;

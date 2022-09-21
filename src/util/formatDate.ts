@@ -17,7 +17,7 @@ export default function formatDate (
 
 	switch (format) {
 		case 'long':
-			return date.toLocaleDateString(locale, { dateStyle: 'short' });
+			return date.toLocaleDateString(locale, { dateStyle: 'long' });
 		case 'short':
 		default:
 			return date.toLocaleDateString(locale, { dateStyle: 'short' });

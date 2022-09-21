@@ -14,6 +14,7 @@ export interface SlideoverProps {
     allowClickThrough?: boolean;
     /** @default true */
     stacks?: boolean;
+    overlayClassName?: string;
     contentClassName?: string;
 }
 export interface SlideoverPanelProps {
@@ -29,7 +30,7 @@ export interface SlideoverPanelProps {
 declare const setAppElement: any;
 declare const Panel: ({ name, handle, icon, children, defaultActive, hasTabs }: SlideoverPanelProps) => any;
 export { setAppElement, Panel };
-declare function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, contentClassName, wide, medium, allowClickThrough, stacks, }: SlideoverProps): JSX.Element;
+declare function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, overlayClassName, contentClassName, wide, medium, allowClickThrough, stacks, }: SlideoverProps): JSX.Element;
 declare namespace Slideover {
     var setAppElement: any;
 }
