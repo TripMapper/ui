@@ -6,6 +6,7 @@ import Text from './Text';
 import { forwardRef } from 'react';
 import Dashed from './Dashed';
 import Flat from './Flat';
+import Danger from './Danger';
 
 export interface ButtonProps extends GenericButtonProps {
 	/** @default false */
@@ -18,6 +19,8 @@ export interface ButtonProps extends GenericButtonProps {
 	dashed?: boolean;
 	/** @default false */
 	flat?: boolean;
+	/** @default false */
+	danger?: boolean;
 
 	className?: string;
 }
@@ -28,6 +31,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
 	text = false,
 	dashed = false,
 	flat = false,
+	danger = false,
 	className,
 	...props
 } : ButtonProps, ref) => {
@@ -39,6 +43,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
 	if (text) return <Text {...props} ref={ref} />;
 	if (dashed) return <Dashed {...props} ref={ref} />;
 	if (flat) return <Flat {...props} ref={ref} />;
+	if (danger) return <Danger {...props} ref={ref} />;
 	return <Primary {...props} ref={ref} />;
 });
 

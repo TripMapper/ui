@@ -1,4 +1,5 @@
 /// <reference types="react" />
+export declare const substituteUrls: (text: any) => any;
 export interface TextProps {
     defaultValue?: string;
     onChange?: (value: string) => void;

@@ -5,14 +5,14 @@ import { cx } from '../util';
 import Prose from '../Prose';
 
 const URL_RX = /((?:http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+(?:[\-.][a-z0-9]+)*\.[a-z]{2,63}(?::[0-9]{1,5})?(?:\/\S*)?)/g;
-const substituteUrls = text => text.split(URL_RX).filter(Boolean).map((s, i) => {
+export const substituteUrls = text => text.split(URL_RX).filter(Boolean).map((s, i) => {
 	const key = `${s}_${i}`;
 
 	// This is a bit trash, but it's the only full-proof way of checking
 	// if it's a valid URL :(
 	if (URL_RX.test(s)) {
 		try {
-			if (s.indexOf(/https?:\/\//) === -1)
+			if (!/^https?:\/\//gi.test(s))
 				s = 'https://' + s;
 
 			new URL(s);

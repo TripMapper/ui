@@ -1,0 +1,13 @@
+@import "../../variables";
+
+.danger {
+	color: $COLOURS_danger;
+	background: $COLOURS_dangerLightest;
+	border: none;
+	box-shadow: none;
+
+	&::before {
+		background: $COLOURS_dangerLightest;
+		box-shadow: none;
+	}
+}

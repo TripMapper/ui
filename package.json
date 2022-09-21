@@ -50,6 +50,8 @@
     "./Prose": "./dist/Prose/index.jsx",
     "./Radio": "./dist/Radio/index.jsx",
     "./Rating": "./dist/Rating/index.jsx",
+    "./ReadonlyBoard": "./dist/ReadonlyBoard/index.jsx",
+    "./ReadonlyCardSlideover": "./dist/ReadonlyCardSlideover/index.jsx",
     "./RegionSelect": "./dist/RegionSelect/index.jsx",
     "./Repeater": "./dist/Repeater/index.jsx",
     "./SearchSelect": "./dist/SearchSelect/index.jsx",

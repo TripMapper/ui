@@ -1,0 +1,48 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import ReadonlyBoard
+	, { READONLY_BOARD_FRAGMENT } from './index'; import { createClient, gql, Provider, useQuery } from 'urql'; import {
+	UIContextProvider
+} from '../UIContext';
+
+<Meta
+	title="Board/Readonly Board"
+	component={ReadonlyBoard}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<UIContextProvider defaultContext={{}}>
+					<Story />
+				</UIContextProvider>
+			</Provider>
+		),
+	]}
+	parameters={{ layout: 'fullscreen' }}
+/>
+
+# Readonly Board
+
+```jsx
+import ReadonlyBoard from 'ui/ReadonlyBoard';
+
+<ReadonlyBoard />
+```
+
+<Canvas>
+	<Story name="ReadonlyBoard">
+		{() => {
+			const [{ data }] = useQuery({
+				query: gql`
+					query GetTrip ($id: UUID!) {
+						trip (id: $id) {
+							...ReadonlyBoard
+						}
+                	}
+					${READONLY_BOARD_FRAGMENT}
+				`,
+				variables: { id: 'c1de586c-f5e4-11eb-a34b-036a6e52c95f' }
+			});
+			return <ReadonlyBoard trip={data?.trip} />;
+		}}
+	</Story>
+</Canvas>
+
+<ArgsTable of={ReadonlyBoard} />

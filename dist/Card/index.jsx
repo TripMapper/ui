@@ -6,11 +6,11 @@ import Pill from '../Pill';
 import Icon from '../Icon';
 import formatTime from '../util/formatTime';
 import diffTime from '../util/diffTime';
-export const CARD_FRAGMENT = gql `
-	fragment Card on Card {
-		id
-		name
-		type
+export const CARD_FRAGMENT_BASE = gql `
+	fragment CardBase on Card {
+        id
+        name
+        type
         image {
             id
             srcset (
@@ -20,17 +20,23 @@ export const CARD_FRAGMENT = gql `
                 ...Image
             }
         }
-		status
-		notes
-		attachments { totalCount }
-		location { address }
+        status
+        notes
+        attachments { totalCount }
+        location { address }
         startTime
         endTime
+        parentId
+	}
+    ${IMAGE_FRAGMENT}
+`;
+export const CARD_FRAGMENT = gql `
+	fragment Card on Card {
+		...CardBase
 		budget
 		tripBudget
-		parentId
 	}
-	${IMAGE_FRAGMENT}
+	${CARD_FRAGMENT_BASE}
 `;
 export default function Card({ id, onClick, name, type, image, status, notes, attachments, location, startTime, endTime, budget, tripBudget, parentId, }) {
     // TODO: switch to cost values for agents
@@ -50,6 +56,7 @@ export default function Card({ id, onClick, name, type, image, status, notes, at
 					<div className={css.name}>
 						<small>
 							{titleCase(type)}
+							{/* TODO: use lock icon */}
 							{parentId && <Icon xs of="tick-circle"/>}
 						</small>
 						<strong>{name || 'New Card'}</strong>

@@ -11,11 +11,11 @@ import TabPager, { Page } from '../TabPager';
 const setAppElement = Modal.setAppElement;
 const Panel = ({ name, handle, icon = null, children, defaultActive = false, hasTabs = false }) => children;
 export { setAppElement, Panel };
-export default function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, wide = false, }) {
+export default function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, contentClassName, wide = false, medium = false, allowClickThrough = false, stacks = true, }) {
     const tabsLayoutId = useId();
     const [wasOpen, setWasOpen] = useState(isOpen), [depth, setDepth] = useState(0), { openSlideover, closeSlideover, slideoverDepth } = useUIContext();
     const [activeTab, setActiveTab] = useState('');
-    const offset = slideoverDepth - depth - 1;
+    const offset = stacks ? slideoverDepth - depth - 1 : 0;
     const { tabs, handles, contents, filteredChildren, panelHasTabs } = useMemo(() => {
         if (!children)
             return { tabs: [], handles: [], contents: {} };
@@ -71,22 +71,22 @@ export default function Slideover({ isOpen, onRequestClose, heading, onEditClick
         };
     }, [children, depth, offset, activeTab]);
     useEffect(() => {
-        if (wasOpen && !isOpen)
+        if (wasOpen && !isOpen && stacks)
             closeSlideover();
         setWasOpen(isOpen);
     }, [isOpen]);
     return (<Modal isOpen={isOpen} onRequestClose={onRequestClose} closeTimeoutMS={300} onAfterOpen={() => {
-            setDepth(openSlideover());
+            stacks && setDepth(openSlideover());
         }} style={{
             content: {
                 '--f-offset': (offset / 100) + (offset / 100),
                 '--offset': offset > 0 ? `calc(-${40 * (1 - (((offset * 5) / 100)))}px * ${offset})` : '0px',
             },
         }} className={{
-            base: cx(css.slideover, offset === 0 && css.top, wide && css.wide),
+            base: cx(css.slideover, offset === 0 && css.top, wide && css.wide, medium && css.medium),
             afterOpen: css.afterOpen,
             beforeClose: css.beforeClose,
-        }} overlayClassName={css.overlay}>
+        }} overlayClassName={cx(css.overlay, allowClickThrough && css.allowClickThrough)}>
 			<div className={css.controls}>
 				{onDeleteClick && <button title="Delete" onClick={onDeleteClick}><SlideoverDelete /></button>}
 				{onEditClick && <button title="Edit" onClick={onEditClick}><SlideoverEdit /></button>}
@@ -96,7 +96,7 @@ export default function Slideover({ isOpen, onRequestClose, heading, onEditClick
 					{heading && <h1>{heading}</h1>}
 					{tabs.length > 0 && (<Tabs tabsLayoutId={tabsLayoutId} className={css.tabs} items={tabs}/>)}
 				</header>) : heading(tabs.length > 0 && (<Tabs tabsLayoutId={tabsLayoutId} className={css.tabs} items={tabs}/>))}
-			<div className={cx(css.content, handles.length > 0 && css.hasTabs)}>
+			<div className={cx(css.content, handles.length > 0 && css.hasTabs, contentClassName)}>
 				{handles.length > 0 && (<TabPager active={activeTab} children={contents} className={css.pager} pageClassName={handle => cx(css.tab, panelHasTabs[handle] && css.hasTabs)}/>)}
 				{filteredChildren}
 			</div>

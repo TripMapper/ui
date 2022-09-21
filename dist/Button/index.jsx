@@ -5,7 +5,8 @@ import Text from './Text';
 import { forwardRef } from 'react';
 import Dashed from './Dashed';
 import Flat from './Flat';
-const Button = forwardRef(({ secondary = false, tertiary = false, text = false, dashed = false, flat = false, className, ...props }, ref) => {
+import Danger from './Danger';
+const Button = forwardRef(({ secondary = false, tertiary = false, text = false, dashed = false, flat = false, danger = false, className, ...props }, ref) => {
     // @ts-ignore
     props.userClass = className;
     if (secondary)
@@ -18,6 +19,8 @@ const Button = forwardRef(({ secondary = false, tertiary = false, text = false, 
         return <Dashed {...props} ref={ref}/>;
     if (flat)
         return <Flat {...props} ref={ref}/>;
+    if (danger)
+        return <Danger {...props} ref={ref}/>;
     return <Primary {...props} ref={ref}/>;
 });
 export default Button;

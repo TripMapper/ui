@@ -1,5 +1,13 @@
 @import "../variables";
 
+.allowClickThrough {
+	pointer-events: none;
+
+	.slideover {
+		pointer-events: all;
+	}
+}
+
 .slideover {
 	position: absolute;
 	top: rem(16);
@@ -27,6 +35,10 @@
 
 	&.wide {
 		max-width: rem(680);
+	}
+
+	&.medium {
+		max-width: rem(580);
 	}
 
 	&.afterOpen {

@@ -26,6 +26,12 @@ export interface SlideoverProps {
 	children: ReactNode | SlideoverChild | any;
 	heading?: ReactNode | string | SlideoverHeading | null;
 	wide?: boolean;
+	medium?: boolean;
+	/** @default false */
+	allowClickThrough?: boolean;
+	/** @default true */
+	stacks?: boolean;
+	contentClassName?: string;
 }
 
 export interface SlideoverPanelProps {
@@ -47,7 +53,9 @@ export { setAppElement, Panel };
 export default function Slideover ({
 	isOpen, onRequestClose,
 	heading, onEditClick, onDeleteClick,
-	children, wide = false,
+	children, contentClassName,
+	wide = false, medium = false,
+	allowClickThrough = false, stacks = true,
 } : SlideoverProps) {
 	const tabsLayoutId = useId();
 
@@ -57,7 +65,7 @@ export default function Slideover ({
 
 	const [activeTab, setActiveTab] = useState('');
 
-	const offset = slideoverDepth - depth - 1;
+	const offset = stacks ? slideoverDepth - depth - 1 : 0;
 
 	const { tabs, handles, contents, filteredChildren, panelHasTabs } = useMemo(() => {
 		if (!children)
@@ -126,7 +134,7 @@ export default function Slideover ({
 	}, [children, depth, offset, activeTab]);
 
 	useEffect(() => {
-		if (wasOpen && !isOpen) closeSlideover();
+		if (wasOpen && !isOpen && stacks) closeSlideover();
 		setWasOpen(isOpen);
 	}, [isOpen]);
 
@@ -136,7 +144,7 @@ export default function Slideover ({
 			onRequestClose={onRequestClose}
 			closeTimeoutMS={300}
 			onAfterOpen={() => {
-				setDepth(openSlideover());
+				stacks && setDepth(openSlideover());
 			}}
 			style={{
 				content: {
@@ -149,11 +157,12 @@ export default function Slideover ({
 					css.slideover,
 					offset === 0 && css.top,
 					wide && css.wide,
+					medium && css.medium,
 				),
 				afterOpen: css.afterOpen,
 				beforeClose: css.beforeClose,
 			}}
-			overlayClassName={css.overlay}
+			overlayClassName={cx(css.overlay, allowClickThrough && css.allowClickThrough)}
 		>
 			<div className={css.controls}>
 				{onDeleteClick && <button title="Delete" onClick={onDeleteClick}><SlideoverDelete /></button>}
@@ -180,7 +189,7 @@ export default function Slideover ({
 					/>
 				)
 			)}
-			<div className={cx(css.content, handles.length > 0 && css.hasTabs)}>
+			<div className={cx(css.content, handles.length > 0 && css.hasTabs, contentClassName)}>
 				{handles.length > 0 && (
 					<TabPager
 						active={activeTab}

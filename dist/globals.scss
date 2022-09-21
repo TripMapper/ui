@@ -105,6 +105,11 @@ body {
 	}
 }
 
+#__next {
+	display: flex;
+	flex-direction: column;
+}
+
 ::selection {
 	color: $COLOURS_text;
 	background-color: change-color($COLOURS_primary, $alpha: 0.3);

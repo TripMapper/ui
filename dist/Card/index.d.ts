@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import { ImageProps } from '../Image';
+export declare const CARD_FRAGMENT_BASE: import("urql").TypedDocumentNode<any, object>;
 export declare const CARD_FRAGMENT: import("urql").TypedDocumentNode<any, object>;
 export interface CardProps {
     id: string;
