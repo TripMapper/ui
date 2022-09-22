@@ -22,6 +22,6 @@ export interface CardProps {
     budget?: number;
     tripBudget?: number;
     parentId?: string;
-    onClick?: (id: string) => void;
+    onClick?: (id: string, parentId?: string) => void;
 }
 export default function Card({ id, onClick, name, type, image, status, notes, attachments, location, startTime, endTime, budget, tripBudget, parentId, }: CardProps): JSX.Element;

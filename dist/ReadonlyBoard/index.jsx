@@ -5,7 +5,7 @@ import useGatherBoardDays from '../Board/hooks/useGatherBoardDays';
 import useGatherBoardCards from '../Board/hooks/useGatherBoardCards';
 import { cx } from '../util';
 import ReadonlyCardSlideover, { READONLY_CARD_SLIDEOVER_FRAGMENT } from '../ReadonlyCardSlideover';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Emit, Signal } from '../util/signals';
 export const READONLY_BOARD_FRAGMENT = gql `
 	fragment ReadonlyBoard on Trip {
@@ -17,13 +17,19 @@ export const READONLY_BOARD_FRAGMENT = gql `
 			...CardBase
 			...ReadonlyCardSlideover
 		}
+		currency {
+			id
+			iso
+        }
 	}
 	${CARD_FRAGMENT_BASE}
 	${READONLY_CARD_SLIDEOVER_FRAGMENT}
 `;
 export default function ReadonlyBoard({ trip }) {
+    const toId = useRef(null);
     const [activeCards, setActiveCards] = useState([]);
-    const pushCard = id => {
+    const pushCard = (id, parentId) => {
+        id = parentId ?? id;
         setActiveCards(o => {
             if (o.indexOf(id) > -1)
                 return o;
@@ -31,13 +37,17 @@ export default function ReadonlyBoard({ trip }) {
             return [...o, id];
         });
     };
-    const popCard = id => setTimeout(() => {
+    const popCard = id => toId.current = setTimeout(() => {
         setActiveCards(o => {
             const next = [...o];
             next.splice(o.indexOf(id), 1);
             return next;
         });
     }, 300);
+    useEffect(() => {
+        const id = toId.current;
+        return () => { id && clearTimeout(id); };
+    }, [toId.current]);
     const days = useGatherBoardDays(trip ? { trip } : null), cards = useGatherBoardCards(trip ? { trip } : null), cardsById = trip?.cardsList?.reduce((a, b) => { a[b.id] = b; return a; }, {}) ?? {}, hasStartDate = !!trip?.startDate;
     if (!trip)
         return 'skeleton';
@@ -57,6 +67,6 @@ export default function ReadonlyBoard({ trip }) {
 						</ul>
 					</div>))}
 			</div>
-			{activeCards.map(id => (<ReadonlyCardSlideover card={cardsById[id]} cardId={id} key={id} onClose={popCard}/>))}
+			{activeCards.map(id => (<ReadonlyCardSlideover card={cardsById[id]} cardId={id} key={id} onClose={popCard} startDate={(new Date).toISOString()} tripCurrency={trip?.currency?.iso}/>))}
 		</div>);
 }

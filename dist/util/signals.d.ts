@@ -4,6 +4,7 @@
  * @type {Object}
  */
 export declare const Signal: {
+    Notify: number;
     ShowReadonlyCard: number;
     HideReadonlyCard: number;
 };

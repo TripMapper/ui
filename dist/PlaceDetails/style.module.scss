@@ -1,0 +1,104 @@
+@import "../variables";
+
+.placeDetails {
+	display: flex;
+	align-items: stretch;
+	padding-top: rem(32);
+	padding-bottom: rem(10);
+
+	> ul {
+		flex-grow: 1;
+		list-style: none;
+	}
+
+	li:not(:last-child) {
+		margin-bottom: rem(4);
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		padding: rem(12 - 4) rem(20 - 4) rem(10 - 4) rem(13 - 4);
+
+		color: $COLOURS_text;
+		text-decoration: none;
+		white-space: nowrap;
+
+		background-color: #E4E0DA;
+		border: 2px solid #E4E0DA;
+		border-radius: rem(8);
+		transition: background-color 0.15s ease;
+
+		&:hover {
+			background-color: rgba(228, 224, 218, 0);
+		}
+
+		svg {
+			vertical-align: middle;
+			margin-right: rem(15);
+			margin-top: rem(-2);
+		}
+	}
+
+	> div {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		margin-left: rem(14);
+		flex-shrink: 9999;
+		background: #fff;
+		box-shadow: 0 rem(2) rem(5) 0 rgba(0,0,0,0.10);
+		border-radius: rem(8);
+
+		> div {
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			height: 100%;
+			padding: rem(12) rem(16);
+
+			> div {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				height: 100%;
+				flex-direction: column;
+			}
+
+			&:not(:first-child) {
+				border-top: 1px solid $COLOURS_border;
+			}
+
+			div:last-child:not(:first-child) {
+				text-align: right;
+				align-items: flex-end;
+			}
+		}
+
+		span {
+			display: block;
+			margin-bottom: rem(4);
+
+			color: $COLOURS_primary;
+			font-size: rem(12);
+			font-family: $FONTSTACK_mono;
+			text-transform: uppercase;
+		}
+
+		small {
+			color: change-color($COLOURS_text, $alpha: 0.5);
+			font-size: rem(12);
+			font-weight: bold;
+		}
+	}
+}
+
+.rating {
+	display: block;
+	font-size: 0;
+
+	svg {
+		margin-right: rem(3.15);
+		vertical-align: middle;
+	}
+}
