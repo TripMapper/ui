@@ -81,23 +81,27 @@
 
 	dd,
 	dt {
-		font-family: $FONTSTACK_mono;
-		text-transform: uppercase;
 		font-weight: 100;
 	}
 
 	dd {
 		color: $COLOURS_primary;
 		font-size: rem(16);
+		font-family: $FONTSTACK_mono;
+		text-transform: uppercase;
 	}
 
 	dt {
 		font-size: rem(18);
+
+		span {
+			opacity: 0.5;
+		}
 	}
 
 	div {
 		display: grid;
-		grid-template-columns: rem(150) 1fr;
+		grid-template-columns: rem(110) 1fr;
 		align-items: center;
 		padding: rem(15) 0;
 

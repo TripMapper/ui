@@ -7,6 +7,7 @@ const URL_RX = /url\(["']?([a-z0-9._~()'!*:@,;+?\/-]*)['"]?\)/i;
 
 export interface IconProps {
 	of: Icons,
+	className?: string;
 
 	xs?: boolean;
 	s?: boolean;
@@ -22,6 +23,7 @@ export interface IconProps {
 
 export default function Icon ({
 	of,
+	className,
 	xs = false,
 	s = false,
 	m,
@@ -35,8 +37,9 @@ export default function Icon ({
 		return new URL(window.getComputedStyle(self).backgroundImage.match(URL_RX)[1]).pathname;
 	}, [self]);
 
-	const className = cx(
+	const cls = cx(
 		css.icon,
+		className,
 		xs && css.xs,
 		s && css.s,
 		m && css.m,
@@ -46,7 +49,7 @@ export default function Icon ({
 	);
 
 	return (
-		<svg ref={setSelf} viewBox="0 0 24 24" className={className}>
+		<svg ref={setSelf} viewBox="0 0 24 24" className={cls}>
 			<use xlinkHref={`${svgPath}#${of}`} />
 		</svg>
 	);

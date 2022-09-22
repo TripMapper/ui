@@ -1,0 +1,56 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'; import PlaceDetails
+	, { PLACE_DETAILS_FRAGMENT } from './index'; import {
+	createClient, gql, Provider,
+	useQuery
+} from 'urql';
+
+<Meta
+	title="Interface/Place Details"
+	component={PlaceDetails}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<Story />
+			</Provider>
+		),
+	]}
+/>
+
+# Place Details
+
+```jsx
+import PlaceDetails from 'ui/PlaceDetails';
+
+<PlaceDetails />
+```
+
+<Canvas>
+	<Story name="Place Details">
+		{() => {
+			const [{ data }] = useQuery({
+				query: gql`
+					query GetTrip ($id: UUID!) {
+						trip (id: $id) {
+							cardsList (
+								filter:{ placeId: { isNull: false } }
+								first: 1
+								offset: 20
+							) {
+								id
+								place {
+									...PlaceDetails
+								}
+							}
+						}
+                	}
+					${PLACE_DETAILS_FRAGMENT}
+				`,
+				variables: {
+					id: 'c1de586c-f5e4-11eb-a34b-036a6e52c95f',
+				}
+			});
+			const place = data?.trip?.cardsList?.[0]?.place;
+			return place ? <PlaceDetails {...place} /> : null;
+		}}
+	</Story>
+</Canvas>

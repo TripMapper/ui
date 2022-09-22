@@ -4,7 +4,7 @@ import UrlToLink from '../UrlToLink';
 import { cx } from '../util';
 import Prose from '../Prose';
 
-const URL_RX = /((?:http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+(?:[\-.][a-z0-9]+)*\.[a-z]{2,63}(?::[0-9]{1,5})?(?:\/\S*)?)/g;
+const URL_RX = /((?:http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+(?:[\-.][a-z0-9]+)*\.[a-z]{2,63}(?::[0-9]{1,5})?(?:\/\S*)?)/;
 export const substituteUrls = text => text.split(URL_RX).filter(Boolean).map((s, i) => {
 	const key = `${s}_${i}`;
 

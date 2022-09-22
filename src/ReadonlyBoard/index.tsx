@@ -7,7 +7,7 @@ import { cx } from '../util';
 import ReadonlyCardSlideover, {
 	READONLY_CARD_SLIDEOVER_FRAGMENT
 } from '../ReadonlyCardSlideover';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Emit, Signal } from '../util/signals';
 
 export const READONLY_BOARD_FRAGMENT = gql`
@@ -26,9 +26,12 @@ export const READONLY_BOARD_FRAGMENT = gql`
 `;
 
 export default function ReadonlyBoard ({ trip }) {
+	const toId = useRef(null);
 	const [activeCards, setActiveCards] = useState([]);
 
-	const pushCard = id => {
+	const pushCard = (id, parentId) => {
+		id = parentId ?? id;
+
 		setActiveCards(o => {
 			if (o.indexOf(id) > -1) return o;
 
@@ -37,13 +40,19 @@ export default function ReadonlyBoard ({ trip }) {
 		});
 	};
 
-	const popCard = id => setTimeout(() => {
+	const popCard = id => toId.current = setTimeout(() => {
 		setActiveCards(o => {
 			const next = [...o];
 			next.splice(o.indexOf(id), 1);
 			return next;
 		});
 	}, 300);
+
+	useEffect(() => {
+		const id = toId.current;
+
+		return () => { id && clearTimeout(id); };
+	}, [toId.current]);
 
 	const days = useGatherBoardDays(trip ? { trip } : null)
 		, cards = useGatherBoardCards(trip ? { trip } : null)
@@ -86,6 +95,7 @@ export default function ReadonlyBoard ({ trip }) {
 					cardId={id}
 					key={id}
 					onClose={popCard}
+					startDate={(new Date).toISOString()}
 				/>
 			))}
 		</div>
