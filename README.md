@@ -11,7 +11,7 @@ config.module.rules.push({
     test: /\.(mp3)$/,
     type: 'asset/resource',
     generator: {
-        filename: '[name].[hash][ext]',
+	    filename: 'static/chunks/[path][name].[hash][ext]',
     },
 });
 ```

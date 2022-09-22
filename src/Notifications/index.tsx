@@ -49,7 +49,7 @@ export default function Notifications () {
 		});
 	};
 
-	useEffect(() => Listen(Signal.Notify, (message, type = 'info', text) => {
+	useEffect(() => Listen(Signal.Notify, (message, type = 'info', text = '') => {
 		const id = uuid();
 
 		setNotifications(n => ({
@@ -81,7 +81,7 @@ export default function Notifications () {
 						{icons?.[type] ?? null}
 						<span>
 							{message}
-							{text && <small>{text}</small>}
+							{text ? <small>{text}</small> : ''}
 						</span>
 						<button
 							onClick={remove(id)}

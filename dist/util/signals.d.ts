@@ -50,3 +50,28 @@ export declare function Listen(event: any, func: any): () => void;
  * @param {Array} deps
  */
 export declare function useListen(event: any, func: any, deps?: any[]): void;
+/**
+ * Wait for a signal to be fired
+ *
+ * const myFunc = async () => {
+ *   const response = await WaitForSignal(Signal.MyEventA|Signal.MyEventB);
+ * };
+ *
+ * @param {number} event - One or more event types, Bitwise OR'd together
+ * @param {function=} validate - called to validate this is the event you're waiting for
+ * @returns {Promise<*>}
+ */
+export declare function WaitForSignal(event: any, validate?: () => boolean): Promise<any>;
+declare const _default: {
+    Signal: {
+        Notify: number;
+        ShowReadonlyCard: number;
+        HideReadonlyCard: number;
+    };
+    Emit: typeof Emit;
+    Listen: typeof Listen;
+    RegisterSignal: typeof RegisterSignal;
+    useListen: typeof useListen;
+    WaitForSignal: typeof WaitForSignal;
+};
+export default _default;

@@ -22,7 +22,7 @@ export const Signal = {
 	HideReadonlyCard: iota(),
 };
 
-const bitsToSignals = Object.entries(Signal).reduce((a, [name, bit] : [string, number]) => {
+const bitsToSignals = () => Object.entries(Signal).reduce((a, [name, bit] : [string, number]) => {
 	a[bit] = name;
 	return a;
 }, {});
@@ -57,7 +57,7 @@ export function RegisterSignal (name : string) : number {
  */
 export function Emit (event, ...args) {
 	DEBUG && console.group(
-		'%cEmit %c' + bitsToSignals[event] + (args.length > 0 ? '%c:' : ''),
+		'%cEmit %c' + bitsToSignals()[event] + (args.length > 0 ? '%c:' : ''),
 		'color: grey;',
 		'font-weight: bold;',
 		(args.length > 0 ? 'color: grey;' : ' '),
@@ -82,7 +82,7 @@ export function Emit (event, ...args) {
 		}
 	}
 
-	if (!caught && DEBUG) console.warn('Uncaught event:', bitsToSignals[event]);
+	if (!caught && DEBUG) console.warn('Uncaught event:', bitsToSignals()[event]);
 
 	DEBUG && console.groupEnd();
 }
@@ -125,3 +125,35 @@ export function Listen (event, func) {
 export function useListen (event, func, deps = []) {
 	useEffect(() => Listen(event, func), deps);
 }
+
+const SIGNAL_PENDING = Symbol('SIGNAL_PENDING');
+
+/**
+ * Wait for a signal to be fired
+ *
+ * const myFunc = async () => {
+ *   const response = await WaitForSignal(Signal.MyEventA|Signal.MyEventB);
+ * };
+ *
+ * @param {number} event - One or more event types, Bitwise OR'd together
+ * @param {function=} validate - called to validate this is the event you're waiting for
+ * @returns {Promise<*>}
+ */
+export async function WaitForSignal (event, validate = () => true) {
+	const response : { value: symbol|any } = { value: SIGNAL_PENDING };
+	const onSignal = (...args) => {
+		args.pop(); // Remove signal bit
+		if (validate()) response.value = args;
+	};
+
+	const release = Listen(event, onSignal);
+
+	while (response.value === SIGNAL_PENDING)
+		await new Promise(resolve => setTimeout(resolve, 15));
+
+	release();
+	return response.value;
+}
+
+
+export default { Signal, Emit, Listen, RegisterSignal, useListen, WaitForSignal };
