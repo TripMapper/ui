@@ -20,6 +20,10 @@ export const READONLY_BOARD_FRAGMENT = gql`
 			...CardBase
 			...ReadonlyCardSlideover
 		}
+		currency {
+			id
+			iso
+        }
 	}
 	${CARD_FRAGMENT_BASE}
 	${READONLY_CARD_SLIDEOVER_FRAGMENT}
@@ -96,6 +100,7 @@ export default function ReadonlyBoard ({ trip }) {
 					key={id}
 					onClose={popCard}
 					startDate={(new Date).toISOString()}
+					tripCurrency={trip?.currency?.iso}
 				/>
 			))}
 		</div>

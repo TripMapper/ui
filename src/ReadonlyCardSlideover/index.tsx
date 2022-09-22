@@ -11,12 +11,14 @@ import NextImage from 'next/image';
 import ordinal from '../util/ordinal';
 import { DateTime } from 'luxon';
 import { PRIMARY_TYPES, TRAVEL_TYPES } from '../Consts';
+import PlaceDetails, { PLACE_DETAILS_FRAGMENT } from '../PlaceDetails';
 
 export interface ReadonlyCardSlideoverProps {
 	card: any;
 	cardId: string;
 	onClose?: (cardId : string) => void;
 	startDate?: string;
+	tripCurrency?: string;
 }
 
 export const READONLY_CARD_SLIDEOVER_FRAGMENT = gql`
@@ -44,8 +46,12 @@ export const READONLY_CARD_SLIDEOVER_FRAGMENT = gql`
             }
         }
 		notes
+		place {
+			...PlaceDetails
+		}
 	}
 	${IMAGE_FRAGMENT}
+	${PLACE_DETAILS_FRAGMENT}
 `;
 
 export default function ReadonlyCardSlideover ({
@@ -53,6 +59,7 @@ export default function ReadonlyCardSlideover ({
 	cardId,
 	onClose,
 	startDate,
+	tripCurrency,
 } : ReadonlyCardSlideoverProps) {
 	const [isOpen, setIsOpen] = useState(true);
 
@@ -146,22 +153,27 @@ export default function ReadonlyCardSlideover ({
 				<header className={cx(css.type, css[type.toLowerCase()])}>
 					<h4>{PRIMARY_TYPES[type].label}</h4>
 				</header>
-				<dl className={css.details}>
-					{card.type === 'TRAVEL' && (
+				<div className={css.details}>
+					<dl>
+						{card.type === 'TRAVEL' && (
+							<div>
+								<dd>Type</dd>
+								<dt>{TRAVEL_TYPES[card.subType].label}</dt>
+							</div>
+						)}
 						<div>
-							<dd>Type</dd>
-							<dt>{TRAVEL_TYPES[card.subType].label}</dt>
+							<dd>{startLabel}</dd>
+							<dt>{start}</dt>
 						</div>
+						<div>
+							<dd>{endLabel}</dd>
+							<dt>{end}</dt>
+						</div>
+					</dl>
+					{card.place && (
+						<PlaceDetails {...card.place} tripCurrency={tripCurrency} />
 					)}
-					<div>
-						<dd>{startLabel}</dd>
-						<dt>{start}</dt>
-					</div>
-					<div>
-						<dd>{endLabel}</dd>
-						<dt>{end}</dt>
-					</div>
-				</dl>
+				</div>
 				<div className={css.innerContent}>
 					{notes && (
 						<>

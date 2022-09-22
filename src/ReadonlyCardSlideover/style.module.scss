@@ -79,6 +79,13 @@
 	padding: rem(15) rem(30);
 	background-color: $COLOURS_background;
 
+	dl {
+		&:not(:last-child) {
+			padding-bottom: rem(15);
+			border-bottom: 1px solid $COLOURS_border;
+		}
+	}
+
 	dd,
 	dt {
 		font-weight: 100;
@@ -99,7 +106,7 @@
 		}
 	}
 
-	div {
+	dl div {
 		display: grid;
 		grid-template-columns: rem(110) 1fr;
 		align-items: center;
