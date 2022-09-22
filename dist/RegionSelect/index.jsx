@@ -58,10 +58,10 @@ export default function RegionSelect({ countryIds = [], defaultValue, name, ...p
                     : regionById[defaultValue.value]
                 : null,
         };
-    }, [data, countryIds]);
-    if (fetching)
-        return <Select name={name} disabled placeholder="Loading..."/>;
+    }, [data, countryIds, defaultValue]);
+    if (opts.length === 0 && fetching)
+        return <Select key="fetching" name={name} disabled placeholder="Loading..."/>;
     if (opts.length === 0)
         return <Select key="empty" name={name} disabled placeholder="No regions available"/>;
-    return (<Select {...props} name={name} defaultValue={defaultVal} options={opts}/>);
+    return (<Select key="loaded" {...props} name={name} defaultValue={defaultVal} options={opts}/>);
 }
