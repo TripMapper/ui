@@ -77,7 +77,7 @@
   },
   "scripts": {
     "build": "tsc --build && pnpm postbuild",
-    "postbuild": "copyfiles -u 1 './src/*.scss' './src/**/**/*.{module.scss,svg}' './src/fonts/*' './src/Types.d.ts' ./dist-build && node scripts/exports.js && mv dist dist-old && mv dist-build dist && rm -rf dist-old",
+    "postbuild": "copyfiles -u 1 './src/*.scss' './src/**/**/*.{module.scss,svg}' './src/fonts/*' './src/audio/*' './src/Types.d.ts' ./dist-build && node scripts/exports.js && mv dist dist-old && mv dist-build dist && rm -rf dist-old",
     "storybook": "start-storybook -p 6006",
     "storybook:export": "build-storybook",
     "chromatic": "npx chromatic --project-token=78c88d501f71",

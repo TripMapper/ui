@@ -51,6 +51,14 @@ module.exports = {
 			return item;
 		});
 
+		config.module.rules.push({
+			test: /\.(mp3)$/,
+			type: 'asset/resource',
+			generator: {
+				filename: '[name].[hash][ext]',
+			},
+		});
+
 		return config;
 	},
 };

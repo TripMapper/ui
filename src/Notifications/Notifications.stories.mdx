@@ -1,0 +1,26 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'; import Notifications
+	from './index'; import Button from '../Button'; import {
+	Emit, Signal
+} from '../util/signals';
+
+<Meta
+	title="Interface/Notifications"
+	component={Notifications}
+/>
+
+# Notifications
+
+```jsx
+import Notifications from 'ui/Notifications';
+
+<Notifications />
+```
+
+<Canvas>
+	<Story name="Notifications">
+		<Notifications />
+		<Button onClick={() => Emit(Signal.Notify, 'My notification', 'info', 'Some text for our notification to say')}>Notify Info</Button>
+		<Button onClick={() => Emit(Signal.Notify, 'My notification', 'error', 'Some text for our notification to say')}>Notify Error</Button>
+		<Button onClick={() => Emit(Signal.Notify, 'My notification', 'success', 'Some text for our notification to say')}>Notify Success</Button>
+	</Story>
+</Canvas>
