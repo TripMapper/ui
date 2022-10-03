@@ -47,6 +47,7 @@ export default function AuthLayout ({
 							src={image.src}
 							width={1000}
 							height={1000}
+							alt=""
 						/>
 						{image.url && (
 							<figcaption>
