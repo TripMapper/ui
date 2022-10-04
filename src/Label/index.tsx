@@ -31,6 +31,7 @@ export default function Label ({ label, children, El = 'label', group = false, i
 		if (El === 'label') El = 'div';
 		children = Children.map(children, child => {
 			if (!isValidElement(child)) return child;
+			// @ts-ignore
 			return cloneElement(child, { merged: true });
 		}) as ReactNode;
 	}

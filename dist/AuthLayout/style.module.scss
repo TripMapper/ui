@@ -5,6 +5,12 @@
 	align-items: stretch;
 	width: 100vw;
 	height: 100vh;
+
+	@media (max-width: 60em) {
+		position: relative;
+		display: block;
+		padding-top: calc(100vh - var(--mobileHeightOffset, 0));
+	}
 }
 
 .image {
@@ -43,11 +49,33 @@
 	}
 }
 
+.body {
+	position: relative;
+	width: 60%;
+	height: 100vh;
+	flex-shrink: 9999;
+	overflow: hidden;
+
+	@media (max-width: 60em) {
+		position: fixed;
+		z-index: 1;
+		width: 100%;
+		top: 0;
+	}
+}
+
 .content {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
 	padding: 0 rem($SIZES_spacer);
+
+	@media (max-width: 60em) {
+		position: relative;
+		z-index: 2;
+		background-color: $COLOURS_background;
+		box-shadow: 0 0 100px #0E0E0E;
+	}
 }
 
 .form,

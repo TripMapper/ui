@@ -32,9 +32,11 @@ export default function AuthLayout ({
 } : AuthLayoutProps) {
 	const { scrollYProgress } = useScroll();
 	const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
+	// @ts-ignore
 	const isMobile = (process?.browser ?? true) ? window.matchMedia('(max-width: 60em)').matches : false;
 
 	return (
+		// @ts-ignore
 		<div className={css.authLayout} style={{ '--mobileHeightOffset': mobileHeightOffset + 'px' }}>
 			<div className={css.content}>
 				<Form className={css.form} onSubmit={onSubmit}>

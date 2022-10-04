@@ -110,9 +110,9 @@ export default function ExploreProduct ({ heading, text, items } : ExploreProduc
 			<div className={css.frame}>
 				<span className={css.island} />
 				<picture>
-					<source srcSet={`${frame_wp}, ${frame2x_wp} 2x`} type="image/webp" />
-					<source srcSet={`${frame}, ${frame2x} 2x`} type="image/jpg" />
-					<img src={frame} alt=""/>
+					<source srcSet={`${frame_wp?.src ?? frame_wp}, ${frame2x_wp?.src ?? frame2x_wp} 2x`} type="image/webp" />
+					<source srcSet={`${frame?.src ?? frame}, ${frame2x?.src ?? frame2x} 2x`} type="image/jpg" />
+					<img src={frame?.src ?? frame} alt=""/>
 				</picture>
 				<div className={css.content}>
 					<AnimatePresence initial={false}>

@@ -11,5 +11,7 @@ export interface AuthLayoutProps {
     callout?: ReactNode;
     image?: AuthImageProps;
     onSubmit?: FormSubmit;
+    content?: ReactNode;
+    mobileHeightOffset?: number;
 }
-export default function AuthLayout({ form, callout, image, onSubmit, }: AuthLayoutProps): JSX.Element;
+export default function AuthLayout({ form, callout, image, onSubmit, content, mobileHeightOffset, }: AuthLayoutProps): JSX.Element;

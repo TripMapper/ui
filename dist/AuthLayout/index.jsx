@@ -3,8 +3,15 @@ import Copy from '../Copy';
 import Image from 'next/future/image';
 import Logomark from '../svg/logomark.svg';
 import Form from '../Form';
-export default function AuthLayout({ form, callout, image, onSubmit, }) {
-    return (<div className={css.authLayout}>
+import { motion, useScroll, useTransform } from 'framer-motion';
+export default function AuthLayout({ form, callout, image, onSubmit, content, mobileHeightOffset, }) {
+    const { scrollYProgress } = useScroll();
+    const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
+    // @ts-ignore
+    const isMobile = (process?.browser ?? true) ? window.matchMedia('(max-width: 60em)').matches : false;
+    return (
+    // @ts-ignore
+    <div className={css.authLayout} style={{ '--mobileHeightOffset': mobileHeightOffset + 'px' }}>
 			<div className={css.content}>
 				<Form className={css.form} onSubmit={onSubmit}>
 					<div>
@@ -16,15 +23,15 @@ export default function AuthLayout({ form, callout, image, onSubmit, }) {
 						{callout}
 					</Copy>)}
 			</div>
-			<figure className={css.image}>
-				{image && (<>
-						<Image src={image.src} width={1000} height={1000}/>
-						{image.url && (<figcaption>
-								<a href={image.url} target="_blank" rel="noreferrer">
-									{image.name} by {image.credit}
-								</a>
-							</figcaption>)}
-					</>)}
-			</figure>
+			{content ? (<motion.div className={css.body} style={isMobile ? { y } : void 0}>
+					{content}
+				</motion.div>) : image ? (<figure className={css.image}>
+					<Image src={image.src} width={1000} height={1000} alt=""/>
+					{image.url && (<figcaption>
+							<a href={image.url} target="_blank" rel="noreferrer">
+								{image.name} by {image.credit}
+							</a>
+						</figcaption>)}
+				</figure>) : null}
 		</div>);
 }
