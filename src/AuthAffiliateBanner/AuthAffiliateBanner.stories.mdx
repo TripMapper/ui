@@ -1,0 +1,51 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import AuthAffiliateBanner
+	, {
+	AUTH_AFFILIATE_BANNER_QUERY
+} from './index'; import { createClient, gql, Provider, useQuery } from 'urql';
+
+<Meta
+	title="Interface/Auth Affiliate Banner"
+	component={AuthAffiliateBanner}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<Story />
+			</Provider>
+		),
+	]}
+/>
+
+# Auth Affiliate Banner
+
+```jsx
+import AuthAffiliateBanner from 'ui/AuthAffiliateBanner';
+
+<AuthAffiliateBanner
+	logo={{}}
+	text="Welcome, Jack’s flight club member! Sign up below to enjoy your 6 months of free Trip+ Unlimited"
+/>
+```
+
+<Canvas>
+	<Story name="Auth Affiliate Banner">
+		{() => {
+			const [{ data }] = useQuery({
+				query: gql`
+					query GetPartnerPage ($slug: String!) {
+						...AuthAffiliateBanner
+					}
+					${AUTH_AFFILIATE_BANNER_QUERY}
+				`,
+				variables: { slug: 'jfc' }
+			});
+			return data?.slugToPartnerPage ? (
+				<AuthAffiliateBanner
+					{...data.slugToPartnerPage}
+					logo={data.slugToPartnerPageLogo}
+				/>
+			) : null;
+		}}
+	</Story>
+</Canvas>
+
+<ArgsTable of={AuthAffiliateBanner} />

@@ -1,0 +1,24 @@
+@import "../variables";
+
+.authAffBanner {
+	display: flex;
+	padding: rem(12) rem(16);
+	align-items: center;
+
+	line-height: 1.5em;
+
+	box-shadow:
+		inset 0 0 0 1px rgba(0,0,0,0.1),
+		0 1px 4px 0 rgba(0,0,0,0.08);
+	border-radius: rem(8);
+
+	figure {
+		margin-right: rem(30);
+	}
+
+	img {
+		max-width: rem(110);
+		height: auto;
+		vertical-align: middle;
+	}
+}

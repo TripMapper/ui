@@ -83,7 +83,7 @@
     "storybook": "start-storybook -p 6006",
     "storybook:export": "build-storybook",
     "chromatic": "npx chromatic --project-token=78c88d501f71",
-    "schema": "cp ../../../api/src/schema.admin.graphql schema.graphql"
+    "schema": "cp ../api/src/schema.admin.graphql schema.graphql"
   },
   "peerDependencies": {
     "framer-motion": "^7",
