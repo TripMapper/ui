@@ -1,12 +1,13 @@
 import css from './style.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { CSSProperties, ReactNode, useEffect, useMemo, useState } from 'react';
 
 import frame2x_wp from './imgs/iphone-frame@2x.webp';
 import frame_wp from './imgs/iphone-frame.webp';
 import frame2x from './imgs/iphone-frame@2x.jpg';
 import frame from './imgs/iphone-frame.jpg';
 import clamp from '../util/clamp';
+import { cx } from '../util';
 
 export interface ExploreProductPanel {
 	heading: string | ReactNode;
@@ -18,9 +19,11 @@ export interface ExploreProductProps {
 	heading: string;
 	text: string;
 	items: readonly ExploreProductPanel[],
+	className?: string;
+	style?: CSSProperties;
 }
 
-export default function ExploreProduct ({ heading, text, items } : ExploreProductProps) {
+export default function ExploreProduct ({ heading, text, items, className, style } : ExploreProductProps) {
 	const [dir, setDir] = useState(1)
 		, [activeIndex, setActiveIndex] = useState(0);
 
@@ -77,7 +80,7 @@ export default function ExploreProduct ({ heading, text, items } : ExploreProduc
 	const onTrackBtnClick = i => () => setActive(i);
 
 	return (
-		<div className={css.wrap}>
+		<div className={cx(css.wrap, className)} style={style}>
 			<header className={css.header}>
 				<h1>{heading}</h1>
 				<p>{text}</p>

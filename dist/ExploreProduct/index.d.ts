@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 export interface ExploreProductPanel {
     heading: string | ReactNode;
     text: string;
@@ -8,5 +8,7 @@ export interface ExploreProductProps {
     heading: string;
     text: string;
     items: readonly ExploreProductPanel[];
+    className?: string;
+    style?: CSSProperties;
 }
-export default function ExploreProduct({ heading, text, items }: ExploreProductProps): JSX.Element;
+export default function ExploreProduct({ heading, text, items, className, style }: ExploreProductProps): JSX.Element;

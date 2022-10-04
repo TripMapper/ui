@@ -6,7 +6,8 @@ import frame_wp from './imgs/iphone-frame.webp';
 import frame2x from './imgs/iphone-frame@2x.jpg';
 import frame from './imgs/iphone-frame.jpg';
 import clamp from '../util/clamp';
-export default function ExploreProduct({ heading, text, items }) {
+import { cx } from '../util';
+export default function ExploreProduct({ heading, text, items, className, style }) {
     const [dir, setDir] = useState(1), [activeIndex, setActiveIndex] = useState(0);
     const setActive = i => {
         if (typeof i === 'function')
@@ -55,7 +56,7 @@ export default function ExploreProduct({ heading, text, items }) {
             setActive(i => i - 1);
     };
     const onTrackBtnClick = i => () => setActive(i);
-    return (<div className={css.wrap}>
+    return (<div className={cx(css.wrap, className)} style={style}>
 			<header className={css.header}>
 				<h1>{heading}</h1>
 				<p>{text}</p>

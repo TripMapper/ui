@@ -4,18 +4,19 @@ import Image from 'next/future/image';
 import Logomark from '../svg/logomark.svg';
 import Form from '../Form';
 import { motion, useScroll, useTransform } from 'framer-motion';
-export default function AuthLayout({ form, callout, image, onSubmit, content, mobileHeightOffset, }) {
+import A from '../A';
+export default function AuthLayout({ form, callout, image, onSubmit, content, mobileHeightOffset, style, }) {
     const { scrollYProgress } = useScroll();
     const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
     // @ts-ignore
     const isMobile = (process?.browser ?? true) ? window.matchMedia('(max-width: 60em)').matches : false;
     return (
     // @ts-ignore
-    <div className={css.authLayout} style={{ '--mobileHeightOffset': mobileHeightOffset + 'px' }}>
+    <div className={css.authLayout} style={{ '--mobileHeightOffset': mobileHeightOffset + 'px', ...(style ?? {}) }}>
 			<div className={css.content}>
 				<Form className={css.form} onSubmit={onSubmit}>
 					<div>
-						<Logomark className={css.logo}/>
+						<A href="/"><Logomark className={css.logo}/></A>
 						{form}
 					</div>
 				</Form>

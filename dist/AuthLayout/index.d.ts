@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { FormSubmit } from '../Form';
 export interface AuthImageProps {
     src: string;
@@ -13,5 +13,6 @@ export interface AuthLayoutProps {
     onSubmit?: FormSubmit;
     content?: ReactNode;
     mobileHeightOffset?: number;
+    style?: CSSProperties;
 }
-export default function AuthLayout({ form, callout, image, onSubmit, content, mobileHeightOffset, }: AuthLayoutProps): JSX.Element;
+export default function AuthLayout({ form, callout, image, onSubmit, content, mobileHeightOffset, style, }: AuthLayoutProps): JSX.Element;

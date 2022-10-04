@@ -1,10 +1,11 @@
 import css from './style.module.scss';
 import Copy from '../Copy';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import Image from 'next/future/image';
 import Logomark from '../svg/logomark.svg';
 import Form, { FormSubmit } from '../Form';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import A from '../A';
 
 export interface AuthImageProps {
 	src: string;
@@ -20,6 +21,7 @@ export interface AuthLayoutProps {
 	onSubmit?: FormSubmit;
 	content?: ReactNode;
 	mobileHeightOffset?: number;
+	style?: CSSProperties;
 }
 
 export default function AuthLayout ({
@@ -29,6 +31,7 @@ export default function AuthLayout ({
 	onSubmit,
 	content,
 	mobileHeightOffset,
+	style,
 } : AuthLayoutProps) {
 	const { scrollYProgress } = useScroll();
 	const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
@@ -37,11 +40,11 @@ export default function AuthLayout ({
 
 	return (
 		// @ts-ignore
-		<div className={css.authLayout} style={{ '--mobileHeightOffset': mobileHeightOffset + 'px' }}>
+		<div className={css.authLayout} style={{ '--mobileHeightOffset': mobileHeightOffset + 'px', ...(style ?? {}) }}>
 			<div className={css.content}>
 				<Form className={css.form} onSubmit={onSubmit}>
 					<div>
-						<Logomark className={css.logo} />
+						<A href="/"><Logomark className={css.logo} /></A>
 						{form}
 					</div>
 				</Form>
