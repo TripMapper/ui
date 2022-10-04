@@ -1,0 +1,61 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import ExploreProduct
+	from './index';
+
+<Meta
+	title="Interactive/Explore Product"
+	component={ExploreProduct}
+/>
+
+# Explore Product
+
+```jsx
+todo
+```
+
+<Canvas>
+	<Story name="Explore Product">
+		<ExploreProduct
+			heading={<>TripMapper is the home<br/>for all your travel plans.</>}
+			text="Manage your itinerary, invite fellow travellers, upload important documents and track your budget."
+			items={[
+				{
+					heading: 'Visualise your itinerary',
+					text: 'Browse your itinerary in a beautiful card view or quickly see the entire trip in list view.',
+					image: 'https://source.unsplash.com/860x2790?outdoors&sig=0',
+				},
+				{
+					heading: 'Granular, currency-aware budgeting tools',
+					text: 'Never miss a single payment. Add all your travels to TripMapper and stay on budget.',
+					image: 'https://source.unsplash.com/860x2790?outdoors&sig=1',
+				},
+				{
+					heading: 'Bring everyone together',
+					text: 'Travel is better together, and with TripMapper you can bring all your travel companions along.',
+					image: 'https://source.unsplash.com/860x2790?outdoors&sig=2',
+				},
+				{
+					heading: 'Save all your important files in one place',
+					text: 'Upload tickets, travel vouchers and anything else you’ll need whilst travelling the world.',
+					image: 'https://source.unsplash.com/860x2790?outdoors&sig=3',
+				},
+				{
+					heading: 'Never forget that important thing again',
+					text: 'With TripMapper, you can add all your important tasks and be reminded when they’re due.',
+					image: 'https://source.unsplash.com/860x2790?outdoors&sig=4',
+				},
+				{
+					heading: 'Map it out',
+					text: 'See your trip on a dynamic map. Zoom in and explore the details or zoom out for context.',
+					image: 'https://source.unsplash.com/860x2790?outdoors&sig=5',
+				},
+				{
+					heading: 'Discover the world',
+					text: 'Not sure where to start? No problem, discover our library of pre-made itineraries to get you started.',
+					image: 'https://source.unsplash.com/860x2790?outdoors&sig=6',
+				},
+			]}
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={ExploreProduct} />
