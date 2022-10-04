@@ -35,7 +35,7 @@ import Button from 'ui/Button';
 ```
 
 <Canvas>
-	<Story name="AuthLayout">
+	<Story name="Login">
 		<AuthLayout
 			form={(
 				<>
@@ -61,6 +61,35 @@ import Button from 'ui/Button';
 						daily. If you’d like to be included, join the waitlist
 						below.</p>
 					<Button>Join the waitlist</Button>
+				</>
+			)}
+			image={{ src: 'https://source.unsplash.com/1000x1000?outdoors' }}
+		/>
+	</Story>
+	<Story name="Register">
+		<AuthLayout
+			form={(
+				<>
+					<Copy El="header">
+						<h1>Sign Up</h1>
+						<p>It’s great to have you! Create your account below.</p>
+					</Copy>
+					<Label label="Full Name">
+						<Input type="text" required />
+					</Label>
+					<Label label="Email Address">
+						<Input type="email" placeholder="joe.bloggs@agent.com" required />
+					</Label>
+					<Label label="Password">
+						<Input type="password" required />
+					</Label>
+					<Label label="Where do you call home?">
+						<Input type="text" placeholder="todo" required />
+					</Label>
+					<div>[x] Agree to terms</div>
+					<Button secondary wide size="large">Sign Up</Button>
+					<br/>
+					<Button text wide size="small">I have an account</Button>
 				</>
 			)}
 			image={{ src: 'https://source.unsplash.com/1000x1000?outdoors' }}
