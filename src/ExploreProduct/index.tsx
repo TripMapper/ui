@@ -24,7 +24,8 @@ export interface ExploreProductProps {
 }
 
 export default function ExploreProduct ({ heading, text, items, className, style } : ExploreProductProps) {
-	const [dir, setDir] = useState(1)
+	const [autoPlay, setAutoPlay] = useState(true)
+		, [dir, setDir] = useState(1)
 		, [activeIndex, setActiveIndex] = useState(0);
 
 	const setActive = i => {
@@ -32,6 +33,7 @@ export default function ExploreProduct ({ heading, text, items, className, style
 		i = clamp(i, 0, items.length - 1);
 
 		setDir(i > activeIndex ? 1 : -1);
+		setAutoPlay(false);
 		setTimeout(() => setActiveIndex(i), 0);
 	};
 
@@ -50,6 +52,18 @@ export default function ExploreProduct ({ heading, text, items, className, style
 			items[i].text,
 		];
 	}, [items]);
+
+	useEffect(() => {
+		if (!autoPlay) return;
+
+		const iv = setInterval(() => {
+			setActiveIndex(i => {
+				return clamp(i + 1, 0, items.length - 1);
+			});
+		}, 10000);
+
+		return () => { clearInterval(iv) };
+	}, [autoPlay]);
 
 	useEffect(() => {
 		items?.map(item => {
