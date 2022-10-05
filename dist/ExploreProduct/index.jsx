@@ -32,11 +32,15 @@ export default function ExploreProduct({ heading, text, items, className, style 
         ];
     }, [items]);
     useEffect(() => {
+        console.log('Autoplay', autoPlay);
         if (!autoPlay)
             return;
         const iv = setInterval(() => {
             setActiveIndex(i => {
-                return clamp(i + 1, 0, items.length - 1);
+                i++;
+                if (i > items.length - 1)
+                    i = 0;
+                return i;
             });
         }, 10000);
         return () => { clearInterval(iv); };
