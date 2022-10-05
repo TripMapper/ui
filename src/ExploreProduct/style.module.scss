@@ -118,15 +118,20 @@
 }
 
 .framePos {
-	position: relative;
-	width: 100%;
-	overflow: visible;
+	@media (min-width: 60rem) {
+		position: relative;
+		width: 100%;
+		overflow: visible;
+	}
 }
 
 .frame {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
+	position: relative;
+	@media (min-width: 60rem) {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 	max-width: calc(100vw - #{rem($SIZES_spacer * 2)});
 
 	img {

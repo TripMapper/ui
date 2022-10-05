@@ -54,7 +54,6 @@ export default function ExploreProduct ({ heading, text, items, className, style
 	}, [items]);
 
 	useEffect(() => {
-		console.log('Autoplay', autoPlay);
 		if (!autoPlay) return;
 
 		const iv = setInterval(() => {
