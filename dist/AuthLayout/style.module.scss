@@ -112,4 +112,14 @@
 
 	background-color: change-color($COLOURS_primary, $alpha: 0.08);
 	border-radius: rem(16) rem(16) 0 0;
+
+	a {
+		color: inherit;
+	}
+
+	small {
+		color: change-color($COLOURS_text, $alpha: 0.6);
+		font-size: rem(11);
+		line-height: 1.3em;
+	}
 }
