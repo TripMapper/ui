@@ -124,29 +124,31 @@ export default function ExploreProduct ({ heading, text, items, className, style
 					</motion.div>
 				</AnimatePresence>
 			</header>
-			<div className={css.frame}>
-				<span className={css.island} />
-				<picture>
-					<source srcSet={`${frame_wp?.src ?? frame_wp}, ${frame2x_wp?.src ?? frame2x_wp} 2x`} type="image/webp" />
-					<source srcSet={`${frame?.src ?? frame}, ${frame2x?.src ?? frame2x} 2x`} type="image/jpg" />
-					<img src={frame?.src ?? frame} alt=""/>
-				</picture>
-				<div className={css.content}>
-					<AnimatePresence initial={false}>
-						<motion.div
-							key={activeIndex}
-							initial={{ opacity: 1, x: 100 * dir + '%' }}
-							animate={{ opacity: 1, x: 0 }}
-							exit={{ opacity: 1, x: -100 * dir + '%', zIndex: -1 }}
-							transition={{ type: 'tween', ease: 'easeInOut' }}
-							drag="x"
-							dragConstraints={{ left: 0, right: 0 }}
-							dragElastic={1}
-							onDragEnd={onDragEnd}
-						>
-							<img src={items[activeIndex].image} alt=""/>
-						</motion.div>
-					</AnimatePresence>
+			<div className={css.framePos}>
+				<div className={css.frame}>
+					<span className={css.island} />
+					<picture>
+						<source srcSet={`${frame_wp?.src ?? frame_wp}, ${frame2x_wp?.src ?? frame2x_wp} 2x`} type="image/webp" />
+						<source srcSet={`${frame?.src ?? frame}, ${frame2x?.src ?? frame2x} 2x`} type="image/jpg" />
+						<img src={frame?.src ?? frame} alt=""/>
+					</picture>
+					<div className={css.content}>
+						<AnimatePresence initial={false}>
+							<motion.div
+								key={activeIndex}
+								initial={{ opacity: 1, x: 100 * dir + '%' }}
+								animate={{ opacity: 1, x: 0 }}
+								exit={{ opacity: 1, x: -100 * dir + '%', zIndex: -1 }}
+								transition={{ type: 'tween', ease: 'easeInOut' }}
+								drag="x"
+								dragConstraints={{ left: 0, right: 0 }}
+								dragElastic={1}
+								onDragEnd={onDragEnd}
+							>
+								<img src={items[activeIndex].image} alt=""/>
+							</motion.div>
+						</AnimatePresence>
+					</div>
 				</div>
 			</div>
 		</div>

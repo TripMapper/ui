@@ -4,7 +4,7 @@
 	display: flex;
 	align-items: stretch;
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 	overflow-y: hidden;
 
 	@media (max-width: 60em) {
@@ -53,7 +53,7 @@
 .body {
 	position: relative;
 	width: 60%;
-	height: 100vh;
+	min-height: 100vh;
 	flex-shrink: 9999;
 	overflow: hidden;
 

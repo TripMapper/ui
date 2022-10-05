@@ -117,8 +117,16 @@
 	user-select: none;
 }
 
-.frame {
+.framePos {
 	position: relative;
+	width: 100%;
+	overflow: visible;
+}
+
+.frame {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 	max-width: calc(100vw - #{rem($SIZES_spacer * 2)});
 
 	img {
