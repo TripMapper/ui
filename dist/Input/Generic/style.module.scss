@@ -30,6 +30,24 @@
 	&::placeholder {
 		color: change-color($COLOURS_text, $alpha: 0.4);
 	}
+
+	&[type='date'] {
+		text-indent: rem(16);
+	}
+
+	&::-webkit-datetime-edit-fields-wrapper {
+		text-indent: 0 !important;
+	}
+
+	&::-webkit-calendar-picker-indicator {
+		padding-right: rem(16) !important;
+		opacity: 0.5 !important;
+	}
+
+	&.safari::-webkit-datetime-edit {
+		padding-top: rem(7) !important;
+		margin-left: rem(-20) !important;
+	}
 }
 
 .label {

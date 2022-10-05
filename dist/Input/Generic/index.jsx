@@ -3,10 +3,11 @@ import Base from '../Base';
 import empty from '../../util/empty';
 import { forwardRef, useState } from 'react';
 import cx from '../../util/cx';
+import getBrowser from '../../util/getBrowser';
 const Generic = forwardRef(({ prefix, suffix, onFocus, onBlur, merged = false, ...props }, ref) => {
     const [hasFocus, setHasFocus] = useState(false);
     if (empty(prefix) && empty(suffix))
-        return (<Base className={cx(css.input, css.style, merged && css.merged)} onFocus={onFocus} onBlur={onBlur} {...props} ref={ref}/>);
+        return (<Base className={cx(css.input, css.style, merged && css.merged, getBrowser() === 'safari' && css.safari)} onFocus={onFocus} onBlur={onBlur} {...props} ref={ref}/>);
     const _onFocus = e => {
         e.persist();
         onFocus && onFocus(e);
@@ -19,7 +20,7 @@ const Generic = forwardRef(({ prefix, suffix, onFocus, onBlur, merged = false, .
     };
     return (<label className={cx(css.label, css.style, hasFocus && css.focus, !empty(prefix) && css.prefix, !empty(suffix) && css.suffix, merged && css.merged)}>
 			{prefix}
-			<Base className={css.input} onFocus={_onFocus} onBlur={_onBlur} {...props} ref={ref}/>
+			<Base className={cx(css.input, getBrowser() === 'safari' && css.safari)} onFocus={_onFocus} onBlur={_onBlur} {...props} ref={ref}/>
 			{suffix}
 		</label>);
 });

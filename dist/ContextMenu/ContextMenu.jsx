@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePopper } from 'react-popper';
 import cx from '../util/cx';
-export default function ContextMenu({ children, menu, isOpen }) {
+export default function ContextMenu({ children, menu, isOpen, asDiv = false }) {
     const isSSR = typeof window === 'undefined' || typeof window.document === 'undefined';
     const { current: uid } = useRef('cxm_' + nanoid(5));
     const [trigger, setTrigger] = useState(), [cxm, setCxm] = useState();
@@ -66,12 +66,13 @@ export default function ContextMenu({ children, menu, isOpen }) {
     }, [open, cxm]);
     if (isSSR)
         return child;
+    const El = asDiv ? motion.div : motion.ul;
     return (<>
 			{child}
 			{createPortal(<AnimatePresence>
-					{open && (<motion.ul ref={setCxm} className={css.ctxMenu} style={popper.styles.popper} {...popper.attributes.popper} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} id={uid}>
+					{open && (<El ref={setCxm} className={css.ctxMenu} style={popper.styles.popper} {...popper.attributes.popper} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} id={uid}>
 							{menu}
-						</motion.ul>)}
+						</El>)}
 				</AnimatePresence>, document.body)}
 		</>);
 }

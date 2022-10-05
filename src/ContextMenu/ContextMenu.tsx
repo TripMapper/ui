@@ -17,9 +17,10 @@ export interface ContextMenuProps {
 	children: ReactElement;
 	menu: ReactFragment | ReactElement | ReactNode;
 	isOpen?: (boolean) => void;
+	asDiv?: boolean;
 }
 
-export default function ContextMenu ({ children, menu, isOpen } : ContextMenuProps) {
+export default function ContextMenu ({ children, menu, isOpen, asDiv = false } : ContextMenuProps) {
 	const isSSR = typeof window === 'undefined' || typeof window.document === 'undefined';
 	const { current: uid } = useRef('cxm_' + nanoid(5));
 	const [trigger, setTrigger] = useState()
@@ -94,14 +95,16 @@ export default function ContextMenu ({ children, menu, isOpen } : ContextMenuPro
 	if (isSSR)
 		return child;
 
+	const El = asDiv ? motion.div : motion.ul;
+
 	return (
 		<>
 			{child}
 			{createPortal(
 				<AnimatePresence>
 					{open && (
-						<motion.ul
-							ref={setCxm as unknown as Ref<HTMLUListElement>}
+						<El
+							ref={setCxm as unknown as Ref<HTMLUListElement> & Ref<HTMLDivElement>}
 							className={css.ctxMenu}
 							style={popper.styles.popper}
 							{...popper.attributes.popper}
@@ -112,7 +115,7 @@ export default function ContextMenu ({ children, menu, isOpen } : ContextMenuPro
 							id={uid}
 						>
 							{menu}
-						</motion.ul>
+						</El>
 					)}
 				</AnimatePresence>
 			, document.body)}

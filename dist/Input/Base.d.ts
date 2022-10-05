@@ -1,7 +1,7 @@
 import { ChangeEventHandler, FocusEventHandler, Ref } from 'react';
 export interface BaseInputProps {
     /** @default text */
-    type?: 'color' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url' | 'week' | 'numeric';
+    type?: 'color' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url' | 'week' | 'date' | 'time' | 'datetime-local' | 'numeric';
     autoComplete?: string | undefined;
     autoFocus?: boolean | undefined;
     disabled?: boolean | undefined;

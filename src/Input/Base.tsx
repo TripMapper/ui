@@ -13,6 +13,9 @@ export interface BaseInputProps {
 		| 'text'
 		| 'url'
 		| 'week'
+		| 'date'
+		| 'time'
+		| 'datetime-local'
 		| 'numeric';
 	autoComplete?: string | undefined;
 	autoFocus?: boolean | undefined;

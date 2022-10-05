@@ -3,6 +3,7 @@ import Base, { BaseInputProps } from '../Base';
 import empty from '../../util/empty';
 import { forwardRef, useState } from 'react';
 import cx from '../../util/cx';
+import getBrowser from '../../util/getBrowser';
 
 export interface GenericInputProps extends BaseInputProps {
 	prefix?: any;
@@ -16,7 +17,7 @@ const Generic = forwardRef<HTMLInputElement, GenericInputProps>(({ prefix, suffi
 	if (empty(prefix) && empty(suffix))
 		return (
 			<Base
-				className={cx(css.input, css.style, merged && css.merged)}
+				className={cx(css.input, css.style, merged && css.merged, getBrowser() === 'safari' && css.safari)}
 				onFocus={onFocus}
 				onBlur={onBlur}
 				{...props}
@@ -47,7 +48,7 @@ const Generic = forwardRef<HTMLInputElement, GenericInputProps>(({ prefix, suffi
 		)}>
 			{prefix}
 			<Base
-				className={css.input}
+				className={cx(css.input, getBrowser() === 'safari' && css.safari)}
 				onFocus={_onFocus}
 				onBlur={_onBlur}
 				{...props}
