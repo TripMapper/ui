@@ -68,3 +68,20 @@
 		background-color: varAlpha($COLOURS_other, 50%);
 	}
 }
+
+.large {
+	height: unset;
+	padding: rem(6) rem(10) rem(4);
+
+	font-size: rem(11);
+	font-weight: bold;
+	font-family: $FONTSTACK_base;
+	text-transform: unset;
+
+	border-radius: rem(8);
+
+	&.muted:not(.plus):not(.travel):not(.activity):not(.accommodation):not(.food):not(.other) {
+		color: $COLOURS_danger;
+		background-color: change-color($COLOURS_danger, $alpha:0.2);
+	}
+}

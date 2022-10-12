@@ -6,6 +6,7 @@ export interface PillProps {
 	children: ReactNode;
 	className?: string;
 	muted?: boolean;
+	large?: boolean;
 
 	travel?: boolean;
 	activity?: boolean;
@@ -21,6 +22,7 @@ export default function Pill ({
 	children,
 	className,
 	muted,
+	large = false,
 
 	travel,
 	activity,
@@ -36,6 +38,7 @@ export default function Pill ({
 			css.pill,
 			className,
 			muted && css.muted,
+			large && css.large,
 
 			(travel || type === 'travel') && css.travel,
 			(activity || type === 'activity') && css.activity,
