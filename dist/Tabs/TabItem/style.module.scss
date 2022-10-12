@@ -36,10 +36,17 @@
 		position: absolute;
 		bottom: rem(50);
 		pointer-events: none;
+		color: $COLOURS_text;
+		transition: opacity 0.15s ease;
+		opacity: 0.5;
 	}
 
 	&:hover {
 		color: $COLOURS_text;
+
+		svg {
+			opacity: 1;
+		}
 	}
 
 	.compact & {
@@ -60,6 +67,10 @@
 
 .itemActive {
 	color: $COLOURS_text;
+
+	svg {
+		opacity: 1;
+	}
 }
 
 .active {
