@@ -1,0 +1,50 @@
+@import "../variables";
+
+.budgetLayout {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: rem(104);
+
+	max-width: rem(1162);
+	margin: auto;
+	padding-top: rem(150);
+	min-height: 100%;
+}
+
+.header {
+	> div {
+		display: flex;
+		align-items: flex-end;
+	}
+
+	h1 {
+		margin-bottom: -0.3em;
+		margin-right: rem(8);
+		font-size: rem(48);
+		font-weight: bold;
+
+		small {
+			font-size: rem(24);
+		}
+	}
+}
+
+.transactions {
+	padding: rem(32);
+
+	background: #fff;
+	box-shadow: 0 rem(2) rem(16) 0 rgba(0,0,0,0.10);
+	border-radius: rem(16) rem(16) 0 0;
+
+	> header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: rem(24);
+
+		h3 {
+			font-size: rem(24);
+			font-weight: bold;
+		}
+	}
+}

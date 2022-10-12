@@ -1,8 +1,10 @@
 import '../src/globals.scss';
 import '@storybook/addon-console';
 import { setConfig } from 'next/config';
+import i18n from './i18n';
 
 export const parameters = {
+	i18n,
 	viewMode: 'docs',
 	controls: {
 		expanded: true,

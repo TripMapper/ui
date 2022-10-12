@@ -7,6 +7,7 @@ module.exports = {
 		'@storybook/addon-docs',
 		'@storybook/preset-scss',
 		'@storybook/addon-essentials',
+		'storybook-react-i18next',
 	],
 	framework: '@storybook/react',
 	core: {
