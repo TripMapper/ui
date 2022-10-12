@@ -17,21 +17,24 @@ export interface TabItemProps {
 	icon?: Icons;
 }
 
-interface TabItemPropsWithLayoutId extends TabItemProps {
+interface TabItemPropsWithInternal extends TabItemProps {
 	tabLayoutId: string;
+	compact: boolean;
 }
 
-export default function TabItem ({ uri, name, exact = false, onClick, isActive = false, tabLayoutId, icon } : TabItemPropsWithLayoutId) {
+export default function TabItem ({
+	uri, name, exact = false, onClick, isActive = false, tabLayoutId, icon, compact,
+} : TabItemPropsWithInternal) {
 	const { asPath } = useRouter() ?? {};
 	const isActiveRoute = uri ? exact ? asPath === uri : asPath.startsWith(uri) : false;
 	const _isActive = isActiveRoute || isActive;
 
 	return (
-		<li className={css.li}>
+		<li className={cx(css.li, compact && css.compact)}>
 			{uri ? (
 				<Link href={uri}>
 					<a className={cx(css.item, _isActive && css.itemActive, icon && css.hasIcon)}>
-						{icon && <Icon of={icon} xl />}
+						{icon && <Icon of={icon} xl={!compact} s={compact} />}
 						{name}
 					</a>
 				</Link>
@@ -40,7 +43,7 @@ export default function TabItem ({ uri, name, exact = false, onClick, isActive =
 					onClick={onClick}
 					className={cx(css.item, _isActive && css.itemActive, icon && css.hasIcon)}
 				>
-					{icon && <Icon of={icon} xl />}
+					{icon && <Icon of={icon} xl={!compact} s={compact} />}
 					{name}
 				</button>
 			)}

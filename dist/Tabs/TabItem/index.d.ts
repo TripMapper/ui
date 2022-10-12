@@ -10,8 +10,9 @@ export interface TabItemProps {
     isActive?: boolean;
     icon?: Icons;
 }
-interface TabItemPropsWithLayoutId extends TabItemProps {
+interface TabItemPropsWithInternal extends TabItemProps {
     tabLayoutId: string;
+    compact: boolean;
 }
-export default function TabItem({ uri, name, exact, onClick, isActive, tabLayoutId, icon }: TabItemPropsWithLayoutId): JSX.Element;
+export default function TabItem({ uri, name, exact, onClick, isActive, tabLayoutId, icon, compact, }: TabItemPropsWithInternal): JSX.Element;
 export {};

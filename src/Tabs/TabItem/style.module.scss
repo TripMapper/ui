@@ -3,7 +3,7 @@
 .li {
 	position: relative;
 
-	&:first-child {
+	&:not(.compact):first-child {
 		margin-left: rem(-8);
 	}
 }
@@ -41,6 +41,17 @@
 	&:hover {
 		color: $COLOURS_text;
 	}
+
+	.compact & {
+		height: rem(32);
+		font-size: rem(16);
+
+		> svg {
+			position: relative;
+			bottom: unset;
+			margin-right: rem(8);
+		}
+	}
 }
 
 .itemActive {
@@ -58,4 +69,17 @@
 	height: rem(2);
 
 	background-color: $COLOURS_text;
+
+	.compact & {
+		top: rem(1);
+		left: rem(1);
+		bottom: unset;
+		width: calc(100% - #{rem(2)});
+		height: rem(30);
+
+		background: #fff;
+		border: rem(1) solid #E7E1D9;
+		box-shadow: 0 rem(1) rem(4) 0 rgba(0,0,0,0.08);
+		border-radius: rem(5);
+	}
 }

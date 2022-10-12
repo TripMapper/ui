@@ -10,13 +10,22 @@
 	list-style: none;
 	border-bottom: 1px solid $COLOURS_borderLight;
 
-	&.hasIcons {
+	&:not(.compact).hasIcons {
 		padding-top: rem(30);
 	}
 
-	&.sidePadding {
+	&:not(.compact).sidePadding {
 		padding-left: rem($SIZES_spacer);
 		padding-right: rem($SIZES_spacer);
+	}
+
+	&.compact {
+		padding: 0 rem(2);
+		align-items: center;
+		height: rem(36);
+		border-bottom: none;
+		background-color: change-color($COLOURS_text, $alpha: 0.08);
+		border-radius: rem(8);
 	}
 }
 

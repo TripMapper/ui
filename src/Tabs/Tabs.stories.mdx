@@ -32,6 +32,16 @@ import Tabs from 'ui/Tabs';
 			]}>
 				<Button>New Trip</Button>
 			</Tabs>
+			<br/>
+			<Tabs
+				tabsLayoutId="compactTabsExample"
+				compact
+				items={[
+					{ name: 'Summary', icon: 'earth', uri: '/trips', exact: true },
+					{ name: 'Categories', icon: 'image', uri: '/trips/upcoming', exact: true },
+					{ name: 'People', uri: '/trips/active', exact: true },
+				]}
+			/>
 		</FakeNextRouter>
 	</Story>
 </Canvas>

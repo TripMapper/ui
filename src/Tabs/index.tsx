@@ -9,6 +9,8 @@ export interface TabItems {
 	items: ReadonlyArray<TabItemProps>;
 	children?: ReactNode;
 	sidePadding?: boolean;
+	/** @default false */
+	compact?: boolean;
 }
 
 export default function Tabs ({
@@ -17,7 +19,11 @@ export default function Tabs ({
 	children,
 	tabsLayoutId = 'tabsLayoutId',
 	sidePadding = false,
+	compact = false,
 } : TabItems) {
+	if (compact && children)
+		throw new Error('Compact tabs doesn\'t support children');
+
 	const hasIcons = useMemo(() => {
 		for (const item of items)
 			if (item.icon !== void 0 && item.icon !== null)
@@ -27,12 +33,18 @@ export default function Tabs ({
 	}, [items]);
 
 	return (
-		<ul className={cx(css.ul, className, hasIcons && css.hasIcons, sidePadding && css.sidePadding)}>
+		<ul className={cx(
+			css.ul,
+			className,
+			hasIcons && css.hasIcons,
+			sidePadding && css.sidePadding,
+			compact && css.compact,
+		)}>
 			{items.map(item => (
-				<TabItem tabLayoutId={tabsLayoutId} key={item.uri ?? item.name} {...item} />
+				<TabItem compact={compact} tabLayoutId={tabsLayoutId} key={item.uri ?? item.name} {...item} />
 			))}
 
-			{children && (
+			{(children && !compact) && (
 				<div className={css.kids}>{children}</div>
 			)}
 		</ul>
