@@ -72,7 +72,7 @@
 
 	.compact & {
 		top: rem(1);
-		left: rem(1);
+		left: rem(0);
 		bottom: unset;
 		width: calc(100% - #{rem(2)});
 		height: rem(30);
