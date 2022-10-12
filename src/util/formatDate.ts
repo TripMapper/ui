@@ -4,7 +4,8 @@ export type DateFormat = 'short' | 'long';
 
 export default function formatDate (
 	date : Date|string|number,
-	format : DateFormat = 'short'
+	format : DateFormat = 'short',
+	options ?: Intl.DateTimeFormatOptions,
 ): string {
 	// @ts-ignore
 	const locale = UIContext?.['preferredLocale'] ?? UIContext?._currentValue?.preferredLocale ?? void 0;
@@ -14,6 +15,11 @@ export default function formatDate (
 
 	if (isNaN(date as unknown as number))
 		return '!!Error: Invalid Date!!';
+
+	let ret;
+
+	if (options)
+		return date.toLocaleDateString(locale, options);
 
 	switch (format) {
 		case 'long':

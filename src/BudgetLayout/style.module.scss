@@ -1,6 +1,7 @@
 @import "../variables";
 
 .budgetLayout {
+	position: relative;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-gap: rem(104);
@@ -9,6 +10,12 @@
 	margin: auto;
 	padding-top: rem(150);
 	min-height: 100%;
+}
+
+.overview {
+	position: sticky;
+	top: rem($SIZES_spacer);
+	align-self: start;
 }
 
 .header {
@@ -57,4 +64,51 @@
 			font-weight: bold;
 		}
 	}
+}
+
+.day {
+	position: relative;
+
+	header {
+		position: sticky;
+		z-index: 3;
+		top: 0;
+
+		display: flex;
+		justify-content: space-between;
+		width: calc(100% + #{rem(64)});
+		margin-left: rem(-32);
+
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(14);
+		font-weight: bold;
+		text-transform: uppercase;
+
+		padding: rem(14) rem(32);
+		background-color: rgba(255,255,255,0.8);
+		backdrop-filter: blur(10px);
+		mask-image: linear-gradient(
+			to bottom,
+			rgba(0,0,0,1),
+			rgba(0,0,0,1) 90%,
+			rgba(0,0,0,0) 100%
+		);
+	}
+
+	ul {
+		list-style: none;
+	}
+}
+
+.empty {
+	display: block;
+	padding: rem(11);
+
+	color: change-color($COLOURS_text, $alpha: 0.3);
+	font-size: rem(16);
+	font-weight: bold;
+	text-align: center;
+
+	border: rem(2) dashed $COLOURS_background;
+	border-radius: rem(8);
 }

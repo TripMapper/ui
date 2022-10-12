@@ -14,6 +14,8 @@ import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import B
 <Canvas>
 	<Story name="Budget Layout">
 		<BudgetLayout
+			totalDays={10}
+			startDate={new Date()}
 			currency="GBP"
 			total={1285.34}
 			overBudget
