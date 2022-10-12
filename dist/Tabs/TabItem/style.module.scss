@@ -46,6 +46,10 @@
 		height: rem(32);
 		font-size: rem(16);
 
+		&:not(.hasIcon) {
+			padding-left: rem(9.5);
+		}
+
 		> svg {
 			position: relative;
 			bottom: unset;
@@ -74,7 +78,7 @@
 		top: rem(1);
 		left: rem(0);
 		bottom: unset;
-		width: calc(100% - #{rem(2)});
+		width: 100%;
 		height: rem(30);
 
 		background: #fff;
