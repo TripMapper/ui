@@ -1,0 +1,70 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import BudgetBar, {
+	BudgetBarLabel
+} from './index';
+
+<Meta
+	title="Interface/Budget Bar"
+	component={BudgetBar}
+/>
+
+# Budget Bar
+
+```jsx
+import BudgetBar from 'ui/BudgetBar';
+
+<BudgetBar />
+```
+
+<Canvas>
+	<Story name="Budget Bar">
+		<BudgetBar
+			theme="accommodation"
+			fill={35}
+		/>
+		<BudgetBar
+			theme="activity"
+			fill={28}
+		/>
+		<BudgetBar
+			theme="food"
+			fill={84}
+		/>
+		<BudgetBar
+			theme="travel"
+			fill={45}
+		>
+			<BudgetBarLabel label="Category" value="Accommodation" grow />
+			<BudgetBarLabel label="Paid" value={297.29} />
+			<BudgetBarLabel label="Upcoming" value={987.81} muted />
+		</BudgetBar>
+		<BudgetBar
+			theme="other"
+			fill={7}
+			danger
+		/>
+		<BudgetBar
+			currency="GBP"
+			danger
+			tall
+			fill={[
+				{ value: 25, opacity: 1 },
+				{ value: 15, opacity: 0.5 },
+			]}
+		>
+			<BudgetBarLabel label="Budget" value={1200} />
+			<BudgetBarLabel label="Paid" value={297.29} />
+			<BudgetBarLabel label="Upcoming" value={987.81} muted />
+			<BudgetBarLabel label="Over" value={85.10} danger />
+		</BudgetBar>
+	</Story>
+</Canvas>
+
+<ArgsTable of={BudgetBar} />
+<ArgsTable of={BudgetBarLabel} />
+
+```ts
+export type BudgetBarFill = {
+	value: number;
+	opacity: number;
+}
+```

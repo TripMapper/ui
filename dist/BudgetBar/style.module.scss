@@ -1,0 +1,180 @@
+@import "../variables";
+
+.budgetBar {
+	&:not(:last-child) {
+		margin-bottom: rem(24);
+	}
+}
+
+.bar {
+	position: relative;
+	width: 100%;
+	height: rem(6);
+
+	background: #fff;
+	border-radius: rem(8);
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08), inset 0 0 1px rgba(0,0,0,0.5);
+
+	.mask {
+		display: flex;
+		align-items: stretch;
+		height: 100%;
+		border-radius: rem(8);
+		overflow: hidden;
+	}
+
+	.tall & {
+		height: rem(32);
+
+		&.danger::after {
+			border-radius: rem(10);
+		}
+	}
+
+	&.danger {
+		&::after {
+			content: '';
+			position: absolute;
+			top: rem(-3);
+			left: rem(-3);
+			right: rem(-3);
+			bottom: rem(-3);
+
+			border-radius: rem(8);
+			border: rem(2) solid $COLOURS_danger;
+		}
+	}
+
+	span {
+		display: inline-block;
+		background-color: #000;
+		box-shadow: inset 0 0 1px rgba(0,0,0,0.5);
+
+		transform: scaleX(0);
+		transform-origin: left;
+		animation: barEnter linear 0.5s forwards;
+
+		&:last-child {
+			animation-timing-function: ease-out;
+		}
+
+		@keyframes barEnter {
+			from { transform: scaleX(0) }
+			to { transform: scaleX(1) }
+		}
+
+		&:first-child:last-child {
+			border-radius: rem(8);
+		}
+	}
+}
+
+.labels {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	margin-top: rem(16);
+}
+
+.label {
+	&:not(:first-child) {
+		margin-left: rem(28);
+	}
+
+	&.grow {
+		flex-grow: 1;
+	}
+
+	span {
+		display: block;
+		font-size: rem(12);
+		letter-spacing: rem(0.86);
+		text-transform: uppercase;
+		font-weight: bold;
+		opacity: 0.5;
+	}
+
+	strong {
+		font-size: rem(20);
+
+		small {
+			font-size: rem(12);
+		}
+	}
+
+	.tall & strong {
+		font-size: rem(24);
+
+		small {
+			font-size: rem(14);
+		}
+	}
+
+	&.muted strong {
+		opacity: 0.5;
+	}
+
+	&.danger {
+		span,
+		strong,
+		small {
+			color: $COLOURS_danger;
+			opacity: 1;
+		}
+	}
+}
+
+// Themes
+// -------------------------------------------------------------------------
+
+.mono {}
+
+.accommodation {
+	.bar {
+		background-color: varAlpha($COLOURS_accommodation, 50);
+
+		span {
+			background-color: $COLOURS_accommodation;
+		}
+	}
+}
+
+.activity {
+	.bar {
+		background-color: varAlpha($COLOURS_activity, 50);
+
+		span {
+			background-color: $COLOURS_activity;
+		}
+	}
+}
+
+.food {
+	.bar {
+		background-color: varAlpha($COLOURS_food, 50);
+
+		span {
+			background-color: $COLOURS_food;
+		}
+	}
+}
+
+.travel {
+	.bar {
+		background-color: varAlpha($COLOURS_travel, 50);
+
+		span {
+			background-color: $COLOURS_travel;
+		}
+	}
+}
+
+.other {
+	.bar {
+		background-color: varAlpha($COLOURS_other, 50);
+
+		span {
+			background-color: $COLOURS_other;
+		}
+	}
+}

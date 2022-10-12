@@ -15,6 +15,7 @@
     "./AuthLayout": "./dist/AuthLayout/index.jsx",
     "./Avatar": "./dist/Avatar/index.jsx",
     "./Board": "./dist/Board/index.jsx",
+    "./BudgetBar": "./dist/BudgetBar/index.jsx",
     "./Button": "./dist/Button/index.jsx",
     "./Card": "./dist/Card/index.jsx",
     "./Checkbox": "./dist/Checkbox/index.jsx",
