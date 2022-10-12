@@ -1,5 +1,8 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import BudgetLayout
-	from './index'; import Button from '../Button'; import Icon from '../Icon';
+	from './index'; import Button from '../Button'; import Icon from '../Icon'; import Tabs
+	from '../Tabs'; import SubHeading from '../SubHeading'; import BudgetBar, {
+	BudgetBarLabel
+} from '../BudgetBar';
 
 <Meta
 	title="Layout/Budget Layout"
@@ -13,11 +16,40 @@ import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import B
 		<BudgetLayout
 			currency="GBP"
 			total={1285.34}
-			transactionsHeading="Transactions"
+			overBudget
+			headingChildren={(
+				<p>You’re over budget by £85.10. Consider tweaking your trip spend, or overall budget.</p>
+			)}
 			transactionsHeadingChildren={(
 				<Button tertiary size="small">Add Cost</Button>
 			)}
-		/>
+		>
+			<Tabs compact items={[
+				{ name: 'Summary', isActive: true },
+				{ name: 'Categories' },
+				{ name: 'People' },
+			]} />
+			<SubHeading
+				H="h2"
+				marginTop
+				heading="Summary"
+				text="Click on Paid or Upcoming to filter the transactions"
+			/>
+			<BudgetBar
+				currency="GBP"
+				danger
+				tall
+				fill={[
+					{ value: 25, opacity: 1 },
+					{ value: 15, opacity: 0.5 },
+				]}
+			>
+				<BudgetBarLabel label="Budget" value={1200} />
+				<BudgetBarLabel label="Paid" value={297.29} />
+				<BudgetBarLabel label="Upcoming" value={987.81} muted />
+				<BudgetBarLabel label="Over" value={85.10} danger />
+			</BudgetBar>
+		</BudgetLayout>
 	</Story>
 </Canvas>
 

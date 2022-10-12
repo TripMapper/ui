@@ -12,9 +12,12 @@
 }
 
 .header {
+	margin-bottom: rem(40);
+
 	> div {
 		display: flex;
 		align-items: flex-end;
+		margin-bottom: rem(15);
 	}
 
 	h1 {
@@ -26,6 +29,13 @@
 		small {
 			font-size: rem(24);
 		}
+	}
+
+	p {
+		max-width: rem(440);
+		font-size: rem(16);
+		line-height: 1.5em;
+		opacity: 0.5;
 	}
 }
 

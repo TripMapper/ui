@@ -7,8 +7,10 @@ import { useTranslation } from 'react-i18next';
 export default function BudgetLayout ({
 	total = 0,
 	currency = 'USD',
-	transactionsHeading,
+	overBudget = false,
+	headingChildren,
 	transactionsHeadingChildren,
+	children,
 }) {
 	const { t } = useTranslation();
 	const { symbol, integer, mantissa } = formatCurrency(total, currency, false, true) as CurrencyParts;
@@ -19,13 +21,15 @@ export default function BudgetLayout ({
 				<header className={css.header}>
 					<div>
 						<h1>{symbol}{integer.toLocaleString(void 0)}<small>.{mantissa || '00'}</small></h1>
-						<Pill large muted>{t('over_budget', 'Over Budget')}</Pill>
+						{overBudget && <Pill large muted>{t('over_budget', 'Over Budget')}</Pill>}
 					</div>
+					{headingChildren}
 				</header>
+				{children}
 			</div>
 			<div className={css.transactions}>
 				<header>
-					<h3>{transactionsHeading}</h3>
+					<h3>{t('transactions', 'Transactions')}</h3>
 					{transactionsHeadingChildren}
 				</header>
 			</div>
