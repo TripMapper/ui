@@ -1,6 +1,6 @@
 import css from './style.module.scss';
 import { gql } from 'urql';
-import Image from '../Image';
+import Image, { IMAGE_FRAGMENT } from '../Image';
 import { STATUS_TYPES } from '../Consts';
 import { cx, formatCurrency } from '../util';
 import Icon from '../Icon';
@@ -26,6 +26,7 @@ export const TRANSACTION_ITEM_FRAGMENT = gql `
 			}
         }
 	}
+	${IMAGE_FRAGMENT}
 `;
 export default function TransactionItem({ El = 'div', name, type, status, image = null, budget, tripBudget, currency, tripCurrency, }) {
     const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency.iso, false, true);
