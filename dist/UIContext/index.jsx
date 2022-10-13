@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { I18nextProvider } from 'react-i18next';
 const defaultContextValue = {
     preferredLocale: 'en-US',
     slideoverDepth: 0,
@@ -33,7 +34,7 @@ const decrementVal = (handle, set) => () => set(old => {
 export function useUIContext() {
     return useContext(UIContext);
 }
-export function UIContextProvider({ defaultContext, children }) {
+export function UIContextProvider({ defaultContext, i18n = null, children }) {
     const [uiContext, setUiContext] = useState({
         ...defaultContextValue,
         ...defaultContext,
@@ -43,8 +44,11 @@ export function UIContextProvider({ defaultContext, children }) {
         openSlideover: incrementVal('slideoverDepth', setUiContext),
         closeSlideover: decrementVal('slideoverDepth', setUiContext),
     };
-    return (<UIContext.Provider value={value}>
+    const out = (<UIContext.Provider value={value}>
 			{children}
 		</UIContext.Provider>);
+    return i18n ? (<I18nextProvider i18n={i18n}>
+			{out}
+		</I18nextProvider>) : out;
 }
 export default UIContext;

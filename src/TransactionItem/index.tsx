@@ -70,7 +70,7 @@ export default function TransactionItem ({
 			)}
 			<div className={css.name}>
 				<strong>{name}</strong>
-				<small>{STATUS_TYPES[status].label}</small>
+				<small>{status && STATUS_TYPES[status]?.label}</small>
 			</div>
 			<div className={css.cost}>
 				<strong>{symbol}{integer}<small>.{mantissa || '00'}</small></strong>
