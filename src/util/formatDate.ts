@@ -16,8 +16,6 @@ export default function formatDate (
 	if (isNaN(date as unknown as number))
 		return '!!Error: Invalid Date!!';
 
-	let ret;
-
 	if (options)
 		return date.toLocaleDateString(locale, options);
 

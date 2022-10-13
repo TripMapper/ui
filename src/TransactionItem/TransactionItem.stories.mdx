@@ -1,0 +1,21 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import TransactionItem
+	from './index';
+
+<Meta
+	title="Interface/Transaction Item"
+	component={TransactionItem}
+/>
+
+# Transaction Item
+
+<Canvas>
+	<Story name="Transaction Item">
+		<TransactionItem
+			name="My Transaction Item"
+			status="BOOKED_PAID"
+			type="FOOD"
+		/>
+	</Story>
+</Canvas>
+
+<ArgsTable of={TransactionItem} />

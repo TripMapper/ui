@@ -61,7 +61,7 @@ export default function BudgetLayout ({
 					<div key={day} className={css.day}>
 						<header>
 							<span>{date ? formatDate(date, null, { month: 'long', day: 'numeric' }) : `Day ${day}`}</span>
-							<span>{formatCurrency(total, currency)}</span>
+							<span>{formatCurrency(total, currency) as string}</span>
 						</header>
 
 						{cards.length === 0 ? (

@@ -1,0 +1,40 @@
+@import "../variables";
+
+.transaction {
+	display: flex;
+	align-items: center;
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: rem(40);
+	height: rem(40);
+
+	background-color: $COLOURS_primary;
+	border-radius: 50%;
+
+	.travel & { background-color: $COLOURS_travel }
+	.activity & { background-color: $COLOURS_activity }
+	.accommodation & { background-color: $COLOURS_accommodation }
+	.food & { background-color: $COLOURS_food }
+	.other & { background-color: $COLOURS_other }
+}
+
+.name {
+	margin-left: rem(10);
+
+	strong {
+		display: block;
+		font-size: rem(16);
+	}
+
+	small {
+		display: block;
+		margin-top: rem(1);
+
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(12);
+	}
+}
