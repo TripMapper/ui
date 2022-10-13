@@ -3,11 +3,22 @@
 .subHeading {
 	margin-bottom: rem(16);
 
+	&.marginTop {
+		margin-top: rem(40);
+	}
+
+	h2,
 	h4 {
 		margin-bottom: rem(5);
-
-		font-size: rem(16);
 		font-weight: bold;
+	}
+
+	h2 {
+		font-size: rem(24);
+	}
+
+	h4 {
+		font-size: rem(16);
 	}
 
 	p {

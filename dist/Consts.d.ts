@@ -50,3 +50,25 @@ export declare const TRAVEL_TYPES: {
         value: string;
     };
 };
+export declare const STATUS_TYPES: {
+    TO_BOOK: {
+        label: string;
+        value: string;
+    };
+    BOOKED: {
+        label: string;
+        value: string;
+    };
+    BOOKED_DEPOSIT_PAID: {
+        label: string;
+        value: string;
+    };
+    BOOKED_PAID: {
+        label: string;
+        value: string;
+    };
+    PAID: {
+        label: string;
+        value: string;
+    };
+};

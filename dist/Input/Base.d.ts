@@ -28,5 +28,5 @@ export interface BaseInputPropsWithClassName extends BaseInputProps {
     className?: string;
     ref?: Ref<HTMLInputElement>;
 }
-declare const Base: import("react").ForwardRefExoticComponent<Pick<BaseInputPropsWithClassName, "type" | "readOnly" | "size" | "disabled" | "pattern" | "autoComplete" | "autoFocus" | "max" | "maxLength" | "min" | "minLength" | "name" | "defaultValue" | "className" | "placeholder" | "inputMode" | "required" | "step" | "value" | "onFocus" | "onBlur" | "onChange" | "onInput"> & import("react").RefAttributes<HTMLInputElement>>;
+declare const Base: import("react").ForwardRefExoticComponent<Pick<BaseInputPropsWithClassName, "defaultValue" | "type" | "readOnly" | "size" | "disabled" | "pattern" | "autoComplete" | "autoFocus" | "max" | "maxLength" | "min" | "minLength" | "name" | "className" | "placeholder" | "inputMode" | "required" | "step" | "value" | "onFocus" | "onBlur" | "onChange" | "onInput"> & import("react").RefAttributes<HTMLInputElement>>;
 export default Base;

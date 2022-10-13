@@ -1,7 +1,8 @@
 import css from './style.module.scss';
-export default function SubHeading({ heading, text }) {
-    return (<header className={css.subHeading}>
-			<h4>{heading}</h4>
+import { cx } from '../util';
+export default function SubHeading({ H = 'h4', heading, text, marginTop = false, }) {
+    return (<header className={cx(css.subHeading, marginTop && css.marginTop)}>
+			<H>{heading}</H>
 			{text && <p>{text}</p>}
 		</header>);
 }
