@@ -30,7 +30,7 @@ export default function BudgetBar({ fill, tall = false, danger = false, theme = 
 				</div>
 			</div>
 			{children && (<div className={css.labels}>
-					{Children.map(children, child => cloneElement(child, { currency }))}
+					{Children.map(children, child => child ? cloneElement(child, { currency }) : null)}
 				</div>)}
 		</div>);
 }

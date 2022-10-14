@@ -102,10 +102,10 @@ export default function BudgetBar ({
 			</div>
 			{children && (
 				<div className={css.labels}>
-					{Children.map(children, child => cloneElement(
+					{Children.map(children, child => child ? cloneElement(
 						child,
 						{ currency }
-					))}
+					) : null)}
 				</div>
 			)}
 		</div>
