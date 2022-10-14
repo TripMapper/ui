@@ -76,7 +76,21 @@
 	margin-top: rem(16);
 }
 
+button.label {
+	cursor: pointer;
+}
+
 .label {
+	position: relative;
+	display: block;
+
+	text-align: left;
+
+	appearance: none;
+	background: none;
+	border: none;
+	border-radius: 0;
+
 	&:not(:first-child) {
 		margin-left: rem(28);
 	}
@@ -121,6 +135,27 @@
 			color: $COLOURS_danger;
 			opacity: 1;
 		}
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		top: rem(-5);
+		left: rem(-8);
+		right: rem(-8);
+		bottom: rem(-2);
+
+		background: #fff;
+		border: rem(1) solid $COLOURS_border;
+		box-shadow: 0 rem(1) rem(4) 0 rgba(0,0,0,0.08);
+		border-radius: rem(8);
+
+		opacity: 0;
+	}
+
+	&.active::before {
+		opacity: 1;
 	}
 }
 

@@ -1,7 +1,7 @@
 import css from './style.module.scss';
 import { cx, formatCurrency } from '../util';
 import { CurrencyParts } from '../util/formatCurrency';
-import { Children, cloneElement, useMemo } from 'react';
+import { Children, cloneElement, MouseEventHandler, useMemo } from 'react';
 
 export type BudgetBarFill = {
 	value: number;
@@ -35,6 +35,8 @@ export interface BudgetBarLabelProps {
 	 * @internal
 	 * */
 	currency?: string;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
+	isActive?: boolean;
 }
 
 export function BudgetBarLabel ({
@@ -42,6 +44,8 @@ export function BudgetBarLabel ({
 	grow = false,
 	muted = false,
 	danger = false,
+	onClick = void 0,
+	isActive = false,
 } : BudgetBarLabelProps) {
 	const val = useMemo(() => {
 		if (typeof value === 'number') {
@@ -54,16 +58,23 @@ export function BudgetBarLabel ({
 		return <strong>{value}</strong>;
 	}, [value]);
 
+	const El = onClick ? 'button' : 'div';
+
 	return (
-		<div className={cx(
-			css.label,
-			grow && css.grow,
-			muted && css.muted,
-			danger && css.danger,
-		)}>
+		<El
+			className={cx(
+				css.label,
+				grow && css.grow,
+				muted && css.muted,
+				danger && css.danger,
+				isActive && css.active,
+			)}
+			onClick={onClick as any}
+			type={onClick ? 'button' : void 0}
+		>
 			<span>{label}</span>
 			{val}
-		</div>
+		</El>
 	);
 }
 

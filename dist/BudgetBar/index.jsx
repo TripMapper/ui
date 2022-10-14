@@ -1,7 +1,7 @@
 import css from './style.module.scss';
 import { cx, formatCurrency } from '../util';
 import { Children, cloneElement, useMemo } from 'react';
-export function BudgetBarLabel({ label, value, currency, grow = false, muted = false, danger = false, }) {
+export function BudgetBarLabel({ label, value, currency, grow = false, muted = false, danger = false, onClick = void 0, isActive = false, }) {
     const val = useMemo(() => {
         if (typeof value === 'number') {
             const { symbol, integer, mantissa } = formatCurrency(value, currency, false, true);
@@ -9,10 +9,11 @@ export function BudgetBarLabel({ label, value, currency, grow = false, muted = f
         }
         return <strong>{value}</strong>;
     }, [value]);
-    return (<div className={cx(css.label, grow && css.grow, muted && css.muted, danger && css.danger)}>
+    const El = onClick ? 'button' : 'div';
+    return (<El className={cx(css.label, grow && css.grow, muted && css.muted, danger && css.danger, isActive && css.active)} onClick={onClick} type={onClick ? 'button' : void 0}>
 			<span>{label}</span>
 			{val}
-		</div>);
+		</El>);
 }
 export default function BudgetBar({ fill, tall = false, danger = false, theme = 'mono', children, currency = 'USD', }) {
     if (theme !== 'mono' && typeof fill !== 'number')

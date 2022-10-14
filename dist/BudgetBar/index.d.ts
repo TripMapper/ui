@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import { MouseEventHandler } from 'react';
 export declare type BudgetBarFill = {
     value: number;
     opacity: number;
@@ -29,6 +29,8 @@ export interface BudgetBarLabelProps {
      * @internal
      * */
     currency?: string;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    isActive?: boolean;
 }
-export declare function BudgetBarLabel({ label, value, currency, grow, muted, danger, }: BudgetBarLabelProps): JSX.Element;
+export declare function BudgetBarLabel({ label, value, currency, grow, muted, danger, onClick, isActive, }: BudgetBarLabelProps): JSX.Element;
 export default function BudgetBar({ fill, tall, danger, theme, children, currency, }: BudgetBarProps): JSX.Element;
