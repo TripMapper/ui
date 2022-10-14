@@ -10,7 +10,7 @@
     "./variables.scss": "./dist/variables.scss",
     "./util": "./dist/util/index.js",
     "./hooks": "./dist/hooks/index.js",
-    "./consts": "./dist/Consts.js",
+    "./consts": "./dist/Consts.jsx",
     "./A": "./dist/A/index.jsx",
     "./AuthAffiliateBanner": "./dist/AuthAffiliateBanner/index.jsx",
     "./AuthLayout": "./dist/AuthLayout/index.jsx",

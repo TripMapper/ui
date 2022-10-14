@@ -30,9 +30,10 @@ export const TRANSACTION_ITEM_FRAGMENT = gql `
 `;
 export default function TransactionItem({ El = 'div', name, type, status, image = null, budget, tripBudget, currency, tripCurrency, }) {
     const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency.iso, false, true);
+    const upcoming = status === 'TO_BOOK' || status === 'BOOKED';
     return (
     /*@ts-ignore*/
-    <El className={cx(css.transaction, css[type.toLowerCase()])}>
+    <El className={cx(css.transaction, css[type.toLowerCase()], upcoming && css.upcoming)}>
 			{image ? (<Image className={css.image} {...image.srcset} circle/>) : (<span className={css.icon}>
 					<Icon of="money" m/>
 				</span>)}
@@ -42,7 +43,7 @@ export default function TransactionItem({ El = 'div', name, type, status, image 
 			</div>
 			<div className={css.cost}>
 				<strong>{symbol}{integer}<small>.{mantissa || '00'}</small></strong>
-				<small>{tripCurrency.iso !== currency.iso && formatCurrency(budget, currency.iso)}</small>
+				<small>{tripCurrency.iso !== currency.iso && formatCurrency(budget, currency.iso, false, false, false)}</small>
 			</div>
 		</El>);
 }

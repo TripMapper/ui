@@ -1,4 +1,4 @@
-import UIContext from '../UIContext';
+import { UIContextPointer } from '../UIContext';
 
 export type DateFormat = 'short' | 'long';
 
@@ -7,8 +7,7 @@ export default function formatDate (
 	format : DateFormat = 'short',
 	options ?: Intl.DateTimeFormatOptions,
 ): string {
-	// @ts-ignore
-	const locale = UIContext?.['preferredLocale'] ?? UIContext?._currentValue?.preferredLocale ?? void 0;
+	const locale = UIContextPointer.ref?.preferredLocale;
 
 	if (!(date instanceof Date))
 		date = new Date(date);

@@ -1,10 +1,11 @@
-export default function formatCurrency(value = 0, currency = 'USD', stripZero = false, asParts = false) {
+import { UIContextPointer } from '../UIContext';
+export default function formatCurrency(value = 0, currency = 'USD', stripZero = false, asParts = false, narrowSymbol = true) {
     if (value === 0 && stripZero)
         return '';
-    let formattedValue = value.toLocaleString(void 0, {
+    let formattedValue = value.toLocaleString(UIContextPointer.ref?.preferredLocale, {
         style: 'currency',
         currency: currency.toLowerCase(),
-        currencyDisplay: 'narrowSymbol',
+        currencyDisplay: narrowSymbol ? 'narrowSymbol' : 'symbol',
     });
     if (stripZero)
         formattedValue = formattedValue.replace(/\.0+$/, '');

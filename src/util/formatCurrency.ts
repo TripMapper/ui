@@ -1,3 +1,5 @@
+import { UIContextPointer } from '../UIContext';
+
 export interface CurrencyParts {
 	symbol: string;
 	integer: number;
@@ -9,14 +11,15 @@ export default function formatCurrency (
 	currency : string = 'USD',
 	stripZero : boolean = false,
 	asParts : boolean = false,
+	narrowSymbol : boolean = true,
 ) : string | CurrencyParts {
 	if (value === 0 && stripZero)
 		return '';
 
-	let formattedValue = value.toLocaleString(void 0, {
+	let formattedValue = value.toLocaleString(UIContextPointer.ref?.preferredLocale, {
 		style: 'currency',
 		currency: currency.toLowerCase(),
-		currencyDisplay: 'narrowSymbol',
+		currencyDisplay: narrowSymbol ? 'narrowSymbol' : 'symbol',
 	});
 
 	if (stripZero)

@@ -31,6 +31,7 @@ const decrementVal = (handle, set) => () => set(old => {
     next[handle]--;
     return next;
 });
+export const UIContextPointer = { ref: null };
 export function useUIContext() {
     return useContext(UIContext);
 }
@@ -44,6 +45,7 @@ export function UIContextProvider({ defaultContext, i18n = null, children }) {
         openSlideover: incrementVal('slideoverDepth', setUiContext),
         closeSlideover: decrementVal('slideoverDepth', setUiContext),
     };
+    UIContextPointer.ref = value;
     const out = (<UIContext.Provider value={value}>
 			{children}
 		</UIContext.Provider>);

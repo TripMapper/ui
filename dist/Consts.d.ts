@@ -1,74 +1,75 @@
+/// <reference types="react" />
 export declare const PRIMARY_TYPES: {
     TRAVEL: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     ACTIVITY: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     ACCOMMODATION: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     FOOD: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     OTHER: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
 };
 export declare const TRAVEL_TYPES: {
     TRAVEL_FLIGHT: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     TRAVEL_DRIVE: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     TRAVEL_TAXI: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     TRAVEL_BOAT: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     TRAVEL_PUBLIC_TRANSPORT: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     TRAVEL_CYCLE: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     TRAVEL_WALK: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
 };
 export declare const STATUS_TYPES: {
     TO_BOOK: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     BOOKED: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     BOOKED_DEPOSIT_PAID: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     BOOKED_PAID: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
     PAID: {
-        label: string;
+        label: JSX.Element;
         value: string;
     };
 };

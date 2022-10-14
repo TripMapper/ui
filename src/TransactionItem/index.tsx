@@ -58,9 +58,11 @@ export default function TransactionItem ({
 } : TransactionItemProps) {
 	const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency.iso, false,true) as CurrencyParts;
 
+	const upcoming = status === 'TO_BOOK' || status === 'BOOKED';
+
 	return (
 		/*@ts-ignore*/
-		<El className={cx(css.transaction, css[type.toLowerCase()])}>
+		<El className={cx(css.transaction, css[type.toLowerCase()], upcoming && css.upcoming)}>
 			{image ? (
 				<Image className={css.image} {...image.srcset} circle />
 			) : (
@@ -74,7 +76,7 @@ export default function TransactionItem ({
 			</div>
 			<div className={css.cost}>
 				<strong>{symbol}{integer}<small>.{mantissa || '00'}</small></strong>
-				<small>{tripCurrency.iso !== currency.iso && formatCurrency(budget, currency.iso) as string}</small>
+				<small>{tripCurrency.iso !== currency.iso && formatCurrency(budget, currency.iso, false, false, false) as string}</small>
 			</div>
 		</El>
 	);

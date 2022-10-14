@@ -10,6 +10,9 @@ declare const UIContext: import("react").Context<IUIContextValue>;
 export declare function buildUIContext(appContext: AppContext): {
     preferredLocale: string;
 };
+export declare const UIContextPointer: {
+    ref: any;
+};
 export declare function useUIContext(): IUIContextValue;
 export declare function UIContextProvider({ defaultContext, i18n, children }: {
     defaultContext: any;

@@ -1,7 +1,6 @@
-import UIContext from '../UIContext';
+import { UIContextPointer } from '../UIContext';
 export default function formatDate(date, format = 'short', options) {
-    // @ts-ignore
-    const locale = UIContext?.['preferredLocale'] ?? UIContext?._currentValue?.preferredLocale ?? void 0;
+    const locale = UIContextPointer.ref?.preferredLocale;
     if (!(date instanceof Date))
         date = new Date(date);
     if (isNaN(date))
