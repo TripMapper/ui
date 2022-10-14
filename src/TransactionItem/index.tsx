@@ -56,7 +56,7 @@ export default function TransactionItem ({
 	currency,
 	tripCurrency,
 } : TransactionItemProps) {
-	const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency.iso, false,true) as CurrencyParts;
+	const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency?.iso ?? 'USD', false,true) as CurrencyParts;
 
 	const upcoming = status === 'TO_BOOK' || status === 'BOOKED';
 
@@ -76,7 +76,7 @@ export default function TransactionItem ({
 			</div>
 			<div className={css.cost}>
 				<strong>{symbol}{integer}<small>.{mantissa || '00'}</small></strong>
-				<small>{tripCurrency.iso !== currency.iso && formatCurrency(budget, currency.iso, false, false, false) as string}</small>
+				<small>{(tripCurrency?.iso ?? 'USD') !== (currency?.iso ?? 'USD') && formatCurrency(budget, currency?.iso ?? 'USD', false, false, false) as string}</small>
 			</div>
 		</El>
 	);

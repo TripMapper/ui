@@ -29,7 +29,7 @@ export const TRANSACTION_ITEM_FRAGMENT = gql `
 	${IMAGE_FRAGMENT}
 `;
 export default function TransactionItem({ El = 'div', name, type, status, image = null, budget, tripBudget, currency, tripCurrency, }) {
-    const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency.iso, false, true);
+    const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency?.iso ?? 'USD', false, true);
     const upcoming = status === 'TO_BOOK' || status === 'BOOKED';
     return (
     /*@ts-ignore*/
@@ -43,7 +43,7 @@ export default function TransactionItem({ El = 'div', name, type, status, image 
 			</div>
 			<div className={css.cost}>
 				<strong>{symbol}{integer}<small>.{mantissa || '00'}</small></strong>
-				<small>{tripCurrency.iso !== currency.iso && formatCurrency(budget, currency.iso, false, false, false)}</small>
+				<small>{(tripCurrency?.iso ?? 'USD') !== (currency?.iso ?? 'USD') && formatCurrency(budget, currency?.iso ?? 'USD', false, false, false)}</small>
 			</div>
 		</El>);
 }
