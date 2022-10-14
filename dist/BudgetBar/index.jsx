@@ -10,7 +10,7 @@ export function BudgetBarLabel({ label, value, currency, grow = false, muted = f
         return <strong>{value}</strong>;
     }, [value]);
     const El = onClick ? 'button' : 'div';
-    return (<El className={cx(css.label, grow && css.grow, muted && css.muted, danger && css.danger, isActive && css.active)} onClick={onClick} type={onClick ? 'button' : void 0}>
+    return (<El className={cx(css.label, grow && css.grow, (muted && !isActive) && css.muted, danger && css.danger, isActive && css.active)} onClick={onClick} type={onClick ? 'button' : void 0}>
 			<span>{label}</span>
 			{val}
 		</El>);

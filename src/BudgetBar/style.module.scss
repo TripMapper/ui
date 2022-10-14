@@ -110,6 +110,7 @@ button.label {
 
 	strong {
 		font-size: rem(20);
+		transition: opacity 0.15s ease;
 
 		small {
 			font-size: rem(12);
@@ -152,6 +153,7 @@ button.label {
 		border-radius: rem(8);
 
 		opacity: 0;
+		transition: opacity 0.15s ease;
 	}
 
 	&.active::before {

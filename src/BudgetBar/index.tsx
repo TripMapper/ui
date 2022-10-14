@@ -65,7 +65,7 @@ export function BudgetBarLabel ({
 			className={cx(
 				css.label,
 				grow && css.grow,
-				muted && css.muted,
+				(muted && !isActive) && css.muted,
 				danger && css.danger,
 				isActive && css.active,
 			)}
