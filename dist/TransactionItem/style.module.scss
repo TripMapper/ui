@@ -4,6 +4,7 @@
 	display: flex;
 	align-items: center;
 	margin: rem(15) 0;
+	min-width: 0;
 
 	&:first-child { margin-top: 0 }
 	&:last-child { margin-bottom: 0 }
@@ -62,12 +63,17 @@
 }
 
 .name {
-	flex-grow: 1;
+	flex: 1;
+	flex-shrink: 9999;
+	min-width: 0;
 	margin: auto rem(10);
 
 	strong {
 		display: block;
 		font-size: rem(16);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	small {
