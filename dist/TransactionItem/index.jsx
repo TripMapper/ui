@@ -4,6 +4,7 @@ import Image, { IMAGE_FRAGMENT } from '../Image';
 import { STATUS_TYPES } from '../Consts';
 import { cx, formatCurrency } from '../util';
 import Icon from '../Icon';
+import { Emit, Signal } from '../util/signals';
 export const TRANSACTION_ITEM_FRAGMENT = gql `
 	fragment TransactionItem on Card {
 		id
@@ -28,22 +29,25 @@ export const TRANSACTION_ITEM_FRAGMENT = gql `
 	}
 	${IMAGE_FRAGMENT}
 `;
-export default function TransactionItem({ El = 'div', name, type, status, image = null, budget, tripBudget, currency, tripCurrency, }) {
+export default function TransactionItem({ El = 'div', id, name, type, status, image = null, budget, tripBudget, currency, tripCurrency, }) {
     const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency?.iso ?? 'USD', false, true);
     const upcoming = status === 'TO_BOOK' || status === 'BOOKED';
+    const onClick = () => Emit(Signal.ShowCard, id);
     return (
     /*@ts-ignore*/
-    <El className={cx(css.transaction, css[type.toLowerCase()], upcoming && css.upcoming)}>
-			{image ? (<Image className={css.image} {...image.srcset} circle/>) : (<span className={css.icon}>
-					<Icon of="money" m/>
-				</span>)}
-			<div className={css.name}>
-				<strong>{name}</strong>
-				<small>{status && STATUS_TYPES[status]?.label}</small>
-			</div>
-			<div className={css.cost}>
-				<strong>{symbol}{integer}<small>.{mantissa || '00'}</small></strong>
-				<small>{(tripCurrency?.iso ?? 'USD') !== (currency?.iso ?? 'USD') && formatCurrency(budget, currency?.iso ?? 'USD', false, false, false)}</small>
-			</div>
+    <El className={css.wrap}>
+			<button className={cx(css.transaction, css[type.toLowerCase()], upcoming && css.upcoming)} type="button" onClick={onClick}>
+				{image ? (<Image className={css.image} {...image.srcset} circle/>) : (<span className={css.icon}>
+						<Icon of="money" m/>
+					</span>)}
+				<div className={css.name}>
+					<strong>{name}</strong>
+					<small>{status && STATUS_TYPES[status]?.label}</small>
+				</div>
+				<div className={css.cost}>
+					<strong>{symbol}{integer}<small>.{mantissa || '00'}</small></strong>
+					<small>{(tripCurrency?.iso ?? 'USD') !== (currency?.iso ?? 'USD') && formatCurrency(budget, currency?.iso ?? 'USD', false, false, false)}</small>
+				</div>
+			</button>
 		</El>);
 }

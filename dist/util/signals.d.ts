@@ -5,6 +5,7 @@
  */
 export declare const Signal: {
     Notify: number;
+    ShowCard: number;
     ShowReadonlyCard: number;
     HideReadonlyCard: number;
 };
@@ -65,6 +66,7 @@ export declare function WaitForSignal(event: any, validate?: () => boolean): Pro
 declare const _default: {
     Signal: {
         Notify: number;
+        ShowCard: number;
         ShowReadonlyCard: number;
         HideReadonlyCard: number;
     };

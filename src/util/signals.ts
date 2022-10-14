@@ -18,6 +18,7 @@ const iota = (i => () => 1 << ++i)(-1);
  */
 export const Signal = {
 	Notify: iota(),
+	ShowCard: iota(),
 	ShowReadonlyCard: iota(),
 	HideReadonlyCard: iota(),
 };

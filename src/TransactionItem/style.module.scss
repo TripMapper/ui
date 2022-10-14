@@ -1,13 +1,27 @@
 @import "../variables";
 
+.wrap {
+	max-width: 100%;
+	min-width: 0;
+
+	&:first-child .transaction { margin-top: 0 }
+	&:last-child  .transaction { margin-bottom: 0 }
+}
+
 .transaction {
 	display: flex;
 	align-items: center;
 	margin: rem(15) 0;
+	width: 100%;
 	min-width: 0;
 
-	&:first-child { margin-top: 0 }
-	&:last-child { margin-bottom: 0 }
+	text-align: left;
+
+	appearance: none;
+	background: none;
+	border: none;
+	border-radius: 0;
+	cursor: pointer;
 
 	&.upcoming {
 		opacity: 0.5;

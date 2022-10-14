@@ -16,4 +16,4 @@ export interface TransactionItemProps {
     };
     image?: any;
 }
-export default function TransactionItem({ El, name, type, status, image, budget, tripBudget, currency, tripCurrency, }: TransactionItemProps): JSX.Element;
+export default function TransactionItem({ El, id, name, type, status, image, budget, tripBudget, currency, tripCurrency, }: TransactionItemProps): JSX.Element;

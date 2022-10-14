@@ -6,6 +6,7 @@ import { cx, formatCurrency } from '../util';
 import Icon from '../Icon';
 import { ReactNode } from 'react';
 import { CurrencyParts } from '../util/formatCurrency';
+import Signals, { Emit, Signal } from '../util/signals';
 
 export const TRANSACTION_ITEM_FRAGMENT = gql`
 	fragment TransactionItem on Card {
@@ -47,6 +48,7 @@ export interface TransactionItemProps {
 
 export default function TransactionItem ({
 	El = 'div',
+	id,
 	name,
 	type,
 	status,
@@ -57,27 +59,34 @@ export default function TransactionItem ({
 	tripCurrency,
 } : TransactionItemProps) {
 	const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency?.iso ?? 'USD', false,true) as CurrencyParts;
-
 	const upcoming = status === 'TO_BOOK' || status === 'BOOKED';
+
+	const onClick = () => Emit(Signal.ShowCard, id);
 
 	return (
 		/*@ts-ignore*/
-		<El className={cx(css.transaction, css[type.toLowerCase()], upcoming && css.upcoming)}>
-			{image ? (
-				<Image className={css.image} {...image.srcset} circle />
-			) : (
-				<span className={css.icon}>
-					<Icon of="money" m />
-				</span>
-			)}
-			<div className={css.name}>
-				<strong>{name}</strong>
-				<small>{status && STATUS_TYPES[status]?.label}</small>
-			</div>
-			<div className={css.cost}>
-				<strong>{symbol}{integer}<small>.{mantissa || '00'}</small></strong>
-				<small>{(tripCurrency?.iso ?? 'USD') !== (currency?.iso ?? 'USD') && formatCurrency(budget, currency?.iso ?? 'USD', false, false, false) as string}</small>
-			</div>
+		<El className={css.wrap}>
+			<button
+				className={cx(css.transaction, css[type.toLowerCase()], upcoming && css.upcoming)}
+				type="button"
+				onClick={onClick}
+			>
+				{image ? (
+					<Image className={css.image} {...image.srcset} circle />
+				) : (
+					<span className={css.icon}>
+						<Icon of="money" m />
+					</span>
+				)}
+				<div className={css.name}>
+					<strong>{name}</strong>
+					<small>{status && STATUS_TYPES[status]?.label}</small>
+				</div>
+				<div className={css.cost}>
+					<strong>{symbol}{integer}<small>.{mantissa || '00'}</small></strong>
+					<small>{(tripCurrency?.iso ?? 'USD') !== (currency?.iso ?? 'USD') && formatCurrency(budget, currency?.iso ?? 'USD', false, false, false) as string}</small>
+				</div>
+			</button>
 		</El>
 	);
 }
