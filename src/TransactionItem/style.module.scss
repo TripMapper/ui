@@ -19,6 +19,12 @@
 
 	border: rem(3) solid $COLOURS_primary;
 
+	.travel & { border-color: $COLOURS_travel }
+	.activity & { border-color: $COLOURS_activity }
+	.accommodation & { border-color: $COLOURS_accommodation }
+	.food & { border-color: $COLOURS_food }
+	.other & { border-color: $COLOURS_other }
+
 	&::after {
 		content: '';
 		position: absolute;
