@@ -140,7 +140,7 @@
 		left: 50%;
 		transform: translateX(-50%);
 	}
-	max-width: calc(100vw - #{rem($SIZES_spacer * 2)});
+	max-width: calc(100vw - #{rem($SIZES_spacer * 4)});
 
 	img {
 		width: 100%;
@@ -193,7 +193,7 @@
 	overflow: hidden;
 
 	@media (max-width: 60em) {
-		border-radius: rem(50);
+		border-radius: rem(40);
 	}
 
 	> div {
