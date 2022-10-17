@@ -6,6 +6,10 @@
 	&:not(.compact):first-child {
 		margin-left: rem(-8);
 	}
+
+	&.compact {
+		flex-basis: 100%;
+	}
 }
 
 .item {
