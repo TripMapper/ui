@@ -27,8 +27,8 @@ export default function formatCurrency (
 
 	if (asParts) return {
 		symbol: formattedValue.split(/\d/, 1).shift(),
-		integer: value|0,
-		mantissa: String(Math.abs(value) % 1).substring(2, 4) as unknown as number|0,
+		integer: Math.trunc(value),
+		mantissa: String(Math.abs(value) % 1).substring(2, 4) as unknown as number,
 	};
 
 	return formattedValue;

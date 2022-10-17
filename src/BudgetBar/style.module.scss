@@ -73,7 +73,10 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-start;
-	margin-top: rem(16);
+	flex-wrap: wrap;
+	margin-top: rem(10);
+	margin-bottom: rem(-6);
+	margin-left: rem(-14);
 }
 
 button.label {
@@ -83,6 +86,7 @@ button.label {
 .label {
 	position: relative;
 	display: block;
+	margin: rem(6) rem(14);
 
 	text-align: left;
 
@@ -90,10 +94,6 @@ button.label {
 	background: none;
 	border: none;
 	border-radius: 0;
-
-	&:not(:first-child) {
-		margin-left: rem(28);
-	}
 
 	&.grow {
 		flex-grow: 1;

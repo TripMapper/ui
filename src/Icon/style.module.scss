@@ -10,14 +10,18 @@
 	background-image: url(../svg/icons_ui.svg);
 	background-size: 0 0;
 	overflow: hidden;
-}
 
-.xs,
-.s {
 	use {
-		stroke-width: 1.5;
+		stroke-width: 2;
 	}
 }
+
+//.xs,
+//.s {
+//	use {
+//		stroke-width: 1.5;
+//	}
+//}
 
 .xs {
 	width: rem(12);

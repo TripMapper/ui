@@ -12,7 +12,7 @@ export default function formatCurrency(value = 0, currency = 'USD', stripZero = 
     if (asParts)
         return {
             symbol: formattedValue.split(/\d/, 1).shift(),
-            integer: value | 0,
+            integer: Math.trunc(value),
             mantissa: String(Math.abs(value) % 1).substring(2, 4),
         };
     return formattedValue;
