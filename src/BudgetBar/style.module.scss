@@ -74,9 +74,7 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	margin-top: rem(10);
-	margin-bottom: rem(-6);
-	margin-left: rem(-14);
+	margin: rem(10) rem(-14) rem(-6);
 }
 
 button.label {
