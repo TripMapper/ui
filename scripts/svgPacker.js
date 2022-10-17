@@ -12,9 +12,16 @@ const fs = require('fs')
 	, path = require('path')
 	, SvgSpriter = require('svg-sprite');
 
+const isIcons = process.argv[2] === 'icons'
+	, isFlags = process.argv[2] === 'flags';
+
 const spriter = new SvgSpriter({
 	mode: {
-		defs: true,
+		defs: isFlags,
+		symbol: isIcons,
+		// symbol: {        // Create a «symbol» sprite
+		// 	inline: true // Prepare for inline embedding
+		// }
 	},
 	shape: {
 		transform: ['svgo'],
@@ -59,7 +66,8 @@ for (let file of files) {
 	if (process.argv[2] === 'icons')
 		svg = svg
 			.replace(/stroke="#(?!f{3,6}).*?"/gi, 'stroke="currentColor"')
-			.replace(/fill="#(?!f{3,6}).*?"/gi, 'fill="currentColor"');
+			.replace(/fill="#(?!f{3,6}).*?"/gi, 'fill="currentColor"')
+			.replace(/stroke-width="\d+"/gi, 'stroke-width="inherit"');
 
 	types.push(path.basename(file, path.extname(file)));
 
@@ -77,7 +85,7 @@ spriter.compile((error, result) => {
 	// Output compiled SVG
 	fs.writeFileSync(
 		path.join(outputDir, outputName),
-		result.defs.sprite.contents
+		result[isFlags ? 'defs' : 'symbol'].sprite.contents
 	);
 
 	// Update types
