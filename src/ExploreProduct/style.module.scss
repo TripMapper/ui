@@ -192,7 +192,15 @@
 	border-radius: rem(60);
 	overflow: hidden;
 
+	@media (max-width: 90em) {
+		border-radius: rem(40);
+	}
+
 	@media (max-width: 60em) {
+		border-radius: rem(60);
+	}
+
+	@media (max-width: 40em) {
 		border-radius: rem(40);
 	}
 
