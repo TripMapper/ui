@@ -2,7 +2,7 @@ import css from './style.module.scss';
 import Copy from '../Copy';
 import { CSSProperties, ReactNode } from 'react';
 import Image from 'next/future/image';
-import Logomark from '../svg/logomark.svg';
+import Logo from '../svg/logo.svg';
 import Form, { FormSubmit } from '../Form';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import A from '../A';
@@ -44,7 +44,7 @@ export default function AuthLayout ({
 			<div className={css.content}>
 				<Form className={css.form} onSubmit={onSubmit}>
 					<div>
-						<A href="/"><Logomark className={css.logo} /></A>
+						{!isMobile && <A className={css.logo} href="/"><Logo /></A>}
 						{form}
 					</div>
 				</Form>

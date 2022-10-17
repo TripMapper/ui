@@ -6,6 +6,7 @@ import frame2x_wp from './imgs/iphone-frame@2x.webp';
 import frame_wp from './imgs/iphone-frame.webp';
 import frame2x from './imgs/iphone-frame@2x.jpg';
 import frame from './imgs/iphone-frame.jpg';
+import Logo from '../svg/logo-white.svg';
 import clamp from '../util/clamp';
 import { cx } from '../util';
 
@@ -102,6 +103,7 @@ export default function ExploreProduct ({ heading, text, items, className, style
 				<h1>{heading}</h1>
 				<p>{text}</p>
 			</header>
+			<Logo className={css.logo} />
 			<div className={css.track}>
 				{Array.from({ length: items.length }, (_, i) => (
 					<button key={i} onClick={onTrackBtnClick(i)}>

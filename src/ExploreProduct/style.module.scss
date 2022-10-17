@@ -37,6 +37,14 @@
 	}
 }
 
+.logo {
+	@media (min-width: 60em) {
+		display: none;
+	}
+
+	margin-bottom: rem(10);
+}
+
 .track {
 	display: flex;
 	align-items: center;

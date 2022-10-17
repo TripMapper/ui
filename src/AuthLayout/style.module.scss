@@ -76,6 +76,7 @@
 		z-index: 2;
 		background-color: $COLOURS_background;
 		box-shadow: 0 0 100px #0E0E0E;
+		border-radius: rem(24) rem(24) 0 0;
 	}
 }
 
@@ -93,16 +94,25 @@
 	padding: rem($SIZES_spacer) 0;
 
 	> div {
+		position: relative;
 		width: 100%;
 
 		> header {
 			margin-bottom: rem($SIZES_spacer);
 		}
 	}
+
+	@media (max-width: 60em) {
+		> div > header {
+			display: none;
+		}
+	}
 }
 
 .logo {
-	margin-bottom: rem(16);
+	position: absolute;
+	top: rem(6);
+	right: 0;
 }
 
 .callOut {

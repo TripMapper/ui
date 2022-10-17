@@ -1,7 +1,7 @@
 import css from './style.module.scss';
 import Copy from '../Copy';
 import Image from 'next/future/image';
-import Logomark from '../svg/logomark.svg';
+import Logo from '../svg/logo.svg';
 import Form from '../Form';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import A from '../A';
@@ -16,7 +16,7 @@ export default function AuthLayout({ form, callout, image, onSubmit, content, mo
 			<div className={css.content}>
 				<Form className={css.form} onSubmit={onSubmit}>
 					<div>
-						<A href="/"><Logomark className={css.logo}/></A>
+						{!isMobile && <A className={css.logo} href="/"><Logo /></A>}
 						{form}
 					</div>
 				</Form>
