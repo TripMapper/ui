@@ -5,10 +5,11 @@ export interface ExploreProductPanel {
     image: string;
 }
 export interface ExploreProductProps {
+    activeTrackKey?: string;
     heading: string;
     text: string;
     items: readonly ExploreProductPanel[];
     className?: string;
     style?: CSSProperties;
 }
-export default function ExploreProduct({ heading, text, items, className, style }: ExploreProductProps): JSX.Element;
+export default function ExploreProduct({ heading, text, items, className, style, activeTrackKey }: ExploreProductProps): JSX.Element;

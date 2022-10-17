@@ -8,7 +8,7 @@ import frame from './imgs/iphone-frame.jpg';
 import Logo from '../svg/logo-white.svg';
 import clamp from '../util/clamp';
 import { cx } from '../util';
-export default function ExploreProduct({ heading, text, items, className, style }) {
+export default function ExploreProduct({ heading, text, items, className, style, activeTrackKey }) {
     const [autoPlay, setAutoPlay] = useState(true), [dir, setDir] = useState(1), [activeIndex, setActiveIndex] = useState(0);
     const setActive = i => {
         if (typeof i === 'function')
@@ -79,7 +79,7 @@ export default function ExploreProduct({ heading, text, items, className, style 
 			<Logo className={css.logo}/>
 			<div className={css.track}>
 				{Array.from({ length: items.length }, (_, i) => (<button key={i} onClick={onTrackBtnClick(i)}>
-						{activeIndex === i && <motion.span layoutId="track-active"/>}
+						{activeIndex === i && <motion.span layoutId={`track-active-${activeTrackKey}`}/>}
 					</button>))}
 			</div>
 			<header className={css.panelHeader}>

@@ -17,6 +17,7 @@ export interface ExploreProductPanel {
 }
 
 export interface ExploreProductProps {
+	activeTrackKey?: string;
 	heading: string;
 	text: string;
 	items: readonly ExploreProductPanel[],
@@ -24,7 +25,7 @@ export interface ExploreProductProps {
 	style?: CSSProperties;
 }
 
-export default function ExploreProduct ({ heading, text, items, className, style } : ExploreProductProps) {
+export default function ExploreProduct ({ heading, text, items, className, style, activeTrackKey } : ExploreProductProps) {
 	const [autoPlay, setAutoPlay] = useState(true)
 		, [dir, setDir] = useState(1)
 		, [activeIndex, setActiveIndex] = useState(0);
@@ -107,7 +108,7 @@ export default function ExploreProduct ({ heading, text, items, className, style
 			<div className={css.track}>
 				{Array.from({ length: items.length }, (_, i) => (
 					<button key={i} onClick={onTrackBtnClick(i)}>
-						{activeIndex === i && <motion.span layoutId="track-active" />}
+						{activeIndex === i && <motion.span layoutId={`track-active-${activeTrackKey}`} />}
 					</button>
 				))}
 			</div>
