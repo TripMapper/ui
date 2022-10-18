@@ -31,7 +31,7 @@ export const TRANSACTION_ITEM_FRAGMENT = gql `
 `;
 export default function TransactionItem({ El = 'div', id, name, type, status, image = null, budget, tripBudget, currency, tripCurrency, }) {
     const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency?.iso ?? 'USD', false, true);
-    const upcoming = status === 'TO_BOOK' || status === 'BOOKED';
+    const upcoming = status === 'TO_BOOK' || status === 'BOOKED' || !status;
     const onClick = () => Emit(Signal.ShowCard, id);
     return (
     /*@ts-ignore*/

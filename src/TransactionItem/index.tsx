@@ -59,7 +59,7 @@ export default function TransactionItem ({
 	tripCurrency,
 } : TransactionItemProps) {
 	const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency?.iso ?? 'USD', false,true) as CurrencyParts;
-	const upcoming = status === 'TO_BOOK' || status === 'BOOKED';
+	const upcoming = status === 'TO_BOOK' || status === 'BOOKED' || !status;
 
 	const onClick = () => Emit(Signal.ShowCard, id);
 
