@@ -128,8 +128,9 @@
 	}
 
 	small {
+		display: block;
 		color: change-color($COLOURS_text, $alpha: 0.6);
 		font-size: rem(11);
-		line-height: 1.3em;
+		line-height: 1.5em;
 	}
 }
