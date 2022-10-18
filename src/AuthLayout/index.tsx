@@ -6,6 +6,7 @@ import Logo from '../svg/logo.svg';
 import Form, { FormSubmit } from '../Form';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import A from '../A';
+import Head from 'next/head';
 
 export interface AuthImageProps {
 	src: string;
@@ -41,6 +42,10 @@ export default function AuthLayout ({
 	return (
 		// @ts-ignore
 		<div className={css.authLayout} style={{ '--mobileHeightOffset': mobileHeightOffset + 'px', ...(style ?? {}) }}>
+			<Head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+			</Head>
+
 			<div className={css.content}>
 				<Form className={css.form} onSubmit={onSubmit}>
 					<div>

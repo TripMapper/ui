@@ -5,6 +5,7 @@ import Logo from '../svg/logo.svg';
 import Form from '../Form';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import A from '../A';
+import Head from 'next/head';
 export default function AuthLayout({ form, callout, image, onSubmit, content, mobileHeightOffset, style, }) {
     const { scrollYProgress } = useScroll();
     const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
@@ -13,6 +14,10 @@ export default function AuthLayout({ form, callout, image, onSubmit, content, mo
     return (
     // @ts-ignore
     <div className={css.authLayout} style={{ '--mobileHeightOffset': mobileHeightOffset + 'px', ...(style ?? {}) }}>
+			<Head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+			</Head>
+
 			<div className={css.content}>
 				<Form className={css.form} onSubmit={onSubmit}>
 					<div>
