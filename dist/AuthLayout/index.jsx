@@ -15,7 +15,7 @@ export default function AuthLayout({ form, callout, image, onSubmit, content, mo
     // @ts-ignore
     <div className={css.authLayout} style={{ '--mobileHeightOffset': mobileHeightOffset + 'px', ...(style ?? {}) }}>
 			<Head>
-				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+				<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 			</Head>
 
 			<div className={css.content}>
