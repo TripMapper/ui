@@ -97,6 +97,15 @@
 		position: relative;
 		width: 100%;
 
+		@media (min-width: 60em) {
+			padding-top: rem(55);
+
+			h1,
+			h1 + p {
+				text-align: center;
+			}
+		}
+
 		> header {
 			margin-bottom: rem($SIZES_spacer);
 		}
@@ -112,7 +121,8 @@
 .logo {
 	position: absolute;
 	top: rem(6);
-	right: 0;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .callOut {
