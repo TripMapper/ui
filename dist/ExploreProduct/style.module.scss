@@ -13,6 +13,10 @@
 
 	background-color: #0E0E0E;
 	overflow: hidden;
+
+	@media (min-width: 60em) {
+		padding-top: rem(40);
+	}
 }
 
 .header {
