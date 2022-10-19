@@ -17,7 +17,7 @@ export default function BudgetLayout({ total = 0, currency = 'USD', overBudget =
 				</header>
 				{children}
 			</div>
-			<div className={css.transactions} key={filterKey}>
+			<div className={css.transactions}>
 				<header>
 					<h3>{t('transactions', 'Transactions')}</h3>
 					{transactionsHeadingChildren}
@@ -32,7 +32,7 @@ export default function BudgetLayout({ total = 0, currency = 'USD', overBudget =
 						{cards.length === 0 ? (<div className={css.empty}>
 								{t('no_spend_day', 'No spend on this day')}
 							</div>) : (<ul>
-								{cards.map(card => (<TransactionItem El="li" key={card.id} {...card}/>))}
+								{cards.map(card => (<TransactionItem El="li" key={`${card.id}_${filterKey}`} {...card}/>))}
 							</ul>)}
 					</div>))}
 			</div>

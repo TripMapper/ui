@@ -53,7 +53,7 @@ export default function BudgetLayout ({
 				</header>
 				{children}
 			</div>
-			<div className={css.transactions} key={filterKey}>
+			<div className={css.transactions}>
 				<header>
 					<h3>{t('transactions', 'Transactions')}</h3>
 					{transactionsHeadingChildren}
@@ -73,7 +73,7 @@ export default function BudgetLayout ({
 						) : (
 							<ul>
 								{cards.map(card => (
-									<TransactionItem El="li" key={card.id} {...card} />
+									<TransactionItem El="li" key={`${card.id}_${filterKey}`} {...card} />
 								))}
 							</ul>
 						)}
