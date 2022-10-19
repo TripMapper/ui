@@ -29,7 +29,7 @@ export const TRANSACTION_ITEM_FRAGMENT = gql `
 	}
 	${IMAGE_FRAGMENT}
 `;
-export default function TransactionItem({ El = 'div', id, name, type, status, image = null, budget, tripBudget, currency, tripCurrency, }) {
+export default function TransactionItem({ El = 'div', id, name, type, subType, status, image = null, budget, tripBudget, currency, tripCurrency, }) {
     const { symbol, integer, mantissa } = formatCurrency(tripBudget, tripCurrency?.iso ?? 'USD', false, true);
     const upcoming = status === 'TO_BOOK' || status === 'BOOKED' || !status;
     const onClick = () => Emit(Signal.ShowCard, id);
@@ -38,7 +38,7 @@ export default function TransactionItem({ El = 'div', id, name, type, status, im
     <El className={css.wrap}>
 			<button className={cx(css.transaction, css[type.toLowerCase()], upcoming && css.upcoming)} type="button" onClick={onClick}>
 				{image ? (<Image className={css.image} {...image.srcset} circle/>) : (<span className={css.icon}>
-						<Icon of="money" m/>
+						<Icon of={(subType ?? type).toLowerCase().replace(/_/g, '-')} l/>
 					</span>)}
 				<div className={css.name}>
 					<strong>{name}</strong>

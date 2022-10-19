@@ -5,6 +5,7 @@ export interface TransactionItemProps {
     El?: ReactNode;
     name: string;
     type: string;
+    subType?: string;
     status: string;
     budget: number;
     tripBudget: number;
@@ -16,4 +17,4 @@ export interface TransactionItemProps {
     };
     image?: any;
 }
-export default function TransactionItem({ El, id, name, type, status, image, budget, tripBudget, currency, tripCurrency, }: TransactionItemProps): JSX.Element;
+export default function TransactionItem({ El, id, name, type, subType, status, image, budget, tripBudget, currency, tripCurrency, }: TransactionItemProps): JSX.Element;

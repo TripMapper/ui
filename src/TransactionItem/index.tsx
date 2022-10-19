@@ -38,6 +38,7 @@ export interface TransactionItemProps {
 	El?: ReactNode;
 	name: string;
 	type: string;
+	subType?: string;
 	status: string;
 	budget: number;
 	tripBudget: number;
@@ -51,6 +52,7 @@ export default function TransactionItem ({
 	id,
 	name,
 	type,
+	subType,
 	status,
 	image = null,
 	budget,
@@ -75,7 +77,7 @@ export default function TransactionItem ({
 					<Image className={css.image} {...image.srcset} circle />
 				) : (
 					<span className={css.icon}>
-						<Icon of="money" m />
+						<Icon of={(subType ?? type).toLowerCase().replace(/_/g, '-') as any} l />
 					</span>
 				)}
 				<div className={css.name}>
