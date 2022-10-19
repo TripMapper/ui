@@ -16,6 +16,9 @@ export default function formatCurrency (
 	if (value === 0 && stripZero)
 		return '';
 
+	// Safely round to 2 decimal places
+	value = Math.round((value + Number.EPSILON) * 100) / 100;
+
 	let formattedValue = value.toLocaleString(UIContextPointer.ref?.preferredLocale, {
 		style: 'currency',
 		currency: currency.toLowerCase(),
@@ -28,7 +31,7 @@ export default function formatCurrency (
 	if (asParts) return {
 		symbol: formattedValue.split(/\d/, 1).shift(),
 		integer: Math.trunc(value),
-		mantissa: String(Math.abs(value) % 1).substring(2, 4) as unknown as number,
+		mantissa: +String(value).split('.', 2)[1],
 	};
 
 	return formattedValue;
