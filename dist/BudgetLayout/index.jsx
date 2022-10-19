@@ -3,7 +3,7 @@ import { cx, formatCurrency, formatDate } from '../util';
 import Pill from '../Pill';
 import { useTranslation } from 'react-i18next';
 import TransactionItem from '../TransactionItem';
-export default function BudgetLayout({ total = 0, currency = 'USD', overBudget = false, headingChildren, transactionsHeadingChildren, days, children, isDaily, maxDaily, }) {
+export default function BudgetLayout({ total = 0, currency = 'USD', overBudget = false, headingChildren, transactionsHeadingChildren, days, children, isDaily, maxDaily, filterKey, }) {
     const { t } = useTranslation();
     const { symbol, integer, mantissa } = formatCurrency(total, currency, false, true);
     return (<div className={css.budgetLayout}>
@@ -17,7 +17,7 @@ export default function BudgetLayout({ total = 0, currency = 'USD', overBudget =
 				</header>
 				{children}
 			</div>
-			<div className={css.transactions}>
+			<div className={css.transactions} key={filterKey}>
 				<header>
 					<h3>{t('transactions', 'Transactions')}</h3>
 					{transactionsHeadingChildren}

@@ -23,6 +23,7 @@ export interface BudgetLayoutProps {
 	children?: ReactNode | ReactFragment;
 	isDaily?: boolean;
 	maxDaily?: number;
+	filterKey?: string;
 }
 
 export default function BudgetLayout ({
@@ -35,6 +36,7 @@ export default function BudgetLayout ({
 	children,
 	isDaily,
 	maxDaily,
+	filterKey,
 } : BudgetLayoutProps) {
 	const { t } = useTranslation();
 	const { symbol, integer, mantissa } = formatCurrency(total, currency, false, true) as CurrencyParts;
@@ -51,7 +53,7 @@ export default function BudgetLayout ({
 				</header>
 				{children}
 			</div>
-			<div className={css.transactions}>
+			<div className={css.transactions} key={filterKey}>
 				<header>
 					<h3>{t('transactions', 'Transactions')}</h3>
 					{transactionsHeadingChildren}
