@@ -1,5 +1,5 @@
 import css from './style.module.scss';
-import { formatCurrency, formatDate } from '../util';
+import { cx, formatCurrency, formatDate } from '../util';
 import { CurrencyParts } from '../util/formatCurrency';
 import Pill from '../Pill';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +21,8 @@ export interface BudgetLayoutProps {
 	headingChildren ?: ReactNode | ReactFragment;
 	transactionsHeadingChildren ?: ReactNode | ReactFragment;
 	children?: ReactNode | ReactFragment;
+	isDaily?: boolean;
+	maxDaily?: number;
 }
 
 export default function BudgetLayout ({
@@ -31,6 +33,8 @@ export default function BudgetLayout ({
 	transactionsHeadingChildren,
 	days,
 	children,
+	isDaily,
+	maxDaily,
 } : BudgetLayoutProps) {
 	const { t } = useTranslation();
 	const { symbol, integer, mantissa } = formatCurrency(total, currency, false, true) as CurrencyParts;
@@ -57,7 +61,7 @@ export default function BudgetLayout ({
 					<div key={day} className={css.day}>
 						<header>
 							<span>{date ? formatDate(date, null, { month: 'long', day: 'numeric' }) : `Day ${day + 1}`}</span>
-							<span>{formatCurrency(total, currency) as string}</span>
+							<span className={cx(isDaily && total > maxDaily && css.over)}>{formatCurrency(total, currency) as string}</span>
 						</header>
 
 						{cards.length === 0 ? (

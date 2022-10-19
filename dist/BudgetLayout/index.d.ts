@@ -14,5 +14,7 @@ export interface BudgetLayoutProps {
     headingChildren?: ReactNode | ReactFragment;
     transactionsHeadingChildren?: ReactNode | ReactFragment;
     children?: ReactNode | ReactFragment;
+    isDaily?: boolean;
+    maxDaily?: number;
 }
-export default function BudgetLayout({ total, currency, overBudget, headingChildren, transactionsHeadingChildren, days, children, }: BudgetLayoutProps): JSX.Element;
+export default function BudgetLayout({ total, currency, overBudget, headingChildren, transactionsHeadingChildren, days, children, isDaily, maxDaily, }: BudgetLayoutProps): JSX.Element;

@@ -106,3 +106,7 @@
 	border: rem(2) dashed $COLOURS_background;
 	border-radius: rem(8);
 }
+
+.over {
+	color: change-color($COLOURS_danger, $alpha: 0.5);
+}

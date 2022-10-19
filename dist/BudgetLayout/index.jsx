@@ -1,9 +1,9 @@
 import css from './style.module.scss';
-import { formatCurrency, formatDate } from '../util';
+import { cx, formatCurrency, formatDate } from '../util';
 import Pill from '../Pill';
 import { useTranslation } from 'react-i18next';
 import TransactionItem from '../TransactionItem';
-export default function BudgetLayout({ total = 0, currency = 'USD', overBudget = false, headingChildren, transactionsHeadingChildren, days, children, }) {
+export default function BudgetLayout({ total = 0, currency = 'USD', overBudget = false, headingChildren, transactionsHeadingChildren, days, children, isDaily, maxDaily, }) {
     const { t } = useTranslation();
     const { symbol, integer, mantissa } = formatCurrency(total, currency, false, true);
     return (<div className={css.budgetLayout}>
@@ -26,7 +26,7 @@ export default function BudgetLayout({ total = 0, currency = 'USD', overBudget =
 				{days.map(({ day, date, total, cards }) => (<div key={day} className={css.day}>
 						<header>
 							<span>{date ? formatDate(date, null, { month: 'long', day: 'numeric' }) : `Day ${day + 1}`}</span>
-							<span>{formatCurrency(total, currency)}</span>
+							<span className={cx(isDaily && total > maxDaily && css.over)}>{formatCurrency(total, currency)}</span>
 						</header>
 
 						{cards.length === 0 ? (<div className={css.empty}>
