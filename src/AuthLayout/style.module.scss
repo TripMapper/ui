@@ -92,11 +92,11 @@
 	flex-grow: 1;
 	margin: auto;
 	padding: rem($SIZES_spacer) 0;
-	
+
 	@media (min-width: 60em) {
 		padding: rem($SIZES_spacer * 4) 0;
 	}
-	
+
 	> div {
 		position: relative;
 		width: 100%;
