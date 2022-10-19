@@ -3,7 +3,7 @@ import { UIContextPointer } from '../UIContext';
 export interface CurrencyParts {
 	symbol: string;
 	integer: number;
-	mantissa: number;
+	mantissa: string;
 }
 
 export default function formatCurrency (
@@ -31,7 +31,7 @@ export default function formatCurrency (
 	if (asParts) return {
 		symbol: formattedValue.split(/\d/, 1).shift(),
 		integer: Math.trunc(value),
-		mantissa: +String(value).split('.', 2)[1],
+		mantissa: String(value.toFixed(2)).split('.', 2)[1],
 	};
 
 	return formattedValue;
