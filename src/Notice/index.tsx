@@ -1,6 +1,8 @@
 import css from './style.module.scss';
 import { cx } from '../util';
 import { ReactNode } from 'react';
+import { Icons } from '../Types';
+import Icon from '../Icon';
 
 export interface NoticeProps {
 	children: ReactNode;
@@ -8,6 +10,7 @@ export interface NoticeProps {
 	success?: boolean;
 	warning?: boolean;
 	className?: string;
+	icon?: Icons;
 }
 
 export default function Notice ({
@@ -15,6 +18,7 @@ export default function Notice ({
 	error = false,
 	success = false,
 	warning = false,
+	icon = null,
 	className,
 } : NoticeProps) {
 	return (
@@ -24,8 +28,14 @@ export default function Notice ({
 			error && css.error,
 			success && css.success,
 			warning && css.warning,
+			icon && css.icon,
 		)}>
-			{children}
+			{icon ? (
+				<>
+					<Icon of={icon} m />
+					<div>{children}</div>
+				</>
+			) : children}
 		</div>
 	);
 }

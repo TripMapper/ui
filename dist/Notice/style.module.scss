@@ -1,6 +1,7 @@
 @import "../variables";
 
 @mixin notice ($color, $darken: 0) {
+	color: darken($color, $darken);
 	background-color: change-color($color, $alpha: 0.1);
 
 	strong {
@@ -35,4 +36,18 @@
 
 .success {
 	@include notice($COLOURS_success, 30%);
+}
+
+.icon {
+	display: flex;
+	align-items: flex-start;
+
+	> svg {
+		margin-right: rem(8);
+		vertical-align: middle;
+
+		use {
+			stroke-width: 3.5;
+		}
+	}
 }
