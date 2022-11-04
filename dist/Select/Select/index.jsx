@@ -36,7 +36,7 @@ const getDefaultFromOpts = (defaultValue, opts) => {
 export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, queryWhenEmpty = false, pathToNodes, filterOption, required = false, merged = false, resultsParse, }) {
     const client = useClient(), self = useRef();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
-    const [value, setValue] = useState(getDefaultFromOpts(defaultValue, options)), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
+    const [value, setValue] = useState(getDefaultFromOpts(defaultValue, options ?? [])), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
     const components = useMemo(() => ({
         MenuPortal: SelectMenuPortal,
         IndicatorSeparator: null,

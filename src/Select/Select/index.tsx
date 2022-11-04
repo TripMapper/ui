@@ -109,7 +109,7 @@ export default function Select ({
 		[defaultValue]
 	);
 
-	const [value, setValue] = useState(getDefaultFromOpts(defaultValue, options))
+	const [value, setValue] = useState(getDefaultFromOpts(defaultValue, options ?? []))
 		, [selected, setSelected] = useState([])
 		, [created, setCreated] = useState([])
 		, [removed, setRemoved] = useState([]);
