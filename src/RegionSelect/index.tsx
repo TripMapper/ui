@@ -74,7 +74,7 @@ export default function RegionSelect ({ countryIds = [], defaultValue, name, ...
 			defaultVal: defaultValue
 				? Array.isArray(defaultValue)
 					? defaultValue.map(v => regionById[v.value as string])
-					: regionById[defaultValue.value as string]
+					: regionById[(defaultValue as SelectOption).value as string]
 				: null,
 		};
 	}, [data, countryIds, defaultValue]);

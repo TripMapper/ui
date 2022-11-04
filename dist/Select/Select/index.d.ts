@@ -16,7 +16,7 @@ export interface SelectProps {
     /** @default false */
     isCreatable?: boolean;
     options?: ReadonlyArray<SelectOption>;
-    defaultValue?: SelectOption;
+    defaultValue?: SelectOption | string | number | boolean;
     placeholder?: ReactNode;
     /** @default false */
     disabled?: boolean;

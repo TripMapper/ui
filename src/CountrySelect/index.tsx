@@ -55,7 +55,7 @@ export default function CountrySelect ({ name, defaultValue, defaultValueIso, ..
 			defaultVal: defaultValue
 				? Array.isArray(defaultValue)
 					? defaultValue.map(v => c[v.value as string])
-					: c[defaultValue.value as string]
+					: c[(defaultValue as SelectOption).value as string]
 				: defaultByIso ? c[defaultByIso] : null,
 		};
 	}, [data, defaultValue, defaultValueIso]);

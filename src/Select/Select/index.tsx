@@ -31,7 +31,7 @@ export interface SelectProps {
 	/** @default false */
 	isCreatable?: boolean;
 	options?: ReadonlyArray<SelectOption>;
-	defaultValue?: SelectOption;
+	defaultValue?: SelectOption | string | number | boolean;
 	placeholder?: ReactNode;
 	/** @default false */
 	disabled?: boolean;
@@ -99,6 +99,19 @@ export default function Select ({
 		() => Array.isArray(defaultValue) ? defaultValue : [defaultValue],
 		[defaultValue]
 	);
+
+	const parsedDefaultValue = useMemo(() => {
+		if (!defaultValue) return defaultValue;
+
+		if ((defaultValue as SelectOption)?.label && (defaultValue as SelectOption)?.value)
+			return defaultValue;
+
+		for (const opt of options)
+			if (opt.value === defaultValue)
+				return opt;
+
+		return defaultValue;
+	}, [defaultValue]);
 
 	const [value, setValue] = useState(defaultValue)
 		, [selected, setSelected] = useState([])
@@ -242,6 +255,7 @@ export default function Select ({
 			)}
 			<ReactSelect
 				{...props}
+				defaultValue={parsedDefaultValue}
 				ref={self}
 				isOptionDisabled={option => (option as SelectOption).disabled}
 			/>
