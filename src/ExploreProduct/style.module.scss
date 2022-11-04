@@ -20,8 +20,8 @@
 }
 
 .header {
-	margin-bottom: rem(45);
-	max-width: rem(520);
+	margin-bottom: rem(24);
+	max-width: rem(580);
 
 	@media (max-width: 60em) {
 		display: none;
@@ -100,7 +100,7 @@
 
 .panelHeader {
 	position: relative;
-	max-width: rem(340);
+	max-width: rem(400);
 	margin-bottom: rem(24);
 
 	h2 {
@@ -161,7 +161,7 @@
 
 	display: block;
 	width: 26%;
-	height: 4%;
+	height: 3.5%;
 	background-color: #000;
 	border-radius: 100px;
 
