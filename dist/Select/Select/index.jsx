@@ -26,20 +26,17 @@ const InputComponent = required => (props) => {
         return <components.Input {...props}/>;
     return <components.Input {...props} required={required}/>;
 };
+const getDefaultFromOpts = (defaultValue, opts) => {
+    if (typeof defaultValue === 'string' || typeof defaultValue === 'number' || typeof defaultValue === 'boolean')
+        for (const opt of opts)
+            if (opt.value === defaultValue)
+                return opt;
+    return defaultValue;
+};
 export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, queryWhenEmpty = false, pathToNodes, filterOption, required = false, merged = false, resultsParse, }) {
     const client = useClient(), self = useRef();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
-    const parsedDefaultValue = useMemo(() => {
-        if (!defaultValue)
-            return defaultValue;
-        if (defaultValue?.label && defaultValue?.value)
-            return defaultValue;
-        for (const opt of options)
-            if (opt.value === defaultValue)
-                return opt;
-        return defaultValue;
-    }, [defaultValue]);
-    const [value, setValue] = useState(defaultValue), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
+    const [value, setValue] = useState(getDefaultFromOpts(defaultValue, options)), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
     const components = useMemo(() => ({
         MenuPortal: SelectMenuPortal,
         IndicatorSeparator: null,
@@ -137,6 +134,6 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
 					{selected.map(v => (<input type="hidden" name={`${name}.selected[]`} value={v.value} key={v.value}/>))}
 					{removed.map(v => (<input type="hidden" name={`${name}.removed[]`} value={v.value} key={v.value}/>))}
 				</>)}
-			<ReactSelect {...props} defaultValue={parsedDefaultValue} ref={self} isOptionDisabled={option => option.disabled}/>
+			<ReactSelect {...props} ref={self} isOptionDisabled={option => option.disabled}/>
 		</>);
 }

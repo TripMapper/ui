@@ -71,6 +71,15 @@ const InputComponent = required => (props : InputProps<SelectOption, true>) => {
 	return <components.Input {...props} required={required} />;
 };
 
+const getDefaultFromOpts = (defaultValue, opts) : SelectOption => {
+	if (typeof defaultValue === 'string' || typeof defaultValue === 'number' || typeof defaultValue === 'boolean')
+		for (const opt of opts)
+			if (opt.value === defaultValue)
+				return opt;
+
+	return defaultValue;
+}
+
 export default function Select ({
 	name,
 	isMulti = false,
@@ -100,20 +109,7 @@ export default function Select ({
 		[defaultValue]
 	);
 
-	const parsedDefaultValue = useMemo(() => {
-		if (!defaultValue) return defaultValue;
-
-		if ((defaultValue as SelectOption)?.label && (defaultValue as SelectOption)?.value)
-			return defaultValue;
-
-		for (const opt of options)
-			if (opt.value === defaultValue)
-				return opt;
-
-		return defaultValue;
-	}, [defaultValue]);
-
-	const [value, setValue] = useState(defaultValue)
+	const [value, setValue] = useState(getDefaultFromOpts(defaultValue, options))
 		, [selected, setSelected] = useState([])
 		, [created, setCreated] = useState([])
 		, [removed, setRemoved] = useState([]);
@@ -255,7 +251,6 @@ export default function Select ({
 			)}
 			<ReactSelect
 				{...props}
-				defaultValue={parsedDefaultValue}
 				ref={self}
 				isOptionDisabled={option => (option as SelectOption).disabled}
 			/>
