@@ -39,3 +39,16 @@
 .left { text-align: left }
 .center { text-align: center }
 .right { text-align: right }
+
+.inline {
+	overflow: auto;
+
+	background: #fff;
+	border: 1px solid $COLOURS_borderLight;
+	box-shadow: 0 1px rem(4) 0 rgba(0,0,0,0.08);
+	border-radius: rem(8);
+
+	.table tbody tr:last-child {
+		border-bottom: none;
+	}
+}

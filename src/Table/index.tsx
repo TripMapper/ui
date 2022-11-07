@@ -18,11 +18,13 @@ export interface TableColumn {
 export interface TableProps {
 	columns: readonly TableColumn[];
 	data: readonly TableData[];
+	inline?: boolean;
+	[key: string]: any;
 }
 
-export default function Table ({ columns, data } : TableProps) {
-	return (
-		<table className={css.table}>
+export default function Table ({ columns, data, inline = false, ...props } : TableProps) {
+	const tbl = (
+		<table className={css.table} {...props}>
 			<thead>
 			<tr>
 				{columns.map(col => (
@@ -55,4 +57,7 @@ export default function Table ({ columns, data } : TableProps) {
 			</tbody>
 		</table>
 	);
+
+
+	return inline ? <div className={css.inline}>{tbl}</div> : tbl;
 }

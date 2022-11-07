@@ -12,5 +12,7 @@ export interface TableColumn {
 export interface TableProps {
     columns: readonly TableColumn[];
     data: readonly TableData[];
+    inline?: boolean;
+    [key: string]: any;
 }
-export default function Table({ columns, data }: TableProps): JSX.Element;
+export default function Table({ columns, data, inline, ...props }: TableProps): JSX.Element;
