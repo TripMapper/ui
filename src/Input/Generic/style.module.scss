@@ -93,6 +93,11 @@
 			border-radius: 0 rem($SIZES_buttonBorderRadius) rem($SIZES_buttonBorderRadius) 0;
 		}
 	}
+
+	&.invalid {
+		border-color: $COLOURS_danger;
+		background-color: change-color($COLOURS_danger, $alpha: 0.1);
+	}
 }
 
 .focus {

@@ -9,15 +9,25 @@ export interface GenericInputProps extends BaseInputProps {
 	prefix?: any;
 	suffix?: any;
 	merged?: boolean;
+	invalid?: boolean;
 }
 
-const Generic = forwardRef<HTMLInputElement, GenericInputProps>(({ prefix, suffix, onFocus, onBlur, merged = false, ...props } : GenericInputProps, ref) => {
+const Generic = forwardRef<HTMLInputElement, GenericInputProps>(({
+	prefix, suffix, onFocus, onBlur, merged = false,
+	invalid = false, ...props
+} : GenericInputProps, ref) => {
 	const [hasFocus, setHasFocus] = useState(false);
 
 	if (empty(prefix) && empty(suffix))
 		return (
 			<Base
-				className={cx(css.input, css.style, merged && css.merged, getBrowser() === 'safari' && css.safari)}
+				className={cx(
+					css.input,
+					css.style,
+					merged && css.merged,
+					invalid && css.invalid,
+					getBrowser() === 'safari' && css.safari
+				)}
 				onFocus={onFocus}
 				onBlur={onBlur}
 				{...props}
@@ -45,6 +55,7 @@ const Generic = forwardRef<HTMLInputElement, GenericInputProps>(({ prefix, suffi
 			!empty(prefix) && css.prefix,
 			!empty(suffix) && css.suffix,
 			merged && css.merged,
+			invalid && css.invalid,
 		)}>
 			{prefix}
 			<Base

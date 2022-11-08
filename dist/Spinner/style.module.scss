@@ -1,0 +1,28 @@
+@import "../variables";
+
+.spinner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: rem($SIZES_spacer);
+
+	svg {
+		vertical-align: middle;
+	}
+}
+
+.line {
+	opacity: 0.4;
+}
+
+.circle {
+	stroke-dasharray: 55;
+	transform-origin: 45.8% 42.3%;
+
+	@keyframes iconSpin {
+		from { transform: rotate(0deg) }
+		to   { transform: rotate(360deg) }
+	}
+
+	animation: iconSpin infinite linear 1s;
+}
