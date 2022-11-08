@@ -66,6 +66,7 @@
     "./SettingsPanel": "./dist/SettingsPanel/index.jsx",
     "./Slideover": "./dist/Slideover/index.jsx",
     "./Space": "./dist/Space/index.jsx",
+    "./Spinner": "./dist/Spinner/index.jsx",
     "./SubHeading": "./dist/SubHeading/index.jsx",
     "./Switch": "./dist/Switch/index.jsx",
     "./Table": "./dist/Table/index.jsx",
