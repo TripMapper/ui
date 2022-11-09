@@ -33,17 +33,22 @@ const getDefaultFromOpts = (defaultValue, opts) => {
                 return opt;
     return defaultValue;
 };
-export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, queryWhenEmpty = false, pathToNodes, filterOption, required = false, merged = false, resultsParse, }) {
+export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, queryWhenEmpty = false, pathToNodes, filterOption, required = false, merged = false, resultsParse, value, }) {
     const client = useClient(), self = useRef();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
-    const [value, setValue] = useState(getDefaultFromOpts(defaultValue, options ?? [])), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
+    const [internalValue, setInternalValue] = useState(getDefaultFromOpts(defaultValue, options ?? [])), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
+    useEffect(() => {
+        if (!value)
+            return;
+        setInternalValue(getDefaultFromOpts(value, options ?? []));
+    }, [value, options]);
     const components = useMemo(() => ({
         MenuPortal: SelectMenuPortal,
         IndicatorSeparator: null,
         DropdownIndicator: () => <Spinner style={{ width: 20 }}/>,
         Input: InputComponent(required
-            && (Array.isArray(value) ? value.length === 0 : !value)),
-    }), [required, value]);
+            && (Array.isArray(internalValue) ? internalValue.length === 0 : !internalValue)),
+    }), [required, internalValue]);
     // Fix outline always active after option select
     // TODO: Work out why this is an issue and actually fix it
     useEffect(() => {
@@ -71,7 +76,7 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         isClearable,
         isDisabled: disabled,
         options,
-        value,
+        value: internalValue,
         menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
         components,
         className: cx(css.select, inline && css.inline, merged && css.merged, name && css.named),
@@ -80,7 +85,7 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         filterOption,
         onChange: (val, action) => {
             onChange && onChange(val, action);
-            setValue(val);
+            setInternalValue(val);
             if (!isMulti)
                 return;
             switch (action.action) {

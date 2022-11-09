@@ -32,6 +32,7 @@ export interface SelectProps {
 	isCreatable?: boolean;
 	options?: ReadonlyArray<SelectOption>;
 	defaultValue?: SelectOption | string | number | boolean;
+	value?: SelectOption | string | number | boolean;
 	placeholder?: ReactNode;
 	/** @default false */
 	disabled?: boolean;
@@ -100,6 +101,7 @@ export default function Select ({
 	required = false,
 	merged = false,
 	resultsParse,
+	value,
 } : SelectProps) {
 	const client = useClient()
 		, self = useRef();
@@ -109,10 +111,15 @@ export default function Select ({
 		[defaultValue]
 	);
 
-	const [value, setValue] = useState(getDefaultFromOpts(defaultValue, options ?? []))
+	const [internalValue, setInternalValue] = useState(getDefaultFromOpts(defaultValue, options ?? []))
 		, [selected, setSelected] = useState([])
 		, [created, setCreated] = useState([])
 		, [removed, setRemoved] = useState([]);
+
+	useEffect(() => {
+		if (!value) return;
+		setInternalValue(getDefaultFromOpts(value, options ?? []));
+	}, [value, options]);
 
 	const components = useMemo(() => ({
 		MenuPortal: SelectMenuPortal,
@@ -120,9 +127,9 @@ export default function Select ({
 		DropdownIndicator: () => <Spinner style={{width:20}} />,
 		Input: InputComponent(
 			required
-			&& (Array.isArray(value) ? value.length === 0 : !value)
+			&& (Array.isArray(internalValue) ? internalValue.length === 0 : !internalValue)
 		),
-	}), [required, value]);
+	}), [required, internalValue]);
 
 	// Fix outline always active after option select
 	// TODO: Work out why this is an issue and actually fix it
@@ -155,7 +162,7 @@ export default function Select ({
 		isClearable,
 		isDisabled: disabled,
 		options,
-		value,
+		value: internalValue,
 		menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
 		components,
 		className: cx(
@@ -169,7 +176,7 @@ export default function Select ({
 		filterOption,
 		onChange: (val, action) => {
 			onChange && onChange(val, action);
-			setValue(val);
+			setInternalValue(val);
 
 			if (!isMulti)
 				return;
