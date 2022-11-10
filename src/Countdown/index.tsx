@@ -32,7 +32,7 @@ function until (target : DateTime) {
 	}
 
 	return keysToUse.map(unit => [
-		diff[unit].toFixed(0).padStart(2, '0'),
+		diff[unit]?.toFixed(0)?.padStart(2, '0') ?? '00',
 		unit.replace(diff[unit] === 1 ? /s$/ : void 0, ''),
 	]);
 }
