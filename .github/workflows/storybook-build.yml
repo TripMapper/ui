@@ -31,14 +31,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
-          cache-dependency-path: '**/yarn.lock'
 
       - name: Build
         run: |
-          yarn add --dev --ignore-scripts install-peers
-          yarn install
-          yarn build-storybook -o _build
+          npm install
+          npm build-storybook -o _build
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
