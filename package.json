@@ -44,6 +44,7 @@
     "./InfoCard": "./dist/InfoCard/index.jsx",
     "./Input": "./dist/Input/index.jsx",
     "./Label": "./dist/Label/index.jsx",
+    "./ListWithAction": "./dist/ListWithAction/index.jsx",
     "./Menu": "./dist/Menu/index.jsx",
     "./Metadata": "./dist/Metadata/index.jsx",
     "./Notes": "./dist/Notes/index.jsx",

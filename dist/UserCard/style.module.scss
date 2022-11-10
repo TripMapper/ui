@@ -8,7 +8,7 @@
 	border-radius: rem($SIZES_buttonBorderRadius);
 	transition: background-color 0.3s ease;
 
-	&:hover,
+	&.hoverable:hover,
 	&.open {
 		background-color: #F8F8F8;
 	}

@@ -1,0 +1,28 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'; import ListWithAction
+	from './index'; import Button from '../Button'; import UserCard
+	from '../UserCard';
+
+<Meta
+	title="Display/List with Action"
+	component={ListWithAction}
+/>
+
+# List with Actions
+```jsx
+import ListWithAction from 'ui/ListWithAction';
+
+<ListWithAction items={[/*...*/]} />
+```
+
+<Canvas>
+	<Story name="List with Action">
+		<ListWithAction
+			items={[
+				{ key: 1, value: "My Item", action: <Button>Click Me</Button> },
+				{ key: 2, value: <UserCard style={{marginLeft:'-0.5rem'}} name="Example Person" role="Editor" email="example.person@website.com" />, action: <Button>Click Me</Button> },
+				{ key: 3, value: <UserCard style={{marginLeft:'-0.5rem'}} name="Example Person" role="Editor" email="example.person@website.com" />, action: <Button>Click Me</Button> },
+				{ key: 4, value: "My Item", action: <Button>Click Me</Button> },
+			]}
+		/>
+	</Story>
+</Canvas>

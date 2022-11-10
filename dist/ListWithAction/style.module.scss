@@ -1,0 +1,16 @@
+@import "../variables";
+
+.list {
+	margin: rem($SIZES_spacer / 2) 0;
+	list-style: none;
+
+	li {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&:not(:last-child) {
+			margin-bottom: rem(8);
+		}
+	}
+}
