@@ -36,6 +36,7 @@ jobs:
 
       - name: Build
         run: |
+          yarn add --dev --ignore-scripts install-peers
           yarn install
           yarn build-storybook -o _build
           
