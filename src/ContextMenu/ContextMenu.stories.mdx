@@ -1,6 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import ContextMenu, { ContextItemButton } from './index';
-import Button from '../Button';
+import ContextMenu, { ContextItemButton, ContextMenuGroup } from './index';
+import Button from '../Button'; import Radio from '../Radio';
 
 <Meta
 	title="Interface/Context Menu"
@@ -29,6 +29,11 @@ import ContextMenu, { ContextItemButton } from 'ui/ContextMenu';
 		<ContextMenu
 			menu={
 				<>
+					<ContextMenuGroup>
+						<Radio name="role" label="Viewer" />
+						<Radio name="role" label="Editor" />
+					</ContextMenuGroup>
+					<hr/>
 					<ContextItemButton text="Add User" onClick={console.log} />
 					<hr/>
 					<ContextItemButton type="danger" text="Delete User" onClick={console.log} icon="bin" />
@@ -45,3 +50,7 @@ import ContextMenu, { ContextItemButton } from 'ui/ContextMenu';
 ### `ContextItemButton`
 
 <ArgsTable of={ContextItemButton} />
+
+### `ContextItemGroup`
+
+<ArgsTable of={ContextMenuGroup} />

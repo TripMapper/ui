@@ -3,6 +3,7 @@ import { ChangeEventHandler } from 'react';
 
 export interface RadioProps {
 	name: string;
+	label?: string;
 	prefix?: string;
 	suffix?: string;
 	value?: string;
@@ -12,6 +13,7 @@ export interface RadioProps {
 
 export default function Radio ({
 	name,
+	label = '',
 	prefix = '',
 	suffix = '',
 	value = '1',
@@ -30,6 +32,7 @@ export default function Radio ({
 			{prefix && <span className={css.prefix}>{prefix}</span>}
 			<span className={css.input} />
 			{suffix && <span className={css.suffix}>{suffix}</span>}
+			{label && <span className={css.label}>{label}</span>}
 		</label>
 	);
 }

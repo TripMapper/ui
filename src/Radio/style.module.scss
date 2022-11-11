@@ -42,6 +42,12 @@
 	}
 }
 
+.label {
+	flex-grow: 1;
+	padding: rem(5) 0 rem(5) rem(8);
+	font-size: rem(16);
+}
+
 .input {
 	position: relative;
 
