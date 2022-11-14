@@ -1,0 +1,62 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import SupplierCard
+	from './index'; import { createClient, gql, Provider, useQuery } from 'urql'; import {
+	IMAGE_FRAGMENT
+} from '../Image';
+
+<Meta
+	title="Card/Supplier"
+	component={SupplierCard}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<Story />
+			</Provider>
+		),
+	]}
+/>
+
+# Supplier Card
+
+```jsx
+import SupplierCard from 'ui/SupplierCard';
+
+<SupplierCard />
+```
+
+<Canvas>
+	<Story name="Supplier">
+		{() => {
+			const [{ data }] = useQuery({
+				query: gql`{ asset (id: "6f0066f4-3071-11ec-b95d-93246b94e5e8") { id srcset (width: 48, height: 48) { ...Image } } }${IMAGE_FRAGMENT}`,
+			});
+			return data ? (
+				<>
+					<SupplierCard
+						name="Schgagluer Hotel"
+						email={[{ value: 'tam@ethercreative.co.uk' }]}
+						rating={4}
+						logo={[data.asset]}
+						onRemoveClick={() => {}}
+					/>
+					<SupplierCard
+						name="Schgagluer Hotel"
+						email={[{ value: 'tam@ethercreative.co.uk' }]}
+						rating={1}
+						paid={false}
+						onPaidClick={() => {}}
+						onRemoveClick={() => {}}
+					/>
+					<SupplierCard
+						name="Schgagluer Hotel"
+						email={[{ value: 'tam@ethercreative.co.uk' }]}
+						rating={0}
+						paid={true}
+						onPaidClick={() => {}}
+					/>
+				</>
+			) : 'loading...';
+		}}
+	</Story>
+</Canvas>
+
+<ArgsTable of={SupplierCard} />

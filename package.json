@@ -71,6 +71,7 @@
     "./Space": "./dist/Space/index.jsx",
     "./Spinner": "./dist/Spinner/index.jsx",
     "./SubHeading": "./dist/SubHeading/index.jsx",
+    "./SupplierCard": "./dist/SupplierCard/index.jsx",
     "./Switch": "./dist/Switch/index.jsx",
     "./Table": "./dist/Table/index.jsx",
     "./TabPager": "./dist/TabPager/index.jsx",
