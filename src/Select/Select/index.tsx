@@ -50,6 +50,7 @@ export interface SelectProps {
 	required?: boolean;
 	merged?: boolean;
 	resultsParse?: (data: Object, query: string) => ReadonlyArray<SelectOption>;
+	classNameOverride?: string;
 }
 
 const add = value => v => {
@@ -102,6 +103,7 @@ export default function Select ({
 	merged = false,
 	resultsParse,
 	value,
+	classNameOverride,
 } : SelectProps) {
 	const client = useClient()
 		, self = useRef();
@@ -165,7 +167,7 @@ export default function Select ({
 		value: internalValue,
 		menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
 		components,
-		className: cx(
+		className: classNameOverride ? classNameOverride : cx(
 			css.select,
 			inline && css.inline,
 			merged && css.merged,

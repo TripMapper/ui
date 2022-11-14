@@ -4,21 +4,7 @@
 	padding: 0 !important;
 }
 
-.type {
-	padding: rem(14) rem(30);
-	color: #fff;
 
-	h4 {
-		color: inherit;
-		font-size: rem(20);
-	}
-
-	&.accommodation { background: $COLOURS_accommodation; color: $COLOURS_text }
-	&.activity { background: $COLOURS_activity; color: $COLOURS_text }
-	&.food { background: $COLOURS_food; color: $COLOURS_text }
-	&.other { background: $COLOURS_other }
-	&.travel { background: $COLOURS_travel }
-}
 
 .details {
 	padding: rem(15) rem(30);

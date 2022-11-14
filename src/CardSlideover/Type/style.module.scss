@@ -1,0 +1,43 @@
+@import "../../variables";
+
+.type {
+	display: block;
+	padding: rem(14) rem(30);
+	color: #fff;
+
+	h4 {
+		color: inherit;
+		font-size: rem(20);
+	}
+
+	&.accommodation { background: $COLOURS_accommodation; color: $COLOURS_text }
+	&.activity { background: $COLOURS_activity; color: $COLOURS_text }
+	&.food { background: $COLOURS_food; color: $COLOURS_text }
+	&.other { background: $COLOURS_other }
+	&.travel { background: $COLOURS_travel }
+}
+
+.label {
+	padding: 0;
+}
+
+.select :global {
+	.rsl__control {
+		font-size: rem(20);
+
+		border: none;
+		background: none;
+		border-radius: 0;
+		padding-right: rem(30);
+		box-shadow: unset !important;
+	}
+
+	.rsl__value-container {
+		padding: rem(10) rem(30);
+	}
+
+	.rsl__menu {
+		min-width: calc(100% - #{rem(60)}) !important;
+		transform: translateX(#{rem(30)});
+	}
+}

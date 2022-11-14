@@ -12,6 +12,7 @@ import { DateTime } from 'luxon';
 import { PRIMARY_TYPES, TRAVEL_TYPES } from '../Consts';
 import PlaceDetails, { PLACE_DETAILS_FRAGMENT } from '../PlaceDetails';
 import Header, { CARD_SLIDEOVER_HEADER_FRAGMENT } from './Header';
+import Type, { CARD_SLIDEOVER_TYPE_FRAGMENT } from './Type';
 
 export interface CardSlideoverProps {
 	card: any;
@@ -41,9 +42,11 @@ export const CARD_SLIDEOVER_FRAGMENT = gql`
             ...PlaceDetails
         }
 	    ...CardSlideoverHeader
+	    ...CardSlideoverType
     }
-    ${CARD_SLIDEOVER_HEADER_FRAGMENT}
     ${PLACE_DETAILS_FRAGMENT}
+    ${CARD_SLIDEOVER_HEADER_FRAGMENT}
+    ${CARD_SLIDEOVER_TYPE_FRAGMENT}
 `;
 
 export default function CardSlideover ({
@@ -139,9 +142,7 @@ export default function CardSlideover ({
 		>
 			<div>
 				<Header {...card} readOnly={readOnly} />
-				<header className={cx(css.type, css[type.toLowerCase()])}>
-					<h4>{PRIMARY_TYPES[type].label}</h4>
-				</header>
+				<Type {...card} readOnly={readOnly} />
 				<div className={css.details}>
 					<dl>
 						{card.type === 'TRAVEL' && (

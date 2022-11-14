@@ -2,7 +2,7 @@ import { cx } from '../../util';
 import css from './style.module.scss';
 import Image, { IMAGE_FRAGMENT } from '../../Image';
 import { gql, useMutation } from 'urql';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import { useTranslation } from 'react-i18next';
 import { Emit, Signal } from '../../util/signals';
