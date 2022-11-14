@@ -1,15 +1,15 @@
 import css from './style.module.scss';
 import { cx } from '../util';
 
-export default function Spinner () {
+export default function Spinner ({ white = false, className }) {
 	return (
-		<div className={cx(css.spinner)}>
+		<div className={cx(css.spinner, className)}>
 			<svg
 				width="23"
 				height="31"
 				viewBox="0 0 23 31"
 			>
-				<g fill="none" fillRule="evenodd" stroke="#A28366" strokeWidth="1.694" transform="translate(1 1.43)">
+				<g fill="none" fillRule="evenodd" stroke={white ? '#fff' : '#A28366'} strokeWidth="1.694" transform="translate(1 1.43)">
 					<polyline
 						strokeLinecap="square"
 						points="4.725 0 16.752 27.92 4.725 27.92"

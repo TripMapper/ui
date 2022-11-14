@@ -33,6 +33,7 @@ export interface SlideoverProps {
 	stacks?: boolean;
 	overlayClassName?: string;
 	contentClassName?: string;
+	customControls?: ReactNode;
 }
 
 export interface SlideoverPanelProps {
@@ -57,6 +58,7 @@ export default function Slideover ({
 	children, overlayClassName, contentClassName,
 	wide = false, medium = false,
 	allowClickThrough = false, stacks = true,
+	customControls,
 } : SlideoverProps) {
 	const tabsLayoutId = useId();
 
@@ -169,11 +171,13 @@ export default function Slideover ({
 				beforeClose: overlayClassName ? css.beforeClose : '',
 			}}
 		>
-			<div className={css.controls}>
-				{onDeleteClick && <button title="Delete" onClick={onDeleteClick}><SlideoverDelete /></button>}
-				{onEditClick && <button title="Edit" onClick={onEditClick}><SlideoverEdit /></button>}
-				<button title="Close" onClick={onRequestClose}><SlideoverClose /></button>
-			</div>
+			{customControls ? customControls : (
+				<div className={css.controls}>
+					{onDeleteClick && <button title="Delete" onClick={onDeleteClick}><SlideoverDelete /></button>}
+					{onEditClick && <button title="Edit" onClick={onEditClick}><SlideoverEdit /></button>}
+					<button title="Close" onClick={onRequestClose}><SlideoverClose /></button>
+				</div>
+			)}
 			{!heading || typeof heading === 'string' || React.isValidElement(heading) ? (
 				<header className={cx(css.header, handles.length > 0 && css.hasTabs)}>
 					{heading && <h1>{heading as any}</h1>}

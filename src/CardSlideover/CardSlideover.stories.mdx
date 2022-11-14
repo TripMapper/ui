@@ -1,0 +1,55 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import CardSlideover
+	, { CARD_SLIDEOVER_FRAGMENT } from './index'; import { createClient,
+	gql, Provider, useQuery } from 'urql'; import {
+	UIContextProvider
+} from '../UIContext';
+
+<Meta
+	title="Board/Card Slideover"
+	component={CardSlideover}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<UIContextProvider defaultContext={{}}>
+					<Story />
+				</UIContextProvider>
+			</Provider>
+		),
+	]}
+	parameters={{ layout: 'fullscreen' }}
+/>
+
+# Card Slideover
+
+```jsx
+import CardSlideover from 'ui/CardSlideover';
+
+<CardSlideover />
+```
+
+<Canvas>
+	<Story name="Card Slideover">
+		{() => {
+			const ID_WITH_COVER = '6a9b2580-3356-11ec-aca8-b74c3482f586';
+			const ID_NO_COVER = '6dd3aa4a-3597-11ec-8189-834076ea7b70';
+			const [{ data, fetching }] = useQuery({
+				query: gql`
+					query GetCard ($id: UUID!) {
+						card (id: $id) {
+							...CardSlideover
+						}
+                	}
+					${CARD_SLIDEOVER_FRAGMENT}
+				`,
+				variables: {
+					id: ID_WITH_COVER
+					//id: ID_NO_COVER
+				}
+			});
+			if (fetching) return null;
+			return <CardSlideover card={data?.card} cardId={data?.card?.id} />;
+		}}
+	</Story>
+</Canvas>
+
+<ArgsTable of={CardSlideover} />
