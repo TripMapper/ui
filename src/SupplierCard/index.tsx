@@ -34,9 +34,9 @@ const Rating = ({ int }) => (
 	</>
 )
 
-export default function SupplierCard ({ logo, name, email, rating, paid, onPaidClick, onRemoveClick }) {
-	return (
-		<div className={css.supplierCard}>
+export default function SupplierCard ({ logo, name, email, rating, paid, onClick, onPaidClick, onRemoveClick }) {
+	const details = (
+		<>
 			{(logo ?? []).length > 0 ? (
 				<Image {...logo[0].srcset} circle className={css.img} />
 			) : (<span className={css.imgPlaceholder} />)}
@@ -44,6 +44,12 @@ export default function SupplierCard ({ logo, name, email, rating, paid, onPaidC
 				<strong>{name} {rating > 0 && <Rating int={rating} />}</strong>
 				<span>{email?.[0]?.value}</span>
 			</div>
+		</>
+	);
+
+	return (
+		<div className={css.supplierCard}>
+			{onClick ? <button className={css.btn} onClick={onClick}>{details}</button> : details}
 			{onPaidClick && (
 				<button
 					type="button"

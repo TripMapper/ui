@@ -21,6 +21,28 @@
 	}
 }
 
+.btn {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+	padding: rem(8);
+	margin: rem(-8) rem(16) rem(-8) rem(-8);
+
+	transition: background-color 0.3s ease;
+
+	text-align: left;
+
+	appearance: none;
+	background: none;
+	border: none;
+	border-radius: rem($SIZES_buttonBorderRadius);
+	cursor: pointer;
+
+	&:hover {
+		background-color: #F8F8F8;
+	}
+}
+
 .img {
 	width: rem(48);
 	margin-right: rem(16);
