@@ -33,7 +33,7 @@ const getDefaultFromOpts = (defaultValue, opts) => {
                 return opt;
     return defaultValue;
 };
-export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, queryWhenEmpty = false, pathToNodes, filterOption, required = false, merged = false, resultsParse, value, }) {
+export default function Select({ name, isMulti = false, isClearable = false, isCreatable = false, options, defaultValue, placeholder, disabled = false, onChange, inline = false, query, queryVariables = {}, preloadOptions = false, queryWhenEmpty = false, pathToNodes, filterOption, required = false, merged = false, resultsParse, value, classNameOverride, }) {
     const client = useClient(), self = useRef();
     const originalValue = useMemo(() => Array.isArray(defaultValue) ? defaultValue : [defaultValue], [defaultValue]);
     const [internalValue, setInternalValue] = useState(getDefaultFromOpts(defaultValue, options ?? [])), [selected, setSelected] = useState([]), [created, setCreated] = useState([]), [removed, setRemoved] = useState([]);
@@ -79,7 +79,7 @@ export default function Select({ name, isMulti = false, isClearable = false, isC
         value: internalValue,
         menuPortalTarget: typeof window !== 'undefined' ? document?.body : void 0,
         components,
-        className: cx(css.select, inline && css.inline, merged && css.merged, name && css.named),
+        className: classNameOverride ? classNameOverride : cx(css.select, inline && css.inline, merged && css.merged, name && css.named),
         classNamePrefix: 'rsl',
         placeholder,
         filterOption,

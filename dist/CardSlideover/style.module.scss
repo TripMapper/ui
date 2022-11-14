@@ -1,0 +1,125 @@
+@import "../variables";
+
+.content {
+	padding: 0 !important;
+}
+
+
+
+.details {
+	padding: rem(15) rem(30);
+	background-color: $COLOURS_background;
+
+	dl {
+		&:not(:last-child) {
+			padding-bottom: rem(15);
+			border-bottom: 1px solid $COLOURS_border;
+		}
+	}
+
+	dd,
+	dt {
+		font-weight: 100;
+	}
+
+	dd {
+		color: $COLOURS_primary;
+		font-size: rem(16);
+		font-family: $FONTSTACK_mono;
+		text-transform: uppercase;
+	}
+
+	dt {
+		font-size: rem(18);
+
+		span {
+			opacity: 0.5;
+		}
+	}
+
+	dl div {
+		display: grid;
+		grid-template-columns: rem(110) 1fr;
+		align-items: center;
+		padding: rem(15) 0;
+
+		&:first-child { padding-top: 0 }
+		&:last-child { padding-bottom: 0 }
+
+		&:not(:last-child) {
+			border-bottom: 1px solid $COLOURS_border;
+		}
+	}
+}
+
+.innerContent {
+	padding: rem(30);
+}
+
+.subHeader {
+	padding: rem(9.5) 0;
+	margin-bottom: rem(13.5);
+	border-bottom: 1px solid $COLOURS_border;
+
+	&:first-child {
+		padding-top: 0;
+	}
+
+	&:not(:first-child) {
+		margin-top: rem(30.5);
+	}
+
+	h4 {
+		color: $COLOURS_primary;
+		font-size: rem(16);
+		font-family: $FONTSTACK_mono;
+		text-transform: uppercase;
+	}
+}
+
+.notes {
+	white-space: pre-wrap;
+	line-height: 1.5em;
+}
+
+.location {
+	figcaption {
+		margin-bottom: rem(13.5);
+		font-size: rem(18);
+		line-height: 1.4em;
+	}
+
+	span,
+	img {
+		vertical-align: middle;
+	}
+
+	> div {
+		position: relative;
+		overflow: hidden;
+		border-radius: 0 0 rem($SIZES_buttonBorderRadius) rem($SIZES_buttonBorderRadius);
+	}
+
+	i {
+		position: absolute;
+		z-index: 3;
+		top: 50%;
+		left: 50%;
+
+		display: block;
+		width: rem(20);
+		height: rem(20);
+
+		border: rem(3) solid #fff;
+		border-radius: 50%;
+		box-shadow: 0 2px 4px 0 rgba(0,0,0,0.30);
+
+		transform: translate3d(-50%, -50%, 0);
+
+		&.accommodation { background: $COLOURS_accommodation }
+		&.activity { background: $COLOURS_activity }
+		&.food { background: $COLOURS_food }
+		&.other { background: $COLOURS_other }
+		&.travel { background: $COLOURS_travel }
+	}
+}

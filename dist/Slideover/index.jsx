@@ -11,7 +11,7 @@ import TabPager, { Page } from '../TabPager';
 const setAppElement = Modal.setAppElement;
 const Panel = ({ name, handle, icon = null, children, defaultActive = false, hasTabs = false }) => children;
 export { setAppElement, Panel };
-export default function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, overlayClassName, contentClassName, wide = false, medium = false, allowClickThrough = false, stacks = true, }) {
+export default function Slideover({ isOpen, onRequestClose, heading, onEditClick, onDeleteClick, children, overlayClassName, contentClassName, wide = false, medium = false, allowClickThrough = false, stacks = true, customControls, }) {
     const tabsLayoutId = useId();
     const [wasOpen, setWasOpen] = useState(isOpen), [depth, setDepth] = useState(0), { openSlideover, closeSlideover, slideoverDepth } = useUIContext();
     const [activeTab, setActiveTab] = useState('');
@@ -91,11 +91,11 @@ export default function Slideover({ isOpen, onRequestClose, heading, onEditClick
             afterOpen: overlayClassName ? css.afterOpen : '',
             beforeClose: overlayClassName ? css.beforeClose : '',
         }}>
-			<div className={css.controls}>
-				{onDeleteClick && <button title="Delete" onClick={onDeleteClick}><SlideoverDelete /></button>}
-				{onEditClick && <button title="Edit" onClick={onEditClick}><SlideoverEdit /></button>}
-				<button title="Close" onClick={onRequestClose}><SlideoverClose /></button>
-			</div>
+			{customControls ? customControls : (<div className={css.controls}>
+					{onDeleteClick && <button title="Delete" onClick={onDeleteClick}><SlideoverDelete /></button>}
+					{onEditClick && <button title="Edit" onClick={onEditClick}><SlideoverEdit /></button>}
+					<button title="Close" onClick={onRequestClose}><SlideoverClose /></button>
+				</div>)}
 			{!heading || typeof heading === 'string' || React.isValidElement(heading) ? (<header className={cx(css.header, handles.length > 0 && css.hasTabs)}>
 					{heading && <h1>{heading}</h1>}
 					{tabs.length > 0 && (<Tabs tabsLayoutId={tabsLayoutId} className={css.tabs} items={tabs}/>)}

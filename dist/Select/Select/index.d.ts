@@ -37,5 +37,6 @@ export interface SelectProps {
     required?: boolean;
     merged?: boolean;
     resultsParse?: (data: Object, query: string) => ReadonlyArray<SelectOption>;
+    classNameOverride?: string;
 }
-export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, disabled, onChange, inline, query, queryVariables, preloadOptions, queryWhenEmpty, pathToNodes, filterOption, required, merged, resultsParse, value, }: SelectProps): JSX.Element;
+export default function Select({ name, isMulti, isClearable, isCreatable, options, defaultValue, placeholder, disabled, onChange, inline, query, queryVariables, preloadOptions, queryWhenEmpty, pathToNodes, filterOption, required, merged, resultsParse, value, classNameOverride, }: SelectProps): JSX.Element;
