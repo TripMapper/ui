@@ -1,6 +1,7 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import Label from './index';
-import Input from '../Input'; import Select from '../Select';
+import Input from '../Input'; import Select from '../Select'; import Button
+	from '../Button';
 
 <Meta
 	title="Form/Label"
@@ -44,6 +45,10 @@ import Input from 'ui/Input';
 			<Label label="Email Address">
 				<Input />
 			</Label>
+		</Label>
+		<Label group columns="1fr 100px">
+			<Input type="text" />
+			<Button>Hello</Button>
 		</Label>
 		<Label label="Email Address">
 			<Input />

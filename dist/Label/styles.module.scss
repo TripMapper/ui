@@ -2,7 +2,7 @@
 
 .group {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: var(--cols, 1fr 1fr);
 	grid-gap: rem(16);
 
 	> label,

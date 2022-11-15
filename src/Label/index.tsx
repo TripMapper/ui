@@ -9,22 +9,29 @@ export interface LabelInputProps {
 	El?: "label" | "div";
 	instructions?: string | ReactNode;
 	inline?: boolean;
+	columns: never;
 }
 
 export interface LabelGroupProps {
 	group: true;
-	label: never;
+	label?: string;
 	El: never;
 	children: ReactNode;
 	instructions: never;
 	inline: never;
+	columns?: string;
 }
 
 export type LabelProps = LabelInputProps | LabelGroupProps;
 
-export default function Label ({ label, children, El = 'label', group = false, instructions, inline = false } : LabelProps) {
+export default function Label ({ label, children, El = 'label', group = false, instructions, inline = false, columns } : LabelProps) {
 	if (group)
-		return <div className={css.group}>{children}</div>;
+		return (
+			<div className={css.label}>
+				{label && <span>{label}</span>}
+				<div className={css.group} style={{'--cols':columns} as any}>{children}</div>
+			</div>
+		);
 
 	const merged = Children.count(children) > 1;
 	if (merged) {
