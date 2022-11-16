@@ -12,5 +12,6 @@ export interface HeaderProps {
     contextMenu?: ReactNode;
     logoAction?: HeaderActionProps;
     contextAction?: HeaderActionProps;
+    title?: string;
 }
-export default function Header({ pullUp, logo, menu, contextMenu, logoAction, contextAction, }: HeaderProps): JSX.Element;
+export default function Header({ pullUp, logo, menu, contextMenu, logoAction, contextAction, title, }: HeaderProps): JSX.Element;

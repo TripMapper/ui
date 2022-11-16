@@ -17,6 +17,7 @@ export interface HeaderProps {
 	contextMenu?: ReactNode;
 	logoAction?: HeaderActionProps;
 	contextAction?: HeaderActionProps;
+	title?: string;
 }
 
 export default function Header ({
@@ -26,6 +27,7 @@ export default function Header ({
 	contextMenu,
 	logoAction,
 	contextAction,
+	title,
 } : HeaderProps) {
 	return (
 		<header className={cx(
@@ -35,8 +37,16 @@ export default function Header ({
 			<div>
 				{logo}
 				{logoAction && (
-					<Button size="tiny" flat onClick={logoAction.onClick} href={logoAction.href}>{logoAction.text}</Button>
+					<Button
+						size="tiny" flat
+						onClick={logoAction.onClick}
+						href={logoAction.href}
+						className={css.action}
+					>
+						{logoAction.text}
+					</Button>
 				)}
+				{title && <strong className={css.title} title={title}>{title}</strong>}
 			</div>
 			{menu}
 			<div>

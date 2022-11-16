@@ -6,7 +6,7 @@
 	top: 0;
 
 	display: grid;
-	grid-template-columns: 0.3fr 1fr 0.3fr;
+	grid-template-columns: 1fr rem(600) 1fr;
 	align-items: center;
 
 	//width: 100vw;
@@ -40,11 +40,31 @@
 		&:last-child {
 			display: flex;
 			align-items: center;
+			min-width: 0;
 		}
 
 		&:last-child {
 			justify-content: flex-end;
 		}
+	}
+}
+
+.action {
+	white-space: nowrap;
+}
+
+.title {
+	display: inline-block;
+	margin-left: rem(16);
+	min-width: 0;
+	flex-shrink: 9999;
+
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	a:not(.action) + & {
+		margin-left: 0;
 	}
 }
 
