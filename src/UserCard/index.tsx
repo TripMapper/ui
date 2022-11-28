@@ -47,7 +47,7 @@ export default function UserCard ({
 			</div>
 			{menu && (
 				<ContextMenu menu={menu} isOpen={setMenuOpen}>
-					<button><Meatballs /></button>
+					<button type="button"><Meatballs /></button>
 				</ContextMenu>
 			)}
 		</div>

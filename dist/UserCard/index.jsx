@@ -14,7 +14,7 @@ export default function UserCard({ avatar, name, role, email, menu, className, s
 				<small>{email}</small>
 			</div>
 			{menu && (<ContextMenu menu={menu} isOpen={setMenuOpen}>
-					<button><Meatballs /></button>
+					<button type="button"><Meatballs /></button>
 				</ContextMenu>)}
 		</div>);
 }
