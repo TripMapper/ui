@@ -41,7 +41,7 @@ export default function Countdown ({ target } : CountdownProps) {
 	const t = useMemo(() => {
 		return target instanceof Date
 			? DateTime.fromJSDate(target)
-			: DateTime.fromSql(target)
+			: DateTime.fromSQL(target)
 	}, [target]);
 	const [v, setV] = useState(until(t));
 
