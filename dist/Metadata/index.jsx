@@ -26,7 +26,7 @@ export default function Metadata({ meta }) {
 					{items.map(item => (<dd key={item.id}>
 							<i>{item.primaryType}</i>
 							<span>{item.value}</span>
-							<small>{titleCase(item.secondaryType.split('_', 2)[1])}</small>
+							<small>{titleCase(item.secondaryType?.split('_', 2)?.[1])}</small>
 						</dd>))}
 				</Fragment>))}
 		</dl>);
