@@ -1,8 +1,6 @@
 import css from './style.module.scss';
 import {
-	Dispatch,
 	ReactNode,
-	SetStateAction,
 	useEffect,
 	useState
 } from 'react';
@@ -33,6 +31,7 @@ export interface RepeaterProps {
 	max?: number;
 	fields: readonly RepeaterField[];
 	onBeforeAddClick?: (value: RepeaterValue) => Promise<RepeaterValue>;
+	onBeforeDeleteClick?: (value: RepeaterValue) => void;
 	byNodeId?: boolean;
 	includeUpdateById?: boolean;
 	/** @default false */
@@ -48,6 +47,7 @@ export default function Repeater ({
 	fields,
 	max = null,
 	onBeforeAddClick,
+	onBeforeDeleteClick,
 	byNodeId = false,
 	includeUpdateById = true,
 	groupFields = false,
@@ -73,11 +73,13 @@ export default function Repeater ({
 		]));
 	};
 
-	const onDeleteClick = (index, id) => () => {
+	const onDeleteClick = (index, id) => async () => {
 		if (!id) {
 			console.warn('Tried deleting repeater value without ID!');
 			return;
 		}
+
+		if (onBeforeDeleteClick) await onBeforeDeleteClick(values[index]);
 
 		_setValues(v => {
 			const n = [...v];

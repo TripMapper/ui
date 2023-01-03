@@ -5,7 +5,7 @@ import uuid from '../util/uuid';
 import RedX from '../svg/red-x.svg';
 import { nanoid } from 'nanoid';
 import { cx } from '../util';
-export default function Repeater({ name, addLabel = '+ Add', emptyValue, defaultValues = [], fields, max = null, onBeforeAddClick, byNodeId = false, includeUpdateById = true, groupFields = false, setValues, }) {
+export default function Repeater({ name, addLabel = '+ Add', emptyValue, defaultValues = [], fields, max = null, onBeforeAddClick, onBeforeDeleteClick, byNodeId = false, includeUpdateById = true, groupFields = false, setValues, }) {
     const [values, _setValues] = useState(defaultValues ?? []), [deletedIds, setDeletedIds] = useState([]);
     useEffect(() => {
         if (!setValues)
@@ -23,11 +23,13 @@ export default function Repeater({ name, addLabel = '+ Add', emptyValue, default
             nextV,
         ]));
     };
-    const onDeleteClick = (index, id) => () => {
+    const onDeleteClick = (index, id) => async () => {
         if (!id) {
             console.warn('Tried deleting repeater value without ID!');
             return;
         }
+        if (onBeforeDeleteClick)
+            await onBeforeDeleteClick(values[index]);
         _setValues(v => {
             const n = [...v];
             n.splice(index, 1);

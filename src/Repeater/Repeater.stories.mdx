@@ -43,16 +43,41 @@ import Input from './index';
 				/>,
 			]}
 		/>
+		<br/>
 		<Repeater
 			groupFields
 			fields={[
 				(row, i) => (
 					<>
-						<div>Row Group</div>
-						<div>I'm special</div>
+						<div>{row.id}</div>
+						<div>{row.filename}</div>
 					</>
 				),
 			]}
+			onBeforeDeleteClick={console.log}
+			onBeforeAddClick={() => {
+				let lock = false;
+				return new Promise(resolve => {
+					const fileInput = document.createElement('input');
+					fileInput.setAttribute('type', 'file');
+					fileInput.style.display = 'none';
+					document.body.appendChild(fileInput);
+					fileInput.addEventListener('change', e => {
+						lock = true;
+						resolve({ id: Math.random().toString(), filename: e.target.files[0].name });
+						document.body.removeChild(fileInput);
+					}, { once: true });
+					window.addEventListener('focus', () => {
+						setTimeout(() => {
+							if (!lock && document.body.contains(fileInput)) {
+								resolve();
+								document.body.removeChild(fileInput);
+							}
+						}, 300);
+					}, { once: true });
+					fileInput.click();
+				});
+			}}
 		/>
 	</Story>
 </Canvas>

@@ -15,10 +15,11 @@ export interface RepeaterProps {
     max?: number;
     fields: readonly RepeaterField[];
     onBeforeAddClick?: (value: RepeaterValue) => Promise<RepeaterValue>;
+    onBeforeDeleteClick?: (value: RepeaterValue) => void;
     byNodeId?: boolean;
     includeUpdateById?: boolean;
     /** @default false */
     groupFields?: boolean;
     setValues?: (values: readonly RepeaterValue[]) => void;
 }
-export default function Repeater({ name, addLabel, emptyValue, defaultValues, fields, max, onBeforeAddClick, byNodeId, includeUpdateById, groupFields, setValues, }: RepeaterProps): JSX.Element;
+export default function Repeater({ name, addLabel, emptyValue, defaultValues, fields, max, onBeforeAddClick, onBeforeDeleteClick, byNodeId, includeUpdateById, groupFields, setValues, }: RepeaterProps): JSX.Element;
