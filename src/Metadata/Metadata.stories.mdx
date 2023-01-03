@@ -22,6 +22,8 @@ gql`{ user { metadata { ...Metadata } } } ${METADATA_FRAGMENT}`;
 			{ id: '1', primaryType: 'EMAIL', secondaryType: 'EMAIL_WORK', value: 'test@example.com' },
 			{ id: '2', primaryType: 'EMAIL', secondaryType: 'EMAIL_PERSONAL', value: 'test@me.com' },
 			{ id: '3', primaryType: 'PHONE', secondaryType: 'PHONE_PERSONAL', value: '01234 567890' },
+			{ id: '4', primaryType: 'ADDRESS', value: '123 Test Street, Testtown' },
+			{ id: '5', primaryType: 'LINK', value: 'https://google.com' },
 		]} />
 	</Story>
 </Canvas>

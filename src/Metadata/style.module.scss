@@ -3,6 +3,10 @@
 .metadata {
 	width: 100%;
 
+	svg:first-child {
+		opacity: 0.5;
+	}
+
 	dt {
 		font-size: 0;
 
@@ -30,5 +34,13 @@
 		color: change-color($COLOURS_text, $alpha: 0.5);
 		font-size: rem(12);
 		font-weight: bold;
+	}
+
+	a {
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
