@@ -3,4 +3,4 @@ export interface CurrencyParts {
     integer: number;
     mantissa: string;
 }
-export default function formatCurrency(value?: number, currency?: string, stripZero?: boolean, asParts?: boolean, narrowSymbol?: boolean): string | CurrencyParts;
+export default function formatCurrency(value?: number, currency?: string | object, stripZero?: boolean, asParts?: boolean, narrowSymbol?: boolean): string | CurrencyParts;

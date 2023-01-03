@@ -2,6 +2,8 @@ import { UIContextPointer } from '../UIContext';
 export default function formatCurrency(value = 0, currency = 'USD', stripZero = false, asParts = false, narrowSymbol = true) {
     if (value === 0 && stripZero)
         return '';
+    if (typeof currency === 'object')
+        currency = currency?.iso;
     // Safely round to 2 decimal places
     value = Math.round((value + Number.EPSILON) * 100) / 100;
     let formattedValue = value.toLocaleString(UIContextPointer.ref?.preferredLocale, {

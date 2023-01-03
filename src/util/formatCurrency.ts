@@ -8,13 +8,16 @@ export interface CurrencyParts {
 
 export default function formatCurrency (
 	value : number = 0,
-	currency : string = 'USD',
+	currency : string|object = 'USD',
 	stripZero : boolean = false,
 	asParts : boolean = false,
 	narrowSymbol : boolean = true,
 ) : string | CurrencyParts {
 	if (value === 0 && stripZero)
 		return '';
+
+	if (typeof currency === 'object')
+		currency = (currency as any)?.iso as string;
 
 	// Safely round to 2 decimal places
 	value = Math.round((value + Number.EPSILON) * 100) / 100;
