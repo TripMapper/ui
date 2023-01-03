@@ -12,7 +12,7 @@ export const TRIP_CARD_MINI_FRAGMENT = gql`
 		name
 		startDate
 		endDate
-        image {
+        image: coverImage {
             id
             srcset (
                 width: 40
