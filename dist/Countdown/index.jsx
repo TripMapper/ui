@@ -27,7 +27,11 @@ function until(target) {
     ]);
 }
 export default function Countdown({ target }) {
-    const t = useMemo(() => DateTime.fromJSDate(target), [target]);
+    const t = useMemo(() => {
+        return target instanceof Date
+            ? DateTime.fromJSDate(target)
+            : DateTime.fromSql(target);
+    }, [target]);
     const [v, setV] = useState(until(t));
     useEffect(() => {
         if (!t)
