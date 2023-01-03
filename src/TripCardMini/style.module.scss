@@ -1,0 +1,67 @@
+@import "../variables";
+
+.tripCardMini {
+	display: flex;
+	align-items: center;
+	margin: rem(15) 0;
+	width: 100%;
+	min-width: 0;
+
+	text-decoration: none;
+
+	&:first-child { margin-top: 0 }
+	&:last-child { margin-bottom: 0 }
+
+	&:hover .name strong {
+		text-decoration: underline;
+	}
+}
+
+.image {
+	width: rem(40);
+	height: rem(40);
+
+	img {
+		object-fit: cover;
+	}
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: rem(40);
+	height: rem(40);
+
+	color: #fff;
+
+	background-color: $COLOURS_primary;
+	border-radius: 50%;
+
+	svg {
+		opacity: 0.5;
+	}
+}
+
+.name {
+	flex: 1;
+	flex-shrink: 9999;
+	min-width: 0;
+	margin: auto rem(10);
+
+	strong {
+		display: block;
+		font-size: rem(16);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	small {
+		display: block;
+		margin-top: rem(1);
+
+		color: change-color($COLOURS_text, $alpha: 0.5);
+		font-size: rem(12);
+	}
+}

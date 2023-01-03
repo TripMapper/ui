@@ -14,6 +14,7 @@ export interface PillProps {
 	food?: boolean;
 	other?: boolean;
 	plus?: boolean;
+	black?: boolean;
 
 	type?: 'travel' | 'activity' | 'accommodation' | 'food' | 'other';
 }
@@ -30,6 +31,7 @@ export default function Pill ({
 	food,
 	other,
 	plus,
+	black,
 
 	type,
 } : PillProps) {
@@ -46,6 +48,7 @@ export default function Pill ({
 			(food || type === 'food') && css.food,
 			(other || type === 'other') && css.other,
 			plus && css.plus,
+			black && css.black,
 		)}>
 			{children}
 		</span>

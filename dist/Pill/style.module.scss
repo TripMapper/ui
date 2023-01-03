@@ -44,6 +44,12 @@
 	background-color: change-color($COLOURS_primary, $alpha: 0.2);
 }
 
+.black {
+	color: #fff;
+	font-weight: 100;
+	background-color: $COLOURS_text;
+}
+
 .muted:not(.plus) {
 	color: $COLOURS_text;
 	background-color: change-color($COLOURS_danger, $alpha:0.5);

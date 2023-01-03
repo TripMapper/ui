@@ -83,6 +83,7 @@
     "./Title": "./dist/Title/index.jsx",
     "./TokenTextarea": "./dist/TokenTextarea/index.jsx",
     "./TransactionItem": "./dist/TransactionItem/index.jsx",
+    "./TripCardMini": "./dist/TripCardMini/index.jsx",
     "./UIContext": "./dist/UIContext/index.jsx",
     "./Upload": "./dist/Upload/index.jsx",
     "./UrlToLink": "./dist/UrlToLink/index.jsx",

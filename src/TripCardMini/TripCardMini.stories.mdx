@@ -1,0 +1,46 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import TripCardMini, { TRIP_CARD_MINI_FRAGMENT } from './index'; import {
+	createClient,
+	gql, Provider, useQuery
+} from 'urql';
+
+<Meta
+	title="Interface/Trip Card (Mini)"
+	component={TripCardMini}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<Story />
+			</Provider>
+		),
+	]}
+/>
+
+# Trip Card (Mini)
+
+<Canvas>
+	<Story name="Trip Card (Mini)">
+		{() => {
+			const [{data}] = useQuery({
+				query: gql`{ tripsList { ...TripCardMini } } ${TRIP_CARD_MINI_FRAGMENT}`,
+			});
+			return data?.tripsList?.map((trip, i) => {
+				if (!trip.startDate && Math.random() > 0.25) {
+					trip.startDate = new Date();
+					trip.startDate.setDate(trip.startDate.getDate() + 10 * (i + 1));
+					trip.startDate.setMonth(trip.startDate.getMonth() - 2);
+					trip.endDate = new Date(trip.startDate);
+					trip.endDate.setDate(trip.endDate.getDate() + 10 * (i + 1));
+					if (Math.random() > 0.9) trip.status = 'DRAFT';
+				}
+				return (
+					<TripCardMini
+						key={trip.id}
+						{...trip}
+					/>
+				);
+			}) ?? null;
+		}}
+	</Story>
+</Canvas>
+
+<ArgsTable of={TripCardMini} />
