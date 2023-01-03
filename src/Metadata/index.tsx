@@ -46,7 +46,7 @@ export default function Metadata ({ meta } : MetadataProps) {
 						<dd key={item.id}>
 							<i>{item.primaryType}</i>
 							<span>{item.value}</span>
-							<small>{titleCase(item.secondaryType?.split('_', 2)?.[1])}</small>
+							<small>{item.secondaryType && titleCase(item.secondaryType.split('_', 2)[1])}</small>
 						</dd>
 					))}
 				</Fragment>
