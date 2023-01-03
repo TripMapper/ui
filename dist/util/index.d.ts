@@ -8,3 +8,4 @@ export { default as mergeRefs } from './mergeRefs';
 export { default as titleCase } from './titleCase';
 export { default as uuid } from './uuid';
 export { default as signals } from './signals';
+export { default as formatBytes } from './formatBytes';
