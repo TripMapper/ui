@@ -27,7 +27,11 @@ export default function formToObj (
 
 	formData.forEach((value, key) => {
 		const field = form.elements[key] as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-		const isNumeric = field?.type === 'number' || (field?.inputMode === 'numeric' && (field as HTMLInputElement)?.pattern === '[0-9]*');
+		const isNumeric = field?.type === 'number' || (field?.inputMode === 'numeric' && (
+			   (field as HTMLInputElement)?.pattern === '[0-9]*'
+			|| (field as HTMLInputElement)?.pattern === '[0-9.]*'
+			|| (field as HTMLInputElement)?.pattern === '[.0-9]*'
+		));
 
 		if (RID_RX.test(key))
 		{
