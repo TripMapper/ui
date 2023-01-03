@@ -5,8 +5,7 @@ import getInitials from '../util/getInitials';
 export const CLIENT_PERSON_CARD_FRAGMENT = gql `
 	fragment ClientPersonCard on ClientPerson {
 		id
-		givenName
-		familyName
+		name
 		user {
             ...Avatar
         }
@@ -20,11 +19,11 @@ export const CLIENT_PERSON_CARD_FRAGMENT = gql `
 	}
 	${AVATAR_FRAGMENT}
 `;
-export default function ClientPersonCard({ givenName, familyName, user, address, }) {
+export default function ClientPersonCard({ name, user, address, }) {
     return (<div className={css.clientPersonCard}>
-			<Avatar className={css.avatar} user={user} flat squricle initials={getInitials(`${givenName} ${familyName}`)}/>
+			<Avatar className={css.avatar} user={user} flat squricle initials={getInitials(name)}/>
 			<div>
-				<strong>{givenName} {familyName}</strong>
+				<strong>{name}</strong>
 				<small>{address?.[0]?.value}</small>
 			</div>
 		</div>);
