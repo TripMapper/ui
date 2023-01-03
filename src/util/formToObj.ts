@@ -31,6 +31,7 @@ export default function formToObj (
 			   (field as HTMLInputElement)?.pattern === '[0-9]*'
 			|| (field as HTMLInputElement)?.pattern === '[0-9.]*'
 			|| (field as HTMLInputElement)?.pattern === '[.0-9]*'
+			|| (field as HTMLInputElement)?.pattern === '[,.\\d]*'
 		));
 
 		if (RID_RX.test(key))

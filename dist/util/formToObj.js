@@ -20,7 +20,8 @@ export default function formToObj(formData, form) {
         const field = form.elements[key];
         const isNumeric = field?.type === 'number' || (field?.inputMode === 'numeric' && (field?.pattern === '[0-9]*'
             || field?.pattern === '[0-9.]*'
-            || field?.pattern === '[.0-9]*'));
+            || field?.pattern === '[.0-9]*'
+            || field?.pattern === '[,.\\d]*'));
         if (RID_RX.test(key)) {
             const keyUpTo = key.split(RID_RX)[0];
             if (keysToArrayify.indexOf(keyUpTo) === -1)
