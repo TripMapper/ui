@@ -59,6 +59,7 @@ const Avatar = forwardRef(({
 			squricle && css.squricle,
 			(!user?.avatar?.srcset && !user?.avatar?.url && !!initials) && css.initials,
 		)}
+		title={user?.friendlyName}
 	>
 		{user?.avatar?.url ? (
 			<img
