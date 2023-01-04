@@ -13,6 +13,7 @@ export interface TableColumn {
 	handle: string;
 	renderer?: (any, TableData) => ReactNode;
 	align: 'left' | 'center' | 'right';
+	width?: string|number;
 }
 
 export interface TableProps {
@@ -28,7 +29,7 @@ export default function Table ({ columns, data, inline = false, ...props } : Tab
 			<thead>
 			<tr>
 				{columns.map(col => (
-					<th key={col.handle}>
+					<th key={col.handle} style={{width:col.width}}>
 						{col.label}
 					</th>
 				))}

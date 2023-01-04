@@ -5,7 +5,7 @@ export default function Table({ columns, data, inline = false, ...props }) {
     const tbl = (<table className={css.table} {...props}>
 			<thead>
 			<tr>
-				{columns.map(col => (<th key={col.handle}>
+				{columns.map(col => (<th key={col.handle} style={{ width: col.width }}>
 						{col.label}
 					</th>))}
 			</tr>
