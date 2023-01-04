@@ -13,4 +13,5 @@ export interface AddressInputProps {
     required?: boolean;
     defaultValue?: Address;
 }
+export declare const ADDRESS_FRAGMENT: import("urql").TypedDocumentNode<any, object>;
 export default function AddressInput({ name, required, defaultValue }: AddressInputProps): JSX.Element;

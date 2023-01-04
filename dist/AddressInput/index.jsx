@@ -2,6 +2,19 @@ import css from './style.module.scss';
 import Input from '../Input';
 import CountrySelect from '../CountrySelect';
 import { useTranslation } from 'react-i18next';
+import { gql } from 'urql';
+export const ADDRESS_FRAGMENT = gql `
+	fragment Address on Address {
+		id
+		address1
+		address2
+		address3
+		city
+		state
+		zip
+		countryId
+	}
+`;
 export default function AddressInput({ name, required, defaultValue }) {
     const { t } = useTranslation();
     const n = n => name ? `${name}[${n}]` : n;
