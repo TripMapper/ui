@@ -1,0 +1,59 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'; import AddressInput from './index'; import {
+	createClient,
+	Provider
+} from 'urql'; import Form from '../Form'; import Button from '../Button';
+
+<Meta
+	title="Form/Address Input"
+	component={AddressInput}
+	decorators={[
+		Story => (
+			<Provider value={createClient({ url: 'https://dev.api.tripmapper.co/graphql', })}>
+				<Story />
+			</Provider>
+		),
+	]}
+/>
+
+# Address Input
+
+```jsx
+import AddressInput from 'ui/AddressInput';
+<AddressInput />
+```
+
+<Canvas>
+	<Story name="Address Input">
+		<Form onSubmit={console.log}>
+			<AddressInput
+				required
+				name="address"
+				defaultValue={{
+					"address1": "test1",
+					"address2": "test2",
+					"address3": "test3",
+					"city": "testtown",
+					"state": "teststate",
+					"zip": "testcode",
+					"countryId": "53aefed4-d98b-11eb-a5a9-531475df3c59"
+				}}
+			/>
+			<br/>
+			<Button wide>Submit</Button>
+		</Form>
+	</Story>
+</Canvas>
+
+<ArgsTable of={AddressInput} />
+
+```ts
+export interface Address {
+	address1?: string;
+	address2?: string;
+	address3?: string;
+	city?: string;
+	state?: string;
+	zip?: string;
+	countryId?: string;
+}
+```
