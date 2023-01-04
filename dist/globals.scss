@@ -83,6 +83,21 @@ body {
 	&.no-scroll,
 	&.ReactModal__Body--open {
 		overflow: hidden;
+
+		@supports selector(::-webkit-scrollbar) {
+			padding-right: rem(10) !important;
+
+			&::after {
+				content: '';
+				position: fixed;
+				z-index: $zINDEX_slideover - 1;
+				top: 0;
+				right: 0;
+				width: rem(10);
+				height: 100vh;
+				background: change-color($COLOURS_primary, $alpha: 0.1);
+			}
+		}
 	}
 
 	&::-webkit-scrollbar {
