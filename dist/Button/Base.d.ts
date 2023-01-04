@@ -10,6 +10,7 @@ export interface BaseButtonProps {
     target?: '_blank' | undefined;
     type?: 'button' | 'submit' | 'reset';
     El?: ReactNode;
+    title?: string;
 }
 export interface BaseButtonPropsWithClassName extends BaseButtonProps {
     className?: string;

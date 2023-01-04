@@ -14,6 +14,7 @@ export interface BaseButtonProps {
 	target?: '_blank' | undefined;
 	type?: 'button' | 'submit' | 'reset';
 	El?: ReactNode;
+	title?: string;
 }
 
 export interface BaseButtonPropsWithClassName extends BaseButtonProps{
@@ -38,6 +39,7 @@ const Base = forwardRef<HTMLButtonElement|HTMLAnchorElement, BaseButtonPropsWith
 	type = 'submit',
 
 	El = 'button',
+	title,
 } : BaseButtonPropsWithClassName, ref) => {
 	const InEl = href ? A : El;
 
@@ -58,6 +60,7 @@ const Base = forwardRef<HTMLButtonElement|HTMLAnchorElement, BaseButtonPropsWith
 			disabled={disabled}
 			/*@ts-ignore*/
 			ref={ref}
+			title={title}
 			{...props}
 		>
 			{prefix}

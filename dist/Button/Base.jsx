@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import A from '../A';
-const Base = forwardRef(({ className, style, children, prefix, suffix, disabled = false, onClick, href, target, type = 'submit', El = 'button', }, ref) => {
+const Base = forwardRef(({ className, style, children, prefix, suffix, disabled = false, onClick, href, target, type = 'submit', El = 'button', title, }, ref) => {
     const InEl = href ? A : El;
     const props = href ? {
         href,
@@ -14,7 +14,7 @@ const Base = forwardRef(({ className, style, children, prefix, suffix, disabled 
     /*@ts-ignore*/
     <InEl className={className} style={style} disabled={disabled} 
     /*@ts-ignore*/
-    ref={ref} {...props}>
+    ref={ref} title={title} {...props}>
 			{prefix}
 			{children}
 			{suffix}
