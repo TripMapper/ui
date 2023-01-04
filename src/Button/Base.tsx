@@ -18,10 +18,12 @@ export interface BaseButtonProps {
 
 export interface BaseButtonPropsWithClassName extends BaseButtonProps{
 	className?: string;
+	style?: CSSStyleDeclaration;
 }
 
 const Base = forwardRef<HTMLButtonElement|HTMLAnchorElement, BaseButtonPropsWithClassName>(({
 	className,
+	style,
 
 	children,
 	prefix,
@@ -52,6 +54,7 @@ const Base = forwardRef<HTMLButtonElement|HTMLAnchorElement, BaseButtonPropsWith
 		/*@ts-ignore*/
 		<InEl
 			className={className}
+			style={style}
 			disabled={disabled}
 			/*@ts-ignore*/
 			ref={ref}

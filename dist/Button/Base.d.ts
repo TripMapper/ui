@@ -13,6 +13,7 @@ export interface BaseButtonProps {
 }
 export interface BaseButtonPropsWithClassName extends BaseButtonProps {
     className?: string;
+    style?: CSSStyleDeclaration;
 }
 declare const Base: import("react").ForwardRefExoticComponent<BaseButtonPropsWithClassName & import("react").RefAttributes<HTMLAnchorElement | HTMLButtonElement>>;
 export default Base;
