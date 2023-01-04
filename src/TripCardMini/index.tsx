@@ -52,7 +52,7 @@ export default function TripCardMini ({
 		default: {
 			if (startDate) {
 				const now = new Date();
-				if (endDate < now) pill = <Pill plus large>Past</Pill>;
+				if (endDate < now) pill = <Pill black muted large>Past</Pill>;
 				else if (startDate > now) pill = <Pill other large>Upcoming</Pill>;
 				else pill = <Pill food large>Active</Pill>;
 			}

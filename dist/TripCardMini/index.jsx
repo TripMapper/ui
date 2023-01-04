@@ -36,7 +36,7 @@ export default function TripCardMini({ id, name, startDate, endDate, image, stat
             if (startDate) {
                 const now = new Date();
                 if (endDate < now)
-                    pill = <Pill plus large>Past</Pill>;
+                    pill = <Pill black muted large>Past</Pill>;
                 else if (startDate > now)
                     pill = <Pill other large>Upcoming</Pill>;
                 else

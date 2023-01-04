@@ -48,9 +48,13 @@
 	color: #fff;
 	font-weight: 100;
 	background-color: $COLOURS_text;
+
+	&.muted {
+		background-color: change-color($COLOURS_text, $alpha: 0.2);
+	}
 }
 
-.muted:not(.plus) {
+.muted:not(.plus):not(.black) {
 	color: $COLOURS_text;
 	background-color: change-color($COLOURS_danger, $alpha:0.5);
 
@@ -84,9 +88,9 @@
 	font-family: $FONTSTACK_base;
 	text-transform: unset;
 
-	border-radius: rem(8);
+	border-radius: rem(4);
 
-	&.muted:not(.plus):not(.travel):not(.activity):not(.accommodation):not(.food):not(.other) {
+	&.muted:not(.plus):not(.travel):not(.activity):not(.accommodation):not(.food):not(.other):not(.black) {
 		color: $COLOURS_danger;
 		background-color: change-color($COLOURS_danger, $alpha:0.2);
 	}
