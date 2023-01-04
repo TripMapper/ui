@@ -39,7 +39,9 @@ export default function CountrySelect({ name, defaultValue, defaultValueIso, ...
             defaultVal: defaultValue
                 ? Array.isArray(defaultValue)
                     ? defaultValue.map(v => c[v.value])
-                    : c[defaultValue.value]
+                    : typeof defaultValue === 'string'
+                        ? c[defaultValue]
+                        : c[defaultValue.value]
                 : defaultByIso ? c[defaultByIso] : null,
         };
     }, [data, defaultValue, defaultValueIso]);

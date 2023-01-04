@@ -1,0 +1,19 @@
+@import "../variables";
+
+.addressInput {
+	border: none;
+
+	> input {
+		margin-bottom: rem(16);
+	}
+
+	> div {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: rem(16);
+
+		&:not(:last-child) {
+			margin-bottom: rem(16);
+		}
+	}
+}

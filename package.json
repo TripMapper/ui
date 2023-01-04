@@ -12,6 +12,7 @@
     "./hooks": "./dist/hooks/index.js",
     "./consts": "./dist/Consts.jsx",
     "./A": "./dist/A/index.jsx",
+    "./AddressInput": "./dist/AddressInput/index.jsx",
     "./AuthAffiliateBanner": "./dist/AuthAffiliateBanner/index.jsx",
     "./AuthLayout": "./dist/AuthLayout/index.jsx",
     "./Avatar": "./dist/Avatar/index.jsx",
