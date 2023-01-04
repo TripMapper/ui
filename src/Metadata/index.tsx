@@ -10,6 +10,7 @@ export const METADATA_FRAGMENT = gql`
 		primaryType
 		secondaryType
 		value
+		address { id asString }
 	}
 `;
 
@@ -18,18 +19,19 @@ export interface MetadataItem {
 	primaryType: string;
 	secondaryType?: string | null;
 	value?: string | null;
+	address?: any;
 }
 
 export interface MetadataProps {
 	meta: readonly MetadataItem[];
 }
 
-function itemLink ({ primaryType, value } : MetadataItem) {
+function itemLink ({ primaryType, value, address } : MetadataItem) {
 	switch (primaryType) {
 		case 'EMAIL': return <a href={`mailto:${value}`}>{value}</a>;
 		case 'PHONE': return <a href={`tel:${value}`}>{value}</a>;
 		case 'LINK': return <a href={value} target="_blank" rel="noopener noreferrer">{value}</a>;
-		case 'ADDRESS': return <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(value)}`} target="_blank" rel="noopener noreferrer">{value}</a>;
+		case 'ADDRESS': return <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(address?.asString ?? value)}`} target="_blank" rel="noopener noreferrer">{address?.asString ?? value}</a>;
 		default: return value;
 	}
 }

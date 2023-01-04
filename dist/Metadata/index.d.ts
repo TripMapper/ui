@@ -5,6 +5,7 @@ export interface MetadataItem {
     primaryType: string;
     secondaryType?: string | null;
     value?: string | null;
+    address?: any;
 }
 export interface MetadataProps {
     meta: readonly MetadataItem[];
