@@ -40,6 +40,9 @@ export default function Image ({
 	circle = false,
 	...props
 } : ImageProps) {
+	/* @ts-ignore */
+	delete props.__typename;
+
 	return (
 		<picture
 			key={src}
