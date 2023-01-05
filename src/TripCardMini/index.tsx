@@ -51,6 +51,9 @@ export default function TripCardMini ({
 		case 'DRAFT': pill = <Pill black large>Proposal</Pill>; break;
 		default: {
 			if (startDate) {
+				startDate = new Date(startDate);
+				endDate = new Date(endDate);
+
 				const now = new Date();
 				if (endDate < now) pill = <Pill black muted large>Past</Pill>;
 				else if (startDate > now) pill = <Pill other large>Upcoming</Pill>;
