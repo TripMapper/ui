@@ -3,6 +3,7 @@ import { gql } from 'urql';
 import { useMemo, Fragment } from 'react';
 import titleCase from '../util/titleCase';
 import Icon from '../Icon';
+import Button from '../Button';
 
 export const METADATA_FRAGMENT = gql`
 	fragment Metadata on Meta {
@@ -22,8 +23,16 @@ export interface MetadataItem {
 	address?: any;
 }
 
+export interface MetadataContact {
+	id: string;
+	organisation?: { id: string, name: string };
+	person?: { id: string, name: string };
+}
+
 export interface MetadataProps {
 	meta: readonly MetadataItem[];
+	contacts: readonly MetadataContact[];
+	onContactClick: (id: string) => void,
 }
 
 function itemLink ({ primaryType, value, address } : MetadataItem) {
@@ -36,7 +45,7 @@ function itemLink ({ primaryType, value, address } : MetadataItem) {
 	}
 }
 
-export default function Metadata ({ meta } : MetadataProps) {
+export default function Metadata ({ meta, contacts, onContactClick } : MetadataProps) {
 	const groupedMeta = useMemo(() => {
 		const grouped = {};
 
@@ -52,6 +61,20 @@ export default function Metadata ({ meta } : MetadataProps) {
 
 	return (
 		<dl className={css.metadata}>
+			{(contacts ?? []).length > 0 && (
+				<>
+					<dt>Contacts</dt>
+					{contacts.map(c => (
+						<dd key={c.id}>
+							<Icon of="meta-company" />
+							<Button text size="small" onClick={() => onContactClick(c.organisation?.id ?? c.person?.id)}>
+								{c.organisation?.name ?? c.person?.name}
+							</Button>
+							<small />
+						</dd>
+					))}
+				</>
+			)}
 			{groupedMeta.map(([group, items]) => (
 				<Fragment key={group}>
 					<dt>{group}</dt>

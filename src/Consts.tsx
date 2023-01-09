@@ -23,6 +23,13 @@ export const TRAVEL_TYPES = {
 	TRAVEL_WALK: { label: <T v={t => t('TRAVEL_WALK', 'Walk')} />, value: 'TRAVEL_WALK' },
 };
 
+export const ACCOMMODATION_TYPES = {
+	ACCOMMODATION_BED_ONLY: { label: <T v={t => t('ACCOMMODATION_BED_ONLY', 'Bed Only')} />, value: 'ACCOMMODATION_BED_ONLY' },
+	ACCOMMODATION_BED_AND_BREAKFAST: { label: <T v={t => t('ACCOMMODATION_BED_AND_BREAKFAST', 'Bed & Breakfast')} />, value: 'ACCOMMODATION_BED_AND_BREAKFAST' },
+	ACCOMMODATION_HALF_BOARD: { label: <T v={t => t('ACCOMMODATION_HALF_BOARD', 'Half Board')} />, value: 'ACCOMMODATION_HALF_BOARD' },
+	ACCOMMODATION_FULL_BOARD: { label: <T v={t => t('ACCOMMODATION_FULL_BOARD', 'Full Board')} />, value: 'ACCOMMODATION_FULL_BOARD' },
+};
+
 export const STATUS_TYPES = {
 	TO_BOOK: { label: <T v={t => t('TO_BOOK', 'To Book')} />, value: 'TO_BOOK' },
 	BOOKED: { label: <T v={t => t('BOOKED', 'Booked')} />, value: 'BOOKED' },

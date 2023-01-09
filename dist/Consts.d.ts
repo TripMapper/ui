@@ -51,6 +51,24 @@ export declare const TRAVEL_TYPES: {
         value: string;
     };
 };
+export declare const ACCOMMODATION_TYPES: {
+    ACCOMMODATION_BED_ONLY: {
+        label: JSX.Element;
+        value: string;
+    };
+    ACCOMMODATION_BED_AND_BREAKFAST: {
+        label: JSX.Element;
+        value: string;
+    };
+    ACCOMMODATION_HALF_BOARD: {
+        label: JSX.Element;
+        value: string;
+    };
+    ACCOMMODATION_FULL_BOARD: {
+        label: JSX.Element;
+        value: string;
+    };
+};
 export declare const STATUS_TYPES: {
     TO_BOOK: {
         label: JSX.Element;

@@ -7,7 +7,20 @@ export interface MetadataItem {
     value?: string | null;
     address?: any;
 }
+export interface MetadataContact {
+    id: string;
+    organisation?: {
+        id: string;
+        name: string;
+    };
+    person?: {
+        id: string;
+        name: string;
+    };
+}
 export interface MetadataProps {
     meta: readonly MetadataItem[];
+    contacts: readonly MetadataContact[];
+    onContactClick: (id: string) => void;
 }
-export default function Metadata({ meta }: MetadataProps): JSX.Element;
+export default function Metadata({ meta, contacts, onContactClick }: MetadataProps): JSX.Element;

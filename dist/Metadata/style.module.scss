@@ -22,10 +22,14 @@
 		margin-bottom: rem(5);
 	}
 
-	span {
+	span,
+	strong,
+	button {
 		display: inline-block;
 		flex-grow: 1;
 		margin: 0 rem(13);
+		padding: 0;
+		text-align: left;
 	}
 
 	small {
